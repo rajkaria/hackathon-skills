@@ -860,6 +860,87 @@ The right tech stack depends on your hackathon type and team skills. Here's a qu
 
 **General rule:** use what your team already knows. A hackathon is not the time to learn a new framework.
 
+### The Non-Designer's UI Cheat Sheet
+
+Most hackathon teams don't have a designer. Here's how developers can make projects look professional in under an hour:
+
+1. **Use shadcn/ui + Tailwind CSS** — pre-built, beautiful components you own. Run `npx shadcn@latest init`, then add components as needed. You get dark mode, consistent spacing, and accessible components for free.
+2. **Pick one accent color** — don't design a color system. Use neutral grays for everything + one brand color for buttons and highlights.
+3. **Steal layouts** — find a site you like (Linear, Vercel, Stripe), screenshot it, and replicate the layout structure. Don't copy the design, copy the grid.
+4. **Typography hierarchy** — three sizes only: heading (24-32px bold), subheading (16-18px medium), body (14-16px regular). Don't use more than two font weights.
+5. **Spacing system** — use Tailwind's `p-4`, `p-6`, `p-8` consistently. Inconsistent spacing is the #1 tell of an amateur UI.
+6. **Icons** — Lucide icons (built into shadcn) or Heroicons. Pick one set. Don't mix.
+7. **Dark theme** — easier to make look professional than light theme. Less design skill required.
+
+---
+
+## AI Tooling Strategy
+
+AI coding tools are the biggest multiplier in modern hackathons. 95% of developers now use them. The edge isn't having AI tools — everyone does — it's knowing how to use them strategically across hackathon phases.
+
+### Which Tool for Which Phase
+
+| Phase | Best Tool | Why |
+|-------|-----------|-----|
+| Research | Claude Code / ChatGPT | Web search, doc analysis, competitive research |
+| Ideate | Claude Code | Brainstorming, competitive analysis, idea evaluation |
+| Spec | Claude Code | Writing structured documents, templates |
+| Plan | Claude Code + superpowers | Task breakdown, dependency analysis |
+| Build | Claude Code / Cursor | Code generation, multi-file changes, debugging |
+| Polish | Cursor / v0 | UI refinement, component generation, responsive fixes |
+| Judge | Claude Code | Simulating judge panels (the skill's core feature) |
+| Ship | Claude Code | README writing, pitch scripting, video planning |
+
+### AI Prompting Patterns for Hackathons
+
+**For rapid scaffolding:**
+"Create a Next.js project with shadcn/ui, Tailwind, and these 3 pages: [landing, dashboard, docs]. Use dark theme. Deploy to Vercel."
+
+**For feature building:**
+"Here's my spec: [paste spec]. Build [feature X]. Keep it simple — this is for a hackathon demo, not production. Focus on the happy path working perfectly."
+
+**For debugging under pressure:**
+"This is broken and I have 4 hours left. [paste error]. Give me the fastest fix, not the best fix."
+
+**For polish:**
+"Review this UI as a hackathon judge. What looks amateur? What's the fastest fix for each issue?"
+
+### What AI Can't Do for You
+
+- **Pick the right idea** — AI can brainstorm, but you need taste and hackathon judgment to pick the winner
+- **Feel the energy in the room** — at in-person events, talking to people reveals what's exciting and what's overdone
+- **Sell the vision** — AI can write pitch scripts, but authentic passion in delivery comes from you
+- **Network** — the human connections at hackathons are irreplaceable
+
+---
+
+## The Mentor Advantage
+
+Many hackathon participants skip mentors entirely. This is a mistake — winners consistently credit breakthrough moments to mentor conversations.
+
+### How to Use Mentors Strategically
+
+- **Hour 1-2: Validate your idea** — find a mentor with domain expertise. Ask "does this problem actually matter?" and "what am I missing?" It's cheaper to pivot now than after 20 hours of coding.
+- **Midway: Technical unblocking** — stuck on an integration? Mentor who works at the sponsor company can save you 4 hours of documentation reading in a 10-minute conversation.
+- **Before the pitch: Rehearse** — find a mentor who isn't technical. If they understand your pitch, judges will too. If they're confused, simplify.
+
+### Questions That Get the Best Mentor Feedback
+
+- "If you were judging this, what would concern you?"
+- "What's the one thing that would make this a no-brainer winner?"
+- "We're debating between [A] and [B] — which would you prioritize with 6 hours left?"
+
+---
+
+## Self-Care = Performance
+
+This sounds soft, but it directly impacts submission quality. Tired teams write buggy code, give weak pitches, and make poor scope decisions.
+
+- **Sleep 6 hours** in a 48-hour hackathon. The bugs you create at 3 AM cost more time to fix than the sleep saves.
+- **Eat real meals** — not just energy drinks and pizza. Blood sugar crashes cause poor decisions at critical moments.
+- **Take a 15-minute walk** when stuck — the solution often comes when you stop staring at the screen.
+- **Designate a "scope guardian"** — one team member whose job is to say "no" to new features after the 75% time mark. Feature creep at 2 AM is the most common way good projects become mediocre submissions.
+
 ---
 
 ## Post-Hackathon: Leverage the Win
