@@ -240,8 +240,8 @@ RESEARCH → IDEATE → SPEC → PLAN → BUILD → EXPAND → POLISH → JUDGE 
 This skill was extracted from three real hackathon build sessions and enriched with research from DevPost, MLH, serial hackathon winners, and winning project analysis:
 
 - **Aegis** (OWS Hackathon) — Commerce protocol for AI agent economies on Solana
-- **Toll** (Stellar Hacks) — Monetization middleware for MCP servers on Stellar
-- **HashPay** (HashKey On-Chain Horizon) — On-chain recurring payroll for DAOs
+- Stellar Hacks — Monetization middleware for MCP servers on Stellar
+- HashKey On-Chain Horizon — On-chain payroll rails for DAOs
 
 ## Contributing
 
