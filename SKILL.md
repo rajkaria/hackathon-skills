@@ -9,6 +9,50 @@ This skill codifies a battle-tested workflow refined from multiple real hackatho
 
 The core insight: hackathon winners aren't the best engineers — they're the ones who build the right thing at the right scope with the right presentation. Research shows that 40-45% of scoring depends on how well you pitch, and judges form impressions in the first 10 seconds. This workflow ensures you nail all three: the right idea, the right build, and the right story.
 
+## Quick Start (TL;DR)
+
+If you only have 60 seconds, here's the whole workflow:
+
+1. **Read the hackathon docs** → extract tracks, prizes, judging criteria, required tech, deadlines
+2. **Find the gap** → what will 80% of teams build? Don't build that. Find what's missing.
+3. **Write a 1-page build spec** → one-liner, 3 core features max, demo flow designed first
+4. **Plan tasks** → break into parallel batches, deploy in Batch 1 not Batch 4
+5. **Build the core** → 3 features that work perfectly > 8 that half-work
+6. **Add differentiators** → sponsor integrations, npm package, tests, analytics
+7. **Polish** → landing page, custom domain, mobile responsive, loading states
+8. **Simulate judges** → run a 5-9 judge panel, score out of 10, list every issue
+9. **Fix everything** → implement all feedback, run judges again, repeat until 8.5+
+10. **Ship** → demo video (scripted, under 3 min), README, pitch, submit
+
+**Example prompts for each phase:**
+- Phase 1: "Here's the hackathon docs [link]. Analyze the tracks, prizes, judging criteria, and required tech. What's the landscape?"
+- Phase 2: "Based on this hackathon, what will most teams build? What's the gap? Give me 3 ideas with competitive positioning."
+- Phase 3: "Let's go with idea #2. Write a hackathon build spec — scoped for a demo, not production."
+- Phase 4: "Turn this spec into an implementation plan with parallel task batches."
+- Phase 5: "Start the build. Execute the plan."
+- Phase 6: "What more could be added to make this stand out? Give me a numbered list with effort/impact."
+- Phase 7: "Make the UI modern and premium. Add a landing page. Deploy to [domain]."
+- Phase 8: "Review this project as a panel of strict hackathon judges. Score it out of 10."
+- Phase 9: "Fix all the issues the judges raised. Then run the panel again."
+- Phase 10: "Help me create a demo video script and write the submission description."
+
+---
+
+## First Hackathon? Start Here
+
+If this is your first hackathon, here's what you need to know:
+
+- **You don't need to be an expert.** Hackathons reward creativity and hustle, not years of experience. Many winners are students.
+- **Scope small.** Your biggest risk is building too much and finishing nothing. One feature that works is better than five that don't.
+- **The pitch matters as much as the code.** Practice explaining your project to a non-technical friend. If they get it, judges will too.
+- **Use AI tools.** Claude Code, Cursor, GitHub Copilot — these are your multipliers. Everyone uses them now; the edge is knowing what to build, not how fast you type.
+- **Ship something.** A deployed, working demo — no matter how simple — puts you ahead of 50% of submissions that are broken or incomplete.
+- **Have fun.** Network with other builders, talk to sponsors, attend workshops. The connections often outlast the project.
+
+Now follow the 10 phases below. They'll guide you from zero to submitted.
+
+---
+
 ## The 10 Phases
 
 ```
@@ -163,7 +207,7 @@ These rules prevent the most common hackathon failure mode — building too much
 
 **Goal**: Turn the spec into an exhaustive, task-by-task implementation plan.
 
-Use the `superpowers:writing-plans` skill (or equivalent planning workflow) to create a detailed plan. Each task should be:
+If available, use the `superpowers:writing-plans` skill to create a detailed plan. Otherwise, create the plan directly — break the spec into numbered tasks with clear inputs, outputs, and dependencies. Each task should be:
 - Small enough to be completed by a single subagent
 - Clearly defined with inputs and outputs
 - Ordered by dependency (what blocks what)
@@ -195,7 +239,7 @@ Batch 4 (Parallel): Deploy to hosting, landing page, README
 
 **Goal**: Execute the plan as fast as possible with high quality.
 
-Use `superpowers:subagent-driven-development` or `superpowers:executing-plans` to dispatch tasks. Key principles:
+If available, use `superpowers:subagent-driven-development` or `superpowers:executing-plans` to dispatch tasks in parallel. Otherwise, work through tasks sequentially, using the Agent tool for parallelism where possible. Key principles:
 
 - **Parallelize independent tasks** — if Task 3 and Task 4 don't depend on each other, run them simultaneously
 - **Two-stage review** — each subagent output gets reviewed for (1) spec compliance and (2) code quality
@@ -206,6 +250,25 @@ Use `superpowers:subagent-driven-development` or `superpowers:executing-plans` t
 - **Brief check-ins every 2-3 hours** — if working with a team, schedule quick syncs to catch integration issues early
 
 After the core build is complete, run the full stack end-to-end. Fix any integration issues before moving on.
+
+### When Things Go Wrong (The Pivot Protocol)
+
+Something will break. An API will be rate-limited, a smart contract won't compile, a dependency will have a critical bug. Here's the decision framework:
+
+**At the 25% time mark** — if your core approach isn't working, pivot to the backup plan from your spec. Don't sink-cost into a broken approach.
+
+**At the 50% time mark** — if core features aren't working end-to-end, simplify scope immediately. Cut from 3 features to 2, or from 2 to 1. A working demo of one feature beats a broken demo of three.
+
+**At the 75% time mark** — stop adding features entirely. Whatever you have, make it work perfectly and look polished. This is the "feature freeze" line.
+
+**Common blockers and solutions:**
+- **API rate limits** → cache responses, use mock data for non-demo flows, apply for higher limits early
+- **Smart contract won't compile** → simplify the contract, remove features, use a known-working template as base
+- **Dependency conflicts** → pin versions, use CDN alternatives, or remove the dependency and implement manually
+- **Deployment fails** → if Vercel doesn't work, try Netlify, Railway, or even GitHub Pages for static sites. Have a backup hosting plan.
+- **Team member drops out** → redistribute their tasks to the simplest possible versions. Cut scope, don't try to absorb their full workload.
+
+The key mindset: **a finished simple project always beats an unfinished ambitious one.**
 
 **Output**: A working project that covers all "Must Ship" features from the spec.
 
@@ -462,6 +525,73 @@ The demo video is often the most important submission artifact. Judges may watch
 - **Have a backup** — always have a pre-recorded video ready even if you plan to demo live. WiFi drops, APIs fail, Murphy's Law applies at hackathons.
 - **Upload early** — don't discover upload issues 10 minutes before deadline.
 
+### README Template
+
+Use this structure — it's what judges scan in 30 seconds:
+
+```markdown
+# [Project Name] [emoji]
+
+> [One-liner: what it does in plain English]
+
+![Screenshot or GIF of the product working](screenshot.png)
+
+## What It Does
+
+[2-3 sentences explaining the problem and solution. No jargon.]
+
+## How It Works
+
+[3-4 step user flow: "Connect wallet → Create payroll → Fund it → Recipients get paid automatically"]
+
+## Built With
+
+- [Required hackathon tech] — [how it's used non-trivially]
+- [Sponsor tool 1] — [what it does in your project]
+- [Framework] — [why you chose it]
+
+## Architecture
+
+[Simple diagram or description of how components connect]
+
+## Getting Started
+
+[Install and run instructions that work on the first try]
+
+## Demo
+
+- Live: [https://yourproject.xyz]
+- Video: [link]
+
+## Team
+
+- [Name] — [Role]
+
+## Known Limitations
+
+[What's mocked, what's testnet-only, what you'd build next]
+```
+
+### Submission Description Template
+
+Most hackathon platforms (DoraHacks, DevPost) have a text description field. This is often the FIRST thing judges read. Use this structure:
+
+```
+[One-liner — what it does]
+
+[Problem — 2 sentences on the pain point, using a persona if possible]
+
+[Solution — 2 sentences on how your project solves it]
+
+[Key Features — bullet list of 3 working features]
+
+[Tech Stack — list required hackathon tech and sponsor integrations prominently]
+
+[What's Real — be transparent: "Real Solana devnet transactions, live API integrations, deployed at projectname.xyz"]
+
+[Try It — link to live demo, demo video, and repo]
+```
+
 ### Submission Checklist
 
 - [ ] **All hackathon requirements met** — re-read the submission rules one final time
@@ -592,3 +722,71 @@ Time management is the #1 predictor of hackathon success. Most teams spend 90% o
 10. **No backup plan** — always have a pre-recorded demo video, a simplified fallback version, and test accounts pre-configured. Murphy's Law loves hackathons.
 11. **Apology-driven demos** — "Sorry this doesn't work yet" or "We ran out of time for..." — run the show smoothly. If something isn't ready, don't mention it.
 12. **Feature creep after 75% mark** — the last 25% of hackathon time should be polish, pitch, and submission. Not new features.
+
+---
+
+## Tech Stack Decision Guide
+
+The right tech stack depends on your hackathon type and team skills. Here's a quick decision tree:
+
+**Web App (most hackathons):**
+- Frontend: Next.js (React) or Nuxt (Vue) — both deploy instantly to Vercel
+- Styling: Tailwind CSS — fastest way to look professional
+- Backend (if needed): Next.js API routes, or FastAPI (Python) for ML-heavy projects
+
+**Web3/Crypto:**
+- Smart Contracts: Hardhat (JS/TS) or Foundry (Solidity) — pick what your team knows
+- Frontend: Next.js + wagmi/viem (EVM) or @solana/web3.js (Solana)
+- Testnet: always testnet. Fund wallets early.
+
+**AI/ML:**
+- Python + FastAPI for the model/API
+- Next.js or Streamlit for the frontend — Streamlit is faster if UI isn't the focus
+- Use hosted models (OpenAI, Anthropic, Replicate) over self-hosted — less infra to manage
+
+**Mobile:**
+- React Native or Flutter for cross-platform
+- Swift/Kotlin only if the hackathon is platform-specific
+- Expo (React Native) for fastest setup
+
+**Backend-Heavy / Data:**
+- Python + FastAPI or Node.js + Express
+- SQLite or Supabase for quick data storage
+- Deploy on Railway, Render, or Fly.io
+
+**General rule:** use what your team already knows. A hackathon is not the time to learn a new framework.
+
+---
+
+## Post-Hackathon: Leverage the Win
+
+The hackathon doesn't end at submission. The best hackers use hackathons as launchpads for bigger things.
+
+### Immediately After Submission
+- **Share on social media** — tweet/post about your project with screenshots, demo link, and what you learned. Tag the hackathon, sponsors, and judges.
+- **Thank sponsors and organizers** — a brief message goes a long way. They remember who was gracious.
+
+### After Results Are Announced
+
+**If you won:**
+- Write a short blog post / thread about what you built and what worked
+- Connect with sponsors who gave you a prize — they may have grants, jobs, or accelerator programs
+- Consider continuing the project — hackathon winners get inbound interest from VCs, users, and potential collaborators
+- Apply to accelerators (if applicable) — hackathon wins are strong signals
+
+**If you didn't win:**
+- Still share the project — the experience and portfolio value are real
+- Read what won and understand why — update your mental model of what judges value
+- Ask judges for feedback if the hackathon allows it
+- Iterate on the project or reuse components for the next hackathon
+
+### Networking
+- **Connect with other builders** — the best teams often form across hackathons
+- **Talk to mentors** — many hackathons have mentor office hours during the event. Use them.
+- **Follow up within 48 hours** — send a brief LinkedIn/email to people you connected with. Reference something specific you discussed.
+
+### For In-Person Hackathons
+- Visit sponsor booths early — ask about their tools, get API keys, understand what they want to see
+- Attend mentor office hours — get feedback on your idea before committing to building it
+- Practice your expo pitch — at in-person events, you'll pitch to judges walking by your table. Practice a 60-second version of your pitch.
+- Don't skip the demos — watch other teams present. You'll learn what works and what doesn't.
