@@ -7,22 +7,26 @@ description: End-to-end hackathon project workflow — from reading the hackatho
 
 This skill codifies a battle-tested workflow refined from multiple real hackathon submissions and enriched with best practices from serial hackathon winners, seasoned judges, and winning project analysis across DevPost, ETHGlobal, DoraHacks, and MLH events.
 
-The core insight: hackathon winners aren't the best engineers — they're the ones who build the right thing at the right scope with the right presentation. Research shows that 40-45% of scoring depends on how well you pitch, and judges form impressions in the first 10 seconds. This workflow ensures you nail all three: the right idea, the right build, and the right story.
+Two core insights drive this workflow:
+
+1. **Build products, not projects.** Most hackathon submissions are "projects" — they solve a problem for the demo, then die on GitHub. Winners are "products" — they solve a real problem that continues to exist after the hackathon ends. The difference is in how you select and structure the idea: products have users, revenue potential, and a reason to keep existing. Projects have a demo flow and a README.
+
+2. **40-45% of scoring is the pitch.** Research shows judges form impressions in the first 10 seconds. You need the right idea, the right build, AND the right story. This workflow ensures you nail all three.
 
 ## Quick Start (TL;DR)
 
-If you only have 60 seconds, here's the whole workflow:
+If you only have 60 seconds, here's the whole workflow. The philosophy: **build a product, not a project.** Projects die after the hackathon. Products have users, revenue, and a future. Judges can tell the difference in 10 seconds.
 
 1. **Read the hackathon docs** → extract tracks, prizes, judging criteria, required tech, deadlines
-2. **Find the gap** → what will 80% of teams build? Don't build that. Find what's missing.
-3. **Write a 1-page build spec** → one-liner, 3 core features max, demo flow designed first
+2. **Find the gap** → what will 80% of teams build? Don't build that. Find a real user pain that becomes a product.
+3. **Write a 1-page build spec** → one-liner, 3 core features max, demo flow designed first, product vision included
 4. **Plan tasks** → break into parallel batches, deploy in Batch 1 not Batch 4
 5. **Build the core** → 3 features that work perfectly > 8 that half-work
 6. **Add differentiators** → sponsor integrations, npm package, tests, analytics
 7. **Polish** → landing page, custom domain, mobile responsive, loading states
 8. **Simulate judges** → run a 5-9 judge panel, score out of 10, list every issue
 9. **Fix everything** → implement all feedback, run judges again, repeat until 8.5+
-10. **Ship** → demo video (scripted, under 3 min), README, pitch, submit
+10. **Ship** → vision doc, demo video (scripted, under 3 min), README, pitch, submit
 
 **Example prompts for each phase:**
 - Phase 1: "Here's the hackathon docs [link]. Analyze the tracks, prizes, judging criteria, and required tech. What's the landscape?"
@@ -113,7 +117,35 @@ This is the most important phase. A mediocre execution of the right idea beats a
    - Does it solve a real problem born from genuine frustration, not a forced use case?
    - Is the scope achievable in the time available?
    - Would a judge want to install and use it themselves?
-   - Does it have post-hackathon viability? (Judges love projects that could become companies)
+   - **Does this have legs as a product?** (see Product Thinking below)
+
+### Product Thinking: Build Products, Not Projects
+
+This is what separates winners from the 90% of submissions that die after the hackathon. When evaluating ideas, apply the **product filter**:
+
+**The User Test:** Can you name a specific person (not "developers" or "users") who would pay for or actively use this every week? If you can't name them, the idea is too abstract.
+
+**The Day-After Test:** Would you keep working on this the Monday after the hackathon? If the answer is "no, it was just for the prize," judges will feel that. Genuine excitement about the product's future is hard to fake and easy to detect.
+
+**The Sponsor-as-Infrastructure Test:** Are you using sponsor tech as a checkbox (just to qualify for the prize), or as genuine infrastructure that your product would use even if there were no prize? The difference is obvious to sponsor judges. When a sponsor's technology is load-bearing in your architecture — not decorative — their representative on the panel becomes your advocate.
+
+**How to structure ideas as products:**
+- **Start from the user's weekly pain** — not from the tech. "Sarah spends 3 hours every week on payroll" is a product. "We built a smart contract that does X" is a project.
+- **Map sponsor tech to real infrastructure needs** — don't ask "how do I use Sponsor X's SDK?" Ask "what does my product need to do, and which sponsor's tech solves that need genuinely?" When the integration is natural, judges see it instantly.
+- **Think in terms of what deepens over time** — a product has features you'd add in month 2, month 6, year 1. A project has everything in the demo and nothing beyond it.
+- **Identify the revenue moment** — even if you're not charging at the hackathon, know where money changes hands. "Developers pay $X/month" or "we take Y% of transactions" or "freemium with Z premium features." Judges, especially VCs, light up when they hear a clear revenue path.
+
+**Reframing sponsor integration as value exchange:**
+
+Don't think: "I need to use Sponsor X to win their prize."
+Think: "Sponsor X's technology solves [specific problem] in my product. Here's why my product makes their ecosystem more valuable."
+
+For each sponsor integration, articulate:
+- What problem their tech solves IN your product (not generically)
+- Why your product would still use their tech even without the prize
+- How your product growing makes their ecosystem grow (the value flywheel)
+
+This reframing turns checkbox integrations into genuine partnerships. Sponsor judges can tell the difference in seconds.
 
 4. **The "Why Didn't I Think of That?" Test** — the best hackathon ideas trigger a moment of surprise in judges. They should think "that's obvious in hindsight." This means the idea is both novel AND immediately understandable.
 
@@ -174,6 +206,12 @@ The build spec is the single most important document. It prevents scope creep, k
 
 ## Sponsor Prize Strategy
 [Which sponsor prizes to target and how to integrate their tools meaningfully]
+[For each: what problem their tech solves in your product, not just that you "used" it]
+
+## Product Vision (Why This Outlives the Hackathon)
+[One paragraph: what this becomes in 6-12 months]
+[Who are the first 100 users? Where do you find them?]
+[Revenue model in one sentence]
 
 ## Demo Flow
 [Step-by-step walkthrough of what the demo will show]
@@ -373,22 +411,23 @@ Create 5-9 judges based on the actual hackathon's judging criteria and known jud
 | Technical Lead | Innovation & Execution | 30-35% | Novel use of required tech, architecture quality, real vs. mocked integrations, code quality |
 | Product Designer | UX & Completeness | 20-25% | Polish, flow, 30-second usability, mobile, does it feel like a product or a prototype? |
 | Hackathon Organizer | Requirements & Presentation | 15-20% | Does it meet ALL submission requirements? README quality, demo flow, does everything actually work? |
-| Ecosystem VC | Market & Impact | 10-15% | Real-world viability, business model, could this become a company? Would they invest? |
+| Ecosystem VC | Market & Impact | 10-15% | Is this a product or a project? Vision doc quality, revenue model, post-hackathon viability. Would they invest? |
 | Security Auditor | Technical Rigor | 10% | Input validation, error handling, replay protection, exposed secrets |
 | DevRel Engineer | Developer Experience | 5-10% | Documentation, ease of integration, API design, could other devs build on this? |
-| Sponsor Rep | Sponsor Integration | 5-10% | How meaningfully is the sponsor's tech used? Not just a wrapper? |
+| Sponsor Rep | Sponsor Integration | 5-10% | Is the sponsor's tech load-bearing infrastructure or a checkbox? Does this product growing make the sponsor's ecosystem more valuable? |
 
 If the actual judges' backgrounds are known (they often are for crypto hackathons), customize personas to match. A judge from a VC fund evaluates differently than a judge from a protocol team.
 
 ### How to Run the Simulation
 
 For each judge:
-1. Review the entire project from their specific perspective — code, UI, README, landing page, docs
+1. Review the entire project from their specific perspective — code, UI, README, landing page, docs, vision doc
 2. Check requirements compliance first (this is what real judges do)
-3. Score it out of 10 with specific justification per criterion
-4. List 3-5 specific issues, ordered by impact on score
-5. State what would raise their score by 1+ points
-6. Flag any "instant disqualifiers" (broken deploy, missing requirements, obvious placeholder content)
+3. Evaluate: is this a product with a future, or a project that ends at the demo?
+4. Score it out of 10 with specific justification per criterion
+5. List 3-5 specific issues, ordered by impact on score
+6. State what would raise their score by 1+ points
+7. Flag any "instant disqualifiers" (broken deploy, missing requirements, obvious placeholder content)
 
 Calculate a weighted overall score based on judging criteria weights.
 
@@ -437,6 +476,8 @@ JUDGE → identify issues → FIX all issues → JUDGE again → repeat
 - README doesn't explain what the project does in the first paragraph
 - Demo requires complex setup that judges won't do
 - No clear problem statement — solution looking for a problem
+- No product vision — project feels like it ends at the demo with no future
+- Sponsor integration feels like a checkbox, not genuine infrastructure
 
 **Medium-Impact Issues:**
 - Missing error handling on user-facing flows
@@ -486,7 +527,9 @@ Research shows 40-45% of hackathon scoring depends on how well you pitch. The pi
 [3:30-4:00] TECH — Quick mention of tech stack, sponsor integrations, what's real vs. demo.
              "Built on [required tech], with real [blockchain] transactions on testnet."
 
-[4:00-4:30] FUTURE — One sentence on what's next. Don't overpromise.
+[4:00-4:30] VISION — This is NOT "what we'd build with more time." This is "here's the product this becomes."
+             Show the 3-6 month roadmap. Name the first users. Mention the revenue model.
+             "In 3 months, we onboard 50 DAOs. In 6 months, we process $1M in payroll on-chain."
 
 [4:30-5:00] CLOSE — Memorable takeaway. Call to action.
              End with the "wow" moment — the thing that makes this different.
@@ -524,6 +567,66 @@ The demo video is often the most important submission artifact. Judges may watch
 - **Audio quality matters** — use a decent microphone. Bad audio is worse than no voiceover.
 - **Have a backup** — always have a pre-recorded video ready even if you plan to demo live. WiFi drops, APIs fail, Murphy's Law applies at hackathons.
 - **Upload early** — don't discover upload issues 10 minutes before deadline.
+
+### The Vision Doc (The Separator)
+
+This is the single artifact that separates a winner from a regular submission. Every hackathon project has a README. Almost none have a vision document that shows judges where this product goes after the hackathon.
+
+Create a `VISION.md` in the repo (and link it from the README and submission description) that covers:
+
+```markdown
+# [Project Name]: Product Vision
+
+## What We Built (Hackathon Scope)
+[2-3 sentences on what the demo does today]
+
+## What This Becomes
+[Paint the picture of the full product — what it looks like in 6 months with real users]
+
+### Month 1: Foundation
+- [Feature/milestone that builds on hackathon prototype]
+- [First real users — who they are and how you reach them]
+
+### Month 3: Growth
+- [Feature expansion based on user feedback]
+- [Key integration or partnership]
+
+### Month 6: Scale
+- [What the product looks like with 1,000 users]
+- [Revenue milestone or sustainability target]
+
+## Why Each Integration Deepens Over Time
+
+### [Sponsor/Tech A]
+- **Hackathon**: [How it's used now]
+- **Month 3**: [How usage expands — more API calls, more features, deeper integration]
+- **Month 6**: [How your product growing benefits their ecosystem]
+
+### [Sponsor/Tech B]
+- **Hackathon**: [How it's used now]
+- **Month 3**: [Deeper usage]
+- **Month 6**: [Mutual growth flywheel]
+
+## Revenue Model
+[How this sustains itself — subscription, transaction fee, freemium, grants, etc.]
+[Even rough unit economics: "$X/user/month, need Y users to sustain"]
+
+## What the Hackathon Validated
+[What you proved works: the user need, the technical feasibility, the UX approach]
+[What's still hypothesized and needs further validation]
+
+## The Ask
+[What would accelerate this — grant funding, API credits, mentorship, beta users, incubator programs?]
+[This gives sponsors and judges a clear path to stay involved]
+```
+
+**Why this works:** Judges see 50 projects that end at "here's our demo." When they see yours with a clear roadmap, revenue model, and deepening sponsor integrations, the mental shift is immediate — this isn't a hack, this is a product. The sponsor judge thinks "my ecosystem grows if this succeeds." The VC judge thinks "this could be a company." The organizer thinks "this is the submission I want to showcase."
+
+**Where to surface the vision:**
+- Link the `VISION.md` from your README (## What's Next section)
+- Reference the roadmap in the last 30 seconds of your pitch
+- Include the Month 1-3 plan in your submission description
+- If the hackathon has a "future plans" field, this is your answer
 
 ### README Template
 
@@ -602,7 +705,8 @@ Most hackathon platforms (DoraHacks, DevPost) have a text description field. Thi
 - [ ] **Submission form** — all required fields filled. Description is compelling, not just technical.
 - [ ] **Team info** — all members listed with roles and contributions
 - [ ] **Logo/branding** — consistent across repo, site, and submission
-- [ ] **Sponsor integrations documented** — each sponsor tool usage explained in README
+- [ ] **Sponsor integrations documented** — each sponsor tool usage explained in README, with why the integration is genuine (not checkbox)
+- [ ] **Vision doc** — VISION.md in repo, linked from README, referenced in pitch. Shows roadmap, revenue model, deepening sponsor integrations
 - [ ] **Test accounts / demo credentials** — if judges need to log in, make it trivial
 
 ### Final Deploy Checklist
