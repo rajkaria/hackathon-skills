@@ -109,4 +109,25 @@ No sprint ships if it's just more prose. Each must be a *tool* the user invokes.
 | 5 | Validation & Distribution | #9, #10, #11, #12, #13 | Makes vision defensible with real evidence |
 | 6 | Tactical Hardening | #18-#25 | Removes avoidable failure modes |
 
-**Total:** 28 items across 6 sprints. Sprint 1 starts now.
+**Total:** 28 items across 6 sprints. **All 6 sprints complete** as of 2026-04-15.
+
+## Sprint Completion Log
+
+| Sprint | Theme | Shipped | Commit |
+|--------|-------|---------|--------|
+| 1 | Arsenal + Restructure | `arsenal/` (9 modules, 20+ files), `templates/` (5 fillables) | Initial + 547c7f2 |
+| 2 | Pitch Layer | `arsenal/pitch/` — variants, Q&A combat, narrative arcs, stage presence | 82f811a |
+| 3 | Cross-Hackathon Compounding | `career/` (idea bank, sponsor CRM, thesis, score ledger) + `retro/` (template + Update Rule) | 83079c1 |
+| 4 | Conversion Pipeline | `post-hackathon/` — 30-day playbook, 8 grant templates, data room, legal hygiene | 2cb2c5e |
+| 5 | Validation & Distribution | `validation/` — user research, build-in-public, telemetry, press kit | b2216fc |
+| 6 | Tactical Hardening | `tactics/` — risk register, competitor monitoring, eval harness, provenance, stage kit, booth strategy, multi-track, rubric reverse | (this commit) |
+
+The skill is now a 6-layer stack:
+1. **Execution** (SKILL.md phases) — the original playbook
+2. **Arsenal** (hour-0 building blocks)
+3. **Tactics** (during-event hardening)
+4. **Validation** (during-event user signal + distribution)
+5. **Post-hackathon** (T+0 to T+30 conversion)
+6. **Career** (cross-event compounding)
+
+Plus the `retro/` loop that feeds lessons back into all 6 layers.

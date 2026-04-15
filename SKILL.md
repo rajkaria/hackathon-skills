@@ -6,9 +6,14 @@ description: End-to-end hackathon project workflow — from reading the hackatho
 # Hackathon Domination Workflow
 
 > 📋 **Quick Navigation:**
-> - **[`arsenal/`](arsenal/)** — reusable building blocks pulled in at hour 0 (starter scaffold, demo-mode facade, OG image, judge prompts, video template, web3 helpers, landing components, pitch deck)
+> - **[`arsenal/`](arsenal/)** — hour-0 building blocks (starter scaffold, demo-mode facade, OG image, judge prompts, video template, web3 helpers, landing components, pitch deck, **[`pitch/`](arsenal/pitch/)** variants + Q&A + narrative arcs + stage presence)
 > - **[`templates/`](templates/)** — fillable docs (`build-spec.md`, `vision.md`, `readme.md`, `pitch-script.md`, `submission-description.md`)
-> - **[`ROADMAP.md`](ROADMAP.md)** — 28-item evolution plan, sprinted by value
+> - **[`validation/`](validation/)** — user research sprint, build-in-public cadence, telemetry, press kit (attaches during the build)
+> - **[`tactics/`](tactics/)** — pre-event + during-event hardening (risk register, competitor monitoring, eval harness, provenance, stage kit, booth strategy, multi-track, rubric reverse-engineering)
+> - **[`career/`](career/)** — cross-event compounding (idea bank, sponsor CRM, portfolio thesis, score ledger)
+> - **[`retro/`](retro/)** — per-event retros + the Update Rule that keeps this skill sharp
+> - **[`post-hackathon/`](post-hackathon/)** — 30-day playbook, 8 grant templates, data room, legal hygiene
+> - **[`ROADMAP.md`](ROADMAP.md)** — 28-item evolution plan, sprinted by value (all 6 sprints complete)
 >
 > The narrative workflow below is the canonical reference. The arsenal and templates are what you actually copy/paste into a new project.
 
