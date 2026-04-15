@@ -1,9 +1,16 @@
 ---
 name: hackathon
-description: End-to-end hackathon project workflow — from reading the hackathon brief to a deployed, judge-reviewed submission. Covers research, competitive analysis, idea scoping, build spec creation, implementation planning, parallel build execution, feature expansion, UI polish, deployment, simulated judge panel reviews (multiple rounds with strict scoring), pitching strategy, demo video creation, and final submission prep. Use this skill whenever the user mentions a hackathon, hackathon submission, DoraHacks, ETHGlobal, devpost, hackathon judging, hackathon project, or wants to build something for a competition with a deadline. Also trigger when the user shares hackathon documentation, track descriptions, prize information, or asks to scope/plan a project for a time-limited competition. This skill turns a hackathon brief into a winning submission through a battle-tested 10-phase workflow refined from real winning sessions and industry best practices.
+description: End-to-end hackathon project workflow — from reading the hackathon brief to a deployed, judge-reviewed submission. Covers research, competitive analysis, idea scoping, build spec creation, implementation planning, parallel build execution, feature expansion, UI polish, deployment, simulated judge panel reviews (multiple rounds with strict scoring), pitching strategy, demo video creation, and final submission prep. Use this skill whenever the user mentions a hackathon, hackathon submission, DoraHacks, ETHGlobal, devpost, hackathon judging, hackathon project, or wants to build something for a competition with a deadline. Also trigger when the user shares hackathon documentation, track descriptions, prize information, or asks to scope/plan a project for a time-limited competition. Trigger when the user starts a hackathon sprint, scopes a hackathon idea, says "hackathon mode", "sprint for [hackathon name]", "let's build for [competition]", or discusses competition strategy, submission deadlines, or judge preparation. This skill turns a hackathon brief into a winning submission through a battle-tested 10-phase workflow refined from real winning sessions and industry best practices.
 ---
 
 # Hackathon Domination Workflow
+
+> 📋 **Quick Navigation:**
+> - **[`arsenal/`](arsenal/)** — reusable building blocks pulled in at hour 0 (starter scaffold, demo-mode facade, OG image, judge prompts, video template, web3 helpers, landing components, pitch deck)
+> - **[`templates/`](templates/)** — fillable docs (`build-spec.md`, `vision.md`, `readme.md`, `pitch-script.md`, `submission-description.md`)
+> - **[`ROADMAP.md`](ROADMAP.md)** — 28-item evolution plan, sprinted by value
+>
+> The narrative workflow below is the canonical reference. The arsenal and templates are what you actually copy/paste into a new project.
 
 This skill codifies a battle-tested workflow refined from multiple real hackathon submissions and enriched with best practices from serial hackathon winners, seasoned judges, and winning project analysis across DevPost, ETHGlobal, DoraHacks, and MLH events.
 
@@ -929,6 +936,117 @@ Many hackathon participants skip mentors entirely. This is a mistake — winners
 - "If you were judging this, what would concern you?"
 - "What's the one thing that would make this a no-brainer winner?"
 - "We're debating between [A] and [B] — which would you prioritize with 6 hours left?"
+
+---
+
+## Battle-Tested Rules (From Real Hackathon Sprints)
+
+These rules are extracted from real hackathon sessions — Aegis (OWS multi-chain commerce), TollPay (Stellar x402/MPP monetization), and HashPay (on-chain payroll). Each rule comes from a mistake that cost hours or a strategy that moved the score.
+
+### Rule 1: Build the Demo Fallback Into Architecture From Day 1
+
+**The problem:** Both Aegis and TollPay discovered on submission week that their dashboards showed "Loading..." spinners when deployed to Vercel (SQLite doesn't work on serverless, auth middleware blocks demo access). Judges see a spinner and move on.
+
+**The fix:** Design a fallback data layer from the start. Use a facade pattern: if the user is authenticated, serve real data; if not, serve realistic demo data with pre-populated analytics, transaction history, and charts. Demo mode should be a URL parameter (`?demo=true`) or automatic on first visit.
+
+**Implementation pattern:**
+```
+data-provider.ts:
+  userId present → real database (Supabase, SQLite, etc.)
+  userId absent  → bundled seed data (JSON fixtures)
+```
+
+This prevents the most common last-day crisis: "the demo doesn't work without auth."
+
+### Rule 2: Auto-Execute the Happy Path on Page Load
+
+**The problem:** TollPay's demo page loaded to an empty state — no tool calls visible, no results shown. Judges spend ~2 minutes per project. An empty state wastes 30 seconds of that.
+
+**The fix:** Auto-run the primary feature on page load with a short delay (800ms). When a judge opens the demo, they immediately see the product working. No clicks required.
+
+**Applies to:** Any project with a demo page, playground, or interactive feature. The first thing judges see should be the product doing its thing, not instructions on how to make it work.
+
+### Rule 3: Reposition From Infrastructure to User Pain
+
+**The problem:** TollPay started as "agent revenue protocol for Stellar" — infrastructure describing infrastructure. Judges couldn't connect with it. After repositioning to "Stripe for MCP servers" with the protagonist being an indie dev monetizing their tools, judge comprehension jumped.
+
+**The rule:** Never describe your project as infrastructure. Always lead with: "**[Specific person] has [specific pain]. [Project] fixes it.**" Then mention the infrastructure underneath. "Sarah builds MCP tools but can't charge for them" is a product. "A protocol for x402 payment negotiation on Stellar" is a whitepaper.
+
+### Rule 4: Ship a Differentiation Table
+
+**The problem:** Judges see 50 projects. They can't remember why yours is different from the three others in your track. TollPay added a "Why Toll vs. raw x402" comparison table that made the value prop instantly clear.
+
+**The fix:** Add a side-by-side comparison table to your landing page and README:
+
+```
+| Without [Your Project]     | With [Your Project]         |
+|----------------------------|-----------------------------|
+| Manual integration         | One config file              |
+| No monetization path       | Pay-per-call in 5 minutes   |
+| Build everything yourself  | SDK handles payments/auth    |
+```
+
+This is a 15-minute task with outsized judge impact.
+
+### Rule 5: Security Checklist Before Judge Review
+
+**The problem:** Both projects discovered critical security issues during the judge simulation — replay attacks, fail-open defaults, exposed keys, missing idempotency. Fixing these post-feedback is stressful and error-prone.
+
+**Run this checklist before Phase 8 (Judge simulation):**
+- [ ] Replay protection — can the same request be re-submitted to drain funds or duplicate actions?
+- [ ] Fail-closed defaults — if auth/payment verification fails, does the system deny access (correct) or allow access (wrong)?
+- [ ] Idempotency — are transactions deduplicated by tx hash or request ID?
+- [ ] Input validation — are user-facing inputs sanitized?
+- [ ] No secrets in code — no API keys, private keys, or tokens in the repo
+- [ ] Rate limiting — are public endpoints protected?
+- [ ] RLS policies — if using Supabase, are Row Level Security policies on all sensitive tables?
+
+### Rule 6: Proof of Settlement > "Trust Me"
+
+**The problem:** Crypto/blockchain hackathon projects often show a "Transaction Successful!" toast but provide no verification. Judges are skeptical.
+
+**The fix:** Link to real block explorers. TollPay added a "Stellar Testnet Proof" section with direct Stellar Expert links. Aegis showed public `/metrics` endpoints on seller agents. Turn "trust me, it works" into "verify it yourself."
+
+**For non-crypto projects:** Show real API call logs, real webhook deliveries, real data transformations. Anything that proves the system actually processed something.
+
+### Rule 7: 30+ Tests = Production Mindset Signal
+
+**The problem:** Judges have no way to verify code quality in 2 minutes. A test count in the README is the fastest proxy.
+
+**The fix:** Write 30+ focused tests. TollPay shipped 34 tests (15 gateway, 10 demo server, replay protection, edge cases). Each test is a claim that an edge case was thought through. Display the count in your README with a badge.
+
+**High-ROI tests for hackathons:**
+- Happy path end-to-end (1-2 tests)
+- Input validation / edge cases (5-10 tests)
+- Auth/payment flow (5-10 tests)
+- Error handling (5-10 tests)
+- Integration tests for sponsor SDKs (2-5 tests)
+
+### Rule 8: Deploy Architecture Must Match Hosting From Day 1
+
+**The problem:** Both projects used SQLite locally, then discovered Vercel can't run SQLite. This forced last-minute architectural changes — Railway for the service, Vercel for the dashboard, with CORS and networking to sort out.
+
+**The rule:** Before writing any code, verify your data layer works on your target host. If deploying to Vercel/Netlify (serverless), use Supabase/PlanetScale/Turso, not SQLite. If you need SQLite, deploy to Railway/Render/Fly.io.
+
+**Decision table:**
+```
+Hosting Target     → Use This Database
+Vercel/Netlify     → Supabase, PlanetScale, Turso, or API calls to external service
+Railway/Render     → SQLite, PostgreSQL, anything (full server)
+GitHub Pages       → JSON files, localStorage, external APIs only
+```
+
+### Rule 9: The Narrative Docs Strategy
+
+**The problem:** Technical API docs don't help judges understand why your project matters. Aegis's "Live Run" article (narrative + real data from autonomous agent cycles) was more memorable than any API reference.
+
+**The fix:** Write at least one narrative document that tells the story of your product in action. Format: "Here's what happens when [persona] uses [product] for [real task]." Include real numbers, real outputs, real results. This goes in your docs page and submission description.
+
+### Rule 10: OG Image and Social Preview Cards
+
+**The problem:** When judges share your project link on Slack/Discord for other judges to review, a link without a preview card looks unprofessional. A link with a branded card with your logo, tagline, and screenshot gets more clicks.
+
+**The fix:** Set `og:image`, `og:title`, and `og:description` meta tags. Generate a branded OG image (Vercel's `@vercel/og` makes this trivial). Takes 20 minutes, makes every share look polished.
 
 ---
 

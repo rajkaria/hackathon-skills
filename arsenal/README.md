@@ -1,0 +1,39 @@
+# Arsenal
+
+Reusable, battle-tested building blocks pulled into hour 0 of every hackathon. Every file in here exists because we built it (or wished we had) during a real submission and don't want to rebuild it next time.
+
+**Origin:** patterns extracted from Bench (X Layer Arena), TollPay (Stellar x402), Aegis (multi-chain commerce), HashPay (on-chain payroll). Each file cites the session that proved it mattered.
+
+## What's Here
+
+| Folder | Use When | Time Saved |
+|--------|----------|------------|
+| [`starter/`](starter/) | Hour 0 — bootstrap a Next.js + shadcn + Tailwind + wagmi project deployed to Vercel in one command | 4-6 hrs |
+| [`demo-mode/`](demo-mode/) | Hour 1 — drop in the auth-optional fallback data layer so judges never see "Loading..." | 3-4 hrs (and prevents a deadline-day crisis) |
+| [`og-image/`](og-image/) | Polish phase — branded OG image for every shared link | 1 hr |
+| [`video/`](video/) | Phase 10 — Remotion 11-scene hype video architecture (parameterized) | 8-12 hrs |
+| [`judge-prompts/`](judge-prompts/) | Phase 8 — 7 invocable judge personas, drop into Claude with project context | 2-3 hrs per round |
+| [`web3/`](web3/) | Web3 hackathons — EIP-712, wallet adapters, chain configs | 3-5 hrs |
+| [`pitch-deck/`](pitch-deck/) | Phase 10 — markdown-to-deck template that exports clean | 2-3 hrs |
+| [`landing/`](landing/) | Polish phase — hero + waitlist + comparison-table + footer components | 2-4 hrs |
+| [`pitch/`](pitch/) | Phase 9-10 — pitch variants (15s/60s/3m/5m/30m), Q&A combat manual, narrative arcs, stage presence | 6-10 hrs |
+
+## Use This Arsenal
+
+```bash
+# From your new hackathon project root:
+git clone https://github.com/<you>/hackathon-skill.git ../hackathon-skill
+bash ../hackathon-skill/arsenal/starter/init.sh my-project
+```
+
+Or cherry-pick: copy individual files (they have no internal cross-deps unless noted).
+
+## Adding to the Arsenal
+
+After every hackathon, ask: **"What did I build that I'd want again?"** If the answer is anything, add it here with:
+
+1. A header citing the session that proved it.
+2. A "Use when" line so future-you knows when to grab it.
+3. A "Skip if" line so you don't over-apply it.
+
+Keep entries opinionated. A generic snippet that "might" help is noise.
