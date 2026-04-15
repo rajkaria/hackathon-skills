@@ -111,6 +111,18 @@ No sprint ships if it's just more prose. Each must be a *tool* the user invokes.
 
 **Total:** 28 items across 6 sprints. **All 6 sprints complete** as of 2026-04-15.
 
+---
+
+## Sprint 7 — Idea Evaluation & Course Correction (added 2026-04-15)
+
+**Why a 7th sprint:** all 28 original items addressed execution, compounding, conversion, and hardening. But three gaps existed in the *idea → commit → recover* loop:
+
+- **#29 Idea Triage Protocol** — `career/idea-triage.md`: the missing handoff between `idea-bank.md` (storage) and Execution (build). 30-min force-rank of top 5 candidates against a specific event's reverse-engineered rubric. 6-axis weighted scoring, 3 kill-filters, explicit kill-criteria in commit doc.
+- **#30 Idea Stress-Test Judge Persona** — `arsenal/judge-prompts/idea-stress-test.md`: evaluates a raw idea pre-build (all other personas evaluate built projects). Returns placement-probability distribution, top 3 risks with hour-triggers, weakest-claim critique, obvious-better-pivot diff, verdict.
+- **#31 Mid-Event Pivot Protocol** — `tactics/mid-event-pivot-protocol.md`: 90-min structured pivot workflow. Sunk-cost audit → salvageable-primitive identification (60% reuse threshold) → abbreviated re-triage → team realignment round-robin → external comms. Includes "ship the ugly version" escape hatch for post-hour-36 scenarios.
+
+**Definition of done:** a user can now (a) pick the right idea in 30 min pre-event, (b) stress-test it against a simulated judge at hour 0, and (c) recover from a wrong pick mid-event without team fracture.
+
 ## Sprint Completion Log
 
 | Sprint | Theme | Shipped | Commit |
@@ -120,7 +132,8 @@ No sprint ships if it's just more prose. Each must be a *tool* the user invokes.
 | 3 | Cross-Hackathon Compounding | `career/` (idea bank, sponsor CRM, thesis, score ledger) + `retro/` (template + Update Rule) | 83079c1 |
 | 4 | Conversion Pipeline | `post-hackathon/` — 30-day playbook, 8 grant templates, data room, legal hygiene | 2cb2c5e |
 | 5 | Validation & Distribution | `validation/` — user research, build-in-public, telemetry, press kit | b2216fc |
-| 6 | Tactical Hardening | `tactics/` — risk register, competitor monitoring, eval harness, provenance, stage kit, booth strategy, multi-track, rubric reverse | (this commit) |
+| 6 | Tactical Hardening | `tactics/` — risk register, competitor monitoring, eval harness, provenance, stage kit, booth strategy, multi-track, rubric reverse | d350dea |
+| 7 | Idea Evaluation & Course Correction | `career/idea-triage.md`, `arsenal/judge-prompts/idea-stress-test.md`, `tactics/mid-event-pivot-protocol.md` | (this commit) |
 
 The skill is now a 6-layer stack:
 1. **Execution** (SKILL.md phases) — the original playbook
