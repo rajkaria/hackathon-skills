@@ -24,6 +24,7 @@ Then compute the weighted overall score and produce a prioritized fix list.
 | Security Auditor | [security.md](security.md) | 10% | Replay, fail-open, secret leaks? |
 | DevRel Engineer | [devrel.md](devrel.md) | 5-10% | Could other devs build on this? |
 | Sponsor Rep | [sponsor.md](sponsor.md) | 5-10% | Is sponsor tech load-bearing or checkbox? |
+| Idea Stress Test | [idea-stress-test.md](idea-stress-test.md) | hour-0 only | Is this raw idea worth building — before any code? |
 
 ## Escalation Schedule
 

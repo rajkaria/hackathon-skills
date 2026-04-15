@@ -10,6 +10,7 @@ Moderate-lift items that individually save you from one stupid mistake per event
 | File | Attach to phase | Time to apply | Saves you from |
 |------|-----------------|---------------|----------------|
 | [risk-register.md](risk-register.md) | Phase 2 (scope lock) + Phase 5 (mid-build) | 30 min | "We didn't see that coming" excuses |
+| [mid-event-pivot-protocol.md](mid-event-pivot-protocol.md) | Triggered mid-build (hour 12-36) | 90 min | Ad-hoc 3am pivots that fracture the team |
 | [competitor-monitoring.md](competitor-monitoring.md) | Phase 5 Day 1 PM + Day 2 AM | 15 min × 2 slots | Getting blindsided by a team shipping your exact thing |
 | [eval-harness.md](eval-harness.md) | Phase 3 + Phase 6 (demo-mode) | 45 min scaffold, 90 min cases | "Is this real?" judge doubt on AI projects |
 | [provenance.md](provenance.md) | Phase 4 onward (every commit) | 0 min/commit if rules followed | AI-slop suspicion on polished projects |
