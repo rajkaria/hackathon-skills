@@ -21,7 +21,8 @@ updated: 2026-09-14
 
 ## Current state
 
-- **v3 (Sprint 9, "Honest Assessment") is committed on branch `claude/hackathon-selection-analysis-053c97`** (Raj merges to `main` himself) and installed to `~/.claude/skills/hackathon/`. It comes after Benchpress and Hunch VPM both failed to advance (`retro/2026-09-14-not-selected-postmortem.md`). v2 (Sprint 8) is on `main` (`612b18e`).
+- **v3 (Sprint 9, "Honest Assessment") is merged to `main` and pushed** (`d0ea0a1`, github.com/rajkaria/hackathon-skills) and installed to `~/.claude/skills/hackathon/` (113 files). It comes after Benchpress and Hunch VPM both failed to advance (`retro/2026-09-14-not-selected-postmortem.md`).
+- **Intervention Protocol I1–I15 is live in SKILL.md.** Raj asked (2026-09-14) to be interrupted whenever a move that cost a win is being repeated; the reply opens with a fixed `⚠ INTERVENTION` block, once per trigger per decision, overrules logged in `event-contract.md`.
 - **Installed** at `~/.claude/skills/hackathon/` via `install.sh`, which copies the full directory. The old Apr-5 single-file install is backed up in `~/.claude/skill-backups/`.
 - Reconstructed from four real events (Hunch on Casper, Hunch VPM @ ETHOnline, Humanline @ BUIDL CTC, Benchpress @ Multi-App Agent Hackathon). SKILL.md now leads with:
   - Operating Rules for Claude
@@ -37,7 +38,7 @@ updated: 2026-09-14
   - Hunch on Casper final placement is unknown.
 - **Shell constraints here:**
   - `node` and `rm` are blocked. Use bun, and move stray files to the scratchpad.
-  - Git in the main checkout (`/Users/rajkaria/Projects/hackathon-skill`) is blocked by the auto-mode classifier. Raj runs merge/push there himself.
+  - Git in the main checkout (`/Users/rajkaria/Projects/hackathon-skill`) worked this session for `merge --ff-only` and `push`; earlier sessions saw it blocked by the auto-mode classifier.
 
 ## Recent changes
 
@@ -47,7 +48,8 @@ updated: 2026-09-14
 | `tactics/honest-assessment.md`, `arsenal/judge-prompts/{screening-judge,pre-mortem-judge}.md` | Evidence ladder, Brief-Fit Gate, blind screen, pre-mortem, premise pushback, history gate |
 | `arsenal/copy/first-screen.sh` + `test.sh` | Lint for brief noun / jargon / meta-framing / badge wall |
 | `SKILL.md` | Intervention Protocol I1–I15 (Claude interrupts with a fixed ⚠ format when a win is being lost; Raj asked for this), Operating Rules 14–18, Phase 8 screen-first, Phase 2 infra heuristic corrected, anti-patterns 19–23, Rule 7 rescoped |
-| `career/*`, `tactics/{multi-track,README}.md` | Unverified pre-July placements labelled; invented stats removed; ledger `verified` + `screen_rank` |
+| `career/*`, `tactics/{multi-track,README,mid-event-pivot-protocol}.md`, `arsenal/judge-prompts/{idea-stress-test,security}.md`, `post-hackathon/grants/README.md` | Fabricated pre-July placements deleted (Raj confirmed); worked examples relabelled hypothetical; invented stats removed; ledger `verified` + `screen_rank`, 4 events only |
+| `hackathon.skill`, `ROADMAP.md` Sprint 9, `CLAUDE.md` | Zip rebuilt (139 files); sprint log; copy tests added to test list |
 | `SKILL.md` | Operating Rules, Phase 0, Battle Clock, v2 gates in phases 1–10, one-day blueprint, Rules 11–18, anti-patterns 13–18; description ≤ 1024 chars |
 | `templates/{event-contract,battle-clock,field-teardown,video-shot-list,handoff}.md` | Fillables for the new gates |
 | `tactics/{preflight-t24,repo-boundary,session-orchestration,claims-and-evidence,golden-path-and-liveness}.md` | v2 core tactics |
@@ -76,7 +78,7 @@ updated: 2026-09-14
 ## Next steps
 
 1. At results (Humanline 2026-09-20; others TBD), fill the scoring-retro sections in `retro/2026-09-13-*.md` + `retro/2026-07-25-*.md` and the placements in `career/score-ledger.json`. Compare to the simulated scores.
-2. (Done 2026-09-14.) The ETHGlobal BKK / X Layer Arena / Stellar Agentic / ETHDenver placements were fabricated; Raj confirmed and they were deleted. Worked examples that used them are now labelled hypothetical.
+2. At the next event, measure Sprint 9's definition of done (ROADMAP.md): no "best" claim below evidence level 2, brief noun as one-liner subject, blind screen + pre-mortem at G6/G8 with the top reason as next work item, `first-screen.sh` clean, form ⊆ README, `screen_rank` in the ledger before results. Log every fired intervention (I1–I15) in the retro with what Raj chose.
 3. At the next event, measure Sprint 8's definition of done (ROADMAP.md): draft at 50%, video ≥ 12h early, 2 judge rounds on the deployed product, no secrets in chat, final-state gate green.
 4. Optional: add a `/hackathon status` convention that prints T-minus + gate status from `battle-clock.md`.
 5. Hunch VPM hygiene (outside this repo): merge PR #19 so the public `main` drops `docs/SUBMISSION-CHECKLIST.md`. Rotate keys pasted into chat across Humanline, Hunch VPM, Benchpress and Casper.
