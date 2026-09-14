@@ -10,8 +10,9 @@
 
 ## 1. Results
 - **Placement:** pending (winners announced 09-20)
+- **Submitted on DoraHacks** (confirmed by Raj 2026-09-14 ~06:10 IST, before the 09:29 IST close). The last transcript (09-13 23:04 UTC) still showed it unsubmitted, so it went in during the final ~3h.
 - **State at end of transcripts (09-13 23:04 UTC):**
-  - not yet submitted on DoraHacks
+  - not yet submitted on DoraHacks (since resolved, see above)
   - no video
   - team block unfilled
   - 0 Orb-verified users, 0 outside users
@@ -81,4 +82,4 @@ Field review scored Humanline 8.9 vs the nearest rival (Tab) at 8.7. Compare to 
 | `/save-context` wrote git-ignored docs inside worktrees | `tactics/session-orchestration.md` | One context location (main checkout or tracked) |
 
 ## 6. Follow-on
-Rotate the npm token and World portal API key (both pasted into chat). Confirm DoraHacks submission status.
+Rotate the npm token and World portal API key (both pasted into chat). DoraHacks submission confirmed. Fill in the scoring retro when results land (2026-09-20).

@@ -22,7 +22,7 @@ DRY=""
 
 EXCLUDES=(
   --exclude .git --exclude .gitignore --exclude .claude --exclude .burn-rate --exclude .ocean
-  --exclude CLAUDE.md --exclude hackathon.skill --exclude install.sh
+  --exclude CLAUDE.md --exclude docs/context --exclude hackathon.skill --exclude install.sh
   --exclude node_modules --exclude bun.lock --exclude .DS_Store
 )
 
