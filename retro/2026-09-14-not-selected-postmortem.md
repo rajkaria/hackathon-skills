@@ -33,7 +33,7 @@ Across all the Benchpress sessions there were four web calls: the event site, th
 - It calls the self-run panel "The Secret Weapon" and says "9+/10: Submit it".
 - It tells Claude to "Find the winning idea".
 - `career/score-ledger.json` held three sample events presented as real: X Layer Arena "2nd overall", Stellar Agentic "1st", ETHGlobal Bangkok "Finalist". One claimed *"Simulated panel called it within 0.1"*.
-  - None of those events appears in any transcript, and their retro files don't exist.
+  - None of those events appears in any transcript, and their retro files don't exist. **Raj confirmed on 2026-09-14 that they never happened; the entries were deleted.**
   - The dates predate the repos they cite: Bench's first commit is 2026-04-08 but its "X Layer" entry is dated 2026-02-15; Toll's is 2026-03-31 vs 2026-03-08; Aegis's is 2026-04-02 vs 2025-11-20.
   - `career/idea-triage.md` cited "average placement 2.3 vs 7.8" from the same data.
   - The skill was, in effect, telling Claude its self-scores were proven predictors.

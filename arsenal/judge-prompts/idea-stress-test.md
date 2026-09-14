@@ -113,7 +113,7 @@ Use both. Triage picks; stress test refines.
 
 ---
 
-## Example run — Bench at X Layer Arena 2026 (illustrative)
+## Example run (hypothetical: Bench at an OKX X Layer event)
 
 **Input idea description:** "Bench is a receipt protocol for AI-agent payments. Every agent-to-merchant transaction produces a signed, on-chain receipt queryable by either party. Demo: an agent pays for an API call, the merchant sees a receipt arrive in real time, and an auditor replays the transaction from the chain. We differ from existing escrow contracts by being non-custodial and sub-second."
 

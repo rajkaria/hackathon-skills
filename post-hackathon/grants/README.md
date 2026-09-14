@@ -29,7 +29,7 @@ problem: AI agents can't prove what they did on-chain; operators can't audit, co
 mechanism: EIP-712 signed receipts with nonce + deadline bound to session keys.
 traction_metric: 340 signed receipts in 96 hours, 12 integrations active.
 team_line: 2 engineers, shipped 4 hackathon projects together in 18 months.
-prior_event: X Layer Arena 2026 — 2nd overall.
+prior_event: {{event — placement, only if a retro exists}}
 repo_url: github.com/you/bench
 demo_url: bench.example.app
 video_url: youtube.com/xyz

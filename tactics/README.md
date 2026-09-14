@@ -33,7 +33,7 @@ Each item attaches to a specific phase. The table above is the integration map. 
 
 ## Failure modes these prevent (illustrative)
 
-Written in April 2026 from memory. None of these appear in session transcripts and their retros don't exist, so treat them as examples. The verified failure modes are in `../retro/2026-09-14-cross-event-synthesis.md` and `../retro/2026-09-14-not-selected-postmortem.md`.
+Written in April 2026 as hypothetical examples; the events named never happened. The tactics still apply. The verified failure modes are in `../retro/2026-09-14-cross-event-synthesis.md` and `../retro/2026-09-14-not-selected-postmortem.md`.
 
 | Failure | Prevention |
 |---------|------------|

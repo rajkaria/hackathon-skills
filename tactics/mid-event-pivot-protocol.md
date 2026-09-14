@@ -166,7 +166,7 @@ These lessons compound more than any other retro item, because pivots are rare a
 
 ---
 
-## Worked example — TollPay at Stellar Agentic 2026 (late hour 22 pivot; illustrative, unverified)
+## Worked example (hypothetical: TollPay at a Stellar event, late hour 22 pivot)
 
 **Trigger:** at hour 22, the original scope ("multi-token per-call billing with instant settlement") hit a Stellar anchor latency issue. Competitor scan showed 2 teams already had a similar product with smoother UX.
 

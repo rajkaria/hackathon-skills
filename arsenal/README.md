@@ -2,7 +2,7 @@
 
 Reusable, battle-tested building blocks pulled into hour 0 of every hackathon. Every file in here exists because we built it (or wished we had) during a real submission and don't want to rebuild it next time.
 
-**Origin:** patterns extracted from Bench (X Layer Arena), TollPay (Stellar x402), Aegis (multi-chain commerce), HashPay (on-chain payroll). Each file cites the session that proved it mattered.
+**Origin:** patterns extracted from the Bench, TollPay, Aegis and HashPay prototype sessions (spring 2026; none of them placed at an event). Each file cites the session that proved it mattered.
 
 ## What's Here
 

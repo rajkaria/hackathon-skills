@@ -35,7 +35,7 @@ Every retro ends with a **"Lessons into skill"** section. For every lesson, upda
 
 **Then commit the skill repo with the retro filename in the commit message.** This is how the skill gets sharper.
 
-Illustrative example (the Bench v1 retro was never written, and its placement is unverified):
+Illustrative example (hypothetical; Bench never placed at X Layer Arena):
 > Lesson: "Replay bug shipped in signed certs because we had no nonce in the signed payload."
 > Action: Amended `arsenal/web3/eip712.ts` to include nonce + deadline by default, updated `arsenal/judge-prompts/security.md` replay-protection weight from 15% → 25%.
 > Commit: `skill: incorporate 2026-02-15-xlayer-arena lessons on replay protection`

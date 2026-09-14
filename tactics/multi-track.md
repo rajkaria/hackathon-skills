@@ -1,6 +1,6 @@
 # Multi-Track Submission Strategy
 
-Architecture rules for qualifying for 2-3 tracks with one codebase. Worked example: Bench targeted X Layer Arena + Onchain OS + Agentic Wallet simultaneously.
+Architecture rules for qualifying for 2-3 tracks with one codebase. Hypothetical worked example below (Bench at an OKX X Layer event); no real multi-track result exists yet.
 
 **Use when:** Phase 2 scope lock. Decision made before a line of architecture code.
 **Skip if:** The event has genuinely orthogonal tracks (e.g., a pure consumer track + a pure infra track) where one project can't authentically target both. Rare.
@@ -11,7 +11,7 @@ Architecture rules for qualifying for 2-3 tracks with one codebase. Worked examp
 
 At a 20-track event with 1 main prize, targeting 1 track = 1 chance. Targeting 3 aligned tracks = 3 chances + often a multiplier effect (sponsor tracks frequently overlap in evaluation).
 
-**No measured lift yet.** The Bench v1 and TollPay v1 multi-track results previously cited here are unverified (no transcript or retro), and so was the "50-80% more expected prize value" rule of thumb.
+**No measured lift yet.** The Bench v1 and TollPay v1 multi-track wins previously cited here were fabricated and were deleted on 2026-09-14, along with the "50-80% more expected prize value" rule of thumb.
 
 The one verified data point points the other way. Hunch VPM picked three ETHOnline 2026 partner prizes for breadth and won none, because each prize's verbatim criteria weren't met on the live product:
 - The Graph wanted agent decisions, and the agent only ran dry-run.
@@ -134,15 +134,15 @@ At hour 45 (2h before submission close):
 
 ---
 
-## The worked example — Bench v1 at X Layer Arena 2026 (illustrative; placements unverified)
+## The worked example (hypothetical: Bench at an OKX X Layer event)
 
-- **Main track (X Layer):** signed receipts on X Layer — demo with 47 on-chain receipts visible on BaseScan. Won 2nd main prize.
-- **Onchain OS track:** OKX Agentic Wallet SDK integration — 30s video showing seamless wallet-to-receipt flow. Won track prize.
-- **Agentic Wallet track:** session-key spending limit demo — contract + Foundry test with assertions. Did not win but submitted successfully.
+- **Main track (X Layer):** signed receipts on X Layer — demo with on-chain receipts visible on the explorer.
+- **Onchain OS track:** OKX Agentic Wallet SDK integration — 30s video showing the wallet-to-receipt flow.
+- **Agentic Wallet track:** session-key spending limit demo — contract + Foundry test with assertions.
 
 Shared primitive: EIP-712 signed receipts. Each track got a dedicated entry-point screen (`/demo`, `/onchain-os`, `/agentic-wallet`) that emphasized the relevant angle. Main pitch covered the shared primitive.
 
-Total extra build time vs single-track: ~8 hours. Total extra prize value: ~15k USD. Ratio: trivially worth it.
+Extra build time vs single-track: roughly 8 hours in this shape. The prize delta is unknown until a real multi-track entry is measured.
 
 ---
 

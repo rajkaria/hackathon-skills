@@ -42,9 +42,9 @@ where `thesis_aligned_weight = {yes: 3, adjacent: 1, no: 0}`. Top 3 by score bec
 
 | id | title | one_liner | thesis | ecosystem | sponsor_fit | val | diff | moat | last_touched | notes |
 |----|-------|-----------|--------|-----------|-------------|-----|------|------|--------------|-------|
-| IB-001 | Agent Receipt Signing | Verifiable receipts for every agent tool call, on any chain | yes | evm, solana | Coinbase Agent Kit, OKX Agentic | 3 | 3 | 3 | 2026-04-10 | Bench v1 shipped — this is Bench v2 targeted at multi-chain aggregator layer |
-| IB-002 | x402 for Stellar Micropayments | Per-API-call streaming USDC payments, 5s settlement | yes | stellar | Stellar SCF, SDF | 3 | 3 | 3 | 2026-04-10 | TollPay v1 shipped — v2 is the SDK, not the gateway |
-| IB-003 | Multi-chain USDC Payroll | CSV in, signed batch out, 4 chains in <2 min | adjacent | evm, solana, stellar | Circle, Gnosis Safe | 2 | 4 | 2 | 2026-03-22 | HashPay shipped — follow-on is the CCTP integration |
+| IB-001 | Agent Receipt Signing | Verifiable receipts for every agent tool call, on any chain | yes | evm, solana | Coinbase Agent Kit, OKX Agentic | 3 | 3 | 3 | 2026-04-10 | Bench (Apr 2026 repo) is the prototype; v2 targets the multi-chain aggregator layer |
+| IB-002 | x402 for Stellar Micropayments | Per-API-call streaming USDC payments, 5s settlement | yes | stellar | Stellar SCF, SDF | 3 | 3 | 3 | 2026-04-10 | Toll (Mar 2026 repo) is the prototype; v2 is the SDK, not the gateway |
+| IB-003 | Multi-chain USDC Payroll | CSV in, signed batch out, 4 chains in <2 min | adjacent | evm, solana, stellar | Circle, Gnosis Safe | 2 | 4 | 2 | 2026-03-22 | HashPay prototype exists; follow-on is the CCTP integration |
 | IB-004 | Agent-to-Agent Escrow | Two agents negotiate and settle a trade without a human | yes | evm | Coinbase Agent Kit | 1 | 4 | 3 | 2026-04-05 | Unsolved. Natural extension of Bench receipts |
 | IB-005 | Wallet Session Keys for Agents | Scoped spending limits + expiry for agent-controlled wallets | yes | evm | Safe, WalletConnect | 2 | 3 | 2 | 2026-04-01 | Agent frameworks want this but don't build it |
 | IB-006 | On-chain Resume / Reputation | Verifiable employment + project history | no | evm | Ethereum Foundation | 1 | 3 | 1 | 2026-02-12 | Crowded space; keep on bench |
@@ -61,12 +61,10 @@ where `thesis_aligned_weight = {yes: 3, adjacent: 1, no: 0}`. Top 3 by score bec
 
 | id | title | event | placement | retro |
 |----|-------|-------|-----------|-------|
-| IB-SHIP-001 | Bench v1 | OKX Build X (X Layer Arena) 2026 | unverified (retro never written) | – |
-| IB-SHIP-002 | TollPay v1 | Stellar Agentic Workshop 2026 | unverified (retro never written) | – |
-| IB-SHIP-003 | Aegis | ETHGlobal Bangkok 2025 | unverified (retro never written) | – |
-| IB-SHIP-004 | HashPay | ETHDenver 2025 | unverified (retro never written) | – |
-| IB-SHIP-005 | Benchpress | Multi-App AI Agent Hackathon 2026-09-13 | not selected for next round | `../retro/2026-09-13-multi-app-agent-benchpress.md` |
-| IB-SHIP-006 | Hunch VPM | ETHOnline 2026 | not a finalist, no partner prize | `../retro/2026-09-13-ethonline-hunch-vpm.md` |
+| IB-SHIP-001 | Hunch on Casper | Casper Agentic Buildathon 2026 | finalist round; final result unknown | `../retro/2026-07-25-casper-agentic-hunch-casper.md` |
+| IB-SHIP-002 | Humanline | BUIDL CTC 2026 Fall | submitted; results 2026-09-20 | `../retro/2026-09-13-buidl-ctc-humanline.md` |
+| IB-SHIP-003 | Benchpress | Multi-App AI Agent Hackathon 2026-09-13 | not selected for next round | `../retro/2026-09-13-multi-app-agent-benchpress.md` |
+| IB-SHIP-004 | Hunch VPM | ETHOnline 2026 | not a finalist, no partner prize | `../retro/2026-09-13-ethonline-hunch-vpm.md` |
 
 ## Dead
 

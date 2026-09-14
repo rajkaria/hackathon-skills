@@ -112,7 +112,7 @@ The weights above are defaults from the current ledger. Recalibrate yearly.
 
 ---
 
-## Worked example — X Layer Arena 2026 (Bench) (illustrative; placement unverified)
+## Worked example (hypothetical: Bench at an OKX X Layer event)
 
 Candidates considered:
 | Idea | Rubric fit ×3 | Multi-track ×2 | Feasibility ×2 | Thesis ×2 | Convert ×2 | Excite ×1 | Total |
@@ -122,7 +122,7 @@ Candidates considered:
 | Session-key wallet UI kit | 6 (18) | 6 (12) | 9 (18) | 6 (12) | 5 (10) | 6 (6) | 76 |
 | On-chain reputation oracle | 8 (24) | 5 (10) | 4 (8) | 7 (14) | 7 (14) | 6 (6) | 76 |
 
-Winner: Bench. Kill criteria set: "if at hour 18 the signed-receipt verifier is not passing on X Layer, pivot to session-key UI kit." Never triggered. (Placement unverified: no transcript or retro exists.)
+Winner: Bench. Kill criteria set: "if at hour 18 the signed-receipt verifier is not passing on X Layer, pivot to session-key UI kit." (Hypothetical example; no placement to report.)
 
 ---
 

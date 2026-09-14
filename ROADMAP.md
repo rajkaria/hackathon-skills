@@ -179,7 +179,7 @@ Plus the `retro/` loop that feeds lessons back into all 6 layers.
 - **#44 Screening + pre-mortem judges** (`arsenal/judge-prompts/screening-judge.md`, `pre-mortem-judge.md`): blind, ranked among 10, 3 shuffles; "why this did not advance" with no rebuttal column
 - **#45 First-screen lint** (`arsenal/copy/first-screen.sh` + `test.sh`, 28 tests): brief noun, jargon density, meta-framing, badge wall, long opener
 - **#46 SKILL.md v3**: Intervention Protocol (I1–I15, fixed ⚠ INTERVENTION format, once per trigger per decision, overrules logged), Operating Rules 14–18, Phase 8 screen-first, Phase 2 heuristic corrected, Brief-Fit Gate before SPEC, anti-patterns 19–23, Rule 7 rescoped, event contract / field teardown / video / submission templates
-- **#47 Calibration integrity** (`career/*`, `tactics/multi-track.md`, `tactics/README.md`): unverified pre-July-2026 placements labelled; invented statistics removed; ledger `verified` flag and `screen_rank`
+- **#47 Calibration integrity** (`career/*`, `tactics/multi-track.md`, `tactics/README.md`): fabricated pre-July-2026 placements deleted (Raj confirmed they never happened); worked examples relabelled hypothetical; invented statistics removed; ledger `verified` flag and `screen_rank`
 
 **Definition of done:** at the next event, (a) no message or doc calls the entry best/winning without evidence level ≥ 2, (b) the brief noun is the one-liner's subject or the misfit is accepted in writing, (c) the blind screen and pre-mortem ran at G6 and G8 and the pre-mortem's top reason was the next work item, (d) `first-screen.sh` has no FAIL on hero, one-liner and description, (e) every form claim appears in the README's "live now" list, and (f) `screen_rank` is in the ledger before results so it can be compared.
 

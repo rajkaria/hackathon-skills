@@ -44,7 +44,6 @@ Per-ecosystem profiles. Judges repeat across events. Grant programs pay for hack
 - **Sponsors show up at:** X Layer Arena, DoraHacks, ETHGlobal
 - **Grant program:** X Layer Builder grants — application by form, 4-week decision
 - **Past winning patterns:** Consumer-facing demos with clean wallet onboarding
-- **Bench v1 was entered at OKX Build X (X Layer Arena), April 2026.** Placement unverified; no retro exists.
 
 ---
 
@@ -108,7 +107,7 @@ Chronological. One row per conversation ≥ 3 minutes. Follow-up within 48 hours
 
 | Grant | Ecosystem | Project | Status | Deadline | Expected | Notes |
 |-------|-----------|---------|--------|----------|----------|-------|
-| SCF #29 | Stellar | TollPay v2 | Draft | 2026-05-10 | 35k XLM | Covered by retro from 2026-03 event |
+| SCF #29 | Stellar | TollPay v2 | Draft | 2026-05-10 | 35k XLM | (example row) |
 | OP RetroPGF Round 6 | Optimism | Bench | Not started | 2026-07-01 | — | Needs usage numbers, start posting now |
 | X Layer Builder | OKX | Bench v2 | Submitted | 2026-04-01 | — | Decision 2026-04-28 |
 

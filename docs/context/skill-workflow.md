@@ -64,7 +64,7 @@ updated: 2026-09-14
 ## Key decisions
 
 - **Claude never calls an entry "best" without evidence level ≥ 2** (a blind screen). Self-scores are labelled non-predictive.
-- **Pre-July-2026 ledger entries stay but are marked `verified: false`**, and are never cited. Ask Raj to confirm or delete them.
+- **The pre-July-2026 ledger entries were fabricated and are deleted.** Only transcript- or retro-backed events go in `career/score-ledger.json`.
 
 - **The clock beats phase order.** Every event lost the video, judge panel or submission to an always-productive build, so gates are time-based.
 - **"Time is not a constraint" changes scope, never gates.** A claimed deadline extension needs a quoted source.
@@ -75,9 +75,8 @@ updated: 2026-09-14
 
 ## Next steps
 
-0. Raj: review and merge branch `claude/hackathon-selection-analysis-053c97`, then `bash install.sh`. Confirm or delete the unverified X Layer / Stellar / Bangkok / ETHDenver placements.
 1. At results (Humanline 2026-09-20; others TBD), fill the scoring-retro sections in `retro/2026-09-13-*.md` + `retro/2026-07-25-*.md` and the placements in `career/score-ledger.json`. Compare to the simulated scores.
-2. Verify or mark as illustrative the pre-existing ledger entries (ETHGlobal BKK / X Layer Arena / Stellar Agentic) and the failure table in `tactics/README.md`. None of them appear in transcripts.
+2. (Done 2026-09-14.) The ETHGlobal BKK / X Layer Arena / Stellar Agentic / ETHDenver placements were fabricated; Raj confirmed and they were deleted. Worked examples that used them are now labelled hypothetical.
 3. At the next event, measure Sprint 8's definition of done (ROADMAP.md): draft at 50%, video ≥ 12h early, 2 judge rounds on the deployed product, no secrets in chat, final-state gate green.
 4. Optional: add a `/hackathon status` convention that prints T-minus + gate status from `battle-clock.md`.
 5. Hunch VPM hygiene (outside this repo): merge PR #19 so the public `main` drops `docs/SUBMISSION-CHECKLIST.md`. Rotate keys pasted into chat across Humanline, Hunch VPM, Benchpress and Casper.

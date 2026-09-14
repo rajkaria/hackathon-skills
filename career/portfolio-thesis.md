@@ -33,14 +33,14 @@ A ranked list of reasons, from least to most important:
 - **Proof layer:** EIP-712 / equivalent signed receipts for every tool call — tamper-evident, cross-verifiable.
 - **Session layer:** Scoped wallets with spending limits and expiry so humans delegate safely.
 
-**Arc across events:** (outcomes before July 2026 are unverified: no transcript or retro exists, and the dates predate the project repos. Confirm with Raj before citing any of them.)
+**Arc across events:** (The four pre-July-2026 rows that used to sit here, with placements at ETHGlobal Bangkok, ETHDenver, X Layer Arena and Stellar Agentic, were fabricated and were deleted on 2026-09-14. Only rows backed by a retro belong here.)
 
 | Event | Project | Layer | Outcome | Compounding move |
 |-------|---------|-------|---------|------------------|
-| ETHGlobal Bangkok 2025 | Aegis | Session (session keys) | unverified | Proved spending-limit UX |
-| ETHDenver 2025 | HashPay | Payment (batch payroll) | unverified | Proved multi-chain USDC settlement |
-| X Layer Arena 2026 | Bench v1 | Proof (EIP-712 receipts) | unverified | Proved signing scheme; found replay bug, fixed it |
-| Stellar Agentic 2026 | TollPay v1 | Payment (per-call Soroban) | unverified | Proved streaming micropayments at 5s settlement |
+| Casper Agentic Buildathon 2026 | Hunch on Casper | Session | finalist round; result unknown | Real-mode judged path, liveness health |
+| ETHOnline 2026 | Hunch VPM | Payment | not a finalist | Brief fit, history gate, form ⊆ README |
+| BUIDL CTC 2026 | Humanline | Proof | results 2026-09-20 | Draft at 50%, claims checker |
+| Multi-App AI Agent 2026 | Benchpress | Proof | not selected | Brief-Fit Gate, blind screen, pre-mortem |
 | **Next (May 2026)** | **Bench v2 (multi-chain)** | **Proof + Session** | — | Ties payment + proof across chains into one SDK |
 | **Q3 2026** | **Agent-to-Agent Escrow** | **All three** | — | The product that lets two agents trade autonomously |
 
