@@ -17,6 +17,12 @@ Reusable, battle-tested building blocks pulled into hour 0 of every hackathon. E
 | [`pitch-deck/`](pitch-deck/) | Phase 10 — markdown-to-deck template that exports clean | 2-3 hrs |
 | [`landing/`](landing/) | Polish phase — hero + waitlist + comparison-table + footer components | 2-4 hrs |
 | [`pitch/`](pitch/) | Phase 9-10 — pitch variants (15s/60s/3m/5m/30m), Q&A combat manual, narrative arcs, stage presence | 6-10 hrs |
+| [`repo/`](repo/) | Hour 0: sibling internal folder, public `.gitignore`, pre-commit guard (internal docs + secrets). T-2h: `final-state-gate.sh` on `origin/main` | Prevents public leaks + stale `main` at judging |
+| [`submission-check/`](submission-check/) | From first README → CI: every clickable claim resolves (URLs, contracts, txs, packages), numbers agree across docs, no placeholders | 2-3 hrs of link-checking, plus overclaim risk |
+| [`deploy/`](deploy/) | Before spending gas: EVM Foundry preflight + chain/deploy **traps catalog** | Hours per rediscovered trap |
+| [`ops/`](ops/) | Day 1 → results: liveness health (outcomes within windows) + judging-window runbook | Prevents "green but dead" and a dry treasury during judging |
+| [`copy/`](copy/) | First copy draft + verify gate: voice lint for AI tells | 1-2 late sessions of "humanize the copy" |
+| [`web3/switch-chain.ts`](web3/switch-chain.ts) | Any EVM dapp: add-then-switch that works on Rabby/Coinbase/Trust, not only MetaMask | Silent network-switch failure found at T-4h |
 
 ## Use This Arsenal
 

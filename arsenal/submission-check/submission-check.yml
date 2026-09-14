@@ -1,0 +1,67 @@
+# Copy to .github/workflows/submission-check.yml
+#
+# Every address, transaction, package and URL the README and docs cite must resolve — checked on
+# every docs push, every morning (things rot: a Vercel project gets paused, an RPC prunes history,
+# someone unpublishes a package), and on demand before you hit Submit.
+#
+# Flaky public RPCs: the daily run is NOT continue-on-error — a red run is the signal you want.
+# Resilience comes from the config instead: give every chain 2+ `rpc` URLs (tried in order, and a
+# "no code / no receipt" answer is re-checked against the fallbacks before it counts as a failure).
+name: submission-check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "README.md"
+      - "SUBMISSION*.md"
+      - "docs/**"
+      - "deployments/**"
+      - "evidence/README.md"
+      - "submission-check.config.json"
+      - "scripts/submission-check.ts"
+      - ".github/workflows/submission-check.yml"
+  pull_request:
+    paths:
+      - "README.md"
+      - "SUBMISSION*.md"
+      - "docs/**"
+      - "deployments/**"
+      - "submission-check.config.json"
+  schedule:
+    - cron: "0 6 * * *" # daily, 06:00 UTC
+  workflow_dispatch:
+    inputs:
+      strict:
+        description: "Fail on placeholders (use this the day you submit)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: submission-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    continue-on-error: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      # Only needed if a claims[].command runs your test suite (then add --run-commands below).
+      # - run: bun install --frozen-lockfile
+
+      - name: Check every cited address, transaction, package and URL
+        run: >
+          bun run scripts/submission-check.ts
+          --config submission-check.config.json
+          --summary "$GITHUB_STEP_SUMMARY"
+          ${{ inputs.strict && '--strict' || '' }}

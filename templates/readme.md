@@ -77,13 +77,32 @@ We built this for [Hackathon Name], but we're keeping it going. See [`VISION.md`
 - **[Name]** ([@handle](https://x.com/handle)) — [role]
 - **[Name]** ([@handle](https://x.com/handle)) — [role]
 
+## Verify It Yourself (5 minutes)
+
+```bash
+# Commands a judge can paste. Each prints evidence, not a claim.
+cast code 0x... --rpc-url https://...          # contract exists
+curl -s https://yourproject.xyz/api/health | jq  # liveness: outcomes, not config
+pnpm verify                                    # full test gate (N tests, see docs/FACTS.md)
+```
+
+## Proof, Not Promises
+
+| Claim | Evidence |
+|---|---|
+| [Headline result] | [reports/summary.md / tx hash / CI run] |
+| [N] tests passing | [CI link] (count from `docs/FACTS.md`, never typed by hand) |
+| Deployed + verified | [explorer links from `deployments/<net>.json`] |
+
 ## What's Real vs Mocked
 
 We're transparent about this because judges can tell:
 
 - ✅ **Real:** [list every real integration — live API calls, on-chain transactions, deployed infra]
 - ⚠️ **Demo data:** [list seed/mocked content — usually historical data, sample users, simulated metrics]
-- 🚧 **Roadmap:** [features mentioned in vision but not yet built]
+- 🚧 **Roadmap:** [features mentioned in vision but not yet built — future tense only, never described as done]
+- 🕰️ **Built before the event:** [Continuity entries: what existed before, with the `pre-event-baseline` tag]
+- 🚫 **What we do not claim:** [e.g. "not on the leaderboard", "testnet only", "seeded activity is the team's own"]
 
 ## Acknowledgments
 

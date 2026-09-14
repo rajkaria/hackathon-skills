@@ -8,7 +8,11 @@
       "date": "2025-11-20",
       "project": "Aegis",
       "thesis_layer": "session",
-      "tracks_targeted": ["Ethereum Foundation", "Safe", "WalletConnect"],
+      "tracks_targeted": [
+        "Ethereum Foundation",
+        "Safe",
+        "WalletConnect"
+      ],
       "simulated_panel_score": {
         "technical_lead": 8.1,
         "product_designer": 7.5,
@@ -21,8 +25,12 @@
       },
       "actual_placement": "Finalist (top 10)",
       "prize_usd": 5000,
-      "sponsor_prizes": ["Safe — 3k"],
-      "grants_applied": ["Ethereum ESP"],
+      "sponsor_prizes": [
+        "Safe — 3k"
+      ],
+      "grants_applied": [
+        "Ethereum ESP"
+      ],
       "grants_awarded": [],
       "follow_on": {
         "investor_meetings": 2,
@@ -30,7 +38,9 @@
         "partnerships_opened": 1
       },
       "retro": "../retro/2025-11-20-ethglobal-bkk.md",
-      "lessons_into_skill": ["Simulated panel over-scored us by 0.5; product-designer axis was the gap"]
+      "lessons_into_skill": [
+        "Simulated panel over-scored us by 0.5; product-designer axis was the gap"
+      ]
     },
     {
       "id": "2026-02-xlayer-arena",
@@ -38,7 +48,11 @@
       "date": "2026-02-15",
       "project": "Bench v1",
       "thesis_layer": "proof",
-      "tracks_targeted": ["X Layer", "Onchain OS", "Agentic Wallet"],
+      "tracks_targeted": [
+        "X Layer",
+        "Onchain OS",
+        "Agentic Wallet"
+      ],
       "simulated_panel_score": {
         "technical_lead": 8.9,
         "product_designer": 8.2,
@@ -51,9 +65,16 @@
       },
       "actual_placement": "2nd overall",
       "prize_usd": 15000,
-      "sponsor_prizes": ["X Layer main — 10k", "Onchain OS track — 5k"],
-      "grants_applied": ["X Layer Builder"],
-      "grants_awarded": ["X Layer Builder — 25k USDC"],
+      "sponsor_prizes": [
+        "X Layer main — 10k",
+        "Onchain OS track — 5k"
+      ],
+      "grants_applied": [
+        "X Layer Builder"
+      ],
+      "grants_awarded": [
+        "X Layer Builder — 25k USDC"
+      ],
       "follow_on": {
         "investor_meetings": 5,
         "hires_reached_out": 2,
@@ -71,7 +92,10 @@
       "date": "2026-03-08",
       "project": "TollPay v1",
       "thesis_layer": "payment",
-      "tracks_targeted": ["Stellar SDF", "x402"],
+      "tracks_targeted": [
+        "Stellar SDF",
+        "x402"
+      ],
       "simulated_panel_score": {
         "technical_lead": 9.0,
         "product_designer": 8.7,
@@ -84,8 +108,12 @@
       },
       "actual_placement": "1st Stellar track",
       "prize_usd": 25000,
-      "sponsor_prizes": ["Stellar — 25k"],
-      "grants_applied": ["SCF #29"],
+      "sponsor_prizes": [
+        "Stellar — 25k"
+      ],
+      "grants_applied": [
+        "SCF #29"
+      ],
       "grants_awarded": [],
       "follow_on": {
         "investor_meetings": 3,
@@ -96,6 +124,136 @@
       "lessons_into_skill": [
         "Simulated panel called it within 0.1 — full 7-panel sim is now the pre-submission gate",
         "DevRel axis 9.1 — clean 10-min integration doc was highest-leverage single artifact"
+      ]
+    },
+    {
+      "id": "2026-07-casper-agentic-buildathon",
+      "event_name": "Casper Agentic Buildathon 2026 (DoraHacks)",
+      "date": "2026-07-25",
+      "project": "Hunch on Casper",
+      "thesis_layer": "session",
+      "tracks_targeted": [
+        "Innovation Track"
+      ],
+      "simulated_panel_score": {
+        "note": "S13 judge loop ran at qualification against mock mode; no panel on the real-mode final submission",
+        "weighted_avg": null
+      },
+      "actual_placement": "Finalist (~177 BUIDLs); final result unknown",
+      "prize_usd": null,
+      "sponsor_prizes": [],
+      "grants_applied": [],
+      "grants_awarded": [],
+      "follow_on": {
+        "investor_meetings": null,
+        "hires_reached_out": null,
+        "partnerships_opened": null
+      },
+      "retro": "../retro/2026-07-25-casper-agentic-hunch-casper.md",
+      "lessons_into_skill": [
+        "Judged path must be real mode, not demo fallback",
+        "Liveness health: outcomes within windows, not key presence",
+        "Form recon on day 1 (960-char card limit, AI tag)",
+        "No redesign in last 24h",
+        "Judging-window ops: treasury at 0 through judging"
+      ]
+    },
+    {
+      "id": "2026-09-ethonline",
+      "event_name": "ETHOnline 2026 (ETHGlobal, Continuity)",
+      "date": "2026-09-13",
+      "project": "Hunch VPM",
+      "thesis_layer": "payment",
+      "tracks_targeted": [
+        "The Graph",
+        "Arc/Circle"
+      ],
+      "simulated_panel_score": {
+        "note": "not run",
+        "weighted_avg": null
+      },
+      "actual_placement": "pending",
+      "prize_usd": null,
+      "sponsor_prizes": [],
+      "grants_applied": [],
+      "grants_awarded": [],
+      "follow_on": {
+        "investor_meetings": null,
+        "hires_reached_out": null,
+        "partnerships_opened": null
+      },
+      "retro": "../retro/2026-09-13-ethonline-hunch-vpm.md",
+      "lessons_into_skill": [
+        "Event contract: entry mode, history rules, network availability at deadline",
+        "Sponsor access gates filed day 1; drop pick if gate not cleared",
+        "Final-state gate on origin/main",
+        "Human golden path incl. hard refresh right after first deploy"
+      ]
+    },
+    {
+      "id": "2026-09-buidl-ctc-fall",
+      "event_name": "BUIDL CTC 2026 Fall (DoraHacks)",
+      "date": "2026-09-13",
+      "project": "Humanline",
+      "thesis_layer": "proof",
+      "tracks_targeted": [
+        "DeFi"
+      ],
+      "simulated_panel_score": {
+        "note": "field ranking only: Humanline 8.9 vs best rival 8.7 across 145 entries; persona panel not run",
+        "weighted_avg": 8.9
+      },
+      "actual_placement": "pending (results 2026-09-20)",
+      "prize_usd": null,
+      "sponsor_prizes": [],
+      "grants_applied": [],
+      "grants_awarded": [],
+      "follow_on": {
+        "investor_meetings": null,
+        "hires_reached_out": null,
+        "partnerships_opened": null
+      },
+      "retro": "../retro/2026-09-13-buidl-ctc-humanline.md",
+      "lessons_into_skill": [
+        "DEADLINE line with quoted source; T-minus in every status",
+        "Draft submission at 50% of time; expansion gate",
+        "One-message user-owned blocker list",
+        "Claims checker (submission-check)",
+        "Voice lint from first draft"
+      ]
+    },
+    {
+      "id": "2026-09-multi-app-agent",
+      "event_name": "Multi-App AI Agent Hackathon",
+      "date": "2026-09-13",
+      "project": "Benchpress",
+      "thesis_layer": "proof",
+      "tracks_targeted": [
+        "Main prize"
+      ],
+      "simulated_panel_score": {
+        "note": "single self-score at T-90m",
+        "technical_lead": null,
+        "usefulness": 6.5,
+        "weighted_avg": 8.15
+      },
+      "actual_placement": "pending",
+      "prize_usd": null,
+      "sponsor_prizes": [],
+      "grants_applied": [],
+      "grants_awarded": [],
+      "follow_on": {
+        "investor_meetings": null,
+        "hires_reached_out": null,
+        "partnerships_opened": null
+      },
+      "retro": "../retro/2026-09-13-multi-app-agent-benchpress.md",
+      "lessons_into_skill": [
+        "T-24h preflight with riskiest-assumption spike as code",
+        "Secrets protocol (OAuth client auto-disabled)",
+        "Judge round at midpoint for one-day events",
+        "Session ownership map + verbatim agent tasks",
+        "Numbers generated from reports"
       ]
     }
   ],

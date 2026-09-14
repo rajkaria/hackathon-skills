@@ -1,6 +1,6 @@
 # /hackathon — Claude Code Skill for Winning Hackathons
 
-A battle-tested Claude Code skill that turns a hackathon brief into a winning submission through a systematic 10-phase workflow.
+A battle-tested Claude Code skill that turns a hackathon brief into a winning submission through a clock-gated workflow (Phase 0 event contract through Phase 10 ship), rebuilt in September 2026 from four real events.
 
 Built from real hackathon sessions and enriched with best practices from serial hackathon winners, seasoned judges (DevPost, ETHGlobal, DoraHacks, MLH), and winning project analysis.
 
@@ -10,23 +10,30 @@ Built from real hackathon sessions and enriched with best practices from serial 
 
 Install the skill once. It activates automatically whenever you start a hackathon sprint — no need to remember to invoke it. Claude Code detects hackathon-related context and loads the full workflow.
 
-### Option 1: Drop-in install (recommended)
-Download `hackathon.skill` from this repo and run:
-```bash
-claude /install-skill hackathon.skill
-```
-
-### Option 2: Manual install
-```bash
-mkdir -p ~/.claude/skills/hackathon
-curl -o ~/.claude/skills/hackathon/SKILL.md https://raw.githubusercontent.com/rajkaria/hackathon-skills/main/SKILL.md
-```
-
-### Option 3: Clone the repo
+### Option 1: Clone + install script (recommended)
 ```bash
 git clone https://github.com/rajkaria/hackathon-skills.git
-cp hackathon-skills/SKILL.md ~/.claude/skills/hackathon/SKILL.md
+bash hackathon-skills/install.sh
 ```
+This copies the **whole** skill directory into `~/.claude/skills/hackathon/`: `SKILL.md` plus `templates/`, `tactics/`, `arsenal/`, `career/`, `retro/`, `validation/`, `post-hackathon/` and `guides/`. It backs up any previous install to `~/.claude/skill-backups/` and checks that every link in `SKILL.md` resolves on disk. Re-run it after `git pull` to update.
+
+> **Why not just SKILL.md?** `SKILL.md` points to templates, checklists and runnable tools. A single-file install leaves every one of those links dead. Between April and September 2026, four real events ran on a stale single-file install with none of the templates or tools on disk (see `retro/2026-09-14-cross-event-synthesis.md`).
+
+### Option 2: Drop-in package
+Download `hackathon.skill` (a zip of the full directory) from this repo and unzip it into `~/.claude/skills/hackathon/`.
+
+### What's new in v2 (2026-09-14)
+Rebuilt from four real events (Casper Agentic Buildathon, ETHOnline 2026, BUIDL CTC, Multi-App Agent Hackathon):
+- **Phase 0 Event Contract:** deadline with a quoted source, entry mode, form limits, access gates, network availability
+- **Battle Clock:** time-based gates. Draft submission at 50% of the time, video recorded ≥ 12h before the deadline, judge rounds while the build runs, feature freeze, final-state gate
+- **New tactics:** preflight and secrets protocol, public/internal repo boundary, multi-session orchestration, claims and evidence, golden path and liveness
+- **New runnable tools:**
+  - `submission-check` (every clickable claim resolves)
+  - repo guard + final-state gate
+  - deploy preflight + traps catalog
+  - liveness health
+  - voice lint
+  - cross-wallet chain switch
 
 ### When Does It Trigger?
 

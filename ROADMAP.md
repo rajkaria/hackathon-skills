@@ -144,3 +144,27 @@ The skill is now a 6-layer stack:
 6. **Career** (cross-event compounding)
 
 Plus the `retro/` loop that feeds lessons back into all 6 layers.
+
+---
+
+## Sprint 8: Reality Check from Four Real Events (added 2026-09-14)
+
+**Why an 8th sprint:** Sprints 1-7 were designed from earlier sessions and from research. Four real events between July and September 2026 were then reconstructed from Claude Code transcripts: Hunch on Casper (Casper Agentic Buildathon), Hunch VPM (ETHOnline), Humanline (BUIDL CTC) and Benchpress (Multi-App Agent Hackathon). They showed that the skill's *activity-ordered* phases were being outrun by an always-productive build. In every event the video, the judge panel and the submission were squeezed to the end or never done. The installed copy of the skill was also a stale single `SKILL.md`, so none of Sprints 1-7 were on disk when those events ran.
+
+- **#32 Event Contract** (`templates/event-contract.md`): DEADLINE line with quoted source, entry mode and history rules, network availability at deadline, form recon
+- **#33 Battle Clock** (`templates/battle-clock.md`, `SKILL.md` Operating Rules): time-based gates G0-G15, draft submission at 50%, expansion gate
+- **#34 Preflight + Secrets Protocol** (`tactics/preflight-t24.md`): one-message blocker list, access-gate table, riskiest-assumption spike, permission pre-approval
+- **#35 Repo Boundary** (`tactics/repo-boundary.md`, `arsenal/repo/`): sibling internal folder, commit guard, final-state gate on `origin/main`
+- **#36 Session Orchestration** (`tactics/session-orchestration.md`, `templates/handoff.md`): ownership map, concurrency/model budget, resume prompts, orchestrator guardrails
+- **#37 Claims and Evidence** (`tactics/claims-and-evidence.md`, `arsenal/submission-check/`): FACTS.md, claim rules, automated claim checker
+- **#38 Golden Path and Liveness** (`tactics/golden-path-and-liveness.md`, `arsenal/ops/`, `arsenal/web3/switch-chain.ts`): human real-network smoke test, health that can't lie, judging-window runbook
+- **#39 Deploy Traps Catalog** (`arsenal/deploy/`): preflight script + every trap from the four events
+- **#40 Video Shot List + Field Teardown + Voice Lint** (`templates/video-shot-list.md`, `templates/field-teardown.md`, `arsenal/copy/`)
+- **#41 Retros + synthesis** (`retro/*.md`): four retros plus a cross-event synthesis; score ledger entries added
+- **#42 Install integrity** (`README.md`, `hackathon.skill`): install copies the full directory; generic advice moved to `guides/fundamentals.md` to keep `SKILL.md` focused
+
+**Definition of done:** at the next event, the draft submission is live by 50% of the time, the video is recorded ≥ 12h before the deadline, the judge panel has run twice against the deployed product, no secret passes through chat, and `final-state-gate.sh` is green on `origin/main` before "submitted".
+
+| Sprint | Theme | Shipped | Commit |
+|---|---|---|---|
+| 8 | Reality Check (4 real events) | event contract, battle clock, 5 v2 tactics, 5 arsenal tools, 5 templates, 5 retros, fundamentals guide | (this commit) |

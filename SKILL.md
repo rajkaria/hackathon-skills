@@ -1,21 +1,52 @@
 ---
 name: hackathon
-description: End-to-end hackathon project workflow — from reading the hackathon brief to a deployed, judge-reviewed submission. Covers research, competitive analysis, idea scoping, build spec creation, implementation planning, parallel build execution, feature expansion, UI polish, deployment, simulated judge panel reviews (multiple rounds with strict scoring), pitching strategy, demo video creation, and final submission prep. Use this skill whenever the user mentions a hackathon, hackathon submission, DoraHacks, ETHGlobal, devpost, hackathon judging, hackathon project, or wants to build something for a competition with a deadline. Also trigger when the user shares hackathon documentation, track descriptions, prize information, or asks to scope/plan a project for a time-limited competition. Trigger when the user starts a hackathon sprint, scopes a hackathon idea, says "hackathon mode", "sprint for [hackathon name]", "let's build for [competition]", or discusses competition strategy, submission deadlines, or judge preparation. This skill turns a hackathon brief into a winning submission through a battle-tested 10-phase workflow refined from real winning sessions and industry best practices.
+description: End-to-end hackathon workflow from brief to deployed, judge-reviewed submission, refined from real events. Covers the event contract (deadline, rules, form limits, access gates), a time-gated battle clock, field research, idea scoping, build spec, parallel build with multi-session orchestration, golden-path and liveness checks, polish, simulated judge panels, claims-vs-evidence audits, repo hygiene, demo video shot lists, pitch, submission and judging-window ops. Use whenever the user mentions a hackathon, buildathon, BUIDL, DoraHacks, ETHGlobal, Devpost, Devfolio, MLH, a prize track, sponsor bounty, submission deadline, judging or demo video, or wants to build, scope, rescue or submit something for a time-limited competition. Also trigger on pasted hackathon docs or prize info, 'hackathon mode', 'sprint for <event>', or a request to rate a project against other submissions.
 ---
 
 # Hackathon Domination Workflow
 
-> 📋 **Quick Navigation:**
-> - **[`arsenal/`](arsenal/)** — hour-0 building blocks (starter scaffold, demo-mode facade, OG image, judge prompts, video template, web3 helpers, landing components, pitch deck, **[`pitch/`](arsenal/pitch/)** variants + Q&A + narrative arcs + stage presence)
-> - **[`templates/`](templates/)** — fillable docs (`build-spec.md`, `vision.md`, `readme.md`, `pitch-script.md`, `submission-description.md`)
-> - **[`validation/`](validation/)** — user research sprint, build-in-public cadence, telemetry, press kit (attaches during the build)
-> - **[`tactics/`](tactics/)** — pre-event + during-event hardening (risk register, competitor monitoring, eval harness, provenance, stage kit, booth strategy, multi-track, rubric reverse-engineering)
-> - **[`career/`](career/)** — cross-event compounding (idea bank, sponsor CRM, portfolio thesis, score ledger)
-> - **[`retro/`](retro/)** — per-event retros + the Update Rule that keeps this skill sharp
-> - **[`post-hackathon/`](post-hackathon/)** — 30-day playbook, 8 grant templates, data room, legal hygiene
-> - **[`ROADMAP.md`](ROADMAP.md)** — 28-item evolution plan, sprinted by value (all 6 sprints complete)
+> 📋 **Quick Navigation.** Paths are relative to this skill's directory (installed at `~/.claude/skills/hackathon/`). Read the linked file when its phase or gate comes up; they're operational, not optional reading.
 >
-> The narrative workflow below is the canonical reference. The arsenal and templates are what you actually copy/paste into a new project.
+> **Every event starts with these four:** [`templates/event-contract.md`](templates/event-contract.md) → [`templates/battle-clock.md`](templates/battle-clock.md) → [`tactics/preflight-t24.md`](tactics/preflight-t24.md) → [`tactics/repo-boundary.md`](tactics/repo-boundary.md)
+>
+> - **[`templates/`](templates/)**: event contract, battle clock, field teardown, build spec, vision, README, pitch script, video shot list, submission description, handoff
+> - **[`tactics/`](tactics/)**:
+>   - v2 core: [`session-orchestration.md`](tactics/session-orchestration.md), [`claims-and-evidence.md`](tactics/claims-and-evidence.md), [`golden-path-and-liveness.md`](tactics/golden-path-and-liveness.md)
+>   - hardening: risk register, competitor monitoring, eval harness, provenance, stage kit, booth strategy, multi-track, rubric reverse-engineering, mid-event pivot
+> - **[`arsenal/`](arsenal/)**: runnable tools
+>   - [`submission-check/`](arsenal/submission-check/): every clickable claim resolves
+>   - [`repo/`](arsenal/repo/): internal/public split, commit guard, final-state gate
+>   - [`deploy/`](arsenal/deploy/): preflight + chain/deploy traps catalog
+>   - [`ops/`](arsenal/ops/): liveness health + judging-window runbook
+>   - [`copy/`](arsenal/copy/): voice lint
+>   - [`web3/`](arsenal/web3/): EIP-712, cross-wallet chain switch
+>   - starter, demo-mode, OG image, judge prompts, video, landing, pitch deck, [`pitch/`](arsenal/pitch/)
+> - **[`validation/`](validation/)**: user research sprint, build-in-public, telemetry, press kit
+> - **[`career/`](career/)**: idea bank, idea triage, sponsor CRM, portfolio thesis, score ledger
+> - **[`retro/`](retro/)**: per-event retros + the Update Rule. [`2026-09-14-cross-event-synthesis.md`](retro/2026-09-14-cross-event-synthesis.md) explains why the v2 gates exist.
+> - **[`post-hackathon/`](post-hackathon/)**: 30-day playbook, grant templates, data room, legal hygiene
+> - **[`guides/fundamentals.md`](guides/fundamentals.md)**: first-hackathon basics, tech stack guide, UI cheat sheet, AI tooling, mentors, self-care, networking
+>
+> The narrative workflow below is the canonical reference. Templates, tactics and arsenal are what you actually fill in, run and copy.
+
+## Operating Rules for Claude (v2, learned from four real events, Jul to Sep 2026)
+
+These override anything softer later in this document. Each one exists because breaking it cost a real submission. The evidence is in `retro/2026-09-14-cross-event-synthesis.md`.
+
+1. **Phase 0 comes first.** Before ideation, fill in `templates/event-contract.md`. Quote the deadline with its source: `DEADLINE: <UTC> (<local>) source: <url>`. **Every status report starts with `T-hh:mm` and the next gate.**
+2. **The clock beats phase order.** Instantiate `templates/battle-clock.md`. The judge panel, the 60-second pitch, the video shot list and a **draft submission on the platform** happen at clock gates *while the build runs*, not after polish.
+3. **Expansion gate.** No Phase 6 (EXPAND) and no new orchestrator sprints until three things are done: the human golden path is green on the real network, a draft submission is live on the platform, and the video shot list exists.
+4. **"Time is not a constraint" changes scope, never gates.** It never moves the draft-submission, video, feature-freeze or final-state gates. A claimed deadline extension needs a quoted source before any re-plan, and the draft is still submitted on the original schedule.
+5. **Never accept secrets in chat.** Ask the user to run `pbpaste >> .env`, `vercel env add`, `gh secret set` or `npm login` themselves, and refer only to variable names. If a secret is pasted anyway, say so immediately and ask for rotation *now* (`tactics/preflight-t24.md` §5).
+6. **Internal docs never enter the public repo.** At hour 0, run `arsenal/repo/init-internal.sh`. Strategy, prize picks, judge notes, form answers, video scripts and handoffs live in the sibling `<project>-internal/` folder. Commit as work lands; never rewrite history mid-event (`tactics/repo-boundary.md`).
+7. **One message for everything only the user can do.** At hour 0, send a single list of every user-owned blocker: accounts, faucets, sponsor approvals, TTY logins, 2FA, logo, team block, testers. Pre-approve deploy/publish commands, or mark them operator-run.
+8. **The real loop, proven by a human, early.** Right after the first deploy, the user runs the golden path on the real network, including a hard refresh and a wallet matrix. Health checks assert outcomes within time windows (`tactics/golden-path-and-liveness.md`).
+9. **Claims come from evidence.** Never describe future work as done. Numbers live in one `docs/FACTS.md` or are generated from reports. Run `arsenal/submission-check/` and a claims-audit pass before freeze (`tactics/claims-and-evidence.md`).
+10. **Judge the deployed product, on the clock.** Round 1 runs at about 35% of the time, round 2 at T-24h, against the live real-mode deployment and the cached field teardown. Never run the panel only after submitting.
+11. **Parallel sessions need an ownership map.** Cap at ≤ 5 concurrent build agents. Long waits run in the background, not by polling. Write a handoff with a resume prompt every ~2h. Every orchestrator run (boil-the-ocean, subagent-driven-development) gets the guardrail preamble from `tactics/session-orchestration.md` §6, including the deadline and feature freeze.
+12. **"Submitted" means the final-state gate is green.** Run `arsenal/repo/final-state-gate.sh` against `origin/main`: no internal docs, no open PRs holding fixes, no placeholders. After submitting, arm the judging-window ops runbook.
+13. **Close the loop.** Within 48h of submitting, write a retro in `retro/` and apply the Update Rule to this skill.
+
 
 This skill codifies a battle-tested workflow refined from multiple real hackathon submissions and enriched with best practices from serial hackathon winners, seasoned judges, and winning project analysis across DevPost, ETHGlobal, DoraHacks, and MLH events.
 
@@ -29,18 +60,20 @@ Two core insights drive this workflow:
 
 If you only have 60 seconds, here's the whole workflow. The philosophy: **build a product, not a project.** Projects die after the hackathon. Products have users, revenue, and a future. Judges can tell the difference in 10 seconds.
 
-1. **Read the hackathon docs** → extract tracks, prizes, judging criteria, required tech, deadlines
+0. **Event contract + battle clock** → quote the DEADLINE with its source, entry mode, form fields and limits, access gates, network availability; set clock gates; send the one-message blocker list; set up the repo boundary
+1. **Read the hackathon docs** → extract tracks, prizes, judging criteria, required tech, deadlines; scrape the field once and cache it
 2. **Find the gap** → what will 80% of teams build? Don't build that. Find a real user pain that becomes a product.
 3. **Write a 1-page build spec** → one-liner, 3 core features max, demo flow designed first, product vision included
 4. **Plan tasks** → break into parallel batches, deploy in Batch 1 not Batch 4
-5. **Build the core** → 3 features that work perfectly > 8 that half-work
+5. **Build the core** → 3 features that work perfectly > 8 that half-work; a human runs the golden path on the real network; **submit a draft at 50% of the time**
 6. **Add differentiators** → sponsor integrations, npm package, tests, analytics
 7. **Polish** → landing page, custom domain, mobile responsive, loading states
-8. **Simulate judges** → run a 5-9 judge panel, score out of 10, list every issue
+8. **Simulate judges** → on the clock (≈35% and T-24h), against the deployed product; 5-9 judges, score out of 10, list every issue
 9. **Fix everything** → implement all feedback, run judges again, repeat until 8.5+
-10. **Ship** → vision doc, demo video (scripted, under 3 min), README, pitch, submit
+10. **Ship** → claims audit, video recorded by T-25%, README, pitch, final-state gate green, submit, arm judging-window ops
 
 **Example prompts for each phase:**
+- Phase 0: "Here's the event page [link]. Fill the event contract and battle clock, and give me the one-message list of everything only I can do." 
 - Phase 1: "Here's the hackathon docs [link]. Analyze the tracks, prizes, judging criteria, and required tech. What's the landscape?"
 - Phase 2: "Based on this hackathon, what will most teams build? What's the gap? Give me 3 ideas with competitive positioning."
 - Phase 3: "Let's go with idea #2. Write a hackathon build spec — scoped for a demo, not production."
@@ -54,29 +87,68 @@ If you only have 60 seconds, here's the whole workflow. The philosophy: **build 
 
 ---
 
-## First Hackathon? Start Here
-
-If this is your first hackathon, here's what you need to know:
-
-- **You don't need to be an expert.** Hackathons reward creativity and hustle, not years of experience. Many winners are students.
-- **Scope small.** Your biggest risk is building too much and finishing nothing. One feature that works is better than five that don't.
-- **The pitch matters as much as the code.** Practice explaining your project to a non-technical friend. If they get it, judges will too.
-- **Use AI tools.** Claude Code, Cursor, GitHub Copilot — these are your multipliers. Everyone uses them now; the edge is knowing what to build, not how fast you type.
-- **Ship something.** A deployed, working demo — no matter how simple — puts you ahead of 50% of submissions that are broken or incomplete.
-- **Have fun.** Network with other builders, talk to sponsors, attend workshops. The connections often outlast the project.
-
-Now follow the 10 phases below. They'll guide you from zero to submitted.
-
----
-
-## The 10 Phases
+## The Phases (0-10)
 
 ```
-RESEARCH → IDEATE → SPEC → PLAN → BUILD → EXPAND → POLISH → JUDGE → FIX → SHIP
-   1          2       3      4       5        6        7        8      9     10
+CONTRACT → RESEARCH → IDEATE → SPEC → PLAN → BUILD → EXPAND → POLISH → JUDGE → FIX → SHIP
+    0          1         2       3      4       5        6        7        8      9     10
 ```
 
 Phases 8-9 form a loop. You run simulated judge panels, fix issues, and repeat until the score is high enough. In practice this takes 2-4 rounds.
+
+**Phases describe *what*. The Battle Clock decides *when*.** In every real event so far, the build was excellent, while the video, the judge panel and the submission were squeezed into the final hours or never done. So Phase 8 (judge), Phase 10 (pitch, video, submission) and repo hygiene start at clock gates while the build is still running.
+
+---
+
+## The Battle Clock (set it at hour 0)
+
+Instantiate [`templates/battle-clock.md`](templates/battle-clock.md) with absolute times. Summary of the gates:
+
+| Gate | Multi-day event | One-day window | What must be true |
+|---|---|---|---|
+| G0 Event contract + blocker list | S + 1h | prep day | `event-contract.md` filled; one-message blocker list sent |
+| G1 Preflight | before build | T-24h | Accounts, keys, faucets, sponsor gates, riskiest-assumption spike |
+| G2 Repo boundary | first commit | first commit | `init-internal.sh` run; guard hook installed |
+| G3 Deployed skeleton | S + 10% | S + 45m | Live URL 200, CI green |
+| G4 Human golden path (real network) | S + 25% | S + 40% | Golden-path table green |
+| G5 60s pitch + video shot list | S + 25% | S + 30% | Drafts exist |
+| G6 Judge round 1 | S + 35% | S + 50% | Panel run against the deployed product |
+| G7 **Draft submission live** | S + 50% | S + 70% | Platform form submitted, editable |
+| — Expansion gate | after G4+G5+G7 | after G4+G7 | Phase 6 may start |
+| G8 Judge round 2 + field refresh | D − 24h | D − 2h | Panel ≥ 8.5 or fixes scheduled |
+| G9 No redesigns / new UI | D − 24h | D − 90m | Fixes and copy only |
+| G10 Video recorded + uploaded | D − 25% (≥ D − 12h) | D − 75m | Link resolves |
+| G11 Feature freeze | D − 12h | D − 60m | Orchestrators stopped, release tagged |
+| G12 Claims audit + sanitise | D − 6h | D − 45m | `claims-and-evidence.md` §4 green |
+| G13 Final-state gate | D − 2h | D − 30m | `final-state-gate.sh` exits 0 on `origin/main` |
+| G14 Final submission | D − 1h | D − 20m | All links tested from an incognito window |
+| G15 Judging-window ops | after submitting | after submitting | Liveness alerts, funded treasuries, daily golden path |
+
+A missed gate is announced right away, together with the cut that recovers it. It's never skipped silently.
+
+---
+
+## Phase 0: EVENT CONTRACT
+
+**Goal**: Pin down the facts that decide whether the submission counts at all, before anyone gets excited about an idea. It takes 30-60 minutes.
+
+Fill in [`templates/event-contract.md`](templates/event-contract.md) from the raw event pages (save the scrapes into `<project>-internal/hackathon/_*-raw.txt`):
+
+- **DEADLINE line with a quoted source.** Note whether the date is *already* extended, and assume no further extension. Humanline treated an already-extended deadline as "pushed, time is not a constraint" and spent the last day on feature sprints instead of submitting.
+- **Entry mode and history rules.** New build vs Continuity / "ship a feature". Whether only event-period work is judged. Whether commit history is inspected ("large single commits or missing histories may be disqualified").
+- **Check-ins, finalist format, community-vote components, judging window, results date.**
+- **Judges, re-checked on event day.** Benchpress caught judges added that morning. Look for the judges' *own* tools, benchmarks or SDKs.
+- **Prize picks, capped at the max allowed.** Record every sponsor **gate** (sandbox approval, CLI access needing TTY/email, API keys). A pick is locked only once its gate clears. Hunch VPM built a World AgentKit sprint whose approval never came.
+- **Network availability at the deadline.** Mainnet opening dates, gas-token routes, oracles/indexers on testnet. Hunch VPM spent a day on an Arc mainnet that opened three days after the deadline, and Humanline couldn't acquire CTC.
+- **Submission form recon.** Every field, character limit, tag, upload size and required artifact. Hunch on Casper found a 960-char limit mid-paste and was missing the AI tag at an Agentic buildathon.
+
+Then, still in hour 0:
+1. Instantiate [`templates/battle-clock.md`](templates/battle-clock.md) with absolute times.
+2. Send the **one-message blocker list** from [`tactics/preflight-t24.md`](tactics/preflight-t24.md) §1 and file the access-gate table (§2).
+3. Set up the repo boundary: `bash <skill-dir>/arsenal/repo/init-internal.sh <project>` ([`tactics/repo-boundary.md`](tactics/repo-boundary.md)).
+4. For a timed build window, run the T-24h preflight, including a **riskiest-assumption spike as running code**. Benchpress argued for days that its grader could run offline; the first spike, 30 minutes before the start, showed a 12-16h rebuild.
+
+**Output**: `event-contract.md`, `battle-clock.md`, blocker list sent, sibling `<project>-internal/` folder created, guard hook installed.
 
 ---
 
@@ -101,6 +173,13 @@ Read and analyze the hackathon documentation for:
 - **Previous winners** — if the hackathon has run before, study what won. This reveals what judges actually valued, not just what the criteria say.
 - **Pre-hackathon contact** — some hackathons (like ETHGlobal) announce tracks early. Reaching out to track sponsors before the event to validate your idea alignment can be a huge advantage.
 - **Competitor scouting** — check the hackathon's Discord/Telegram for what others are discussing. On DoraHacks, you can sometimes see early submissions.
+
+### Data-Grounded Field Research (proven, do it once)
+
+- **Pull every entry** from the platform (the DoraHacks BUIDL API, ETHGlobal showcase, Devpost gallery) and **clone the rival repos**. Grep them to prove the moat. Humanline: "no rival uses World ID / 0x0FD4" was verified across 145 repos.
+- **Build inside the judges' world.** If the judges publish a benchmark, SDK or thesis, the strongest entry is often measured by *their* tool. Benchpress built on the judges' own ArgaBench grader.
+- **Cache it** in [`templates/field-teardown.md`](templates/field-teardown.md). Refresh only new entries, once, at G8 (T-24h). Humanline redid the teardown from scratch three times.
+- **Verified facts file.** Every chain address, API shape and limit goes into `research-facts.md` with *how it was verified*, plus a list of open questions. Mark the file "do not re-research" so parallel sessions trust it.
 
 **Output**: A structured summary of the hackathon landscape shared with the user for alignment.
 
@@ -170,6 +249,10 @@ This reframing turns checkbox integrations into genuine partnerships. Sponsor ju
 - It's a solution looking for a problem (you started with the tech, not the pain)
 - Five other teams are probably building the same thing
 - It can't be meaningfully demo'd in 3 minutes
+
+### Re-score Against the Field (gate before SPEC)
+
+Score the leading idea with the judge panel next to the top 3 rivals from the field teardown. **If it doesn't lead on the heaviest-weighted criterion, think more before writing a spec.** Humanline killed its first idea ("Periscope") this way within the first hour and then built the entry that led the field.
 
 Present the competitive analysis and top 2-3 ideas to the user. Let them pick. The user's gut feeling about what excites them matters — excitement translates to a better pitch and more energy through the grind.
 
@@ -248,6 +331,10 @@ These rules prevent the most common hackathon failure mode — building too much
 - **One chain, one network** — testnet is fine. Don't try to support multiple chains unless that's the product.
 - **Real transactions > mock transactions** — judges can tell. Even one real on-chain transaction on testnet is worth more than a hundred mocked ones.
 - **Build with a backup plan** — have a simplified version in mind that you can fall back to if the ambitious version isn't coming together by the halfway mark.
+- **Only plan on what exists before the deadline.** Check the event contract's network-availability table: mainnet dates, gas-token routes, oracles on testnet. Anything unavailable goes into VISION.md, not the build.
+- **Time-gated mechanics need an evidence timestamp.** If the product has a waiting rule (anti-wash gap, vesting, attestation lag, market close), write down the earliest moment the showcase proof can exist. Humanline's own anti-wash rule made its Aave repay proof impossible before the deadline.
+- **The judged path is real.** Demo mode is a fallback for empty and unauthenticated states, not the product judges score. Hunch on Casper was judged in mock mode while the organisers rewarded recent real testnet transactions.
+- **Design the video now.** The demo flow section *is* the first draft of [`templates/video-shot-list.md`](templates/video-shot-list.md). If a shot can't be backed by a real number, the feature behind it isn't in scope.
 
 **Output**: A complete build spec document saved to the project repo.
 
@@ -280,6 +367,11 @@ Batch 4 (Parallel): Deploy to hosting, landing page, README
 - **CI/CD from the start** — push to GitHub early, set up auto-deploy. This means every commit is testable in production.
 - **Buffer time** — add 20-30% buffer for unexpected issues. Something always breaks.
 - **Presentation tasks are first-class** — pitch script, demo video, README polish are tasks in the plan, not things you do "if there's time."
+- **Cut order is written down.** List features in the order they get cut when a gate is missed. A missed gate triggers the next cut automatically; nobody re-debates it at 3am.
+- **Staged, publishable releases.** Every batch ends in something a judge could use (a tagged release, a package version, a deploy). A time cut should never leave the entry empty. Benchpress shipped PyPI 0.1.0 at 13:35 and kept going from there.
+- **Clock gates are tasks.** G4 golden path, G5 shot list, G6 judge round, G7 draft submission and G10 video go into the plan with owners and absolute times.
+- **Session ownership map + verbatim agent task specs.** Before fanning out, write `AGENT-TASKS.md` blocks (goal, owned files, acceptance, test command, do-not-touch) and the ownership map from [`tactics/session-orchestration.md`](tactics/session-orchestration.md). Benchpress re-dispatched 6 agents killed by the session limit in minutes because the specs were verbatim.
+- **Orchestrator runs get guardrails.** Any boil-the-ocean or multi-sprint run is started with the preamble in `tactics/session-orchestration.md` §6: deadline, feature freeze, commit cadence, no internal docs, no claims ahead of reality.
 
 **Output**: A plan document with numbered tasks, ready for execution.
 
@@ -300,6 +392,17 @@ If available, use `superpowers:subagent-driven-development` or `superpowers:exec
 - **Brief check-ins every 2-3 hours** — if working with a team, schedule quick syncs to catch integration issues early
 
 After the core build is complete, run the full stack end-to-end. Fix any integration issues before moving on.
+
+### Build Gates (v2)
+
+- **Deploy preflight before spending gas.** Run `arsenal/deploy/preflight-deploy.sh`, and read the traps catalog in `arsenal/deploy/README.md` before touching a new chain. Typical traps: empty `forge-std` in fresh worktrees, 18- vs 6-decimal USDC on Arc, `forge script` unable to target some chains, Bun monorepos on Vercel.
+- **`deployments/<network>.json` is the source of truth.** Every reader (web, subgraph, docs) is wired from it, with a drift check.
+- **Human golden path at G4.** The user runs [`tactics/golden-path-and-liveness.md`](tactics/golden-path-and-liveness.md) §1 on the real network: wrong network → switch, primary action, **hard refresh**, secondary action, wallet matrix. Claude's browser can't hold a funded wallet, so this is a user task in the blocker list. It caught the silent network-switch failure and the stake-vanishes-on-refresh bug, which in past events were only found at T-4h.
+- **Probe before mocking.** Test fixtures for external APIs are captured from live responses, never hand-written. Hunch on Casper's tests passed against an invented payload while production failed.
+- **Liveness health from day 1.** `/api/health` asserts that outcomes happened within time windows (last resolution, treasury balance, cron tick), using `arsenal/ops/liveness-health.ts`. Background jobs run on platform cron plus a watchdog, never on a laptop daemon or GitHub `schedule` alone.
+- **Build from a fresh clone before calling a batch done.** Lockfiles committed, submodules declared, every API route hit on production, repo `main` equal to the deployed commit.
+- **Commit as work lands.** No same-minute bursts, no history rewrites (see `tactics/repo-boundary.md` §3).
+- **Voice from the first draft.** Run `arsenal/copy/voice-lint.sh` on landing and README copy as soon as it exists. Humanline needed two extra deadline-day sessions to remove em dashes and "AI voice".
 
 ### When Things Go Wrong (The Pivot Protocol)
 
@@ -327,6 +430,16 @@ The key mindset: **a finished simple project always beats an unfinished ambitiou
 ## Phase 6: EXPAND
 
 **Goal**: Add differentiating features that make the submission stand out from the pack.
+
+### Expansion Gate (check before generating the list)
+
+Phase 6 starts only when **all** of these are true:
+- [ ] G4: the human golden path is green on the real network
+- [ ] G5: the 60-second pitch and video shot list exist
+- [ ] G7: a draft submission is live on the platform (editable)
+- [ ] The next clock gate isn't overdue
+
+If any box is unchecked, do that first, *even if the user says time is not a constraint*. Humanline, Hunch VPM and Hunch on Casper all ran expansion sprints (up to 10) while their submission, video or golden path didn't exist yet. Each expansion item also has to name the **shot in the video** or the **judge criterion** it moves. If it moves neither, it's cut.
 
 Now that the core is working, ask: "What more can be added to make this stand out from other hackathon projects?"
 
@@ -387,6 +500,12 @@ Design is often the tie-breaker. Judges have to review dozens of projects, and a
 6. **Loading states** — skeleton loaders > spinners > nothing. Error boundaries with friendly messages, not stack traces.
 7. **Documentation page** — user-facing docs (not internal/technical docs). Explain what the product does, not how the code works.
 8. **Clear error messages** — when something goes wrong, tell the user what happened and what to do next. Not "Error: 0x3f2a".
+9. **Landing page is default-on.** Benchpress argued a CLI entry didn't need one, and it then became the main screen in the video.
+10. **Proof surfaces.** Explorer links, `simulated` vs `on-chain` chips, a `/judge` or "verify it yourself" page backed by evidence files, `/api/health` visible.
+11. **Human voice.** `arsenal/copy/voice-lint.sh` is clean: no em dashes, no hype vocabulary, concrete numbers.
+12. **AI-judge friendly.** `llms.txt` and `reports/INDEX.md` for judges who review with an AI assistant.
+
+**Polish deadline:** design-system work and redesigns end at G9 (D − 24h). After that, only fixes and copy. Hunch on Casper redesigned its landing page and design system two hours before submitting, alongside five parallel wallet-fix sessions.
 
 ### UI Principles for Hackathons
 
@@ -411,6 +530,13 @@ Design is often the tie-breaker. Judges have to review dozens of projects, and a
 ## Phase 8: JUDGE (The Secret Weapon)
 
 **Goal**: Simulate a strict hackathon judge panel to find every weakness before real judges do.
+
+### When to Run (on the clock, not after polish)
+
+- **Round 1 at G6 (≈35% of time):** against the *deployed, real-mode* product, the event contract's rubric and the cached field teardown. Early enough that the weakest axis can still be fixed.
+- **Round 2 at G8 (T-24h, or T-2h for one-day events):** after the field refresh, with rival scores alongside ours.
+- **Never only at the end.** Past events ran the panel at T-90m (Benchpress, too late to fix Usefulness at 6.5), never (Hunch VPM), or after submitting (Hunch on Casper). An ad hoc "rate us against the field" doesn't replace the persona panel. Run both.
+- **Calibration rule:** a panel that scored a mock-mode or local build is invalid. Re-run it on what judges will actually open.
 
 This is the phase that separates good submissions from winning ones. Research from DevPost shows that judges check requirements first (and many submissions fail this basic bar), then evaluate across multiple criteria simultaneously. By simulating this process, you catch issues while there's still time to fix them.
 
@@ -560,6 +686,8 @@ Research shows 40-45% of hackathon scoring depends on how well you pitch. The pi
 ### Demo Video Creation
 
 The demo video is often the most important submission artifact. Judges may watch this before or instead of a live demo.
+
+**Timing (hard):** the shot list is drafted at G5 using [`templates/video-shot-list.md`](templates/video-shot-list.md), and the video is recorded and uploaded at G10 (≥ 12h before the deadline, or 75 minutes before for one-day events). In the last four events the video was never recorded (Hunch on Casper), still missing at the end of the transcripts (Humanline), scripted at T-4h (Hunch VPM), or linked at T-19m (Benchpress). The shot list includes "the three things the video has to land", a "do not show" list, pre-recording checks against the live site, and "never round up".
 
 #### Video Structure (2-3 minutes ideal)
 
@@ -720,6 +848,11 @@ Most hackathon platforms (DoraHacks, DevPost) have a text description field. Thi
 - [ ] **Sponsor integrations documented** — each sponsor tool usage explained in README, with why the integration is genuine (not checkbox)
 - [ ] **Vision doc** — VISION.md in repo, linked from README, referenced in pitch. Shows roadmap, revenue model, deepening sponsor integrations
 - [ ] **Test accounts / demo credentials** — if judges need to log in, make it trivial
+- [ ] **Form recon matches the event contract.** Every character limit respected; tags chosen deliberately (e.g. AI tag at an agentic event); logo and cover at the required sizes
+- [ ] **Opener-collision check.** The tagline doesn't echo the rival cluster (`templates/field-teardown.md`)
+- [ ] **Claims audit green.** `arsenal/submission-check/` passes with `--strict`; claims-audit agent table all `supported`; numbers match `docs/FACTS.md`
+- [ ] **Pre-event work labelled** (Continuity entries); seeded activity labelled as the team's own
+- [ ] **Final-state gate green on `origin/main`.** No internal docs, no open PRs holding fixes, no placeholders, healthy commit cadence
 
 ### Final Deploy Checklist
 
@@ -737,6 +870,24 @@ Most hackathon platforms (DoraHacks, DevPost) have a text description field. Thi
 - Ensure commit messages are clean and descriptive
 - A daily commit cadence looks better than 47 commits in the last hour
 - Verify no API keys or secrets are in the commit history
+
+### After Submitting: Judging Window and Finalist Rounds
+
+- **Arm the judging-window ops runbook** ([`tactics/golden-path-and-liveness.md`](tactics/golden-path-and-liveness.md) §7):
+  - treasuries and faucets funded for 2× the judging duration
+  - liveness watchdog alerting the user's phone
+  - no deploy without a state backup
+  - golden path re-run daily
+  - no expiring demo data
+
+  Hunch on Casper's treasury sat at 0 through judging, so health returned 503.
+- **Rotate every secret that touched chat**, in a way that keeps the live demo working: rotate, update env, redeploy, re-run the golden path.
+- **Multi-round events.** On making the finalist list, re-instantiate the battle clock for the final round. Then:
+  - run a multi-agent QA sweep (Hunch on Casper's found 18 real bugs, including a theft vector)
+  - generate real, recent transaction volume if organisers reward it
+  - rehearse the finalist format (e.g. 4-minute demo + 3-minute Q&A, see `arsenal/pitch/qa-combat.md`)
+  - mobilise the community if there's a vote component (Hunch on Casper's market over all 177 finalists turned judging into distribution)
+- **Retro within 48h** (`retro/template.md`), then apply the Update Rule to this skill.
 
 **Output**: Submitted hackathon project with everything judges need to evaluate it.
 
@@ -758,6 +909,22 @@ Time management is the #1 predictor of hackathon success. Most teams spend 90% o
 | 38-42 | Judge + Fix | 2 rounds of simulated judge panels + fixes |
 | 42-46 | Ship | Demo video, README, pitch practice |
 | 46-48 | Submit | Final checks, submission form, backup uploads |
+
+### One-Day Virtual Hackathon (≤ 8h build window)
+
+Everything that can happen before the window does happen before it: accounts, OAuth, spike, repo boundary, research, idea, spec. Benchpress: 6.5h window, prep across the previous 3 days.
+
+| Time | Activity |
+|------|----------|
+| T-72h → T-24h | Event contract, research, idea re-scored against the judges' worldview, spec, verbatim agent tasks, pre-built modules where rules allow |
+| T-24h | Preflight gate: every account and token verified by a one-line call, riskiest-assumption spike run as code |
+| 0:00-0:45 | Repo boundary + deployed skeleton (G2, G3); fan out ≤ 5 agents |
+| 0:45-2:30 | Core build; golden path at 40% (G4); 60-second pitch + shot list at 30% (G5) |
+| 2:30-3:15 | Judge round 1 at 50% (G6); **draft submission at 70% (G7)** |
+| 3:15-5:00 | Fix judge issues; staged releases; judge round 2 at T-2h (G8) |
+| 5:00-5:15 | Recording at T-75m (G10) |
+| 5:15-5:45 | Feature freeze at T-60m (G11); claims audit + sanitise (G12); final-state gate (G13) |
+| 5:45-6:10 | Final submission at T-20m (G14) |
 
 ### 2-Week Online Hackathon
 
@@ -838,109 +1005,12 @@ Time management is the #1 predictor of hackathon success. Most teams spend 90% o
 10. **No backup plan** — always have a pre-recorded demo video, a simplified fallback version, and test accounts pre-configured. Murphy's Law loves hackathons.
 11. **Apology-driven demos** — "Sorry this doesn't work yet" or "We ran out of time for..." — run the show smoothly. If something isn't ready, don't mention it.
 12. **Feature creep after 75% mark** — the last 25% of hackathon time should be polish, pitch, and submission. Not new features.
-
----
-
-## Tech Stack Decision Guide
-
-The right tech stack depends on your hackathon type and team skills. Here's a quick decision tree:
-
-**Web App (most hackathons):**
-- Frontend: Next.js (React) or Nuxt (Vue) — both deploy instantly to Vercel
-- Styling: Tailwind CSS — fastest way to look professional
-- Backend (if needed): Next.js API routes, or FastAPI (Python) for ML-heavy projects
-
-**Web3/Crypto:**
-- Smart Contracts: Hardhat (JS/TS) or Foundry (Solidity) — pick what your team knows
-- Frontend: Next.js + wagmi/viem (EVM) or @solana/web3.js (Solana)
-- Testnet: always testnet. Fund wallets early.
-
-**AI/ML:**
-- Python + FastAPI for the model/API
-- Next.js or Streamlit for the frontend — Streamlit is faster if UI isn't the focus
-- Use hosted models (OpenAI, Anthropic, Replicate) over self-hosted — less infra to manage
-
-**Mobile:**
-- React Native or Flutter for cross-platform
-- Swift/Kotlin only if the hackathon is platform-specific
-- Expo (React Native) for fastest setup
-
-**Backend-Heavy / Data:**
-- Python + FastAPI or Node.js + Express
-- SQLite or Supabase for quick data storage
-- Deploy on Railway, Render, or Fly.io
-
-**General rule:** use what your team already knows. A hackathon is not the time to learn a new framework.
-
-### The Non-Designer's UI Cheat Sheet
-
-Most hackathon teams don't have a designer. Here's how developers can make projects look professional in under an hour:
-
-1. **Use shadcn/ui + Tailwind CSS** — pre-built, beautiful components you own. Run `npx shadcn@latest init`, then add components as needed. You get dark mode, consistent spacing, and accessible components for free.
-2. **Pick one accent color** — don't design a color system. Use neutral grays for everything + one brand color for buttons and highlights.
-3. **Steal layouts** — find a site you like (Linear, Vercel, Stripe), screenshot it, and replicate the layout structure. Don't copy the design, copy the grid.
-4. **Typography hierarchy** — three sizes only: heading (24-32px bold), subheading (16-18px medium), body (14-16px regular). Don't use more than two font weights.
-5. **Spacing system** — use Tailwind's `p-4`, `p-6`, `p-8` consistently. Inconsistent spacing is the #1 tell of an amateur UI.
-6. **Icons** — Lucide icons (built into shadcn) or Heroicons. Pick one set. Don't mix.
-7. **Dark theme** — easier to make look professional than light theme. Less design skill required.
-
----
-
-## AI Tooling Strategy
-
-AI coding tools are the biggest multiplier in modern hackathons. 95% of developers now use them. The edge isn't having AI tools — everyone does — it's knowing how to use them strategically across hackathon phases.
-
-### Which Tool for Which Phase
-
-| Phase | Best Tool | Why |
-|-------|-----------|-----|
-| Research | Claude Code / ChatGPT | Web search, doc analysis, competitive research |
-| Ideate | Claude Code | Brainstorming, competitive analysis, idea evaluation |
-| Spec | Claude Code | Writing structured documents, templates |
-| Plan | Claude Code + superpowers | Task breakdown, dependency analysis |
-| Build | Claude Code / Cursor | Code generation, multi-file changes, debugging |
-| Polish | Cursor / v0 | UI refinement, component generation, responsive fixes |
-| Judge | Claude Code | Simulating judge panels (the skill's core feature) |
-| Ship | Claude Code | README writing, pitch scripting, video planning |
-
-### AI Prompting Patterns for Hackathons
-
-**For rapid scaffolding:**
-"Create a Next.js project with shadcn/ui, Tailwind, and these 3 pages: [landing, dashboard, docs]. Use dark theme. Deploy to Vercel."
-
-**For feature building:**
-"Here's my spec: [paste spec]. Build [feature X]. Keep it simple — this is for a hackathon demo, not production. Focus on the happy path working perfectly."
-
-**For debugging under pressure:**
-"This is broken and I have 4 hours left. [paste error]. Give me the fastest fix, not the best fix."
-
-**For polish:**
-"Review this UI as a hackathon judge. What looks amateur? What's the fastest fix for each issue?"
-
-### What AI Can't Do for You
-
-- **Pick the right idea** — AI can brainstorm, but you need taste and hackathon judgment to pick the winner
-- **Feel the energy in the room** — at in-person events, talking to people reveals what's exciting and what's overdone
-- **Sell the vision** — AI can write pitch scripts, but authentic passion in delivery comes from you
-- **Network** — the human connections at hackathons are irreplaceable
-
----
-
-## The Mentor Advantage
-
-Many hackathon participants skip mentors entirely. This is a mistake — winners consistently credit breakthrough moments to mentor conversations.
-
-### How to Use Mentors Strategically
-
-- **Hour 1-2: Validate your idea** — find a mentor with domain expertise. Ask "does this problem actually matter?" and "what am I missing?" It's cheaper to pivot now than after 20 hours of coding.
-- **Midway: Technical unblocking** — stuck on an integration? Mentor who works at the sponsor company can save you 4 hours of documentation reading in a 10-minute conversation.
-- **Before the pitch: Rehearse** — find a mentor who isn't technical. If they understand your pitch, judges will too. If they're confused, simplify.
-
-### Questions That Get the Best Mentor Feedback
-
-- "If you were judging this, what would concern you?"
-- "What's the one thing that would make this a no-brainer winner?"
-- "We're debating between [A] and [B] — which would you prioritize with 6 hours left?"
+13. **"Time is not a constraint"** — it removes the scope limit, never the deadline gates. Three of the last four events used this phrase to justify expansion while the submission, video or golden path didn't exist.
+14. **Secrets in chat** — rotation debt at best, a disabled OAuth client mid-build at worst.
+15. **Internal docs in the public repo** — strategy, judge names, form answers and personal emails end up in history forever.
+16. **Writing the README as if the roadmap were done** — judges click the links. A 404 on your own SDK is worse than not mentioning it.
+17. **Redesigning on submission day** — design work ends at G9 (D − 24h).
+18. **Running the judge panel after submitting** — the panel exists to change the submission.
 
 ---
 
@@ -962,6 +1032,8 @@ data-provider.ts:
 ```
 
 This prevents the most common last-day crisis: "the demo doesn't work without auth."
+
+**Amendment (2026-09, Hunch on Casper):** the fallback covers empty and unauthenticated states. It is **not** the judged path. Hunch on Casper kept the judged site in mock mode, while the finalist organisers asked for "more number of (and recent) txes on Testnet". Flipping to real mode two weeks later surfaced about 15 silent chain bugs. Default the judged experience to real mode with real, recent, labelled activity.
 
 ### Rule 2: Auto-Execute the Happy Path on Page Load
 
@@ -1055,46 +1127,76 @@ GitHub Pages       → JSON files, localStorage, external APIs only
 
 ---
 
-## Self-Care = Performance
+### Rule 11: Submit a Draft at the Halfway Mark
 
-This sounds soft, but it directly impacts submission quality. Tired teams write buggy code, give weak pitches, and make poor scope decisions.
+**The problem:** in three of four events a complete, impressive build existed while the submission form was still empty. Humanline, working from a deadline it believed had been extended, ran 10 feature sprints and still had no submission and no video at the end of its transcripts.
 
-- **Sleep 6 hours** in a 48-hour hackathon. The bugs you create at 3 AM cost more time to fix than the sleep saves.
-- **Eat real meals** — not just energy drinks and pizza. Blood sugar crashes cause poor decisions at critical moments.
-- **Take a 15-minute walk** when stuck — the solution often comes when you stop staring at the screen.
-- **Designate a "scope guardian"** — one team member whose job is to say "no" to new features after the 75% time mark. Feature creep at 2 AM is the most common way good projects become mediocre submissions.
+**The rule:** at G7 (50% of time, 70% for one-day events) the platform form is submitted with the one-liner, repo, live URL and a placeholder video. Every later improvement is an *edit*. Expansion is blocked until then.
 
----
+### Rule 12: Secrets Never Touch the Chat
 
-## Post-Hackathon: Leverage the Win
+**The problem:** it happened in 4 of 4 events. Google auto-disabled Benchpress's OAuth client after its secret was pasted, costing 50 minutes of a 6.5h window. npm, PyPI, World, Graph Studio, CSPR.cloud and HubSpot keys all went through transcripts.
 
-The hackathon doesn't end at submission. The best hackers use hackathons as launchpads for bigger things.
+**The rule:** the user writes secrets (`pbpaste >> .env`, `vercel env add`, `gh secret set`), and Claude uses variable names only. If a secret is pasted anyway, flag it and ask for rotation now. See `tactics/preflight-t24.md` §5.
 
-### Immediately After Submission
-- **Share on social media** — tweet/post about your project with screenshots, demo link, and what you learned. Tag the hackathon, sponsors, and judges.
-- **Thank sponsors and organizers** — a brief message goes a long way. They remember who was gracious.
+### Rule 13: The Public Repo Is Part of the Submission
 
-### After Results Are Announced
+**The problem:**
+- Benchpress's repo was public for six hours with the judge-strategy doc and a personal email.
+- Hunch VPM's public `main` still said "every committed contract address is the zero placeholder" after the deadline, because the cleanup never merged.
+- Same-minute commit bursts appeared at an event that inspects history.
 
-**If you won:**
-- Write a short blog post / thread about what you built and what worked
-- Connect with sponsors who gave you a prize — they may have grants, jobs, or accelerator programs
-- Consider continuing the project — hackathon winners get inbound interest from VCs, users, and potential collaborators
-- Apply to accelerators (if applicable) — hackathon wins are strong signals
+**The rule:** a sibling `<project>-internal/` folder, a commit guard, commits as work lands, and `final-state-gate.sh` on `origin/main` before "submitted". See `tactics/repo-boundary.md`.
 
-**If you didn't win:**
-- Still share the project — the experience and portfolio value are real
-- Read what won and understand why — update your mental model of what judges value
-- Ask judges for feedback if the hackathon allows it
-- Iterate on the project or reuse components for the next hackathon
+### Rule 14: Green Checks Can Lie
 
-### Networking
-- **Connect with other builders** — the best teams often form across hackathons
-- **Talk to mentors** — many hackathons have mentor office hours during the event. Use them.
-- **Follow up within 48 hours** — send a brief LinkedIn/email to people you connected with. Reference something specific you discussed.
+**The problem:** Hunch on Casper's economy placed 40 bets with 0 resolutions and 0 claims over 2.7 days while all 14 health checks were green. Its treasury sat at 0 through judging, because health checked that a key existed, not the balance.
 
-### For In-Person Hackathons
-- Visit sponsor booths early — ask about their tools, get API keys, understand what they want to see
-- Attend mentor office hours — get feedback on your idea before committing to building it
-- Practice your expo pitch — at in-person events, you'll pitch to judges walking by your table. Practice a 60-second version of your pitch.
-- Don't skip the demos — watch other teams present. You'll learn what works and what doesn't.
+**The rule:** health asserts outcomes within time windows, fixtures come from live probes, and a human runs the golden path after every flow-touching deploy. See `tactics/golden-path-and-liveness.md`.
+
+### Rule 15: One Source of Truth for Every Number
+
+**The problem:**
+- Benchpress badges said 600+ and 470+ tests while 1,034 existed.
+- Hunch VPM copied deploy status into five docs and needed three sessions to resync.
+- Humanline's README linked an npm SDK that returned 404.
+
+**The rule:** `docs/FACTS.md`, or numbers generated from report files. Run `arsenal/submission-check/` in CI, and never describe future work as done. See `tactics/claims-and-evidence.md`.
+
+### Rule 16: Collect Every Human-Only Task in One Message at Hour 0
+
+**The problem:** Humanline's user-owned blockers (team block, logo, faucets behind captchas, npm 2FA, Vercel login protection, an Orb tester, GitHub secrets) came up one at a time over 40 hours. Sponsor approvals (World sandbox, Chainlink CRE access) arrived too late or never.
+
+**The rule:** the blocker list and access-gate table in `tactics/preflight-t24.md`, sent once, re-posted with only the open rows. A prize pick is locked only when its gate clears.
+
+### Rule 17: Parallel Sessions Need Owners, Budgets and Handoffs
+
+**The problem:**
+- 9-30 worktrees per event.
+- 6 agents killed by the session limit.
+- Two runs double-seeded one set of app copies and lost a key.
+- 131M-264M tokens per session; foreground CI polling.
+
+**The rule:**
+- an ownership map (files, ports, external state)
+- ≤ 5 concurrent build agents
+- background waits
+- verbatim `AGENT-TASKS.md`
+- a handoff with a resume prompt every ~2h
+- orchestrator guardrails that carry the deadline
+
+See `tactics/session-orchestration.md`.
+
+### Rule 18: Know the Chain's Traps Before the Chain Knows You
+
+**The problem:** each web3 event rediscovered deploy traps one at a time, and each cost hours:
+- empty `forge-std` in new worktrees
+- 18- vs 6-decimal native USDC
+- `forge script` unable to target the chain
+- oracles missing on testnet
+- CLIs needing a TTY
+- wallets that don't return 4902 on add-chain
+
+**The rule:** read `arsenal/deploy/README.md` (traps catalog) and run `preflight-deploy.sh` before spending gas. Use `arsenal/web3/switch-chain.ts` for add-then-switch across wallets. Add every new trap to the catalog in the retro.
+
+

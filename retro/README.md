@@ -10,7 +10,13 @@ Per-event retrospectives + the rule that retros update the skill itself. Without
 ## Files
 
 - `template.md` — copy this per event, fill in. Filename: `YYYY-MM-DD-event-slug.md`.
-- `2025-11-20-ethglobal-bkk.md` etc — one per event.
+- `YYYY-MM-DD-event-slug.md`: one per event. Current:
+  - [`2026-07-25-casper-agentic-hunch-casper.md`](2026-07-25-casper-agentic-hunch-casper.md)
+  - [`2026-09-13-ethonline-hunch-vpm.md`](2026-09-13-ethonline-hunch-vpm.md)
+  - [`2026-09-13-buidl-ctc-humanline.md`](2026-09-13-buidl-ctc-humanline.md)
+  - [`2026-09-13-multi-app-agent-benchpress.md`](2026-09-13-multi-app-agent-benchpress.md)
+- [`2026-09-14-cross-event-synthesis.md`](2026-09-14-cross-event-synthesis.md): patterns across events. Write one after every 3-4 retros, because single retros can't show which failures repeat.
+- **Retros can be reconstructed from session transcripts** when they weren't written live. Mine `~/.claude/projects/<project-dirs>/*.jsonl` for human-typed prompts, plus `git log` and the repo's docs/memory files. That's how the four retros above were produced.
 - **The Update Rule** (below) — what you MUST do after every retro.
 
 ---

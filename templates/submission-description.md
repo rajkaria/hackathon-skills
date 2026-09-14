@@ -74,6 +74,20 @@ Different platforms have different field names. Map this template to:
 | ETHGlobal | "Long description" | Full template; "Short description" = one-liner |
 | Devfolio | "Project Details" | Full template |
 
+## Form Recon (do this on day 1, not at submit time)
+
+Screenshot the submission form as soon as it's visible and copy every field into `templates/event-contract.md` → *Submission form recon*. Then draft this description **against those limits**. Hunch on Casper found a 960-char limit on the contracts field and a 256-char vision cap mid-paste, and submitted without the AI tag at an Agentic buildathon.
+
+| Check | Why |
+|---|---|
+| Character/word limit per field, measured with `wc -m` | Platforms truncate silently or reject on paste |
+| Tags and track selectors chosen deliberately | Missing the obvious tag hides the entry from filtered judges |
+| Logo (e.g. 480×480 / 1024×1024 PNG) and cover (16:9) ready | Humanline made its logo PNG when the form asked for it |
+| Team block (names, handles, roles) collected at hour 0 | Humanline's was still empty at the end of the transcripts |
+| Required proof fields (contract hashes, sample txs, BUIDL page) | Pull from `deployments/*.json` / `docs/FACTS.md`, never retype |
+| Opener-collision check against the field | Five rivals opened with the same "accountable oracle" line |
+| **Draft submitted at G7 (≈50% of time)** | Every later change is an edit, not a first submission at T-20m |
+
 ## Pre-Submit Checklist
 
 - [ ] All links work (test from incognito window — no auth-cached surprises)

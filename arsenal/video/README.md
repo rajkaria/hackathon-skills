@@ -32,9 +32,11 @@ Total: 47 seconds.
 
 ## Files
 
-- `Video.tsx` — root composition wiring all scenes
+- `Video.tsx` (not included in this repo; write it from the scene table above)
 - `theme.ts` — color palette + animation constants
-- `scenes/` — one file per scene, each accepting props
+- `scenes/` (not included; one file per scene, each accepting props)
+
+> **Status note (2026-09-14):** only `theme.ts` ships here. The scene components lived in the Bench project. None of the last four events used Remotion. Every one needed a **screen-recorded walkthrough with a shot list** instead, so start from [`../../templates/video-shot-list.md`](../../templates/video-shot-list.md). Use this Remotion architecture only for a ≤ 60s hype cut once the real walkthrough is uploaded.
 - `assets/` — drop your music + SFX here
 
 ## Setup

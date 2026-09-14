@@ -18,6 +18,13 @@ Moderate-lift items that individually save you from one stupid mistake per event
 | [booth-strategy.md](booth-strategy.md) | Phase 0 (event arrival) | 60 min Day 1 | Leaving with no sponsor relationships |
 | [multi-track.md](multi-track.md) | Phase 2 (scope lock) | 20 min architecture review | Qualifying for 1 track instead of 3 |
 | [rubric-reverse.md](rubric-reverse.md) | Pre-event (1 week before) | 2 hours research | Optimizing for the wrong criteria |
+| [preflight-t24.md](preflight-t24.md) | Phase 0 + T-24h | 45 min | Mid-build waits on sponsor approvals, faucets, OAuth, 2FA; secrets in chat |
+| [repo-boundary.md](repo-boundary.md) | Hour 0 (first commit) → T-2h gate | 5 min setup | Internal docs / judge notes / personal emails in the public repo; suspicious commit history |
+| [session-orchestration.md](session-orchestration.md) | Phase 4 → whenever >1 session or an orchestrator runs | 20 min | Colliding worktrees, killed agents, token burn, orchestrators ignoring the deadline |
+| [claims-and-evidence.md](claims-and-evidence.md) | First README draft → freeze → submit | 30 min per audit | Overclaims, drifting numbers, 404 links, "as if done" docs |
+| [golden-path-and-liveness.md](golden-path-and-liveness.md) | After first deploy → daily through results | 20 min per run | Wallet/auth bugs found at T-4h; green-but-dead health; empty or expired demo state during judging |
+
+**v2 additions (2026-09-14)** come from four real events. See `../retro/2026-09-14-cross-event-synthesis.md`. Together with `../templates/event-contract.md` and `../templates/battle-clock.md`, they are the gates the main `SKILL.md` Operating Rules point to.
 
 ## Order of application
 
