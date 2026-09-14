@@ -40,7 +40,9 @@
       "retro": "../retro/2025-11-20-ethglobal-bkk.md",
       "lessons_into_skill": [
         "Simulated panel over-scored us by 0.5; product-designer axis was the gap"
-      ]
+      ],
+      "verified": false,
+      "verification_note": "Not found in any Claude Code transcript; retro file does not exist; event date predates the project repo's first commit (Bench 2026-04-08, Toll 2026-03-31, Aegis 2026-04-02). Treat placement, prizes and lessons as illustrative until Raj confirms."
     },
     {
       "id": "2026-02-xlayer-arena",
@@ -84,7 +86,9 @@
       "lessons_into_skill": [
         "Security axis scored 7.5 — replay bug was in shipped code; this is why security judge prompt now has 25% weight on replay protection",
         "Multi-track submission worked — single codebase qualified for 3 tracks"
-      ]
+      ],
+      "verified": false,
+      "verification_note": "Not found in any Claude Code transcript; retro file does not exist; event date predates the project repo's first commit (Bench 2026-04-08, Toll 2026-03-31, Aegis 2026-04-02). Treat placement, prizes and lessons as illustrative until Raj confirms."
     },
     {
       "id": "2026-03-stellar-agentic",
@@ -124,7 +128,9 @@
       "lessons_into_skill": [
         "Simulated panel called it within 0.1 — full 7-panel sim is now the pre-submission gate",
         "DevRel axis 9.1 — clean 10-min integration doc was highest-leverage single artifact"
-      ]
+      ],
+      "verified": false,
+      "verification_note": "Not found in any Claude Code transcript; retro file does not exist; event date predates the project repo's first commit (Bench 2026-04-08, Toll 2026-03-31, Aegis 2026-04-02). Treat placement, prizes and lessons as illustrative until Raj confirms."
     },
     {
       "id": "2026-07-casper-agentic-buildathon",
@@ -156,7 +162,8 @@
         "Form recon on day 1 (960-char card limit, AI tag)",
         "No redesign in last 24h",
         "Judging-window ops: treasury at 0 through judging"
-      ]
+      ],
+      "verified": true
     },
     {
       "id": "2026-09-ethonline",
@@ -169,11 +176,11 @@
         "Arc/Circle"
       ],
       "simulated_panel_score": {
-        "note": "not run",
+        "note": "not run; planning sessions claimed 'small field' and '$7k-9k plus finalist' with no field teardown",
         "weighted_avg": null
       },
-      "actual_placement": "pending",
-      "prize_usd": null,
+      "actual_placement": "Not a finalist; no partner prize (known 2026-09-14)",
+      "prize_usd": 0,
       "sponsor_prizes": [],
       "grants_applied": [],
       "grants_awarded": [],
@@ -187,8 +194,13 @@
         "Event contract: entry mode, history rules, network availability at deadline",
         "Sponsor access gates filed day 1; drop pick if gate not cleared",
         "Final-state gate on origin/main",
-        "Human golden path incl. hard refresh right after first deploy"
-      ]
+        "Human golden path incl. hard refresh right after first deploy",
+        "History gate for Continuity entries (orphan repo on day 8, 7 commits of 5-10k lines in one minute)",
+        "Form claims must not exceed README 'live now'",
+        "Partner picks only when verbatim criteria are met on the live product"
+      ],
+      "verified": true,
+      "screen_rank": null
     },
     {
       "id": "2026-09-buidl-ctc-fall",
@@ -220,7 +232,8 @@
         "One-message user-owned blocker list",
         "Claims checker (submission-check)",
         "Voice lint from first draft"
-      ]
+      ],
+      "verified": true
     },
     {
       "id": "2026-09-multi-app-agent",
@@ -232,13 +245,13 @@
         "Main prize"
       ],
       "simulated_panel_score": {
-        "note": "single self-score at T-90m",
+        "note": "single SELF-SCORE at T-90m by the building session; pre-event STRATEGY.md titled 'why Benchpress takes first place'",
         "technical_lead": null,
         "usefulness": 6.5,
         "weighted_avg": 8.15
       },
-      "actual_placement": "pending",
-      "prize_usd": null,
+      "actual_placement": "Not selected for the next round (known 2026-09-14)",
+      "prize_usd": 0,
       "sponsor_prizes": [],
       "grants_applied": [],
       "grants_awarded": [],
@@ -253,11 +266,17 @@
         "Secrets protocol (OAuth client auto-disabled)",
         "Judge round at midpoint for one-day events",
         "Session ownership map + verbatim agent tasks",
-        "Numbers generated from reports"
-      ]
+        "Numbers generated from reports",
+        "Brief-Fit Gate: built a layer around agents where the brief asked for an agent",
+        "Self-score 8.0-8.3 predicted nothing; blind screening judge + pre-mortem",
+        "Weakest axis (Usefulness 6.5) must become the next work item"
+      ],
+      "verified": true,
+      "screen_rank": null
     }
   ],
   "aggregates_to_compute_after_event_5": [
+    "Blind screen rank vs actual advance: does the screen predict what the self-score didn't? (Only verified entries.)",
     "What panel axis most predicts actual placement?",
     "Simulated weighted_avg vs actual placement — bias direction?",
     "Prize-to-time ratio by thesis layer — which layer returns most per hour?",
@@ -266,9 +285,10 @@
   ],
   "how_to_add_event": {
     "step_1": "Copy the last event object. Reset id, date, project, scores.",
-    "step_2": "Fill simulated_panel_score BEFORE the event (during Phase 8). This is your pre-commit score.",
+    "step_2": "At G6/G8 record simulated_panel_score (label SELF-SCORE unless blind) and screen_rank from screening-judge.md. This is the pre-commit forecast. Set verified: true only when a transcript or retro backs the entry.",
     "step_3": "Fill actual_placement + prize within 48h of results.",
     "step_4": "Fill follow_on at day 30.",
     "step_5": "Add 1-3 lessons_into_skill that actually update SKILL.md / arsenal / templates."
-  }
+  },
+  "calibration_rule": "Only entries with verified: true may be cited as calibration or in grant applications. simulated_panel_score from the building session is a SELF-SCORE and never a placement forecast; record blind screen rank separately (screen_rank)."
 }

@@ -168,3 +168,21 @@ Plus the `retro/` loop that feeds lessons back into all 6 layers.
 | Sprint | Theme | Shipped | Commit |
 |---|---|---|---|
 | 8 | Reality Check (4 real events) | event contract, battle clock, 5 v2 tactics, 5 arsenal tools, 5 templates, 5 retros, fundamentals guide | (this commit) |
+
+---
+
+## Sprint 9: Honest Assessment (added 2026-09-14, after results)
+
+**Why a 9th sprint:** Benchpress (Multi-App AI Agent Hackathon) and Hunch VPM (ETHOnline 2026) were both described to Raj as the best entry, and neither advanced. The transcripts show that no real competing entry was looked at in either event. Benchpress was a layer around agents where the brief asked for an agent. Hunch VPM's form claimed more than its README. Both were clear to the people who built them and hard to parse for a screener with minutes per entry. The skill contributed: "infrastructure layers consistently win", "The Secret Weapon" self-panel with absolute score thresholds, and fabricated calibration entries claiming the simulated panel predicted placements "within 0.1". Sprint 8's time gates would not have changed either result. See `retro/2026-09-14-not-selected-postmortem.md`.
+
+- **#43 Honest Assessment tactic** (`tactics/honest-assessment.md`): evidence ladder for competitive claims, base-rate placement, self-score labelling, Brief-Fit Gate, premise pushback scripts, history gate, G6/G8 checklist
+- **#44 Screening + pre-mortem judges** (`arsenal/judge-prompts/screening-judge.md`, `pre-mortem-judge.md`): blind, ranked among 10, 3 shuffles; "why this did not advance" with no rebuttal column
+- **#45 First-screen lint** (`arsenal/copy/first-screen.sh` + `test.sh`, 28 tests): brief noun, jargon density, meta-framing, badge wall, long opener
+- **#46 SKILL.md v3**: Intervention Protocol (I1–I15, fixed ⚠ INTERVENTION format, once per trigger per decision, overrules logged), Operating Rules 14–18, Phase 8 screen-first, Phase 2 heuristic corrected, Brief-Fit Gate before SPEC, anti-patterns 19–23, Rule 7 rescoped, event contract / field teardown / video / submission templates
+- **#47 Calibration integrity** (`career/*`, `tactics/multi-track.md`, `tactics/README.md`): unverified pre-July-2026 placements labelled; invented statistics removed; ledger `verified` flag and `screen_rank`
+
+**Definition of done:** at the next event, (a) no message or doc calls the entry best/winning without evidence level ≥ 2, (b) the brief noun is the one-liner's subject or the misfit is accepted in writing, (c) the blind screen and pre-mortem ran at G6 and G8 and the pre-mortem's top reason was the next work item, (d) `first-screen.sh` has no FAIL on hero, one-liner and description, (e) every form claim appears in the README's "live now" list, and (f) `screen_rank` is in the ledger before results so it can be compared.
+
+| Sprint | Theme | Shipped | Commit |
+|---|---|---|---|
+| 9 | Honest Assessment (2 non-advancing events) | honest-assessment tactic, 2 gate judges, first-screen lint + tests, SKILL.md rules 14–18, template gates, calibration cleanup, post-mortem | (this commit) |

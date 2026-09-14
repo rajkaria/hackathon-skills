@@ -1,9 +1,9 @@
 ---
 name: hackathon
-description: End-to-end hackathon workflow from brief to deployed, judge-reviewed submission, refined from real events. Covers the event contract (deadline, rules, form limits, access gates), a time-gated battle clock, field research, idea scoping, build spec, parallel build with multi-session orchestration, golden-path and liveness checks, polish, simulated judge panels, claims-vs-evidence audits, repo hygiene, demo video shot lists, pitch, submission and judging-window ops. Use whenever the user mentions a hackathon, buildathon, BUIDL, DoraHacks, ETHGlobal, Devpost, Devfolio, MLH, a prize track, sponsor bounty, submission deadline, judging or demo video, or wants to build, scope, rescue or submit something for a time-limited competition. Also trigger on pasted hackathon docs or prize info, 'hackathon mode', 'sprint for <event>', or a request to rate a project against other submissions.
+description: End-to-end hackathon workflow from brief to deployed, judge-reviewed submission, refined from real events. Covers the event contract (deadline, rules, form limits, access gates), a time-gated battle clock, field research, idea scoping, build spec, parallel build with multi-session orchestration, golden-path and liveness checks, polish, brief-fit gate, blind screening and pre-mortem judges, simulated judge panels, claims-vs-evidence audits, repo hygiene, demo video shot lists, pitch, submission and judging-window ops. Use whenever the user mentions a hackathon, buildathon, BUIDL, DoraHacks, ETHGlobal, Devpost, Devfolio, MLH, a prize track, sponsor bounty, submission deadline, judging or demo video, or wants to build, scope, rescue or submit something for a time-limited competition. Also trigger on pasted hackathon docs or prize info, 'hackathon mode', 'sprint for <event>', or a request to rate a project against other submissions.
 ---
 
-# Hackathon Domination Workflow
+# Hackathon Workflow
 
 > 📋 **Quick Navigation.** Paths are relative to this skill's directory (installed at `~/.claude/skills/hackathon/`). Read the linked file when its phase or gate comes up; they're operational, not optional reading.
 >
@@ -11,19 +11,20 @@ description: End-to-end hackathon workflow from brief to deployed, judge-reviewe
 >
 > - **[`templates/`](templates/)**: event contract, battle clock, field teardown, build spec, vision, README, pitch script, video shot list, submission description, handoff
 > - **[`tactics/`](tactics/)**:
->   - v2 core: [`session-orchestration.md`](tactics/session-orchestration.md), [`claims-and-evidence.md`](tactics/claims-and-evidence.md), [`golden-path-and-liveness.md`](tactics/golden-path-and-liveness.md)
+>   - v2 core: [`honest-assessment.md`](tactics/honest-assessment.md), [`session-orchestration.md`](tactics/session-orchestration.md), [`claims-and-evidence.md`](tactics/claims-and-evidence.md), [`golden-path-and-liveness.md`](tactics/golden-path-and-liveness.md)
 >   - hardening: risk register, competitor monitoring, eval harness, provenance, stage kit, booth strategy, multi-track, rubric reverse-engineering, mid-event pivot
 > - **[`arsenal/`](arsenal/)**: runnable tools
 >   - [`submission-check/`](arsenal/submission-check/): every clickable claim resolves
 >   - [`repo/`](arsenal/repo/): internal/public split, commit guard, final-state gate
 >   - [`deploy/`](arsenal/deploy/): preflight + chain/deploy traps catalog
 >   - [`ops/`](arsenal/ops/): liveness health + judging-window runbook
->   - [`copy/`](arsenal/copy/): voice lint
+>   - [`copy/`](arsenal/copy/): voice lint, first-screen lint (brief noun, jargon, meta-framing)
 >   - [`web3/`](arsenal/web3/): EIP-712, cross-wallet chain switch
->   - starter, demo-mode, OG image, judge prompts, video, landing, pitch deck, [`pitch/`](arsenal/pitch/)
+>   - [`judge-prompts/`](arsenal/judge-prompts/): start with [`screening-judge.md`](arsenal/judge-prompts/screening-judge.md) and [`pre-mortem-judge.md`](arsenal/judge-prompts/pre-mortem-judge.md)
+>   - starter, demo-mode, OG image, video, landing, pitch deck, [`pitch/`](arsenal/pitch/)
 > - **[`validation/`](validation/)**: user research sprint, build-in-public, telemetry, press kit
 > - **[`career/`](career/)**: idea bank, idea triage, sponsor CRM, portfolio thesis, score ledger
-> - **[`retro/`](retro/)**: per-event retros + the Update Rule. [`2026-09-14-cross-event-synthesis.md`](retro/2026-09-14-cross-event-synthesis.md) explains why the v2 gates exist.
+> - **[`retro/`](retro/)**: per-event retros + the Update Rule. [`2026-09-14-cross-event-synthesis.md`](retro/2026-09-14-cross-event-synthesis.md) explains why the v2 gates exist; [`2026-09-14-not-selected-postmortem.md`](retro/2026-09-14-not-selected-postmortem.md) explains Operating Rules 14–18.
 > - **[`post-hackathon/`](post-hackathon/)**: 30-day playbook, grant templates, data room, legal hygiene
 > - **[`guides/fundamentals.md`](guides/fundamentals.md)**: first-hackathon basics, tech stack guide, UI cheat sheet, AI tooling, mentors, self-care, networking
 >
@@ -42,11 +43,57 @@ These override anything softer later in this document. Each one exists because b
 7. **One message for everything only the user can do.** At hour 0, send a single list of every user-owned blocker: accounts, faucets, sponsor approvals, TTY logins, 2FA, logo, team block, testers. Pre-approve deploy/publish commands, or mark them operator-run.
 8. **The real loop, proven by a human, early.** Right after the first deploy, the user runs the golden path on the real network, including a hard refresh and a wallet matrix. Health checks assert outcomes within time windows (`tactics/golden-path-and-liveness.md`).
 9. **Claims come from evidence.** Never describe future work as done. Numbers live in one `docs/FACTS.md` or are generated from reports. Run `arsenal/submission-check/` and a claims-audit pass before freeze (`tactics/claims-and-evidence.md`).
-10. **Judge the deployed product, on the clock.** Round 1 runs at about 35% of the time, round 2 at T-24h, against the live real-mode deployment and the cached field teardown. Never run the panel only after submitting.
+10. **Judge the deployed product, on the clock.** Round 1 runs at about 35% of the time, round 2 at T-24h, against the live real-mode deployment and the cached field teardown. Every round starts with the blind screen (Rule 16). Never run the panel only after submitting.
 11. **Parallel sessions need an ownership map.** Cap at ≤ 5 concurrent build agents. Long waits run in the background, not by polling. Write a handoff with a resume prompt every ~2h. Every orchestrator run (boil-the-ocean, subagent-driven-development) gets the guardrail preamble from `tactics/session-orchestration.md` §6, including the deadline and feature freeze.
 12. **"Submitted" means the final-state gate is green.** Run `arsenal/repo/final-state-gate.sh` against `origin/main`: no internal docs, no open PRs holding fixes, no placeholders. After submitting, arm the judging-window ops runbook.
 13. **Close the loop.** Within 48h of submitting, write a retro in `retro/` and apply the Update Rule to this skill.
 
+**Rules 14–18 (added 2026-09-14, after Benchpress and Hunch VPM were both called "the best entry" and neither advanced).** Evidence: `retro/2026-09-14-not-selected-postmortem.md`.
+
+14. **No "best" without evidence.** Never tell the user the entry is the best, winning, top or prize-competitive, or that the field is small, unless a blind screen against real or independently written entries supports it. State placement as a base rate plus an evidence level (`tactics/honest-assessment.md` §1), and label every score Claude produced with build context `SELF-SCORE (not predictive)`. Benchpress had a doc titled "why Benchpress takes first place"; Hunch VPM was told its field was "small". Neither looked at a single rival.
+15. **Brief-Fit Gate.** Quote the brief's build sentence and its noun in the event contract. The noun is the subject of the one-liner. A layer, SDK, harness, protocol or benchmark result entered where the brief asks for an agent or an app is a misfit, and the user must accept that risk explicitly (`honest-assessment.md` §3). The brief said "one useful, multi-step AI agent"; Benchpress entered "the reliability layer for AI agents".
+16. **Screen first; critique changes the plan.** At G6 and G8, run `arsenal/judge-prompts/screening-judge.md` (blind, ranked among 10, 3 shuffles) and `pre-mortem-judge.md` in fresh subagents that see only what judges see. The pre-mortem's top reason is the next work item. Expansion and release work stay blocked until it's addressed or the user overrules it in chat. No panel table carries a rebuttal column. Benchpress measured Usefulness at 6.5, cut the second customer workflow and shipped 12 package releases.
+17. **Test the premise, keep the truth.** When the user says "make judges feel we're the best", "write the form as if it's all done" or "forget the time constraint", do the honest part and name the counterweight in the same message (`honest-assessment.md` §4). Form answers never claim more than the README's "live now" list. Hunch VPM's form described a CRE-resolved market and a live agent while its README said neither had happened.
+18. **What judges see beats engineering volume.** Test counts, package releases, badge walls and long docs aren't rubric evidence unless the rubric names them. Before freeze, write down what a screener sees in the card, the first 45 seconds of video and the README's first screen. Run `arsenal/copy/first-screen.sh --noun <noun>` on the one-liner, hero and description. For history-checked events, pass the history gate (`honest-assessment.md` §5) before the first public push.
+
+
+## Intervention Protocol: Claude interrupts when a win is being lost
+
+The point of this skill is to win the event. Every loss so far traces to a moment where Claude saw the risk and stayed quiet, softened it, or complied. From now on Claude **stops and says it, in the same message, before doing anything else**, whenever one of these triggers fires. Raj asked for this explicitly on 2026-09-14. Then Raj decides; the decision and the risk go into `event-contract.md`.
+
+Format, always at the top of the reply:
+
+```
+⚠ INTERVENTION <trigger id>  T-hh:mm
+What I see: <one sentence, with the evidence>
+What it cost last time: <event, one line>
+Do this instead: <the concrete alternative>
+Your call: continue as asked / take the alternative
+```
+
+| id | Trigger (what Raj or the session is doing) | What it cost | Alternative Claude proposes |
+|---|---|---|---|
+| I1 | Any ideation or spec before `event-contract.md` has the DEADLINE line, the brief noun and the round-1 format | VPM: idea picked day 6, mainnet planned after the deadline | Fill Phase 0 first (30–60 min) |
+| I2 | The one-liner's subject isn't the brief's noun (layer/SDK/protocol/benchmark where the brief says agent/app/feature) | Benchpress: "reliability layer" at an "agent" event | Reframe: brief noun as subject, our tech as the proof shot |
+| I3 | Raj says "we're the best", "make judges feel it's the best", "rate us" with no real entries in the teardown | Both events: "best" asserted at evidence level 0 | Run the blind screen + pre-mortem now; report rank, not praise |
+| I4 | Raj says "forget the time constraint" / "time is not a constraint" / claims an extension without a source | 3 of 4 events; VPM spent a day on a post-deadline mainnet | Scope may grow; gates don't. Quote the deadline and the next gate |
+| I5 | Raj asks to write the form, README or video "as if it's done" or ahead of the live product | VPM: form claimed CRE, live agent, Substreams; README said none | Write live / built-not-live / designed; offer to finish the gap |
+| I6 | New feature, release or expansion sprint requested while the pre-mortem's top reason is unfixed, the draft submission isn't live, or the video shot list doesn't exist | Benchpress: 12 releases while Usefulness sat at 6.5 | Do the pre-mortem fix first; then expansion |
+| I7 | A secret (token, key, client secret, seed) appears in chat | Benchpress: Google disabled the OAuth client, 50 min lost | Stop, rotate now, `pbpaste >> .env` |
+| I8 | Repo about to be deleted/recreated, history rewritten, or a commit > ~2k lines pushed at a history-checked event | VPM: orphan repo on day 8, 7 × 5–10k-line commits in one minute | Baseline tag, reviewable commits, vendor commits labelled |
+| I9 | Strategy, judge notes, form answers or handoffs about to land in the public repo | Benchpress: judge playbook public for 6h, still in history | `<project>-internal/`; run the guard hook |
+| I10 | A partner/track pick whose verbatim requirement isn't met on the live product, or whose access gate hasn't cleared | VPM: 3 picks, 0 met (dry-run agent, no USDC settlement, CRE blocked) | Drop the pick or meet the requirement; say which today |
+| I11 | Hero / one-liner / video opener uses a coined or specialist term before showing it, or `first-screen.sh` FAILs | VPM: "parimutuel… vests into the opposing books" | Plain words first; run the lint |
+| I12 | Test counts, release counts, badges or doc length are being pitched as judge value | Both: 1,000+ tests, 11 badges, 950-line README, unseen by screeners | Cut list; put what the rubric names in the first screen |
+| I13 | Video, judge round or draft submission gate is passed with the artifact missing | Every event; Benchpress video linked at T-19m | Announce the missed gate and the cut that recovers it |
+| I14 | Human golden path not yet run on the real network after the first deploy | VPM: wallet bugs found by Raj at T-4h | Raj runs the golden path now; wallet matrix |
+| I15 | Claude's own panel or estimate produced a number and is about to present it as a chance of winning | Benchpress: "8.0–8.3, prize-competitive" | Label `SELF-SCORE (not predictive)`; give base rate + evidence level |
+
+Rules for interventions:
+- **Once per trigger per decision.** If Raj overrules, Claude records it in `event-contract.md` ("I6 overruled 14:20: release tracks before usefulness fix") and executes well. It doesn't nag, and it doesn't quietly comply either.
+- **Never softened into a footer.** "Make sure these are true" at the bottom of form answers is what happened at ETHOnline. The intervention goes first.
+- **Status reports carry open interventions.** `T-hh:mm · next gate · open: I6, I10`.
+- **Post-event, every fired intervention goes in the retro** with what Raj chose and what it cost or saved. That's how this table earns its rows.
 
 This skill codifies a battle-tested workflow refined from multiple real hackathon submissions and enriched with best practices from serial hackathon winners, seasoned judges, and winning project analysis across DevPost, ETHGlobal, DoraHacks, and MLH events.
 
@@ -62,14 +109,14 @@ If you only have 60 seconds, here's the whole workflow. The philosophy: **build 
 
 0. **Event contract + battle clock** → quote the DEADLINE with its source, entry mode, form fields and limits, access gates, network availability; set clock gates; send the one-message blocker list; set up the repo boundary
 1. **Read the hackathon docs** → extract tracks, prizes, judging criteria, required tech, deadlines; scrape the field once and cache it
-2. **Find the gap** → what will 80% of teams build? Don't build that. Find a real user pain that becomes a product.
+2. **Find the gap** → what will 80% of teams build? Don't build that. Find a real user pain that becomes a product. **Brief-Fit Gate:** the brief's noun is the subject of your one-liner.
 3. **Write a 1-page build spec** → one-liner, 3 core features max, demo flow designed first, product vision included
 4. **Plan tasks** → break into parallel batches, deploy in Batch 1 not Batch 4
 5. **Build the core** → 3 features that work perfectly > 8 that half-work; a human runs the golden path on the real network; **submit a draft at 50% of the time**
 6. **Add differentiators** → sponsor integrations, npm package, tests, analytics
 7. **Polish** → landing page, custom domain, mobile responsive, loading states
-8. **Simulate judges** → on the clock (≈35% and T-24h), against the deployed product; 5-9 judges, score out of 10, list every issue
-9. **Fix everything** → implement all feedback, run judges again, repeat until 8.5+
+8. **Screen, then judge** → on the clock (≈35% and T-24h): a blind screening judge ranks us among 10 entries (real, or independently written), a pre-mortem names why we didn't advance, then the deep panel on the deployed product. Never claim "best" without the screen.
+9. **Fix what the screen says first** → the pre-mortem's top reason is the next work item; re-screen with a new shuffle; then the panel's issues
 10. **Ship** → claims audit, video recorded by T-25%, README, pitch, final-state gate green, submit, arm judging-window ops
 
 **Example prompts for each phase:**
@@ -81,7 +128,7 @@ If you only have 60 seconds, here's the whole workflow. The philosophy: **build 
 - Phase 5: "Start the build. Execute the plan."
 - Phase 6: "What more could be added to make this stand out? Give me a numbered list with effort/impact."
 - Phase 7: "Make the UI modern and premium. Add a landing page. Deploy to [domain]."
-- Phase 8: "Review this project as a panel of strict hackathon judges. Score it out of 10."
+- Phase 8: "Run the blind screening judge on our card, description, video transcript and first screen, shuffled among 9 other entries. Then run the pre-mortem."
 - Phase 9: "Fix all the issues the judges raised. Then run the panel again."
 - Phase 10: "Help me create a demo video script and write the submission description."
 
@@ -106,16 +153,16 @@ Instantiate [`templates/battle-clock.md`](templates/battle-clock.md) with absolu
 
 | Gate | Multi-day event | One-day window | What must be true |
 |---|---|---|---|
-| G0 Event contract + blocker list | S + 1h | prep day | `event-contract.md` filled; one-message blocker list sent |
+| G0 Event contract + blocker list | S + 1h | prep day | `event-contract.md` filled (brief noun + round-1 format included); one-message blocker list sent |
 | G1 Preflight | before build | T-24h | Accounts, keys, faucets, sponsor gates, riskiest-assumption spike |
 | G2 Repo boundary | first commit | first commit | `init-internal.sh` run; guard hook installed |
 | G3 Deployed skeleton | S + 10% | S + 45m | Live URL 200, CI green |
 | G4 Human golden path (real network) | S + 25% | S + 40% | Golden-path table green |
-| G5 60s pitch + video shot list | S + 25% | S + 30% | Drafts exist |
-| G6 Judge round 1 | S + 35% | S + 50% | Panel run against the deployed product |
+| G5 60s pitch + video shot list | S + 25% | S + 30% | Drafts exist; `first-screen.sh --noun` has no FAIL on one-liner + hero |
+| G6 Screen + judge round 1 | S + 35% | S + 50% | Blind screen rank + pre-mortem logged; panel run against the deployed product |
 | G7 **Draft submission live** | S + 50% | S + 70% | Platform form submitted, editable |
 | — Expansion gate | after G4+G5+G7 | after G4+G7 | Phase 6 may start |
-| G8 Judge round 2 + field refresh | D − 24h | D − 2h | Panel ≥ 8.5 or fixes scheduled |
+| G8 Screen + judge round 2 + field refresh | D − 24h | D − 2h | Advanced in the blind screen, or the pre-mortem fix is scheduled |
 | G9 No redesigns / new UI | D − 24h | D − 90m | Fixes and copy only |
 | G10 Video recorded + uploaded | D − 25% (≥ D − 12h) | D − 75m | Link resolves |
 | G11 Feature freeze | D − 12h | D − 60m | Orchestrators stopped, release tagged |
@@ -136,6 +183,8 @@ Fill in [`templates/event-contract.md`](templates/event-contract.md) from the ra
 
 - **DEADLINE line with a quoted source.** Note whether the date is *already* extended, and assume no further extension. Humanline treated an already-extended deadline as "pushed, time is not a constraint" and spent the last day on feature sprints instead of submitting.
 - **Entry mode and history rules.** New build vs Continuity / "ship a feature". Whether only event-period work is judged. Whether commit history is inspected ("large single commits or missing histories may be disqualified").
+- **The brief, verbatim, and its noun.** Copy the build sentence ("Build one useful, multi-step AI agent…") and underline what it asks for. This feeds the Brief-Fit Gate (Operating Rule 15).
+- **Round-1 format.** Who screens, what they see, how long per entry, and how many advance. ETHGlobal async events screen first and "typically, only the top 20% of projects advance". The Multi-App Agent Hackathon judged every entry in 40 minutes. Design the card, description and first 45 seconds of video for that screen.
 - **Check-ins, finalist format, community-vote components, judging window, results date.**
 - **Judges, re-checked on event day.** Benchpress caught judges added that morning. Look for the judges' *own* tools, benchmarks or SDKs.
 - **Prize picks, capped at the max allowed.** Record every sponsor **gate** (sandbox approval, CLI access needing TTY/email, API keys). A pick is locked only once its gate clears. Hunch VPM built a World AgentKit sprint whose approval never came.
@@ -177,7 +226,7 @@ Read and analyze the hackathon documentation for:
 ### Data-Grounded Field Research (proven, do it once)
 
 - **Pull every entry** from the platform (the DoraHacks BUIDL API, ETHGlobal showcase, Devpost gallery) and **clone the rival repos**. Grep them to prove the moat. Humanline: "no rival uses World ID / 0x0FD4" was verified across 145 repos.
-- **Build inside the judges' world.** If the judges publish a benchmark, SDK or thesis, the strongest entry is often measured by *their* tool. Benchpress built on the judges' own ArgaBench grader.
+- **Build inside the judges' world, as evidence, not as the entry.** If the judges publish a benchmark, SDK or thesis, use *their* tool to prove the thing the brief asks for. Benchpress used the judges' ArgaBench grader well, then pitched the benchmark result and a layer around agents as the entry, on locally rebuilt copies of the product Arga sells. It didn't advance. Check what the judges' company sells before rebuilding it.
 - **Cache it** in [`templates/field-teardown.md`](templates/field-teardown.md). Refresh only new entries, once, at G8 (T-24h). Humanline redid the teardown from scratch three times.
 - **Verified facts file.** Every chain address, API shape and limit goes into `research-facts.md` with *how it was verified*, plus a list of open questions. Mark the file "do not re-research" so parallel sessions trust it.
 
@@ -196,7 +245,7 @@ This is the most important phase. A mediocre execution of the right idea beats a
 1. **List the obvious ideas** — what will 80% of participants build? These are traps. If the hackathon is about "AI agents + payments," most people will build a payment bot. Don't be most people.
 
 2. **Find the gap** — what does the ecosystem actually need that nobody is building? Look for:
-   - Infrastructure layers (middleware, SDKs, developer tools) — these consistently win over single-purpose apps
+   - **The thing the brief names, for a named user.** If the brief says "build an agent" or "a dApp", build that. Infrastructure (middleware, SDKs, developer tools) is right only when the brief asks for infrastructure. An earlier version of this skill said "infrastructure layers consistently win over single-purpose apps" with no source. Benchpress followed it at an "agent" hackathon and wasn't selected.
    - "Boring" use cases that judges understand instantly (payroll, invoicing, subscriptions) vs. novel concepts that require 5 minutes of explanation
    - Problems the hackathon sponsors face themselves
    - Connective tissue between existing tools — the thing that makes two sponsor tools work better together
@@ -252,7 +301,15 @@ This reframing turns checkbox integrations into genuine partnerships. Sponsor ju
 
 ### Re-score Against the Field (gate before SPEC)
 
-Score the leading idea with the judge panel next to the top 3 rivals from the field teardown. **If it doesn't lead on the heaviest-weighted criterion, think more before writing a spec.** Humanline killed its first idea ("Periscope") this way within the first hour and then built the entry that led the field.
+Score the leading idea with the judge panel next to the top 3 rivals from the field teardown. **If it doesn't lead on the heaviest-weighted criterion, think more before writing a spec.** Humanline killed its first idea ("Periscope") this way within the first hour. (Its later "8.9 vs best rival 8.7" field ranking was a self-score. Results were due 2026-09-20.)
+
+If no real entries are visible yet, say so. Score against past winners (`tactics/rubric-reverse.md`) or independently written stand-ins, and label the result evidence level 1 or 2 (`tactics/honest-assessment.md` §1).
+
+### Brief-Fit Gate and Pre-mortem (gate before SPEC)
+
+1. The brief's noun is the subject of the one-liner, and a named user uses it next week (`tactics/honest-assessment.md` §3).
+2. Run `arsenal/judge-prompts/pre-mortem-judge.md` on the one-paragraph pitch in a fresh subagent. If its top reason is "theme misfit" or "can't tell what it is", fix the pitch now. It costs minutes at hour 0 and nothing can fix it at T-2h.
+3. Run `arsenal/copy/first-screen.sh --noun <noun>` on the one-liner.
 
 Present the competitive analysis and top 2-3 ideas to the user. Let them pick. The user's gut feeling about what excites them matters — excitement translates to a better pitch and more energy through the grind.
 
@@ -527,9 +584,22 @@ Design is often the tie-breaker. Judges have to review dozens of projects, and a
 
 ---
 
-## Phase 8: JUDGE (The Secret Weapon)
+## Phase 8: JUDGE (Screen First, Then Deep Review)
 
-**Goal**: Simulate a strict hackathon judge panel to find every weakness before real judges do.
+**Goal**: Find out whether a stranger with minutes per entry would advance us, then find every weakness a deep reviewer would catch.
+
+### Round 1 Is a Screen (run this before any persona panel)
+
+Real first rounds read the gallery card, the description, the first 20–45 seconds of the video and one click to the live URL. They don't read tests, architecture or the vision doc.
+- ETHGlobal async events screen first, and about the top 20% advance.
+- The Multi-App Agent Hackathon judged all entries in 40 minutes.
+
+Benchpress and Hunch VPM were both rated highly by panels that read the code, and neither passed the screen (`retro/2026-09-14-not-selected-postmortem.md`).
+
+1. **Blind screen:** `arsenal/judge-prompts/screening-judge.md` in a fresh subagent. It gets judge-visible inputs only, shuffled among 9 other entries: real ones from the field teardown, or stand-ins written by a separate subagent. Run 3 shuffles and report median rank and spread.
+2. **Pre-mortem:** `arsenal/judge-prompts/pre-mortem-judge.md`. Its top reason is the next work item (Operating Rule 16).
+3. **First screen:** `arsenal/copy/first-screen.sh --noun <brief noun>` on the hero, one-liner and description.
+4. **Then** the deep persona panel below. Its scores are `SELF-SCORE (not predictive)` unless it runs blind.
 
 ### When to Run (on the clock, not after polish)
 
@@ -537,6 +607,7 @@ Design is often the tie-breaker. Judges have to review dozens of projects, and a
 - **Round 2 at G8 (T-24h, or T-2h for one-day events):** after the field refresh, with rival scores alongside ours.
 - **Never only at the end.** Past events ran the panel at T-90m (Benchpress, too late to fix Usefulness at 6.5), never (Hunch VPM), or after submitting (Hunch on Casper). An ad hoc "rate us against the field" doesn't replace the persona panel. Run both.
 - **Calibration rule:** a panel that scored a mock-mode or local build is invalid. Re-run it on what judges will actually open.
+- **Independence rule:** a panel run by the session that built the product, or fed the spec or strategy docs, is a self-score. It finds issues; it doesn't predict placement. Never quote its number as a chance of winning.
 
 This is the phase that separates good submissions from winning ones. Research from DevPost shows that judges check requirements first (and many submissions fail this basic bar), then evaluate across multiple criteria simultaneously. By simulating this process, you catch issues while there's still time to fix them.
 
@@ -575,10 +646,11 @@ Beyond the formal criteria, the most powerful question is the one from the Atlas
 
 ### Interpreting Results
 
-- **Below 7/10**: Fundamental gaps exist. Stop adding features and fix the highest-impact issues first.
-- **7-8/10**: Solid submission. The delta to 9+ is usually polish, real integrations, and completing what's started.
-- **8-9/10**: Strong submission. Differentiate with "no-brainer" additions (npm package, MCP server, CI, more sponsor integrations).
-- **9+/10**: Submit it. Stop adding features. More features at this point hurt more than help.
+The persona panel's absolute numbers are not calibrated. Benchpress self-scored 8.0–8.3 and wasn't selected. Read the panel for **issues and the weakest axis**, and read the blind screen for **position**.
+
+- **Not advanced in the blind screen, whatever the panel says:** the pitch, brief fit or proof moment is the problem. Fix those before any feature work.
+- **Weakest rubric axis below 7:** that axis is the next work block. Adding releases, packages or integrations that don't move it counts as expansion, and the expansion gate blocks it.
+- **Advanced in all 3 shuffles and no axis below 7:** stop adding features. Polish what judges see, then ship.
 
 **Output**: Detailed judge feedback with scores and prioritized issue list.
 
@@ -598,7 +670,7 @@ JUDGE → identify issues → FIX all issues → JUDGE again → repeat
 2. **Escalating panel size** — start with 5 judges, increase to 7, then 9 in subsequent rounds. More diverse perspectives surface more issues.
 3. **Feed external critique too** — if someone reviews the project externally (a friend, a mentor, another AI review), feed that critique into the loop as additional judge input.
 4. **Requirements first** — in every round, verify ALL basic hackathon requirements are met before evaluating anything else. Judges check this first, and missing a requirement can disqualify you.
-5. **Know when to stop** — after 2-4 rounds, you'll hit diminishing returns. If the panel is scoring 8.5+ and the remaining issues are subjective, stop and ship. Over-engineering at this stage introduces bugs.
+5. **Know when to stop** — after 2-4 rounds, you'll hit diminishing returns. If the blind screen advances us in all 3 shuffles and the remaining issues are subjective, stop and ship. Over-engineering at this stage introduces bugs.
 6. **Don't regress** — keep tests passing. Each fix should be atomic. Don't introduce new bugs while fixing old ones.
 
 ### Common Issues Surfaced by Judge Panels (from real sessions and judge interviews)
@@ -631,7 +703,7 @@ JUDGE → identify issues → FIX all issues → JUDGE again → repeat
 - Large team with unclear contribution distribution
 - Minimal effort on presentation — just changed template colors
 
-**Output**: All issues resolved, final judge panel score of 8.5+.
+**Output**: The pre-mortem's top reason fixed, advanced in the blind screen, remaining issues logged with an owner or an explicit "won't fix".
 
 ---
 
@@ -998,7 +1070,7 @@ Everything that can happen before the window does happen before it: accounts, OA
 3. **Too many features, none complete** — 3 complete features beat 8 half-built ones. Every. Single. Time.
 4. **Ignoring required tech** — if the hackathon requires using SDK X, use it non-trivially. A wrapper is not impressive and may not even qualify.
 5. **No competitive awareness** — if you don't know what others are building, you can't differentiate. Scout the competition.
-6. **Skipping the judge simulation** — this is the highest-ROI activity in the entire workflow. It tells you exactly what to fix.
+6. **Skipping the blind screen** — a self-graded panel is not a substitute. The screen is what tells you whether a stranger would advance you.
 7. **Last-minute deploys** — deploy early (Day 1), iterate in production. Deployment issues discovered on deadline day are fatal.
 8. **Recycling old projects** — judges talk to each other across hackathons. Submitting the same project with a new label is a red flag.
 9. **Tech jargon in the pitch** — if judges are confused, they don't vote for you. Explain it to a smart non-technical friend.
@@ -1011,6 +1083,11 @@ Everything that can happen before the window does happen before it: accounts, OA
 16. **Writing the README as if the roadmap were done** — judges click the links. A 404 on your own SDK is worse than not mentioning it.
 17. **Redesigning on submission day** — design work ends at G9 (D − 24h).
 18. **Running the judge panel after submitting** — the panel exists to change the submission.
+19. **Calling it "the best" with no rival in view** — a doc titled "why we take first place", an invented "small field", "prize-competitive" from a self-score. Neither September entry that got this treatment advanced.
+20. **Building a tool for builders when the brief asks for a thing for users** — "a reliability layer for agents" at an "agent" hackathon; a protocol and a whitepaper for "ship a feature".
+21. **Treating engineering volume as judge value** — 1,038 and 1,378 tests, 12 package releases, 11 badges and a 950-line README all sat below the screen.
+22. **Writing the form "as if it's done"** — a footer asking "make sure these are true" is not a claims audit. Form answers are the first thing a screener checks against the README.
+23. **A panel with a rebuttal column** — "fix already in the plan" turns critique into reassurance. The objection stands, and the next work block answers it.
 
 ---
 
@@ -1086,11 +1163,11 @@ This is a 15-minute task with outsized judge impact.
 
 **For non-crypto projects:** Show real API call logs, real webhook deliveries, real data transformations. Anything that proves the system actually processed something.
 
-### Rule 7: 30+ Tests = Production Mindset Signal
+### Rule 7: Tests Protect the Demo; They Don't Score It
 
-**The problem:** Judges have no way to verify code quality in 2 minutes. A test count in the README is the fastest proxy.
+**The problem:** Tests keep the golden path from breaking at T-2h. They don't get you past a screen. Benchpress had 1,038 tests and Hunch VPM had 1,378; neither advanced, and neither README's badge wall was in anything a screener reads. (An earlier version of this rule said "display the count with a badge", citing TollPay's 34 tests; that result is unverified.)
 
-**The fix:** Write 30+ focused tests. TollPay shipped 34 tests (15 gateway, 10 demo server, replay protection, edge cases). Each test is a claim that an edge case was thought through. Display the count in your README with a badge.
+**The fix:** Test what would embarrass the demo, and stop there. Mention tests in one line under "How we know it works" only if the rubric has a reliability or quality criterion. Otherwise leave the count out of the first screen.
 
 **High-ROI tests for hackathons:**
 - Happy path end-to-end (1-2 tests)

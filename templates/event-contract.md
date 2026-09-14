@@ -21,6 +21,19 @@ CHECKED:  <UTC timestamp> (re-check at T-24h and T-6h)
 - [ ] Finalist / demo-day / results dates: `<dates>`
 - [ ] Judging window (deployment must stay alive): `<start> → <results>`
 
+## The brief (verbatim) and its noun
+
+```
+BRIEF: "<the build sentence, copied exactly>"
+NOUN:  <what it asks for: agent / app / dApp / feature / game / infrastructure>
+USER:  <who the brief implies uses it>
+OUR ONE-LINER: "<noun as subject> that <does what> for <named user>"
+FIT:   yes / misfit accepted by user on <date>: "<their words>"
+```
+
+- [ ] `first-screen.sh --noun <NOUN>` run on the one-liner: no FAIL
+- [ ] Pre-mortem (`arsenal/judge-prompts/pre-mortem-judge.md`) run on the pitch paragraph; top reason: ___
+
 ## Entry mode and history rules
 
 - [ ] Mode: new project / Continuity ("ship a feature") / existing project allowed?
@@ -29,6 +42,8 @@ CHECKED:  <UTC timestamp> (re-check at T-24h and T-6h)
 - [ ] Team size limits; solo allowed?
 - [ ] Repo must be public? By when?
 - [ ] Pre-event baseline tag (Continuity): `git tag pre-event-baseline <sha>`
+- [ ] **History gate before the first public push** (`tactics/honest-assessment.md` §5): no delete-and-recreate; no commit > ~2k lines except a labelled vendor commit; no same-minute bursts; "pre-existing vs new this event" in the README's first screen. Hunch VPM's repo was created on day 8 as an orphan commit.
+- [ ] Every pre-event artifact (paper, contract, dataset) listed with its date. Never described as "made during the hackathon".
 
 ## Judging
 
@@ -38,14 +53,16 @@ CHECKED:  <UTC timestamp> (re-check at T-24h and T-6h)
 
 - [ ] Judges (names, orgs, what they built or published, what they reward). **Re-check on event day.**
 - [ ] Do the judges have their own tools, benchmarks or SDKs we can build inside? (Benchpress built inside the judges' ArgaBench.)
+- [ ] **Round-1 format:** who screens, what they see (card / description / video / repo), time per entry, advance rate. ETHGlobal async: "typically, only the top 20% of projects advance". Multi-App Agent: 40 minutes for all entries.
+- [ ] Seconds per entry = ___ → what must be understood by then: ___
 - [ ] Finalist format (e.g. 4-minute demo + 3-minute Q&A, live or recorded)
 - [ ] Community-vote component? (e.g. top 3 by vote skip judging)
 
 ## Prizes and partner picks
 
-| Prize / track | Amount | Hard requirements (verbatim) | Max picks rule | Gate (access/approval) | Pick? |
-|---|---|---|---|---|---|
-| | | | | | |
+| Prize / track | Amount | Hard requirements (verbatim) | Max picks rule | Gate (access/approval) | Met on the live product? | Pick? |
+|---|---|---|---|---|---|---|
+| | | | | | | |
 
 - [ ] Maximum number of partner prizes selectable:
 - [ ] Prizes that require something *after* the deadline (e.g. mainnet by Sep 30):
@@ -70,7 +87,7 @@ CHECKED:  <UTC timestamp> (re-check at T-24h and T-6h)
 | Tags (AI? track?) | | | chosen deliberately | |
 | Logo | | e.g. 480×480 PNG | | |
 | Cover image | | e.g. 16:9 | | |
-| Demo video | | e.g. ≤ 2:00 / ≤ 4:00, YouTube public/unlisted | | |
+| Demo video | | e.g. ≤ 2:00 / ≤ 4:00, YouTube public/unlisted; voice rules (ETHGlobal: no AI voiceover, no speed-up) | | |
 | Repo URL | | | | |
 | Live URL | | | | |
 | Team block | | | | |

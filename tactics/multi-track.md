@@ -11,11 +11,14 @@ Architecture rules for qualifying for 2-3 tracks with one codebase. Worked examp
 
 At a 20-track event with 1 main prize, targeting 1 track = 1 chance. Targeting 3 aligned tracks = 3 chances + often a multiplier effect (sponsor tracks frequently overlap in evaluation).
 
-From score-ledger.json:
-- Bench v1 at X Layer Arena — 3 tracks targeted, won 2 (main + Onchain OS).
-- TollPay v1 at Stellar Agentic — 2 tracks targeted, won 1 (Stellar main + x402 track).
+**No measured lift yet.** The Bench v1 and TollPay v1 multi-track results previously cited here are unverified (no transcript or retro), and so was the "50-80% more expected prize value" rule of thumb.
 
-**Rule of thumb:** A clean multi-track submission adds roughly 50-80% to expected prize value vs single-track.
+The one verified data point points the other way. Hunch VPM picked three ETHOnline 2026 partner prizes for breadth and won none, because each prize's verbatim criteria weren't met on the live product:
+- The Graph wanted agent decisions, and the agent only ran dry-run.
+- Arc wanted autonomous USDC settlement, and the Circle wallet was never live.
+- Chainlink wanted an on-chain state change, and the CRE deploy was blocked.
+
+Pick a track only when its verbatim requirement is met on the live product, and write that down in the event contract's "Met on the live product?" column.
 
 ---
 
@@ -131,7 +134,7 @@ At hour 45 (2h before submission close):
 
 ---
 
-## The worked example — Bench v1 at X Layer Arena 2026
+## The worked example — Bench v1 at X Layer Arena 2026 (illustrative; placements unverified)
 
 - **Main track (X Layer):** signed receipts on X Layer — demo with 47 on-chain receipts visible on BaseScan. Won 2nd main prize.
 - **Onchain OS track:** OKX Agentic Wallet SDK integration — 30s video showing seamless wallet-to-receipt flow. Won track prize.

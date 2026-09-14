@@ -22,6 +22,7 @@ Moderate-lift items that individually save you from one stupid mistake per event
 | [repo-boundary.md](repo-boundary.md) | Hour 0 (first commit) → T-2h gate | 5 min setup | Internal docs / judge notes / personal emails in the public repo; suspicious commit history |
 | [session-orchestration.md](session-orchestration.md) | Phase 4 → whenever >1 session or an orchestrator runs | 20 min | Colliding worktrees, killed agents, token burn, orchestrators ignoring the deadline |
 | [claims-and-evidence.md](claims-and-evidence.md) | First README draft → freeze → submit | 30 min per audit | Overclaims, drifting numbers, 404 links, "as if done" docs |
+| [honest-assessment.md](honest-assessment.md) | Idea commit, G6, G8, any "are we the best?", every form answer | 30 min per gate | Being told you're the best and not advancing; theme misfit; form claims the README contradicts; history that reads as pre-built |
 | [golden-path-and-liveness.md](golden-path-and-liveness.md) | After first deploy → daily through results | 20 min per run | Wallet/auth bugs found at T-4h; green-but-dead health; empty or expired demo state during judging |
 
 **v2 additions (2026-09-14)** come from four real events. See `../retro/2026-09-14-cross-event-synthesis.md`. Together with `../templates/event-contract.md` and `../templates/battle-clock.md`, they are the gates the main `SKILL.md` Operating Rules point to.
@@ -30,9 +31,9 @@ Moderate-lift items that individually save you from one stupid mistake per event
 
 Each item attaches to a specific phase. The table above is the integration map. None of these items are standalone — they're hardening additions to the phase workflow that's already in `../SKILL.md`.
 
-## Failure modes these prevent (real, not hypothetical)
+## Failure modes these prevent (illustrative)
 
-From retros across 4 prior projects:
+Written in April 2026 from memory. None of these appear in session transcripts and their retros don't exist, so treat them as examples. The verified failure modes are in `../retro/2026-09-14-cross-event-synthesis.md` and `../retro/2026-09-14-not-selected-postmortem.md`.
 
 | Failure | Prevention |
 |---------|------------|
@@ -45,7 +46,7 @@ From retros across 4 prior projects:
 | Got asked "what did AI write vs you" and had no answer | `provenance.md` — commit-cadence rules |
 | "What if X happens" in demo Q&A = deer-in-headlights | `risk-register.md` — pre-mortem |
 
-Each of these cost 1-3 scoring points at real events. Cumulative lift: ~1 full judge-panel point in expectation.
+No lift has been measured. Treat these as checklists, not as proven score gains.
 
 ---
 

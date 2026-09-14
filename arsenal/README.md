@@ -12,7 +12,7 @@ Reusable, battle-tested building blocks pulled into hour 0 of every hackathon. E
 | [`demo-mode/`](demo-mode/) | Hour 1 — drop in the auth-optional fallback data layer so judges never see "Loading..." | 3-4 hrs (and prevents a deadline-day crisis) |
 | [`og-image/`](og-image/) | Polish phase — branded OG image for every shared link | 1 hr |
 | [`video/`](video/) | Phase 10 — Remotion 11-scene hype video architecture (parameterized) | 8-12 hrs |
-| [`judge-prompts/`](judge-prompts/) | Phase 8 — 7 invocable judge personas, drop into Claude with project context | 2-3 hrs per round |
+| [`judge-prompts/`](judge-prompts/) | Phase 8: screening + pre-mortem gates first, then 7 deep-review personas, each in a fresh subagent | 30 min per gate, 2-3 hrs per deep round |
 | [`web3/`](web3/) | Web3 hackathons — EIP-712, wallet adapters, chain configs | 3-5 hrs |
 | [`pitch-deck/`](pitch-deck/) | Phase 10 — markdown-to-deck template that exports clean | 2-3 hrs |
 | [`landing/`](landing/) | Polish phase — hero + waitlist + comparison-table + footer components | 2-4 hrs |
@@ -21,7 +21,7 @@ Reusable, battle-tested building blocks pulled into hour 0 of every hackathon. E
 | [`submission-check/`](submission-check/) | From first README → CI: every clickable claim resolves (URLs, contracts, txs, packages), numbers agree across docs, no placeholders | 2-3 hrs of link-checking, plus overclaim risk |
 | [`deploy/`](deploy/) | Before spending gas: EVM Foundry preflight + chain/deploy **traps catalog** | Hours per rediscovered trap |
 | [`ops/`](ops/) | Day 1 → results: liveness health (outcomes within windows) + judging-window runbook | Prevents "green but dead" and a dry treasury during judging |
-| [`copy/`](copy/) | First copy draft + verify gate: voice lint for AI tells | 1-2 late sessions of "humanize the copy" |
+| [`copy/`](copy/) | First copy draft + verify gate: voice lint for AI tells; first-screen lint for brief noun, jargon and meta-framing | 1-2 late sessions of "humanize the copy"; a first screen a judge can't parse |
 | [`web3/switch-chain.ts`](web3/switch-chain.ts) | Any EVM dapp: add-then-switch that works on Rabby/Coinbase/Trust, not only MetaMask | Silent network-switch failure found at T-4h |
 
 ## Use This Arsenal

@@ -15,6 +15,7 @@ Per-event retrospectives + the rule that retros update the skill itself. Without
   - [`2026-09-13-ethonline-hunch-vpm.md`](2026-09-13-ethonline-hunch-vpm.md)
   - [`2026-09-13-buidl-ctc-humanline.md`](2026-09-13-buidl-ctc-humanline.md)
   - [`2026-09-13-multi-app-agent-benchpress.md`](2026-09-13-multi-app-agent-benchpress.md)
+- [`2026-09-14-not-selected-postmortem.md`](2026-09-14-not-selected-postmortem.md): why two entries Claude rated as the best didn't advance; source of Operating Rules 14–18.
 - [`2026-09-14-cross-event-synthesis.md`](2026-09-14-cross-event-synthesis.md): patterns across events. Write one after every 3-4 retros, because single retros can't show which failures repeat.
 - **Retros can be reconstructed from session transcripts** when they weren't written live. Mine `~/.claude/projects/<project-dirs>/*.jsonl` for human-typed prompts, plus `git log` and the repo's docs/memory files. That's how the four retros above were produced.
 - **The Update Rule** (below) — what you MUST do after every retro.
@@ -34,7 +35,7 @@ Every retro ends with a **"Lessons into skill"** section. For every lesson, upda
 
 **Then commit the skill repo with the retro filename in the commit message.** This is how the skill gets sharper.
 
-Example from Bench v1 retro (2026-02):
+Illustrative example (the Bench v1 retro was never written, and its placement is unverified):
 > Lesson: "Replay bug shipped in signed certs because we had no nonce in the signed payload."
 > Action: Amended `arsenal/web3/eip712.ts` to include nonce + deadline by default, updated `arsenal/judge-prompts/security.md` replay-protection weight from 15% → 25%.
 > Commit: `skill: incorporate 2026-02-15-xlayer-arena lessons on replay protection`

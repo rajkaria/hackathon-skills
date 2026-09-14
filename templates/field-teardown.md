@@ -7,6 +7,8 @@
 
 ---
 
+**No ranking claim without this file.** "Small field", "nobody else can" and "we lead the field" need a snapshot row below (`tactics/honest-assessment.md` §1). Hunch VPM was told "small field" and "the gap nobody else can fill" with no teardown on disk.
+
 ## Snapshot log
 
 | Snapshot | UTC | Entries | Method | Delta since last |
@@ -51,3 +53,12 @@ Raw data: `hackathon/_field-<date>.json`. Refresh only new entries, and append t
 | Tags / track selection | e.g. missing "AI" tag at an Agentic event | yes → |
 | Cover image style | | |
 | Hero claim | | |
+
+## If the field is invisible (no gallery until results)
+
+The Multi-App Agent Hackathon had no public gallery and no Discord. Benchpress's `STRATEGY.md` filled the gap with invented rivals ("A Composio or MCP assistant… Judges saw a hundred of these"), all weaker than us.
+
+1. Write "FIELD UNKNOWN" in the snapshot log. Every competitive statement is evidence level 0 or 1.
+2. Collect **past winners** of this event or series, and public demos of teams that announced they're entering (X, LinkedIn, Luma attendee posts).
+3. Have a **separate subagent** that hasn't seen our entry write the 3 strongest entries it can for the brief, each with a card, description and video beats. These are the stand-ins for `screening-judge.md`.
+4. Never write a rival weaker than the best entry you can imagine.

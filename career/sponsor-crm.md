@@ -44,7 +44,7 @@ Per-ecosystem profiles. Judges repeat across events. Grant programs pay for hack
 - **Sponsors show up at:** X Layer Arena, DoraHacks, ETHGlobal
 - **Grant program:** X Layer Builder grants — application by form, 4-week decision
 - **Past winning patterns:** Consumer-facing demos with clean wallet onboarding
-- **Bench v1 won 2nd here** (2026-02) — see retro
+- **Bench v1 was entered at OKX Build X (X Layer Arena), April 2026.** Placement unverified; no retro exists.
 
 ---
 
@@ -120,6 +120,6 @@ Chronological. One row per conversation ≥ 3 minutes. Follow-up within 48 hours
 
 - **Re-visit quarterly.** Prune dead contacts (no response in 90 days).
 - **Never spray.** A single well-targeted grant app beats 10 generic ones.
-- **Always cite a retro.** Grant applications that reference a specific event ("won 1st at Stellar Agentic 2026, built on your SDK") convert 3-5x.
+- **Only cite verified results.** A placement goes into a grant application only if it has a retro in `../retro/` and a public results page. (An earlier line here cited an unverified "won 1st at Stellar Agentic 2026" and an unsourced "convert 3-5x".)
 
 **See also:** `idea-bank.md` for `sponsor_fit` scoring, `../retro/` for the events you cite in applications.

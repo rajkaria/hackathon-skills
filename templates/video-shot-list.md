@@ -13,6 +13,13 @@
 - **Rubric weight carried by the video:** Demo ___% + (Usefulness/Originality it must also carry) ___%
 - **Recorded against:** live deployment `<url>` at build `<sha>` on `<network>`, with real transactions
 
+## The first 20 seconds (a screener may stop here)
+
+- [ ] Says the brief's noun and names the user: "<Name> is an <noun> that <does what> for <user>"
+- [ ] No coined term before it's shown (Hunch VPM opened "Every parimutuel pool has one flaw…" over a four-statistic card)
+- [ ] The proof moment starts before 0:45
+- [ ] The transcript's first 60 words pass `arsenal/copy/first-screen.sh --noun <noun> --words 60`
+
 ## The three things the video has to land
 
 1. **The insight / mechanism**, in one sentence a judge will repeat: ___

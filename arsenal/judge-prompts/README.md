@@ -1,6 +1,6 @@
 # Judge Prompts
 
-Seven invocable judge personas for the Phase 8 simulation loop. Each is a self-contained prompt — paste into Claude with your project's README, deploy URL, and any vision doc, and the persona returns a strict, scored review.
+Two gate personas (screening, pre-mortem) plus seven deep-review personas for the Phase 8 loop. **Run the gates first.** The deep personas read code and docs, which real first-round screeners don't; they missed why Benchpress and Hunch VPM didn't advance (`../../retro/2026-09-14-not-selected-postmortem.md`). Each is a self-contained prompt — paste into Claude with your project's README, deploy URL, and any vision doc, and the persona returns a strict, scored review.
 
 ## How to Use
 
@@ -17,6 +17,8 @@ Then compute the weighted overall score and produce a prioritized fix list.
 
 | Persona | File | Weight | Key Question |
 |---------|------|--------|--------------|
+| **Screening Judge** | [screening-judge.md](screening-judge.md) | gate | Would a stranger with minutes per entry advance us, blind, among 10? |
+| **Pre-mortem Judge** | [pre-mortem-judge.md](pre-mortem-judge.md) | gate | Why did this *not* advance? (Its top reason is the next work item.) |
 | Technical Lead | [technical-lead.md](technical-lead.md) | 30-35% | Is the required tech used non-trivially? |
 | Product Designer | [product-designer.md](product-designer.md) | 20-25% | Does it feel like a product or a prototype? |
 | Hackathon Organizer | [organizer.md](organizer.md) | 15-20% | Are ALL submission requirements met? |
@@ -28,8 +30,10 @@ Then compute the weighted overall score and produce a prioritized fix list.
 
 ## Escalation Schedule
 
-- **Round 1 (after Phase 7):** 5 judges — Technical Lead, Product Designer, Organizer, VC, Sponsor Rep
-- **Round 2 (after Round 1 fixes):** add Security Auditor + DevRel
-- **Round 3 (final):** all 7, plus any external human reviewer feedback fed in as an 8th persona
+- **Idea commit:** Idea Stress Test + Pre-mortem on the pitch paragraph
+- **G6:** Screening Judge (3 shuffles) + Pre-mortem, then 5 deep judges: Technical Lead, Product Designer, Organizer, VC, Sponsor Rep
+- **G8:** Screening Judge against the refreshed field + Pre-mortem, then all 7 deep judges, plus any external human reviewer fed in as an extra persona
 
-Stop at 8.5+ weighted average. More rounds at that point introduce regressions.
+**Independence:** every persona runs in a fresh subagent. Any run that saw the spec, the strategy docs or the build conversation is labelled `SELF-SCORE (not predictive)`.
+
+**Stop** when the screen advances us in all 3 shuffles and no rubric axis is below 7. An absolute panel score is not a stop signal. Benchpress self-scored 8.0–8.3 and wasn't selected.

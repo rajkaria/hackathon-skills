@@ -71,3 +71,46 @@ A clean lint is the floor. These rules are what the human reviewer actually want
 8. **End on the next step, not a summary.** No "In conclusion". Finish with the link, the command, or the ask. <!-- voice-lint-ignore: quoted bad example -->
 
 Quick test: read the paragraph out loud to a teammate. If you would never say it that way in person, rewrite it.
+
+## `first-screen.sh`
+
+Lints what a screening judge reads before deciding: the first ~80 prose words of a README, landing hero, one-liner or submission description, after badges, images, code and HTML are stripped.
+
+**Origin:** September 2026. Benchpress entered "the reliability layer for AI agents" where the brief asked for "one useful, multi-step AI agent". Hunch VPM's hero read "A parimutuel that pays for being early… Stake vests the moment it lands". Both were rated the best entry by a self-graded panel, and neither advanced (`../../retro/2026-09-14-not-selected-postmortem.md`).
+
+**Use when:**
+
+- the one-liner exists (idea commit), with `--noun` copied from the brief
+- the landing hero, video transcript and submission description are drafted (G5)
+- in the verify gate before submitting
+
+```bash
+bash ../hackathon-skill/arsenal/copy/first-screen.sh --noun agent README.md submission.txt
+bash ../hackathon-skill/arsenal/copy/first-screen.sh --noun "prediction market" --noun app --jargon .jargon hero.txt
+bash ../hackathon-skill/arsenal/copy/first-screen.sh --noun agent --words 60 video-transcript.txt   # first ~20s of voice
+```
+
+| Level | Rule | Why |
+|---|---|---|
+| FAIL | `brief-noun` | None of the brief's nouns in the first screen: a judge can't tell it's the thing the brief asked for |
+| FAIL | `jargon-density` | More than `--max-jargon` (default 2) distinct jargon terms |
+| WARN | `jargon:<term>` | Each built-in or `--jargon` file term found |
+| WARN | `meta-framing` | Pitches a layer, scaffold, SDK, framework, harness, wrapper or protocol while the brief's noun is something else |
+| WARN | `badge-wall` | More than `--max-badges` (default 5) badges before the first sentence |
+| WARN | `long-opener` | First sentence over 25 words |
+
+It prints the extracted first screen (hide it with `--quiet`), so a human reads exactly what the judge reads. **Write the `.jargon` file at spec time:** one term per line, every word the team coined or that only specialists use.
+
+**Exit codes:** `1` on any FAIL (or any WARN with `--strict`), `2` on bad usage, `0` otherwise. Portable to macOS bash 3.2. Tests: `bash test.sh` (28 cases, run in a `mktemp -d` sandbox).
+
+**Validated 2026-09-14** against the real September first screens:
+
+| Text | Result |
+|---|---|
+| Hunch VPM site hero, `--noun "prediction market"` | FAIL brief-noun, FAIL jargon-density (parimutuel, vests, opposing books) |
+| Benchpress submission one-liner, `--noun agent` | WARN meta-framing (layer) |
+| Benchpress site hero | WARN meta-framing (wrap around) |
+| Benchpress README (`origin/main`) | WARN badge-wall (9). Its opening story was fine, and the misfit sits just below the first screen ("task-agnostic control loop") |
+| Hunch VPM README (`origin/main`) | WARN parimutuel, vested |
+
+A clean lint doesn't mean the pitch fits. The Benchpress README passes on the noun because its opening story says "an ops agent". Run `../judge-prompts/screening-judge.md` for the judgement; this catches the mechanical part early.

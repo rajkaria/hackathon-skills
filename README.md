@@ -26,6 +26,7 @@ Download `hackathon.skill` (a zip of the full directory) from this repo and unzi
 Rebuilt from four real events (Casper Agentic Buildathon, ETHOnline 2026, BUIDL CTC, Multi-App Agent Hackathon):
 - **Phase 0 Event Contract:** deadline with a quoted source, entry mode, form limits, access gates, network availability
 - **Battle Clock:** time-based gates. Draft submission at 50% of the time, video recorded ≥ 12h before the deadline, judge rounds while the build runs, feature freeze, final-state gate
+- **Honest assessment (v3, after two "best entries" didn't advance):** no "best" claim without a blind screen; Brief-Fit Gate (the brief's noun is the subject of the one-liner); a screening judge ranks us blind among 10 entries; a pre-mortem judge's top reason becomes the next work item; `first-screen.sh` lints the hero, one-liner and description; form claims never exceed the README's "live now" list
 - **New tactics:** preflight and secrets protocol, public/internal repo boundary, multi-session orchestration, claims and evidence, golden path and liveness
 - **New runnable tools:**
   - `submission-check` (every clickable claim resolves)
@@ -108,7 +109,9 @@ Phase 7 (Polish): Landing page with before/after screenshots.
          Live demo auto-loads a sample PR review on page open.
          OG image set so Slack/Discord shares look professional.
 
-Phase 8 (Judge): 7-judge panel. Score: 7.5/10.
+Phase 8 (Judge): Blind screen among 10 entries: ranked 6, not advanced
+         ("can't tell who uses it"). Fixed the tagline and video opener,
+         re-screened: ranked 2. Then the 7-judge panel. Score: 7.5/10.
          Issues: no GitHub bot integration, review sometimes hallucinates
          line numbers, no rate limiting on public endpoint.
 
@@ -212,23 +215,24 @@ Make the UI modern and premium. Add a landing page with hero, features,
 and how-it-works sections. Deploy to [your-domain.xyz].
 ```
 
-### Phase 8-9: The Judge Loop (Secret Weapon)
+### Phase 8-9: Screen First, Then the Judge Loop
 
-This is the highest-ROI activity in the entire workflow:
-
-```
-Review this project as a panel of 7 strict hackathon judges.
-Score it out of 10. List every issue. Be harsh.
-```
-
-Fix everything, then run it again:
+Real first rounds are screens: a card, a description and the first seconds of a video, with minutes per entry. Start there:
 
 ```
-I've fixed all the issues. Run the judge panel again with 9 judges.
-Score out of 10. What's still missing for a no-brainer win?
+Run the blind screening judge: our card, description, video transcript and
+first screen, shuffled among 9 other entries from the field teardown.
+Three shuffles. Then the pre-mortem: why did we not advance?
 ```
 
-Repeat until score is 8.5+. Usually takes 2-4 rounds.
+Fix the pre-mortem's top reason first, then run the deep panel:
+
+```
+Review this project as a panel of 7 strict hackathon judges, each in a
+fresh subagent that hasn't seen our spec. List every issue. Be harsh.
+```
+
+Stop when the screen advances us in all 3 shuffles and no rubric axis is below 7. A self-graded 8.5 is not a stop signal: Benchpress self-scored 8.0–8.3 and wasn't selected (`retro/2026-09-14-not-selected-postmortem.md`).
 
 ### Phase 10: Ship
 
@@ -279,8 +283,8 @@ RESEARCH → IDEATE → SPEC → PLAN → BUILD → EXPAND → POLISH → JUDGE 
 | **Build** | Parallel execution with two-stage review + pivot protocol when things break |
 | **Expand** | Numbered feature list with effort/impact — you pick what to add |
 | **Polish** | Landing page, custom domain, shadcn/ui, 30-second usability rule |
-| **Judge** | Simulates 5-9 strict judges who score across innovation, UX, requirements, market, security |
-| **Fix** | Implements all judge feedback, escalates panel size, repeats until 8.5+ |
+| **Judge** | Blind screening judge + pre-mortem first, then 5-9 strict deep-review judges in fresh subagents |
+| **Fix** | Fixes the pre-mortem's top reason first, then panel issues; re-screens until advanced |
 | **Ship** | Vision doc, pitch script, demo video, README, submission |
 
 ## What's Inside
@@ -288,7 +292,7 @@ RESEARCH → IDEATE → SPEC → PLAN → BUILD → EXPAND → POLISH → JUDGE 
 ### Core Workflow
 - 10-phase workflow from brief to submission
 - Build spec template with product vision and sponsor strategy
-- Simulated judge panel with customizable personas and weighted scoring
+- Blind screening judge (ranked among 10 entries) and pre-mortem judge, then deep-review personas with weighted scoring
 
 ### Product Thinking
 - "Build products, not projects" philosophy woven throughout
@@ -353,7 +357,7 @@ RESEARCH → IDEATE → SPEC → PLAN → BUILD → EXPAND → POLISH → JUDGE 
 - Mentor conversations often cause breakthrough moments
 
 **From Winning Projects:**
-- Infrastructure layers consistently win over single-purpose apps
+- Build the thing the brief names for a named user; infrastructure wins only when the brief asks for infrastructure
 - Real transactions (even testnet) dramatically outperform mocked ones
 - A clear vision doc with Month 1/3/6 roadmap separates winners from the pack
 - Sponsor tech used as load-bearing infrastructure > decorative checkbox
@@ -364,7 +368,7 @@ RESEARCH → IDEATE → SPEC → PLAN → BUILD → EXPAND → POLISH → JUDGE 
 - Repositioning from "protocol" to "user pain" improved judge comprehension immediately
 - Security issues (replay attacks, fail-open defaults) always surface in judge simulation — run the checklist before
 - Deploy architecture mismatches (SQLite on Vercel) cause last-day crises — validate hosting compatibility on day 1
-- 30+ tests signal production mindset; judges use test count as a code quality proxy
+- Tests protect the demo; they don't score it (corrected 2026-09-14: 1,000+ tests didn't get Benchpress or Hunch VPM past the screen)
 - OG image/social cards make every link share look professional
 - A side-by-side differentiation table is a 15-minute task with outsized impact
 - Narrative docs ("here's what happens when Sarah uses TollPay") are more memorable than API references

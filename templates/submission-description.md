@@ -39,6 +39,8 @@ Used for the long-text field on DoraHacks, DevPost, ETHGlobal Showcase, etc. Thi
 
 [Be transparent. Judges can detect overclaim and they punish it.]
 
+**Copy the split from the README's "What is not done" list; never write this section "as if done".** Hunch VPM's form said markets were resolved by a Chainlink CRE workflow and an agent "researches, decides, trades and claims". Its own README said no market had resolved and the agent had never run live. A screener who clicks one link finds the contradiction.
+
 - ✅ **Real:** Live testnet transactions on [chain]; deployed at [yourproject.xyz]; [N] real signed certificates
 - ⚠️ **Demo data:** Historical aggregates and sample personas in the dashboard
 - 🚧 **Next:** Mainnet deployment, contributor identity verification, mobile app
@@ -95,6 +97,9 @@ Screenshot the submission form as soon as it's visible and copy every field into
 - [ ] Sponsors are listed by their preferred names (check their submission guide)
 - [ ] No spelling errors (run through Grammarly)
 - [ ] No internal jargon ("our v2 spec says...") — write for outsiders
+- [ ] `arsenal/copy/first-screen.sh --noun <brief noun>` on the description: no FAIL
+- [ ] Every claim in the form appears in the README's "live now" list (not "not done")
+- [ ] Pre-event work named as pre-event, with dates
 - [ ] Vision link works
 - [ ] Video link is set to public/unlisted (not private!)
 - [ ] Team handles are correct and active

@@ -21,7 +21,7 @@ updated: 2026-09-14
 
 ## Current state
 
-- **v2 (Sprint 8, "Reality Check") is merged to `main` and pushed** (commit `612b18e`, github.com/rajkaria/hackathon-skills).
+- **v3 (Sprint 9, "Honest Assessment") is committed on branch `claude/hackathon-selection-analysis-053c97`** (Raj merges to `main` himself) and installed to `~/.claude/skills/hackathon/`. It comes after Benchpress and Hunch VPM both failed to advance (`retro/2026-09-14-not-selected-postmortem.md`). v2 (Sprint 8) is on `main` (`612b18e`).
 - **Installed** at `~/.claude/skills/hackathon/` via `install.sh`, which copies the full directory. The old Apr-5 single-file install is backed up in `~/.claude/skill-backups/`.
 - Reconstructed from four real events (Hunch on Casper, Hunch VPM @ ETHOnline, Humanline @ BUIDL CTC, Benchpress @ Multi-App Agent Hackathon). SKILL.md now leads with:
   - Operating Rules for Claude
@@ -30,9 +30,11 @@ updated: 2026-09-14
 - **Tests green:**
   - `bun test` in `arsenal/web3` (20), `arsenal/ops` (27), `arsenal/submission-check` (39)
   - `bash arsenal/repo/test.sh` (15/15)
+  - `bash arsenal/copy/test.sh` (28/28)
 - **Event outcomes:**
   - Humanline was submitted on DoraHacks in the final hours; results 2026-09-20.
-  - Benchpress, Hunch VPM and Hunch on Casper placements are unknown.
+  - Benchpress: not selected for the next round. Hunch VPM: not a finalist, no partner prize. Both known 2026-09-14; who advanced isn't known.
+  - Hunch on Casper final placement is unknown.
 - **Shell constraints here:**
   - `node` and `rm` are blocked. Use bun, and move stray files to the scratchpad.
   - Git in the main checkout (`/Users/rajkaria/Projects/hackathon-skill`) is blocked by the auto-mode classifier. Raj runs merge/push there himself.
@@ -41,6 +43,11 @@ updated: 2026-09-14
 
 | Path | Why |
 |---|---|
+| `retro/2026-09-14-not-selected-postmortem.md` | Why two entries rated "best" didn't advance: no real rival viewed, brief misfit, screen-round blindness, form claims vs README, volume as value |
+| `tactics/honest-assessment.md`, `arsenal/judge-prompts/{screening-judge,pre-mortem-judge}.md` | Evidence ladder, Brief-Fit Gate, blind screen, pre-mortem, premise pushback, history gate |
+| `arsenal/copy/first-screen.sh` + `test.sh` | Lint for brief noun / jargon / meta-framing / badge wall |
+| `SKILL.md` | Intervention Protocol I1–I15 (Claude interrupts with a fixed ⚠ format when a win is being lost; Raj asked for this), Operating Rules 14–18, Phase 8 screen-first, Phase 2 infra heuristic corrected, anti-patterns 19–23, Rule 7 rescoped |
+| `career/*`, `tactics/{multi-track,README}.md` | Unverified pre-July placements labelled; invented stats removed; ledger `verified` + `screen_rank` |
 | `SKILL.md` | Operating Rules, Phase 0, Battle Clock, v2 gates in phases 1–10, one-day blueprint, Rules 11–18, anti-patterns 13–18; description ≤ 1024 chars |
 | `templates/{event-contract,battle-clock,field-teardown,video-shot-list,handoff}.md` | Fillables for the new gates |
 | `tactics/{preflight-t24,repo-boundary,session-orchestration,claims-and-evidence,golden-path-and-liveness}.md` | v2 core tactics |
@@ -56,6 +63,9 @@ updated: 2026-09-14
 
 ## Key decisions
 
+- **Claude never calls an entry "best" without evidence level ≥ 2** (a blind screen). Self-scores are labelled non-predictive.
+- **Pre-July-2026 ledger entries stay but are marked `verified: false`**, and are never cited. Ask Raj to confirm or delete them.
+
 - **The clock beats phase order.** Every event lost the video, judge panel or submission to an always-productive build, so gates are time-based.
 - **"Time is not a constraint" changes scope, never gates.** A claimed deadline extension needs a quoted source.
 - **Internal docs live in a sibling `<project>-internal/` folder** (not a gitignored subfolder), so parallel worktrees share one location.
@@ -65,6 +75,7 @@ updated: 2026-09-14
 
 ## Next steps
 
+0. Raj: review and merge branch `claude/hackathon-selection-analysis-053c97`, then `bash install.sh`. Confirm or delete the unverified X Layer / Stellar / Bangkok / ETHDenver placements.
 1. At results (Humanline 2026-09-20; others TBD), fill the scoring-retro sections in `retro/2026-09-13-*.md` + `retro/2026-07-25-*.md` and the placements in `career/score-ledger.json`. Compare to the simulated scores.
 2. Verify or mark as illustrative the pre-existing ledger entries (ETHGlobal BKK / X Layer Arena / Stellar Agentic) and the failure table in `tactics/README.md`. None of them appear in transcripts.
 3. At the next event, measure Sprint 8's definition of done (ROADMAP.md): draft at 50%, video ≥ 12h early, 2 judge rounds on the deployed product, no secrets in chat, final-state gate green.

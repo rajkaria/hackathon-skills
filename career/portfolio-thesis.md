@@ -33,14 +33,14 @@ A ranked list of reasons, from least to most important:
 - **Proof layer:** EIP-712 / equivalent signed receipts for every tool call — tamper-evident, cross-verifiable.
 - **Session layer:** Scoped wallets with spending limits and expiry so humans delegate safely.
 
-**Arc across events:**
+**Arc across events:** (outcomes before July 2026 are unverified: no transcript or retro exists, and the dates predate the project repos. Confirm with Raj before citing any of them.)
 
 | Event | Project | Layer | Outcome | Compounding move |
 |-------|---------|-------|---------|------------------|
-| ETHGlobal Bangkok 2025 | Aegis | Session (session keys) | Finalist | Proved spending-limit UX |
-| ETHDenver 2025 | HashPay | Payment (batch payroll) | HM | Proved multi-chain USDC settlement |
-| X Layer Arena 2026 | Bench v1 | Proof (EIP-712 receipts) | 2nd | Proved signing scheme; found replay bug, fixed it |
-| Stellar Agentic 2026 | TollPay v1 | Payment (per-call Soroban) | 1st Stellar | Proved streaming micropayments at 5s settlement |
+| ETHGlobal Bangkok 2025 | Aegis | Session (session keys) | unverified | Proved spending-limit UX |
+| ETHDenver 2025 | HashPay | Payment (batch payroll) | unverified | Proved multi-chain USDC settlement |
+| X Layer Arena 2026 | Bench v1 | Proof (EIP-712 receipts) | unverified | Proved signing scheme; found replay bug, fixed it |
+| Stellar Agentic 2026 | TollPay v1 | Payment (per-call Soroban) | unverified | Proved streaming micropayments at 5s settlement |
 | **Next (May 2026)** | **Bench v2 (multi-chain)** | **Proof + Session** | — | Ties payment + proof across chains into one SDK |
 | **Q3 2026** | **Agent-to-Agent Escrow** | **All three** | — | The product that lets two agents trade autonomously |
 

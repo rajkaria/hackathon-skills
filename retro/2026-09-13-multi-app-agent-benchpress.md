@@ -11,7 +11,7 @@
 
 ## 1. Results
 
-- **Placement:** pending (not in transcripts)
+- **Placement:** not selected for the next round, no prize (known 2026-09-14; who advanced isn't known to us). Why: [`2026-09-14-not-selected-postmortem.md`](2026-09-14-not-selected-postmortem.md)
 - **Shipped:**
   - Benchpress 3/3 vs stock loop 0/3 on ArgaBench ECOM-02, using the unmodified grader on local copies of the apps (0/111 frontier runs had passed that task)
   - Passed on real Slack/Gmail/HubSpot/Stripe
@@ -55,10 +55,12 @@ Three idea iterations on Sep 9–10, with "Receipt" and "Rehearse" killed before
 - Shipped but shouldn't have: the TTS fallback video (never used); release tracks after 14:48
 
 ## 3. Scoring retro (fill at results)
-Simulated at T-90m: ~8.0–8.3, Usefulness 6.5. Fill in actual placement and compare.
+Simulated at T-90m: ~8.0–8.3, Usefulness 6.5 (self-score by the building session). The pre-event `STRATEGY.md` was titled "Win strategy: why Benchpress takes first place".
+
+**Actual:** not selected. **Delta:** a self-score of 8+ predicted nothing. The one real signal in it, Usefulness 6.5, matched the likely cause (theme misfit: a layer around agents where the brief asked for "one useful, multi-step AI agent") and wasn't acted on. See the post-mortem.
 
 ## 4. Strategic retro
-- **Idea choice:** building inside the judges' own benchmark was a perfect fit; codify it as a research heuristic.
+- **Idea choice (corrected 2026-09-14):** using the judges' benchmark as *evidence* was sound. Entering a layer *around* agents, proven on locally rebuilt copies of the judges' paid product, when the brief asked for an agent, was a theme misfit. It didn't advance.
 - **Research:** the verified research doc (`RESEARCH.md`, "do not re-research") saved hours; keep it.
 - **Validation gap:** the feasibility of running the grader offline had been argued, never spiked. A 1-hour spike at T-24h would have prevented the 30-minute pre-start replan.
 

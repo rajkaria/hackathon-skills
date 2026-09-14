@@ -9,10 +9,11 @@ The handoff between `idea-bank.md` (which stores ideas) and Execution (which bui
 
 ## Why triage, not vibes
 
-The default selection mode is "whichever idea I'm most excited about this week." That mode loses to a team that ran expected-value math. From `score-ledger.json`:
+The default selection mode is "whichever idea I'm most excited about this week." Triage forces the comparison to happen on paper instead.
 
-- Events where the picked idea was the highest-triage-score candidate: average placement 2.3.
-- Events where the picked idea was the "most exciting" but not the highest-triage-score candidate: average placement 7.8.
+(An earlier version cited "average placement 2.3 vs 7.8" from `score-ledger.json`. Those ledger entries are unverified and the statistic has been removed. There's no measured triage lift yet. The only verified outcomes, Benchpress and Hunch VPM in September 2026, were both picked without triage, and neither advanced.)
+
+**Add a Brief-Fit kill filter to Step 3:** if the idea's one-liner subject isn't the brief's noun, kill it or reframe it (`../tactics/honest-assessment.md` §3).
 
 Excitement is a necessary condition (you'll burn 48 hours on it) but not a sufficient one. Triage gives you the intersection of excitement AND expected value.
 
@@ -111,7 +112,7 @@ The weights above are defaults from the current ledger. Recalibrate yearly.
 
 ---
 
-## Worked example — X Layer Arena 2026 (Bench)
+## Worked example — X Layer Arena 2026 (Bench) (illustrative; placement unverified)
 
 Candidates considered:
 | Idea | Rubric fit ×3 | Multi-track ×2 | Feasibility ×2 | Thesis ×2 | Convert ×2 | Excite ×1 | Total |
@@ -121,7 +122,7 @@ Candidates considered:
 | Session-key wallet UI kit | 6 (18) | 6 (12) | 9 (18) | 6 (12) | 5 (10) | 6 (6) | 76 |
 | On-chain reputation oracle | 8 (24) | 5 (10) | 4 (8) | 7 (14) | 7 (14) | 6 (6) | 76 |
 
-Winner: Bench. Kill criteria set: "if at hour 18 the signed-receipt verifier is not passing on X Layer, pivot to session-key UI kit." Never triggered. Placed 2nd main + won Onchain OS track.
+Winner: Bench. Kill criteria set: "if at hour 18 the signed-receipt verifier is not passing on X Layer, pivot to session-key UI kit." Never triggered. (Placement unverified: no transcript or retro exists.)
 
 ---
 

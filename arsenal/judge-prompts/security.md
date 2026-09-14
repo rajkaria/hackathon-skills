@@ -60,7 +60,7 @@ To raise score by 1+ point: [specific change]
 - **MEDIUM** — best-practice violation, exploitable under specific conditions.
 - **LOW** — code smell, defense-in-depth gap.
 
-## Common Findings From Past Sessions
+## Common Findings From Past Sessions (unverified April 2026 notes)
 
 - Bench v1: signed certs were not nonce-protected → replay possible
 - TollPay: payment verification fail-open by default

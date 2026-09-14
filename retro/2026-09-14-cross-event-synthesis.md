@@ -38,7 +38,7 @@ The skill describes ten sequential phases. What actually happens is a different 
 
 What is consistent across all four events:
 
-1. **The build is superb.** An MVP was live on-chain within 3.5 hours (Humanline). Benchpress shipped 1,038 tests and 7 PyPI releases in one day. Hunch VPM shipped 5 verified contracts, 2 subgraphs and 1,378 tests. The build is never the weak phase.
+1. **The build is superb.** *(Correction, same day, after results: Benchpress and Hunch VPM then didn't advance. The builds were large. What was built, how it was framed and whether its claims matched reality were the weak phase, and no time gate checks those. See [`2026-09-14-not-selected-postmortem.md`](2026-09-14-not-selected-postmortem.md).)* An MVP was live on-chain within 3.5 hours (Humanline). Benchpress shipped 1,038 tests and 7 PyPI releases in one day. Hunch VPM shipped 5 verified contracts, 2 subgraphs and 1,378 tests. The build is never the weak phase.
 2. **Everything judges see is compressed into the last hours, or never done.**
    - Video: never recorded (Casper), not recorded at the end of the transcripts (Humanline), written at T-4h (VPM), linked at T-19m (Benchpress).
    - Judge panel: run at T-90m (Benchpress), never (VPM), replaced by field ranking (Humanline), run *after* submitting (Casper).

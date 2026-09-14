@@ -13,7 +13,7 @@
 ---
 
 ## 1. Results
-- **Placement:** pending
+- **Placement:** not a finalist, no partner prize (known 2026-09-14; who advanced isn't known to us). Why: [`2026-09-14-not-selected-postmortem.md`](2026-09-14-not-selected-postmortem.md)
 - **Shipped:**
   - 5 verified contracts + `ChainlinkCreOracle`
   - 2 subgraphs + Substreams
@@ -56,7 +56,9 @@ Raj found two wallet bugs at T-4h: no network-switch prompt, and stake gone afte
 | Final-state gate on `origin/main` | T-2h | Never; stale docs public |
 
 ## 3. Scoring retro (fill at results)
-No simulated panel was run, so there is no calibration data point. The next event must run one.
+No simulated panel was run. Planning sessions still told Raj "small field", "the gap Hunch can fill that nobody else can" and "a realistic winning outcome is $7k to $9k plus finalist", with no field teardown on disk.
+
+**Actual:** not in the ~20% that advance from the async screen, and no partner prize. **Delta:** the forecast had no evidence behind it (level 0). Likely causes, ranked, are in the post-mortem: visible history and entry-mode risk, form claims contradicting the README, a hard-to-grasp first screen, a last-minute video and demo state, and partner criteria unmet on the live product.
 
 ## 4. Strategic retro
 - **Continuity mode** needs its own rules: commit cadence, labelling pre-event work (the whitepaper edition predates the event; Claude caught the claim), no history resets.

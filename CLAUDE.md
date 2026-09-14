@@ -15,6 +15,6 @@ Session state lives in per-feature docs. Load the one that matches the files you
 - Sprint-driven roadmap (`ROADMAP.md`). Finish each sprint completely.
 - Every addition must be a real template, checklist or runnable tool, citing the event that proved it.
 - SKILL.md is canonical; templates/tactics/arsenal are operational.
-- Tests: `bun test` in `arsenal/{web3,ops,submission-check}`, `bash arsenal/repo/test.sh`. `node` and `rm` are blocked in this shell.
+- Tests: `bun test` in `arsenal/{web3,ops,submission-check}`, `bash arsenal/repo/test.sh`, `bash arsenal/copy/test.sh`. `node` and `rm` are blocked in this shell.
 - Test agents must work in `mktemp -d` sandboxes, never in the repo.
 - Never write secrets into docs.

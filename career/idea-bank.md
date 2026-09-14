@@ -61,10 +61,12 @@ where `thesis_aligned_weight = {yes: 3, adjacent: 1, no: 0}`. Top 3 by score bec
 
 | id | title | event | placement | retro |
 |----|-------|-------|-----------|-------|
-| IB-SHIP-001 | Bench v1 | X Layer Arena 2026 | 2nd | `../retro/2026-02-15-xlayer-arena.md` |
-| IB-SHIP-002 | TollPay v1 | Stellar Agentic Workshop 2026 | 1st (Stellar track) | `../retro/2026-03-08-stellar-agentic.md` |
-| IB-SHIP-003 | Aegis | ETHGlobal Bangkok 2025 | Finalist | `../retro/2025-11-20-ethglobal-bkk.md` |
-| IB-SHIP-004 | HashPay | ETHDenver 2025 | Honorable mention | `../retro/2025-03-02-ethdenver.md` |
+| IB-SHIP-001 | Bench v1 | OKX Build X (X Layer Arena) 2026 | unverified (retro never written) | – |
+| IB-SHIP-002 | TollPay v1 | Stellar Agentic Workshop 2026 | unverified (retro never written) | – |
+| IB-SHIP-003 | Aegis | ETHGlobal Bangkok 2025 | unverified (retro never written) | – |
+| IB-SHIP-004 | HashPay | ETHDenver 2025 | unverified (retro never written) | – |
+| IB-SHIP-005 | Benchpress | Multi-App AI Agent Hackathon 2026-09-13 | not selected for next round | `../retro/2026-09-13-multi-app-agent-benchpress.md` |
+| IB-SHIP-006 | Hunch VPM | ETHOnline 2026 | not a finalist, no partner prize | `../retro/2026-09-13-ethonline-hunch-vpm.md` |
 
 ## Dead
 
