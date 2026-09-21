@@ -63,6 +63,23 @@ FIT:   yes / misfit accepted by user on <date>: "<their words>"
 - [ ] Finalist format (e.g. 4-minute demo + 3-minute Q&A, live or recorded)
 - [ ] Community-vote component? (e.g. top 3 by vote skip judging) Which round? Casper's vote applied to the qualification round only.
 
+## Who decides, and what the prize buys (SKILL.md Operating Rule 21)
+
+```
+DECISION-MAKER: <who picks the winners and what they do with them next, quoted>
+   e.g. "The top three teams will proceed through the CEIP fast-track process … directly to the
+   due diligence stage, allowing investment decisions to be made more quickly." → an investor
+   choosing a company to fund (BUIDL CTC 2026 Fall)
+THEIR FIRST QUESTION: <investor: who pays and what happens when it goes wrong / lender: what is
+   recovered on default / sponsor engineer: what can only our tech do>
+OUR ANSWER, SCREEN 1: "<one sentence, on the card and in the first 20 seconds of the video>"
+THIRD-PARTY HERO? <none / name it + its regulatory record in the markets our page names>
+PREVIOUS EDITION: <uname from `dorahacks-field.ts find <series>`; its winners, one line each>
+```
+
+- [ ] The panel's weights follow the decision-maker, not our category (`tactics/honest-assessment.md` §2 rule 5). Humanline's deadline-night panel weighted the investor persona 15% at an investment-prize event, and invented "credit-mission fit".
+- [ ] Previous edition pulled and read at G1 (`arsenal/field/`). BUIDL CTC's March 2026 edition was one `find` away: its winners were a savings-circle app, credit against provable mining payouts, and CDP/DEX rails on CTC. None was identity or infrastructure.
+
 ## Organiser guidance log (SKILL.md Operating Rule 19)
 
 Every message from organisers or sponsors that says what helps, verbatim, dated, the day it arrives. Each line becomes a checklist item.

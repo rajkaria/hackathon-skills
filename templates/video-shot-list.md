@@ -75,6 +75,8 @@ Everything that doesn't serve one of these three is cut.
 3. **Keep the disclosed failure** in the results card. Judges reward it.
 4. Upload as **unlisted/public** (never private), test the link from an incognito window, paste it into README + form + FACTS.md.
 5. **Upload before the form goes in**, never after it. Title it with the one-liner rather than "demo". The YouTube description carries the live URL, repo, contract hash and chapters, as Faktura's did.
+6. **Time the recording against the target before uploading.** Over 1.25× the target means re-cut, not upload. Humanline's script targeted 2:40 with a 3:00 ceiling; the recording ran 5:42, went up about 4 hours before the deadline, and had 4 YouTube views a week after results. The BUIDL CTC winners ran 3:17, 3:59 and 4:58, with 129, 32 and 78 views.
+7. **After results, read the view count.** An unlisted video's views are close to the number of people who opened it. A count near zero means the panel decided on the page, so the retro's first question is what the page said.
 
 ## 60-second cut (for pitch variants / social)
 

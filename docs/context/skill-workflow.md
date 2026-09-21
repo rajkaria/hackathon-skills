@@ -21,7 +21,13 @@ updated: 2026-09-16
 
 ## Current state
 
-- **v4 (Sprint 10, "Real Field, Real Users") is written on `main`, not yet committed** (2026-09-16). It follows Hunch on Casper not placing among 116 finalists (`retro/2026-09-16-casper-final-results.md`). It adds `arsenal/field/dorahacks-field.ts` (38 tests), Operating Rules 19–20, extended Rules 12 and 15, interventions I16–I19, and corrections to two older retros.
+- **v5 (Sprint 11, "Pitch to the Decider, Check the Page") is committed on branch `claude/humanline-hackathon-analysis-4c0c02` and installed** (2026-09-21). It follows Humanline not placing at BUIDL CTC 2026 Fall (`retro/2026-09-21-buidl-ctc-final-results.md`). It adds:
+  - `render-check`, `--decider`, `--redact-extra` and the `LEAK:` line to `arsenal/field/dorahacks-field.ts` (52 tests)
+  - Operating Rules 21–22; Rules 14 and 16 extended; I15 extended; I20–I21
+  - G14 now requires `render-check`
+  - the investment-committee pre-mortem
+  - the BUIDL CTC screen calibration: across six shuffles Claude screens ranked ours 1st or 2nd and the top two winners 5th to 7th; naming the decision-maker didn't help (0 of 9 top-3 slots went to real winners)
+- **v4 (Sprint 10, "Real Field, Real Users")** was written 2026-09-16 and installed but never committed. It was recovered byte for byte from the main checkout's working tree and committed as `e47a37d` on the same branch. The main checkout still shows those files as uncommitted until the branch is merged.
 - **v3 (Sprint 9, "Honest Assessment") is merged to `main` and pushed** (`d0ea0a1`, github.com/rajkaria/hackathon-skills) and installed to `~/.claude/skills/hackathon/` (113 files). It comes after Benchpress and Hunch VPM both failed to advance (`retro/2026-09-14-not-selected-postmortem.md`).
 - **Intervention Protocol I1–I15 is live in SKILL.md.** Raj asked (2026-09-14) to be interrupted whenever a move that cost a win is being repeated; the reply opens with a fixed `⚠ INTERVENTION` block, once per trigger per decision, overrules logged in `event-contract.md`.
 - **Installed** at `~/.claude/skills/hackathon/` via `install.sh`, which copies the full directory. The old Apr-5 single-file install is backed up in `~/.claude/skill-backups/`.
@@ -33,9 +39,9 @@ updated: 2026-09-16
   - `bun test` in `arsenal/web3` (20), `arsenal/ops` (27), `arsenal/submission-check` (39)
   - `bash arsenal/repo/test.sh` (15/15)
   - `bash arsenal/copy/test.sh` (28/28)
-  - `bun test` in `arsenal/field` (38)
+  - `bun test` in `arsenal/field` (52)
 - **Event outcomes:**
-  - Humanline was submitted on DoraHacks in the final hours; results 2026-09-20.
+  - Humanline: not placed at BUIDL CTC 2026 Fall (3 prizes among 237; Grand Farebox, 2nd Comacard, 3rd PRECEDENCE). Known 2026-09-20. Claude had said "#1 … top-3 around 60%".
   - Benchpress: not selected for the next round. Hunch VPM: not a finalist, no partner prize. Both known 2026-09-14; who advanced isn't known.
   - Hunch on Casper: not placed at the Casper Agentic Buildathon Final Round (10 of 116 placed, 1st Faktura). Known 2026-09-16. Post-hoc blind text screen: median rank 3 of 10, never above Faktura.
 - **Shell constraints here:**
@@ -46,6 +52,9 @@ updated: 2026-09-16
 
 | Path | Why |
 |---|---|
+| `retro/2026-09-21-buidl-ctc-final-results.md` | Results retro: where "#1" came from (self-written weights, rivals scored from repos, Grand Prize winner at #19), what the three winners shared, the broken DoraHacks page, the blind screen with and without the decision-maker |
+| `arsenal/field/dorahacks-field.ts` + fixtures | `render-check` (live page vs source markdown; exits 1 on FAIL), `--decider`, `--redact-extra`, the `LEAK:` line, stronger redaction, `patterns` rows for tables, images and broken pastes; 52 tests |
+| `SKILL.md`, `tactics/honest-assessment.md`, `templates/{event-contract,field-teardown,video-shot-list}.md`, `arsenal/judge-prompts/{pre-mortem-judge,screening-judge}.md` | Sprint 11 rules, interventions, decision-maker and sponsor-as-hero tests, investment-committee pre-mortem, screen calibration and leak rule |
 | `retro/2026-09-16-casper-final-results.md` | Results retro: where "Hunch was better" came from (deadline-day "likely top-3" from card screenshots), blind screen vs real finalists, pre-mortem, Hunch vs Faktura, what the 10 winners shared |
 | `arsenal/field/` | DoraHacks field puller: `find`, `pull`, `screen-pack --redact`, `score-screen`, `patterns`; fixtures from live responses; 38 tests. DoraHacks API: `/api/v1/hub/hackathons?search=`, `/api/v1/hub/hackathons/<id>/buidls`, `/api/v1/hub/hackathon-winner-assignments?hackathon=<uname>`, `__NUXT_DATA__` on `/buidl/<id>` and `/hackathon/<uname>/detail`. Needs a browser user-agent |
 | `SKILL.md`, `tactics/*`, `templates/*`, `arsenal/ops/README.md`, `arsenal/judge-prompts/screening-judge.md` | Sprint 10 rules, interventions, judge's first click, `main` freeze, organiser guidance log, screen calibration |

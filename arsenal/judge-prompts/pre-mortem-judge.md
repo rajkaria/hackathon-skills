@@ -34,8 +34,22 @@ Write the internal panel note explaining why it did not advance:
 Do not mention strengths except in item 5. Do not propose more than one change.
 ```
 
+## When the prize buys something: the investment-committee variant
+
+If the prize is investment, incubation, a grant or a pilot, the people choosing winners are choosing what to fund. Fill `{{Judging format}}` with the decision-maker line from `event-contract.md`, and add this before item 1:
+
+```
+The panel's job was to pick {{N}} teams for {{what the prize buys, quoted}}.
+Write the note as the partner who argued against this team in that room.
+Say what the business is (who pays whom, for what), what happens to the money
+when something goes wrong, and which dependency or regulator would stop the deal.
+```
+
+At BUIDL CTC 2026 Fall, where the top three went straight to CEIP investment due diligence, this variant's post-hoc note on Humanline opened: "This is a World ID bridge with a twenty-five-test-dollar loan on top. I read the whole page and I still can't tell you who the customer is." The three winners sold compute credits, a card and lien priority. Humanline's own deadline-night panel had scored its investor persona lowest (7.6) and weighted it 15%.
+
 ## Rules
 
+- **Feed it exactly what judges saw.** Summarise nothing by hand. The BUIDL CTC note called the live site's counters blank because the hero text handed to it had been typed without its numbers. Paste the extracted text instead (`get_page_text` or `first-screen.sh`).
 - **No rebuttal column.** Record the note verbatim in `<project>-internal/hackathon/judge-log.md`. The team may disagree in writing, but must say what it is doing instead.
 - **The change in item 4 is the next work item** unless the user overrules it in chat. Expansion sprints that don't address it are blocked (SKILL.md Operating Rule 16).
 - **Item 5 is the cut list.** Engineering volume (test counts, package releases, badge walls) almost always lands here.

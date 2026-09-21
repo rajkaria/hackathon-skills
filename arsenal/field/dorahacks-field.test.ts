@@ -9,7 +9,9 @@ import {
   type Field,
   HttpError,
   buildScreenPack,
+  checkRender,
   extractNuxtModel,
+  fetchBuidlPage,
   featuresOf,
   findHackathons,
   getHackathon,
@@ -21,9 +23,12 @@ import {
   parseJson,
   pullField,
   redactEntry,
+  normaliseHeading,
   renderCard,
+  renderCheckReport,
   renderFieldTable,
   renderPatterns,
+  renderStats,
   scoreScreen,
   seededRandom,
   shuffle,
@@ -403,6 +408,58 @@ describe("blind screen pack", () => {
     expect(shared.description).toContain("vercel.app docs");
     expect(shared.description).not.toMatch(/cascet/i);
   });
+
+  // BUIDL CTC 2026 Fall: a screener picked out ours from "Built by Raj Karia" (repo owner "rajkaria")
+  // and read Farebox's team from "Built by Svrnty" and a Gitea org path the redaction left alone.
+  test("redactEntry catches a handle written as a name, and the custom domain's own name", () => {
+    const e = redactEntry(
+      entry({
+        buidlId: 5,
+        name: "Humanline Credit",
+        githubUrl: "https://github.com/rajkaria/humanline",
+        demoUrl: "https://humanline.credit",
+        description: "**Built by Raj Karia** ([X @rajkaria_](https://x.com/rajkaria_)) · raj-karia · Raj.Karia · the rajkarian era",
+      }),
+      "H",
+    );
+    expect(e.description).not.toMatch(/raj\s?karia|raj-karia|raj\.karia|@rajkaria/i);
+    // Whole words only for the loose form, so a longer word survives it.
+    expect(e.description).toContain("era");
+
+    const f = redactEntry(
+      entry({
+        buidlId: 6,
+        name: "Farebox",
+        githubUrl: undefined,
+        demoUrl: "https://testnet-farebox.svrnty.io",
+        description: "[farebox-api](https://git.openharbor.io/gluwa/farebox-api) · Built by Svrnty for BUIDL CTC.",
+      }),
+      "D",
+    );
+    expect(f.description).not.toMatch(/gluwa|svrnty|farebox/i);
+    expect(f.description).toContain("<Entry D link>");
+  });
+
+  test("redactExtra scrubs names the entry itself doesn't reveal, in every entry", () => {
+    const field = syntheticField();
+    field.entries[3].description = "Team: Priya Shah and the Northwind crew.";
+    const { pack } = buildScreenPack(field, { oursId: 1003, seed: 4, redact: true, redactExtra: ["Priya Shah", "Northwind"] });
+    expect(pack).not.toMatch(/priya shah|northwind/i);
+  });
+
+  test("--decider adds the decision-maker question; without it the prompt is unchanged", () => {
+    const decider = "investment due diligence by Credit Labs (CEIP fast-track)";
+    const { pack } = buildScreenPack(syntheticField(), { oursId: 1000, seed: 1, decider });
+    expect(pack).toContain(`entries you advance go to: ${decider}`);
+    expect(pack).toContain("6. What would the decision-maker do with it next?");
+    expect(pack).toContain("7. Advance? yes/no, and one reason.");
+    const plain = buildScreenPack(syntheticField(), { oursId: 1000, seed: 1 }).pack;
+    expect(plain).not.toContain("decision-maker");
+    expect(plain).toContain("6. Advance? yes/no, and one reason.");
+    // Every pack asks for a leak report: the screener's own session can name one of the entries.
+    expect(plain).toContain("LEAK: none, or <letter");
+    expect(plain).toContain("Use nothing outside this pack");
+  });
 });
 
 describe("scoreScreen", () => {
@@ -557,5 +614,139 @@ describe("cli", () => {
     logs.length = 0;
     expect(await main(["score-screen", "--key", keyPath, "--ranking", oursLabel], { log })).toBe(0);
     expect(logs[0]).toContain(`ours: ${oursLabel} ranked 1 of 3; advanced: yes`);
+  });
+});
+
+// Humanline Credit at BUIDL CTC 2026 Fall: the live page (fixtures/buidl-48709.html) against the
+// markdown that was pasted (source-48709-at-submit.md) and the repo's final version, which gained a
+// section 30 minutes after the last DoraHacks edit (source-48709-final.md).
+describe("render check", () => {
+  const livePage = () => extractNuxtModel<{ name: string; description: string; updatedAt: string }>(fx("buidl-48709.html"), "BUIDL")!;
+
+  test("renderStats counts what a judge gets: tables, images, placeholders, code, headings, tx links", () => {
+    const s = renderStats(
+      [
+        "# Title",
+        "![shot](https://cdn.dorahacks.io/static/files/a.png)",
+        "| a | b |",
+        "|---|:--:|",
+        "| 1 | 2 |",
+        "```bash",
+        "# not a heading",
+        "| --- | --- |",
+        "```",
+        "## How it **works**:",
+        "[tx](https://sepolia.etherscan.io/tx/0x241077ad47fff6d347a3ea6f086cd2465cc2874e5986694373bf0df07409eafa)",
+        "<img src=\"docs/local.png\"> Show Image",
+      ].join("\n"),
+    );
+    expect(s.tables).toBe(1); // the separator inside the code fence doesn't count
+    expect(s.images).toBe(2);
+    expect(s.brokenImageUrls).toEqual(["docs/local.png"]);
+    expect(s.showImagePlaceholders).toBe(1);
+    expect(s.codeBlocks).toBe(1);
+    expect(s.headings).toEqual(["title", "how it works"]);
+    expect(s.explorerTxLinks).toBe(1);
+    expect(s.links).toBe(1);
+  });
+
+  test("GitHub blob image URLs are broken unless ?raw=true; raw.githubusercontent is fine", () => {
+    const s = renderStats(
+      "![a](https://github.com/o/r/blob/main/a.png) ![b](https://github.com/o/r/blob/main/b.png?raw=true) ![c](https://raw.githubusercontent.com/o/r/main/c.png)",
+    );
+    expect(s.images).toBe(3);
+    expect(s.brokenImageUrls).toEqual(["https://github.com/o/r/blob/main/a.png"]);
+  });
+
+  test("normaliseHeading strips markdown, links and trailing punctuation", () => {
+    expect(normaliseHeading("**What** personhood `does not` solve:")).toBe("what personhood does not solve");
+    expect(normaliseHeading("[Try it](https://x.io)  yourself!")).toBe("try it yourself");
+  });
+
+  test("the live Humanline page fails against what was pasted: tables, images, placeholders", () => {
+    const page = livePage();
+    expect(page.name).toBe("Humanline Credit");
+    const findings = checkRender(page.description, fx("source-48709-at-submit.md"));
+    const fails = findings.filter((f) => f.level === "FAIL").map((f) => f.message);
+    expect(fails.some((m) => m.includes('4 "Show Image"'))).toBe(true);
+    expect(fails.some((m) => m.startsWith("tables: 0 on the page, 7 in the source"))).toBe(true);
+    expect(fails.some((m) => m.startsWith("images: 0 on the page, 5 in the source"))).toBe(true);
+    // Every heading made it; the words survived, the structure didn't.
+    expect(findings.some((f) => f.level === "PASS" && f.message.startsWith("sections: all 17"))).toBe(true);
+    expect(findings.some((f) => f.level === "WARN" && f.message.startsWith("no explorer transaction link"))).toBe(true);
+  });
+
+  test("a section added to the source after the last paste is a FAIL (the page is stale)", () => {
+    const findings = checkRender(livePage().description, fx("source-48709-final.md"));
+    const stale = findings.find((f) => f.level === "FAIL" && f.message.includes("not on the page"));
+    expect(stale?.message).toContain('"what personhood does not solve"');
+  });
+
+  test("without a source, flattened tables still show up as glued code spans", () => {
+    const findings = checkRender(livePage().description);
+    expect(findings.some((f) => f.level === "WARN" && f.message.includes("glued code spans"))).toBe(true);
+  });
+
+  test("a clean page with rendered tables, CDN images and a tx link passes", () => {
+    const md = [
+      "# Product",
+      "![landing](https://cdn.dorahacks.io/static/files/x.jpg)",
+      "| Step | Transaction |",
+      "| --- | --- |",
+      "| Lock | [`0xa682…`](https://sepolia.etherscan.io/tx/0xa682921575b0d9a948e4cc7019544be3f371817a19ce7ae1a28fff8eca1f9c66) |",
+    ].join("\n");
+    const findings = checkRender(md, md);
+    expect(findings.filter((f) => f.level !== "PASS")).toEqual([]);
+    const { report, failed } = renderCheckReport({ buidlId: 1, name: "Product" }, findings);
+    expect(failed).toBe(false);
+    expect(report).toContain("verdict: PASS.");
+  });
+
+  test("the report lists FAILs first and says what to do", () => {
+    const { report, failed } = renderCheckReport({ buidlId: 48709, name: "Humanline Credit", updatedAt: "2026-09-14T08:27:17" }, checkRender(livePage().description, fx("source-48709-final.md")));
+    expect(failed).toBe(true);
+    const levels = report.split("\n").slice(1, -2).map((l) => l.slice(0, 4).trim());
+    expect(levels.indexOf("FAIL")).toBe(0);
+    expect(levels.lastIndexOf("FAIL")).toBeLessThan(levels.indexOf("WARN"));
+    expect(report).toContain("verdict: FAIL (4 FAIL, 2 WARN)");
+  });
+
+  test("fetchBuidlPage reads the live model, and refuses a page without one", async () => {
+    const page = await fetchBuidlPage(48709, async () => fx("buidl-48709.html"));
+    expect(page.updatedAt).toBe("2026-09-14T08:27:17");
+    expect(page.description.length).toBe(18814);
+    await expect(fetchBuidlPage(1, async () => "<html>gone</html>")).rejects.toThrow("no BUIDL model");
+  });
+
+  test("cli: render-check exits 1 on FAIL, 0 on PASS, 2 on bad input", async () => {
+    const logs: string[] = [];
+    const log = (s: string) => logs.push(s);
+    const fetchText = async (url: string) => {
+      if (url === `${BASE}/buidl/48709`) return fx("buidl-48709.html");
+      throw new HttpError(url, 404);
+    };
+    const src = join(FX, "source-48709-final.md");
+    expect(await main(["render-check", "48709", "--source", src], { fetchText, log })).toBe(1);
+    expect(logs.join("\n")).toContain('render-check: BUIDL 48709 "Humanline Credit"');
+
+    const dir = mkdtempSync(join(tmpdir(), "render-check-"));
+    const clean = "# P\n![s](https://cdn.dorahacks.io/a.png)\n| a | b |\n|---|---|\n| [tx](https://explorer.example/tx/0xa682921575b0d9a948e4cc7019544be3f371817a19ce7ae1a28fff8eca1f9c66) | 1 |\n";
+    const field = syntheticField(2);
+    field.entries[0].description = clean;
+    await Bun.write(join(dir, "field.json"), JSON.stringify(field));
+    await Bun.write(join(dir, "src.md"), clean);
+    expect(await main(["render-check", String(field.entries[0].buidlId), "--field", join(dir, "field.json"), "--source", join(dir, "src.md")], { log })).toBe(0);
+
+    expect(await main(["render-check", "abc"], { log })).toBe(2);
+    expect(await main(["render-check", "48709", "--source", join(dir, "missing.md")], { log })).toBe(2);
+  });
+
+  test("patterns reports tables, images and broken pastes", () => {
+    const field = syntheticField(6);
+    field.entries[0].description = "| a | b |\n|---|---|\n![x](https://cdn.dorahacks.io/x.png)";
+    field.entries[5].description = "Show Image\nno tables here";
+    const out = renderPatterns(field, { oursId: field.entries[5].buidlId });
+    expect(out).toContain("| Has a rendered table |");
+    expect(out).toMatch(/\| Has "Show Image" placeholders \(broken paste\) \| 0% \| 50% \| 1 \|/);
   });
 });

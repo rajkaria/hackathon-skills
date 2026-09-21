@@ -79,9 +79,20 @@ First real check, Casper Agentic Buildathon 2026 Final Round (116 entries, 10 pl
 
 So: an advance in the text screen is necessary, not sufficient. Also screen the video transcript's first 45 seconds and the live app's first click, and treat any "partly" fit or "unclear" user as the next work item even when the rank looks good.
 
+Second check, BUIDL CTC 2026 Fall (237 entries, 3 prizes, the top three sent to CEIP investment due diligence). Three redacted shuffles, each with ours (Humanline, not placed), all three winners, Tab and Kitty (our deadline-night #2 and #3), and four random entries, top 3 advanced. Full record: `retro/2026-09-21-buidl-ctc-final-results.md` §4.
+
+| What happened | Reading |
+|---|---|
+| Plain prompt: ours ranked 1, 1, 2 and advanced every time; it didn't place | The plain screen reproduced our own "#1". It shares the building session's taste for protocol depth and checkable evidence |
+| Plain prompt: 1 real winner in the top 3 in every shuffle (PRECEDENCE). The Grand Prize winner ranked 6, 6, 7 and 2nd place 7, 7, 5 | No better than chance (a random ranking averages 0.9). Screeners marked the Grand Prize winner "partly" on fit ("Attestcoin is a single gate") and missed that it was the most fundable business in the pack |
+| 2 of 3 screeners said they could guess ours: a surname left in our footer, plus the session's own working directory and history | Redaction now catches handles written as names. Nothing inside a pack can hide the session's own context, so ask for a `LEAK:` line and treat our rank as an upper bound |
+| Same packs with `--decider` ("the top three go straight to CEIP investment due diligence"): ours 1, 1, 1; Grand Prize winner 6, 5, 6; 2nd place 5, 7, 5; 3rd place 4, 4, 4; **0 real winners in any top 3** | Naming the decision-maker changed the answers, not the rank. The screeners wrote our missing business out ("no interest rate or fee is stated … The liquidity providers lose the principal") and called the Grand Prize winner "the clearest model in the pack", then advanced us and passed on it |
+
+So, at an event where the prize buys something, a Claude text screen is not evidence of placement, with or without `--decider`. Its taste (protocol depth, mission fit, checkable proof) is the building session's taste. Keep running it for the per-entry answers: every "partly", "unclear" and "none" about our entry is a work item, and `--decider` adds a business line worth reading. For position, use the investment-committee pre-mortem (`pre-mortem-judge.md`), which named the real reason in its first sentence, and one human outside the team reading the card as the decision-maker.
+
 ## Rules
 
-- **Blind, or it didn't happen.** If the subagent can tell which entry is ours from the prompt, re-run it.
+- **Blind, or it didn't happen.** If the subagent can tell which entry is ours from the prompt, re-run it. The prompt isn't the only channel. A subagent inherits its session's working directory name, branch and recent commits: at BUIDL CTC a worktree named `humanline-hackathon-analysis` gave ours away in every shuffle that reported a leak. Start screens from a session whose directory and git history don't name the project, tell the screener to ignore everything outside the pack, and require a final `LEAK: none` or `LEAK: <entry and why>` line.
 - **Run it 3 times with different shuffles.** Report the median rank and the spread. A spread wider than 3 places means the pitch is fragile.
 - **Never edit the other nine entries to be weaker.** When real entries are unavailable, the stand-ins are written by a separate subagent told to write the strongest entry it can for this brief.
 - **The result goes to the user unedited**, including "not advanced".

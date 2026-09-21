@@ -229,4 +229,50 @@ Sprint 9's rules would have blocked the "top-3" claim. They didn't cover the bri
 
 | Sprint | Theme | Shipped | Commit |
 |---|---|---|---|
-| 10 | Real Field, Real Users (Casper final results) | field puller + tests, SKILL.md v4 rules and interventions, 8 tactic/template updates, screen calibration, results retro, corrections | (this commit) |
+| 10 | Real Field, Real Users (Casper final results) | field puller + tests, SKILL.md v4 rules and interventions, 8 tactic/template updates, screen calibration, results retro, corrections | `e47a37d` (recovered 2026-09-21; it had been installed but never committed) |
+
+## Sprint 11: Pitch to the Decider, Check the Page (added 2026-09-21, after results)
+
+**Why an 11th sprint:** Humanline didn't place at BUIDL CTC 2026 Fall (237 entries, 3 prizes). Three hours before the deadline Claude had ranked it "#1 … top-3 around 60%". That ranking used weights Claude wrote, including "credit-mission fit", and scored rivals by test counts grepped from their GitHub clones. Farebox, whose code sat on a self-hosted Gitea, was scored "no repo", #19, and won the Grand Prize.
+
+The winners were three money products that answered an investor first. That mattered because the prize was CEIP investment due diligence. Humanline pitched a free identity primitive built on World ID. Its DoraHacks page had also lost all 7 tables and all 5 images in a rich-text paste, and nobody re-read it. See `retro/2026-09-21-buidl-ctc-final-results.md`.
+
+Sprint 10's rules covered the brief's emphasis and reading the field. They didn't cover who decides and what the prize buys, how rivals get scored, or whether the page judges read is the page we wrote.
+
+- **#52 `render-check`** (`arsenal/field/dorahacks-field.ts`, with a live Humanline fixture): compares the live BUIDL page with the source markdown. Flags lost tables and images, "Show Image" placeholders, sections added after the last paste, and missing explorer transaction links. Exits 1 on FAIL; it's a G14 requirement. `patterns` gains table, image and broken-paste rows.
+- **#53 Screen fixes:**
+  - `screen-pack --decider` puts the prize's decision-maker in the prompt
+  - `--redact-extra`, plus redaction of handles written as names ("rajkaria" → "Raj Karia"), a custom domain's own name, and links to any code host
+  - a `LEAK:` line in every pack
+  - Calibration: six post-hoc shuffles, three plain and three with `--decider`. Ours ranked 1–2, and the Grand Prize and 2nd-place winners 5th–7th every time. Real winners took 3 of 9 top-3 slots with the plain prompt and 0 of 9 with `--decider`. Every screener that reported a leak had recognised ours from the session's worktree name
+- **#54 SKILL.md v5:**
+  - Operating Rule 14 extended (score rivals from pages, weights from the brief)
+  - Operating Rules 21–22 (pitch to the decider; the page judges read is the submission)
+  - I15 extended; I20–I21 added
+  - G14 requires `render-check`
+  - Phase 1 previous-edition pull
+  - Rule 7 counter-evidence (tests neither separated nor sank anyone)
+  - Anti-patterns 27–30
+- **#55 Tactics, templates, prompts:**
+  - `honest-assessment.md` §2 rules 5–6, §3 items 7–8 (decision-maker test, sponsor-as-hero test), checklist lines
+  - `event-contract.md` "Who decides, and what the prize buys"
+  - `field-teardown.md` (rivals scored from pages, previous-edition table, moat caveat)
+  - `pre-mortem-judge.md` investment-committee variant; "feed it exactly what judges saw"
+  - `screening-judge.md` BUIDL CTC calibration
+  - `video-shot-list.md` (time the recording; read the view count after results)
+- **#56 Calibration and recovery:**
+  - `career/score-ledger.json` placement, post-hoc `screen_rank`, `calibration_log`
+  - The Sep 13 retro's scoring section filled
+  - Sprint 10 recovered from the main checkout's uncommitted working tree and committed as `e47a37d`
+
+**Definition of done:** at the next event:
+- (a) `event-contract.md` quotes the decision-maker, and the card's first screen answers their first question
+- (b) the one-liner's key verb belongs to the sponsor's technology
+- (c) no rank from a Claude panel or screen is quoted as a forecast; rivals are scored from their pages, and every "partly", "unclear" or "none" about our entry becomes a work item
+- (d) the investment-committee pre-mortem runs at G6 and G8 whenever the prize buys something, in a session whose directory and history don't name the project
+- (e) `render-check` passes on the live page after the last paste
+- (f) the page links at least one explorer transaction per step of the golden path
+
+| Sprint | Theme | Shipped | Commit |
+|---|---|---|---|
+| 11 | Pitch to the Decider, Check the Page (BUIDL CTC results) | render-check, `--decider`, `LEAK:` line and redaction fixes with tests, SKILL.md v5 rules and interventions, 6 tactic/template/prompt updates, six-shuffle calibration, results retro | (this commit) |

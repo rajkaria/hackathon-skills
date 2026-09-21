@@ -112,11 +112,11 @@
         "DeFi"
       ],
       "simulated_panel_score": {
-        "note": "field ranking only: Humanline 8.9 vs best rival 8.7 across 145 entries; persona panel not run",
-        "weighted_avg": 8.9
+        "note": "SELF-SCOREs by the building session. Sep 13 field ranking: Humanline 8.9 vs Tab 8.7 (weights written by Claude, including 20% \"credit-mission fit\"; rival tests grep-counted from GitHub clones). Sep 14 00:36 UTC persona panel: 8.7, \"#1 … top-3 around 60%, grand prize around 35%\"; investor persona 7.6 at 15% weight.",
+        "weighted_avg": 8.7
       },
-      "actual_placement": "submitted in final ~3h; pending (results 2026-09-20)",
-      "prize_usd": null,
+      "actual_placement": "Not placed. 3 prizes across 237 BUIDLs: Grand Farebox, 2nd Comacard, 3rd PRECEDENCE (announced 2026-09-20). Our Sep 13–14 tables had Farebox #19 (\"no repo\"), PRECEDENCE #3, Comacard #4.",
+      "prize_usd": 0,
       "sponsor_prizes": [],
       "grants_applied": [],
       "grants_awarded": [],
@@ -131,9 +131,75 @@
         "Draft submission at 50% of time; expansion gate",
         "One-message user-owned blocker list",
         "Claims checker (submission-check)",
-        "Voice lint from first draft"
+        "Voice lint from first draft",
+        "Pitch to whoever decides what the prize buys; the sponsor's tech is the hero (Operating Rule 21, I21, honest-assessment §3 items 7–8)",
+        "The page judges read is the submission: render-check after every paste (Operating Rule 22, I20, G14, arsenal/field render-check)",
+        "Score rivals from their pages with the brief's weights, never from repo metrics (honest-assessment §2 rules 5–6, I15)",
+        "A Claude screen's rank is a diagnostic, not a forecast; subagents inherit the session's project name (screening-judge calibration, LEAK line)"
       ],
-      "verified": true
+      "verified": true,
+      "results_retro": "../retro/2026-09-21-buidl-ctc-final-results.md",
+      "screen_rank": {
+        "post_hoc": true,
+        "evidence_level": 3,
+        "method": "Redacted text-only packs (dorahacks-field.ts screen-pack): ours + all 3 winners + Tab + Kitty + 4 random, top 3 advanced; 3 shuffles with the plain prompt, then the same 3 with --decider (CEIP investment due diligence)",
+        "contaminated": "Every screener that reported a leak identified ours (surname in the footer; the session's worktree name and commits). Our rank is an upper bound.",
+        "plain": {
+          "ranks": [
+            1,
+            1,
+            2
+          ],
+          "grand_prize_rank": [
+            6,
+            6,
+            7
+          ],
+          "second_prize_rank": [
+            7,
+            7,
+            5
+          ],
+          "third_prize_rank": [
+            3,
+            3,
+            1
+          ],
+          "real_winners_in_top3": [
+            1,
+            1,
+            1
+          ]
+        },
+        "decider": {
+          "ranks": [
+            1,
+            1,
+            1
+          ],
+          "grand_prize_rank": [
+            6,
+            5,
+            6
+          ],
+          "second_prize_rank": [
+            5,
+            7,
+            5
+          ],
+          "third_prize_rank": [
+            4,
+            4,
+            4
+          ],
+          "real_winners_in_top3": [
+            0,
+            0,
+            0
+          ]
+        },
+        "pre_mortem_top_reason": "We're sending three teams into investment due diligence. This is a World ID bridge with a twenty-five-test-dollar loan on top. I read the whole page and I still can't tell you who the customer is."
+      }
     },
     {
       "id": "2026-09-multi-app-agent",
@@ -198,6 +264,13 @@
       "blind_screen": "median rank 3 of 10, advanced 3 of 3 (post-hoc, text only); first place ranked #1 in 3 of 3; real winners filled 6 of 9 top-3 slots",
       "actual": "not placed (10 of 116 placed)",
       "reading": "A top-3 text screen is necessary, not sufficient: the jury also weighed the video, the live app and real-world fit. The screener's per-entry answers ('partly' fit, no outside user) matched the pre-mortem."
+    },
+    {
+      "event": "2026-09-buidl-ctc-fall",
+      "forecast_before_results": "Claude, 2026-09-14 00:36 UTC: \"#1 … top-3 around 60%, grand prize around 35%\" (self-written weights, repo metrics; evidence level 0)",
+      "blind_screen": "post-hoc, text only, leak-contaminated for ours: plain prompt ranked ours 1, 1, 2; with --decider 1, 1, 1. Grand Prize winner 5th–7th in every shuffle; real winners in the top 3: 1, 1, 1, 0, 0, 0 (a random ranking averages 0.9)",
+      "actual": "not placed (3 of 237 placed)",
+      "reading": "At an investment-prize event the Claude screen reproduced Claude's own taste (protocol depth, mission fit, checkable proof) and missed the jury's (fundable businesses). Naming the decision-maker changed the per-entry answers, which named our missing business, but not the rank. The investment-committee pre-mortem found the reason."
     }
   ]
 }

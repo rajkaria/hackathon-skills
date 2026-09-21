@@ -9,7 +9,7 @@
 ---
 
 ## 1. Results
-- **Placement:** pending (winners announced 09-20)
+- **Placement:** not placed. Only three prizes overall across 237 BUIDLs: Grand Prize Farebox (prepaid compute credits), 2nd Comacard (a card whose limit is earned against locked collateral), 3rd PRECEDENCE (lien priority by proven source-block position). Full results retro: [`2026-09-21-buidl-ctc-final-results.md`](2026-09-21-buidl-ctc-final-results.md).
 - **Submitted on DoraHacks** (confirmed by Raj 2026-09-14 ~06:10 IST, before the 09:29 IST close). The last transcript (09-13 23:04 UTC) still showed it unsubmitted, so it went in during the final ~3h.
 - **State at end of transcripts (09-13 23:04 UTC):**
   - not yet submitted on DoraHacks (since resolved, see above)
@@ -56,8 +56,8 @@ The Aave repay proof couldn't happen before the deadline, because the product's 
 | User-owned blockers collected | Hour 0, one message | Dribbled out over 40h |
 | Judge panel | MVP + T-24h | Replaced by ad hoc field ranking |
 
-## 3. Scoring retro (fill at results)
-Field review scored Humanline 8.9 vs the nearest rival (Tab) at 8.7. Compare to actual.
+## 3. Scoring retro (filled 2026-09-21)
+Field review (Sep 13, 145 entries) scored Humanline 8.9 vs the nearest rival (Tab) at 8.7. The deadline-night panel (Sep 14, 199 entries) put Humanline #1 at 8.7, "top-3 around 60%, grand prize around 35%". Actual: not placed. Of the three winners, our table had PRECEDENCE #3 (8.4), Comacard #4 on the second count (8.3), and Farebox #19 (7.0, "no repo": its code was on a self-hosted Gitea). Tab and Kitty, ranked 2nd and 3rd, didn't place either. Why the ranking was wrong, and what the winners did: [`2026-09-21-buidl-ctc-final-results.md`](2026-09-21-buidl-ctc-final-results.md) §1–§4.
 
 ## 4. Strategic retro
 - **Mainnet feasibility** (can we get the gas token before the deadline?) should have been answered during research, not mid-build.

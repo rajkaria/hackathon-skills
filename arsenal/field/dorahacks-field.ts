@@ -7,8 +7,14 @@
  *        [--no-descriptions] [--concurrency 3] [--limit N]
  *   bun dorahacks-field.ts screen-pack --field <dir>/field.json --ours <buidlId>
  *        [--size 10] [--seed 1] [--top-k 2] [--winners N] [--include id,id] [--max-chars N] [--redact] [--out <dir>]
+ *        [--redact-extra "Name,handle"] [--decider "who decides and what the prize buys"]
  *   bun dorahacks-field.ts score-screen --key <screen-key.json> --ranking "C,A,J,..." [--top-k 2]
  *   bun dorahacks-field.ts patterns --field <dir>/field.json [--ours <buidlId>] [--keywords "DeFi,RWA,x402"]
+ *   bun dorahacks-field.ts render-check <buidlId> [--source <file.md>] [--field <dir>/field.json]
+ *
+ * `render-check` reads the page judges get (the stored description) and compares it with the
+ * markdown you meant to paste: lost tables and images, "Show Image" placeholders, sections added to
+ * the source after the last paste, no explorer tx link. Exits 1 on any FAIL, so it can gate G14.
  *
  * `screen-pack` writes a blind pack (brief + rubric + 10 labelled entries + the screening prompt)
  * and a SEPARATE key file. Give the pack, never the key, to a fresh subagent
@@ -541,12 +547,25 @@ export interface ScreenPackOptions {
    * screener runs inside a session that knows our project name (any subagent spawned from our repo).
    */
   redact?: boolean;
+  /**
+   * Extra identifying strings to scrub from every entry (your own name, handle, company). Owner names
+   * often appear in footers ("Built by …") in a form the repo owner doesn't match.
+   */
+  redactExtra?: string[];
+  /**
+   * Who decides and what the prize buys, quoted from the brief (e.g. "the top three go straight to
+   * investment due diligence by Credit Labs"). Adds a decision-maker question to the prompt, so each
+   * screener writes out the business and its hole. It doesn't fix the rank: at BUIDL CTC 2026 Fall the
+   * same packs put no real winner in any top 3 with it (Grand Prize winner 5th to 6th).
+   */
+  decider?: string;
 }
 
 /** Strip what identifies a team: its name, repo owner and repo name, and its URLs. Content stays. */
-export function redactEntry(e: Entry, label: string): Entry {
+export function redactEntry(e: Entry, label: string, extra: string[] = []): Entry {
   const tag = `Entry ${label}`;
   const tokens = new Set<string>();
+  for (const x of extra) if (x.trim().length >= 3) tokens.add(x.trim());
   const name = e.name.trim();
   if (name) tokens.add(name);
   const head = name.split(/\s+[-—|:]\s+|\s*[—|]\s*/)[0]?.trim();
@@ -581,6 +600,9 @@ export function redactEntry(e: Entry, label: string): Entry {
     const labels = h.split(".");
     const parent = labels.slice(-2).join(".");
     if (labels.length >= 3 && !SHARED_HOSTING.test(h)) siteNames.add(parent);
+    // A custom domain's own name is usually the team or company ("Built by Svrnty" beside svrnty.io).
+    const own = labels.length >= 2 ? labels[labels.length - 2] : "";
+    if (!SHARED_HOSTING.test(h) && own.length >= 4) tokens.add(own);
   }
   const escRe = (t: string) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   // Ecosystem and boilerplate words would wipe out content, not identity.
@@ -596,7 +618,8 @@ export function redactEntry(e: Entry, label: string): Entry {
         const own =
           hosts.has(host) ||
           [...hosts].some((h) => host.endsWith(`.${h}`)) ||
-          (host.endsWith("github.com") && byLength.some((t) => u.pathname.toLowerCase().includes(t.toLowerCase())));
+          // Any code host, not only GitHub: Farebox's six repos sat on a self-hosted Gitea.
+          byLength.some((t) => t.length >= 4 && u.pathname.toLowerCase().includes(t.toLowerCase()));
         return own ? `<${tag} link>` : url;
       } catch {
         return url;
@@ -605,6 +628,12 @@ export function redactEntry(e: Entry, label: string): Entry {
     // Bare hostnames ("app.example.xyz", no scheme) and their own parent domain.
     for (const h of [...siteNames].sort((a, b) => b.length - a.length)) out = out.replace(new RegExp(escRe(h), "gi"), `<${tag} site>`);
     out = out.replace(/[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g, "<email>");
+    // First, a handle written as a name (before "Raj" alone can split it): "rajkaria" also matches "Raj Karia", "raj-karia", "Raj.Karia".
+    for (const t of byLength) {
+      if (t.length < 6 || !/^[A-Za-z0-9]+$/.test(t)) continue;
+      const loose = t.split("").map(escRe).join("[\\s._-]?");
+      out = out.replace(new RegExp(`\\b${loose}\\b`, "gi"), tag);
+    }
     // Short tokens ("Raj", "Quid") only as whole words, so "trajectory" survives.
     for (const t of byLength) {
       const re = t.length < 5 ? new RegExp(`\\b${escRe(t)}\\b`, "gi") : new RegExp(escRe(t), "gi");
@@ -667,14 +696,15 @@ export function buildScreenPack(field: Field, opts: ScreenPackOptions): { pack: 
   const sections = ordered.map((e, i) => {
     const label = letters[i];
     key.labels[label] = { buidlId: e.buidlId, name: e.name, ours: e.buidlId === opts.oursId, prizes: e.prizes };
-    const shown = opts.redact ? redactEntry(e, label) : e;
+    const shown = opts.redact ? redactEntry(e, label, opts.redactExtra) : e;
     return `# Entry ${label}\n\n${renderCard(shown, { maxChars: opts.maxChars })}`;
   });
 
   const pack = [
     `# Blind screen pack: ${field.hackathon.title} (shuffle seed ${seed})`,
     "",
-    SCREEN_PROMPT.replaceAll("{{event}}", field.hackathon.title)
+    screenPrompt(opts.decider)
+      .replaceAll("{{event}}", field.hackathon.title)
       .replaceAll("{{N}}", String(size))
       .replaceAll("{{top_k}}", String(topK)),
     opts.redact ? "\nTeam names, repo names and site URLs are replaced with the entry label. Judge the content.\n" : "",
@@ -705,7 +735,23 @@ For EACH entry, in the order given, before reading the next one:
 Then output, exactly:
 RANKING: <letters best to worst, comma-separated>
 ADVANCE: <the {{top_k}} letters you advance>
-Do not soften. You do not know which team asked for this review and you do not care.`;
+LEAK: none, or <letter and what let you guess which team asked for this review>
+Do not soften. You do not know which team asked for this review and you do not care.
+Use nothing outside this pack: your working directory, git history or notes may
+name one of the entries.`;
+
+/** The screen prompt, with a decision-maker question when the prize has one (--decider). */
+export function screenPrompt(decider?: string): string {
+  if (!decider?.trim()) return SCREEN_PROMPT;
+  return SCREEN_PROMPT.replace(
+    "  6. Advance? yes/no, and one reason.",
+    [
+      "  6. What would the decision-maker do with it next? Name the business: who pays whom,",
+      '     for what, and what happens to the money when something goes wrong. Or write "none".',
+      "  7. Advance? yes/no, and one reason.",
+    ].join("\n"),
+  ).replace("For EACH entry,", `The {{top_k}} entries you advance go to: ${decider.trim()}\nJudge as that reader.\n\nFor EACH entry,`);
+}
 
 export function briefFromHackathon(h: HackathonDetail): string {
   const tracks = h.tracks
@@ -773,6 +819,9 @@ export interface EntryFeatures {
   daysBeforeDeadline: number | null;
   submittedDaysBeforeDeadline: number | null;
   upvotes: number;
+  tables: number;
+  images: number;
+  showImagePlaceholders: number;
 }
 
 const TX_LINK = /https?:\/\/[^\s)\]"'>]*\/(?:tx|txs|transaction|transactions|deploy|deploys|extrinsic)\/(?:0x)?[0-9a-fA-F]{20,}/g;
@@ -783,6 +832,7 @@ export function featuresOf(e: Entry, deadline: number, keywords: string[] = []):
   const txLinks = new Set(text.match(TX_LINK) ?? []);
   const lower = text.toLowerCase();
   const created = e.createdAt ? Date.parse(`${e.createdAt}Z`.replace(/ZZ$/, "Z")) : NaN;
+  const rendered = renderStats(e.description ?? "");
   return {
     buidlId: e.buidlId,
     name: e.name,
@@ -799,6 +849,9 @@ export function featuresOf(e: Entry, deadline: number, keywords: string[] = []):
     daysBeforeDeadline: Number.isFinite(created) ? Math.round((deadline * 1000 - created) / 86_400_000) : null,
     submittedDaysBeforeDeadline: e.submitTime ? Math.round(((deadline - e.submitTime) / 86_400) * 10) / 10 : null,
     upvotes: e.upvotes ?? 0,
+    tables: rendered.tables,
+    images: rendered.images,
+    showImagePlaceholders: rendered.showImagePlaceholders,
   };
 }
 
@@ -824,6 +877,9 @@ export function renderPatterns(field: Field, opts: { oursId?: number; keywords?:
   const rows: [string, (fs: EntryFeatures[]) => string, (f: EntryFeatures) => string][] = [
     ["Description length (chars, median)", num((f) => f.descChars), (f) => String(f.descChars)],
     ["Explorer tx links in description (median)", num((f) => f.explorerTxLinks), (f) => String(f.explorerTxLinks)],
+    ["Has a rendered table", share((f) => f.tables > 0), (f) => String(f.tables)],
+    ["Has an image", share((f) => f.images > 0), (f) => String(f.images)],
+    ["Has \"Show Image\" placeholders (broken paste)", share((f) => f.showImagePlaceholders > 0), (f) => String(f.showImagePlaceholders)],
     ["Has video link", share((f) => f.hasVideo), (f) => yn(f.hasVideo)],
     ["Has live URL", share((f) => f.hasLive), (f) => yn(f.hasLive)],
     ["Mentions mainnet", share((f) => f.mentionsMainnet), (f) => yn(f.mentionsMainnet)],
@@ -858,6 +914,166 @@ export function renderPatterns(field: Field, opts: { oursId?: number; keywords?:
 const fmt = (v: number | null) => (v === null ? "–" : Number.isInteger(v) ? String(v) : v.toFixed(1));
 const yn = (b: boolean) => (b ? "yes" : "no");
 
+// ============================================================================ render check (the page judges read)
+
+/**
+ * What a judge actually gets from a stored description. DoraHacks stores the Details field as
+ * markdown. Pasting a *rendered* page (GitHub, a markdown preview) into its editor keeps the words
+ * and drops the structure: at BUIDL CTC 2026 Fall, Humanline's 9 tables became run-on paragraphs
+ * and its 5 screenshots became 4 "Show Image" placeholders, while every winner's tables rendered.
+ */
+export interface RenderStats {
+  chars: number;
+  /** Markdown tables (one separator row each) plus <table> tags. */
+  tables: number;
+  images: number;
+  /** Image URLs a DoraHacks page can't load: relative paths and GitHub `blob/` pages. */
+  brokenImageUrls: string[];
+  /** Placeholders a rich-text paste leaves where an image was. */
+  showImagePlaceholders: number;
+  codeBlocks: number;
+  /** Normalised heading text, outside code blocks. */
+  headings: string[];
+  links: number;
+  explorerTxLinks: number;
+  /** Code spans glued to each other or to a link, outside code blocks: cells of a flattened table. */
+  gluedCells: number;
+}
+
+// GFM needs one hyphen per delimiter cell, not three.
+const TABLE_SEPARATOR = /^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)+\|?\s*$/;
+
+export function normaliseHeading(text: string): string {
+  return text
+    .replace(/[*_`~]/g, "")
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/[.:!?]+$/, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+export function renderStats(md: string): RenderStats {
+  const lines = md.replace(/\r\n/g, "\n").split("\n");
+  const prose: string[] = [];
+  let fences = 0;
+  let inFence = false;
+  let tables = 0;
+  const headings: string[] = [];
+  for (const line of lines) {
+    if (/^\s*(```|~~~)/.test(line)) {
+      fences++;
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+    prose.push(line);
+    if (TABLE_SEPARATOR.test(line)) tables++;
+    const h = line.match(/^\s{0,3}#{1,6}\s+(.+?)\s*#*\s*$/);
+    if (h) headings.push(normaliseHeading(h[1]));
+  }
+  const text = prose.join("\n");
+  const imageUrls = [
+    ...[...text.matchAll(/!\[[^\]]*\]\(\s*<?([^)\s>]+)>?[^)]*\)/g)].map((m) => m[1]),
+    ...[...text.matchAll(/<img\b[^>]*\bsrc\s*=\s*["']([^"']+)["']/gi)].map((m) => m[1]),
+  ];
+  const brokenImageUrls = imageUrls.filter(
+    (u) => !/^(https?:)?\/\//i.test(u) || (/github\.com\/[^/]+\/[^/]+\/blob\//i.test(u) && !/[?&]raw=true/i.test(u)),
+  );
+  return {
+    chars: md.length,
+    tables: tables + (text.match(/<table\b/gi) ?? []).length,
+    images: imageUrls.length,
+    brokenImageUrls,
+    showImagePlaceholders: (text.match(/\bShow Image\b/g) ?? []).length,
+    codeBlocks: Math.floor(fences / 2) + (text.match(/<pre\b/gi) ?? []).length,
+    headings,
+    links: (text.match(/(?<!!)\[[^\]]*\]\(\s*<?https?:\/\/[^)\s]+/g) ?? []).length,
+    explorerTxLinks: new Set(md.match(TX_LINK) ?? []).size,
+    // "`a``b`" or "`a`[link" with no space between: what a flattened table row looks like.
+    gluedCells: (text.match(/[^`\s]``[^`\s]|`\[/g) ?? []).length,
+  };
+}
+
+export type CheckLevel = "PASS" | "WARN" | "FAIL";
+export interface RenderFinding {
+  level: CheckLevel;
+  message: string;
+}
+
+/**
+ * Compare the stored page with what it should be. Without a source file, only defects visible in
+ * the page itself are reported. With `source` (the markdown you meant to paste), anything the paste
+ * lost or anything added to the source after the last paste is a FAIL.
+ */
+export function checkRender(page: string, source?: string): RenderFinding[] {
+  const p = renderStats(page);
+  const out: RenderFinding[] = [];
+  const add = (level: CheckLevel, message: string) => out.push({ level, message });
+
+  if (p.showImagePlaceholders) {
+    add("FAIL", `${p.showImagePlaceholders} "Show Image" placeholder(s) where images should be: the description was pasted as rich text. Paste the raw markdown and upload images in the DoraHacks editor (they land on cdn.dorahacks.io).`);
+  }
+  if (p.brokenImageUrls.length) {
+    add("FAIL", `${p.brokenImageUrls.length} image URL(s) a judge's browser can't load: ${p.brokenImageUrls.slice(0, 3).join(", ")}`);
+  }
+
+  if (source !== undefined) {
+    const s = renderStats(source);
+    if (s.tables > p.tables) add("FAIL", `tables: ${p.tables} on the page, ${s.tables} in the source. The missing ones render as run-on paragraphs.`);
+    else if (s.tables) add("PASS", `tables: ${p.tables} of ${s.tables}`);
+    if (s.images > p.images) add("FAIL", `images: ${p.images} on the page, ${s.images} in the source`);
+    else if (s.images) add("PASS", `images: ${p.images} of ${s.images}`);
+    if (s.codeBlocks > p.codeBlocks) add("WARN", `code blocks: ${p.codeBlocks} on the page, ${s.codeBlocks} in the source`);
+    const onPage = new Set(p.headings);
+    const missing = s.headings.filter((h) => !onPage.has(h));
+    if (missing.length) {
+      add("FAIL", `${missing.length} section(s) in the source but not on the page (stale paste or truncation): ${missing.slice(0, 5).map((h) => `"${h}"`).join(", ")}${missing.length > 5 ? ", …" : ""}`);
+    } else if (s.headings.length) {
+      add("PASS", `sections: all ${s.headings.length} source headings are on the page`);
+    }
+    if (s.links && p.links < s.links * 0.8) add("WARN", `links: ${p.links} on the page, ${s.links} in the source`);
+    if (s.chars && p.chars < s.chars * 0.85) add("WARN", `the page is ${Math.round(100 - (100 * p.chars) / s.chars)}% shorter than the source`);
+  } else if (!p.tables && p.gluedCells >= 3) {
+    add("WARN", `no tables, but ${p.gluedCells} glued code spans: probably tables flattened by a rich-text paste. Re-run with --source <file.md> to be sure.`);
+  }
+
+  if (!p.explorerTxLinks) {
+    add("WARN", "no explorer transaction link. Every BUIDL CTC 2026 Fall winner linked at least one (median 2, vs 0 for the rest of the field); placed Casper finalists had a median of 3.5. Link one full cycle, one transaction per step.");
+  } else {
+    add("PASS", `explorer transaction links: ${p.explorerTxLinks}`);
+  }
+  if (!p.images && !p.showImagePlaceholders) add("WARN", "no images. 2 of 3 BUIDL CTC 2026 Fall winners showed 6 to 8 screenshots of the live product.");
+  return out;
+}
+
+export function renderCheckReport(
+  target: { buidlId: number; name?: string; updatedAt?: string },
+  findings: RenderFinding[],
+): { report: string; failed: boolean } {
+  const fails = findings.filter((f) => f.level === "FAIL").length;
+  const warns = findings.filter((f) => f.level === "WARN").length;
+  const order: Record<CheckLevel, number> = { FAIL: 0, WARN: 1, PASS: 2 };
+  const lines = [
+    `render-check: BUIDL ${target.buidlId}${target.name ? ` "${target.name}"` : ""} (${BASE}/buidl/${target.buidlId})${target.updatedAt ? `, last edited ${target.updatedAt} (DoraHacks time, UTC+8)` : ""}`,
+    ...[...findings].sort((a, b) => order[a.level] - order[b.level]).map((f) => `${f.level.padEnd(4)}  ${f.message}`),
+    fails
+      ? `verdict: FAIL (${fails} FAIL, ${warns} WARN). Fix the source, re-paste it as raw markdown, and run again.`
+      : `verdict: ${warns ? `PASS with ${warns} WARN` : "PASS"}. Open the page in an incognito window once anyway.`,
+  ];
+  return { report: `${lines.join("\n")}\n`, failed: fails > 0 };
+}
+
+export async function fetchBuidlPage(
+  buidlId: number,
+  fetchText: FetchText,
+): Promise<{ name?: string; description: string; updatedAt?: string }> {
+  const url = `${BASE}/buidl/${buidlId}`;
+  const model = extractNuxtModel<RawBuidlModel & { name?: string }>(await fetchText(url), "BUIDL");
+  if (!model) throw new Error(`${url}: no BUIDL model in the page (private, deleted, or DoraHacks changed shape)`);
+  return { name: model.name, description: model.description ?? "", updatedAt: model.updatedAt };
+}
+
 // ============================================================================ cli
 
 export function parseArgs(argv: string[]): { cmd: string; positional: string[]; flags: Record<string, string | true> } {
@@ -882,8 +1098,11 @@ const USAGE = `dorahacks-field: pull a DoraHacks field and build blind screen pa
   pull <uname> --out <dir> [--no-descriptions] [--concurrency 3] [--limit N]
   screen-pack --field <field.json> --ours <buidlId> [--size 10] [--seed 1] [--top-k 2]
               [--winners N] [--include id,id] [--max-chars N] [--brief <file>] [--redact] [--out <dir>]
+              [--redact-extra "Your Name,handle"] [--decider "who decides and what the prize buys"]
   score-screen --key <screen-key.json> --ranking "C,A,J,..." [--top-k N]
-  patterns --field <field.json> [--ours <buidlId>] [--keywords "DeFi,RWA"]`;
+  patterns --field <field.json> [--ours <buidlId>] [--keywords "DeFi,RWA"]
+  render-check <buidlId> [--source <file.md>] [--field <field.json>]
+              the page judges read vs the markdown you meant to paste; exits 1 on FAIL`;
 
 function str(flags: Record<string, string | true>, k: string): string | undefined {
   const v = flags[k];
@@ -960,6 +1179,8 @@ export async function main(argv: string[], deps: { fetchText?: FetchText; log?: 
           maxChars: int(flags, "max-chars"),
           brief: briefPath ? readFileSync(briefPath, "utf8") : undefined,
           redact: !!flags.redact,
+          redactExtra: str(flags, "redact-extra")?.split(",").map((x) => x.trim()).filter(Boolean),
+          decider: str(flags, "decider"),
         });
         const dir = resolve(str(flags, "out") ?? ".");
         const packPath = join(dir, `screen-pack-s${key.seed}.md`);
@@ -986,6 +1207,25 @@ export async function main(argv: string[], deps: { fetchText?: FetchText; log?: 
         const keywords = str(flags, "keywords")?.split(",").map((s) => s.trim()).filter(Boolean);
         log(renderPatterns(field, { oursId: int(flags, "ours"), keywords }));
         return 0;
+      }
+      case "render-check": {
+        const buidlId = Number(positional[0]);
+        if (!Number.isInteger(buidlId) || buidlId <= 0) throw new UsageError("render-check <buidlId> [--source <file.md>] [--field <field.json>]");
+        const sourcePath = str(flags, "source");
+        if (sourcePath && !existsSync(sourcePath)) throw new UsageError(`no such file: ${sourcePath}`);
+        let page: { name?: string; description: string; updatedAt?: string };
+        const fieldPath = str(flags, "field");
+        if (fieldPath) {
+          const e = loadField(fieldPath).entries.find((x) => x.buidlId === buidlId);
+          if (!e) throw new UsageError(`BUIDL ${buidlId} is not in ${fieldPath}`);
+          page = { name: e.name, description: e.description ?? "", updatedAt: e.updatedAt };
+        } else {
+          page = await fetchBuidlPage(buidlId, fetchText);
+        }
+        const findings = checkRender(page.description, sourcePath ? readFileSync(sourcePath, "utf8") : undefined);
+        const { report, failed } = renderCheckReport({ buidlId, name: page.name, updatedAt: page.updatedAt }, findings);
+        log(report.trimEnd());
+        return failed ? 1 : 0;
       }
       default:
         log(USAGE);
