@@ -3,7 +3,9 @@
 > Build this **once** during research from real data (platform API / scrape of every entry, cloned rival repos). Refresh **once** at G8 (T-24h), and run the **opener-collision check** before the final submission. Store it in `<project>-internal/hackathon/field-teardown.md`, never in the public repo.
 >
 > From Humanline: pulling all 87 DoraHacks entries and grepping rival repos proved the moat ("no rival uses World ID / 0x0FD4") and killed the first idea before any code was written. The same session then redid the teardown from scratch twice (107, 145 entries).
-> From Hunch on Casper: the card scan ran *after* submitting and found no AI tag at an Agentic buildathon and an opener shared with about 5 rivals.
+> From Hunch on Casper: the card scan ran *after* submitting and found no AI tag at an Agentic buildathon and an opener shared with about 5 rivals. At the final round, a deadline-day read of five card screenshots called three clusters "the 80% trap" and ranked Hunch "likely top-3". Those clusters took all 10 prizes, and Hunch didn't place.
+>
+> On DoraHacks, pull the field with `arsenal/field/dorahacks-field.ts` (`find`, then `pull <uname> --out hackathon/field`): every card, full description, link and prize in about 25 seconds, plus blind screen packs from real entries.
 
 ---
 
@@ -13,16 +15,18 @@
 
 | Snapshot | UTC | Entries | Method | Delta since last |
 |---|---|---|---|---|
-| S1 (research) | | | API/scrape + repo clones | – |
+| S1 (research) | | | `dorahacks-field.ts pull` / scrape + repo clones | – |
 | S2 (G8 refresh) | | | new entries only | +N entries, new threats: |
 
 Raw data: `hackathon/_field-<date>.json`. Refresh only new entries, and append to the file rather than regenerating it.
 
 ## Clusters (what the field is building)
 
-| Cluster | # entries | Typical pitch | Strongest entry | Our distance from it |
-|---|---|---|---|---|
-| e.g. "accountable oracle" | 5 | | | |
+A cluster inside the brief's named directions is what the sponsor asked for. Read the strongest three entries in each one before writing anything about it. Never call a cluster a trap from its cards.
+
+| Cluster | # entries | Inside the brief's emphasis? | Strongest 3 (read in full) | What they prove, and how a judge checks it | Our distance from them |
+|---|---|---|---|---|---|
+| e.g. "x402 payment rails" | 20 | yes: "x402 Micropayments" | | | |
 
 ## Top rivals
 

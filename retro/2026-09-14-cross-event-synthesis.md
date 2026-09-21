@@ -1,6 +1,6 @@
 # Cross-Event Synthesis: Four Hackathons, July to September 2026
 
-**Written:** 2026-09-14
+**Written:** 2026-09-14. **Update 2026-09-16:** Hunch on Casper didn't place among 116 finalists; see [`2026-09-16-casper-final-results.md`](2026-09-16-casper-final-results.md).
 **Events covered:**
 
 | Event | Project | Platform | Window | Retro |
@@ -40,7 +40,7 @@ What is consistent across all four events:
 
 1. **The build is superb.** *(Correction, same day, after results: Benchpress and Hunch VPM then didn't advance. The builds were large. What was built, how it was framed and whether its claims matched reality were the weak phase, and no time gate checks those. See [`2026-09-14-not-selected-postmortem.md`](2026-09-14-not-selected-postmortem.md).)* An MVP was live on-chain within 3.5 hours (Humanline). Benchpress shipped 1,038 tests and 7 PyPI releases in one day. Hunch VPM shipped 5 verified contracts, 2 subgraphs and 1,378 tests. The build is never the weak phase.
 2. **Everything judges see is compressed into the last hours, or never done.**
-   - Video: never recorded (Casper), not recorded at the end of the transcripts (Humanline), written at T-4h (VPM), linked at T-19m (Benchpress).
+   - Video: recorded unscripted at T-23h, after the form was submitted (Casper; this line first said "never recorded", corrected 2026-09-16), not recorded at the end of the transcripts (Humanline), written at T-4h (VPM), linked at T-19m (Benchpress).
    - Judge panel: run at T-90m (Benchpress), never (VPM), replaced by field ranking (Humanline), run *after* submitting (Casper).
 3. **"Time is not a constraint" appears in 3 of 4 events.** Each time it unlocked more expansion sprints and pushed the deliverables judges actually see further back. Humanline worked from a deadline it believed had been extended (it had been extended once already and wasn't extended again) and spent it on 10 sprints of features.
 4. **The work is spread across parallel Claude sessions.** Each event had 9 to 30 worktrees. The skill's model of "subagents inside one session" doesn't describe this.

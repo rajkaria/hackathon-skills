@@ -21,6 +21,7 @@ Reusable, battle-tested building blocks pulled into hour 0 of every hackathon. E
 | [`submission-check/`](submission-check/) | From first README → CI: every clickable claim resolves (URLs, contracts, txs, packages), numbers agree across docs, no placeholders | 2-3 hrs of link-checking, plus overclaim risk |
 | [`deploy/`](deploy/) | Before spending gas: EVM Foundry preflight + chain/deploy **traps catalog** | Hours per rediscovered trap |
 | [`ops/`](ops/) | Day 1 → results: liveness health (outcomes within windows) + judging-window runbook | Prevents "green but dead" and a dry treasury during judging |
+| [`field/`](field/) | G1, G6, G8 and results day: pull every DoraHacks entry (full descriptions, links, prizes), build blind screen packs from real entries, score them, compare winners with the rest | The field read in minutes instead of never; the "best" claim tested against real entries |
 | [`copy/`](copy/) | First copy draft + verify gate: voice lint for AI tells; first-screen lint for brief noun, jargon and meta-framing | 1-2 late sessions of "humanize the copy"; a first screen a judge can't parse |
 | [`web3/switch-chain.ts`](web3/switch-chain.ts) | Any EVM dapp: add-then-switch that works on Rabby/Coinbase/Trust, not only MetaMask | Silent network-switch failure found at T-4h |
 

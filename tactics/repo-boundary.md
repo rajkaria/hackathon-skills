@@ -53,6 +53,7 @@ It creates the sibling folder, appends `gitignore-public.txt` to `.gitignore`, a
 - An orchestrator such as boil-the-ocean must commit **per completed task at the time it completes**, not per sprint in a burst. A burst of ≥5 commits in one minute is a red flag in `final-state-gate.sh`.
 - **Continuity / "ship a feature" entries:** start from a clearly tagged pre-event commit (`git tag pre-event-baseline`) and label pre-event work honestly in the README.
 - Commit messages are for humans. Asking for commits written "as a developer would" is fine; faking timestamps or authorship is not.
+- **From the deadline to results, `main` is frozen.** Judges read the repo during judging, and they read commit messages. Fixes go to a branch and deploy only when they fix something a judge can hit, after a state backup. Hunch on Casper pushed 50 commits to `main` in the week after the final-round deadline, including "the self-oracle theft vector was open" and "the round rollover was the treasury drain". Faktura's last commit was five days *before* the deadline.
 
 ## 4. Final-state gate (T-2h and right after submitting)
 

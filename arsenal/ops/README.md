@@ -42,6 +42,7 @@ Tests: `bun test arsenal/ops/liveness-health.test.ts` (fake clock, every inciden
 | hunch-casper | 40 bets over 2.7 days, 0 resolutions, 0 claims | All 14 checks green | `recentOutcome` on resolutions and claims |
 | hunch-casper | Treasury drained to 0 CSPR and stayed there through the judging window; every escrow reverted and betting halted | Green: it checked that the signing key existed, never the balance | `minBalance` on the treasury |
 | hunch-casper | Hardcoded Aug-1 deadlines expired: 67 tests red, only 4 of 20 markets live | Nothing checked dates | `notExpired` with `warnWithinMs` set to the judging window |
+| hunch-casper | After a treasury check was added, health said 503 from Aug 7 to results (still 503 on Sep 16): "no matured market can be resolved" | 503, correctly. Nobody was alerted | A watchdog that pages a phone, armed before submitting |
 | humanline | Relay daemon died; GitHub `schedule` fired about twice a day; judges saw "root not relayed yet" | No liveness check on the relay | `recentOutcome` on the last relayed root, plus a watchdog |
 | hunch-vpm | Live pages empty (`/agents` showing 0/0/0); the BTC market froze before judging ended | No outcome checks | `recentOutcome` on agent actions, `notExpired` on markets |
 
@@ -58,3 +59,5 @@ Start this the moment you submit. Judging is part of the build.
 5. **Label seeded demo data as team activity.** "Seeded by the team" on bots, markets, and sample users. Judges forgive seed data; they do not forgive discovering it.
 6. **Freeze dates past the end of judging.** Every market, bounty, and session a judge might open must stay live until results are announced, not just until the submission deadline.
 7. **One human golden-path run per day.** Someone connects a real wallet on the production URL and completes the main flow end to end. Health checks catch what you predicted; a human catches the rest.
+8. **Arm all of this before the form goes in.** A health endpoint nobody watches is a log file. Hunch on Casper's `/api/health` failed loudly for weeks of judging, and no alert existed.
+9. **Freeze `main` from the deadline to results.** Commit messages are public, and judges read them. Fixes go to a branch; deploy only what fixes something a judge can hit (`tactics/repo-boundary.md` §3).

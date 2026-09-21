@@ -1,0 +1,110 @@
+{
+ "count": 5,
+ "next": "https://dorahacks.io/hub/hackathons/2316/buidls?page=2&page_size=50",
+ "previous": null,
+ "results": [
+  {
+   "id": 53279,
+   "buidl": {
+    "id": 47235,
+    "owner": 326016,
+    "owner_info": {
+     "username": "U_9c6cdd123b5011",
+     "nick_name": "Ali",
+     "avatar_url": "https://cdn.dorahacks.io/static/files/19d49a649669d92e27e9f4c426b9eae0.png"
+    },
+    "image_url": "https://cdn.dorahacks.io/static/files/19fa0cc9aaae53b259a9ade404da0293.png",
+    "name": "AgentPay Casper",
+    "github_url": "https://github.com/Alike001/agentpay-casper",
+    "demo_url": "https://agentsafe-casper.onrender.com/",
+    "demo_video_url": "https://youtu.be/tiLLEkS7OC4",
+    "vision": "AI agents can request tools and payments, but wallet owners lack safe, revocable spending control. AgentPay gives agents bounded authority on Casper through owner approved mandates, deterministic policy checks, and public Testnet proof.",
+    "tech_trees": [
+     3
+    ],
+    "infrastructure_tags": [],
+    "other_infrastructures": []
+   },
+   "status": 4,
+   "answer": null,
+   "bounties": [],
+   "tracks": [
+    {
+     "id": 4561,
+     "name": "Casper Innovation Track"
+    }
+   ],
+   "submit_time": 1785110190
+  },
+  {
+   "id": 53278,
+   "buidl": {
+    "id": 47234,
+    "owner": 103159,
+    "owner_info": {
+     "username": "oziomachukwu",
+     "nick_name": "oziomachukwu",
+     "avatar_url": "https://cdn.dorahacks.io/static/files/19e8207d84448ad03aa3771432aa646d.png"
+    },
+    "image_url": "https://cdn.dorahacks.io/static/files/19fa08ae1115ee31fb2bfd4483db86b2.jpeg",
+    "name": "Layer402",
+    "github_url": "https://github.com/ogubuikeAlex/x402layer/",
+    "demo_url": "https://x402layer-dashboard.vercel.app/docs",
+    "demo_video_url": "https://youtu.be/7Ya90nJyGCw",
+    "vision": "Layer402 makes x402 agent payments trustworthy and scalable by adding agent identity, trust scoring, smart low-cost settlement, and simpler wallet funding so APIs can accept machine payments without fraud, cost, or setup friction.",
+    "tech_trees": [
+     0
+    ],
+    "infrastructure_tags": [
+     81,
+     136,
+     287
+    ],
+    "other_infrastructures": []
+   },
+   "status": 4,
+   "answer": null,
+   "bounties": [],
+   "tracks": [
+    {
+     "id": 4561,
+     "name": "Casper Innovation Track"
+    }
+   ],
+   "submit_time": 1785109952
+  },
+  {
+   "id": 53276,
+   "buidl": {
+    "id": 47232,
+    "owner": 189771,
+    "owner_info": {
+     "username": "U_0e4a541fc73ce",
+     "nick_name": "hacker46e1578",
+     "avatar_url": "https://cdn.dorahacks.io/static/files/193f33a721845cd10b500c14360a9415.png"
+    },
+    "image_url": "https://cdn.dorahacks.io/static/files/19fa0832d228292f3a5854d433794772.png",
+    "name": "GuildNet — RWA Oracle Agents with Verifiable On-Chain Identity",
+    "github_url": "https://github.com/The3Guild/GuildNet",
+    "demo_url": "https://guildnet.vercel.app/",
+    "demo_video_url": "https://youtu.be/rt33P_QbAv8",
+    "vision": "Autonomous AI agents lack a decentralized mechanism to verify identity, assess reliability, and settle payments — forcing reliance on centralized platforms that gatekeep coordination and limit scalable, trust-minimized agentic economies.",
+    "tech_trees": [
+     3
+    ],
+    "infrastructure_tags": [],
+    "other_infrastructures": []
+   },
+   "status": 4,
+   "answer": null,
+   "bounties": [],
+   "tracks": [
+    {
+     "id": 4561,
+     "name": "Casper Innovation Track"
+    }
+   ],
+   "submit_time": 1785106451
+  }
+ ]
+}

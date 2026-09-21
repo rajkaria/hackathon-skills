@@ -7,6 +7,7 @@ How Claude judges an entry's chances, and what it's allowed to say about them.
 - Benchpress had a strategy doc titled "why Benchpress takes first place" and was rated "prize-competitive". It was not selected for the next round.
 - Hunch VPM was pitched as having a "small field" with a "realistic winning outcome $7k to $9k plus finalist". It was not a finalist.
 - Neither assessment looked at a single real competing entry.
+- Hunch on Casper (Casper Agentic Buildathon Final Round, 116 entries) was called "almost certainly the most complete build" and "likely top-3" on deadline day, from card screenshots. The clusters that analysis dismissed took all 10 prizes, and Hunch didn't place ([`../retro/2026-09-16-casper-final-results.md`](../retro/2026-09-16-casper-final-results.md)).
 
 ---
 
@@ -19,7 +20,7 @@ Claude may only make a competitive claim at the level its evidence reaches.
 | 0 | Our own build, our own panel | "Here are the weakest axes and what a skeptical screener will ask" | best, top, winning, first place, small field, nobody else can, prize-competitive, strongest possible |
 | 1 | Past winners of this event/series studied (`rubric-reverse.md`) | "Compared with last year's winners, we are stronger on X and weaker on Y" | anything about this year's field |
 | 2 | Blind screen vs independently written strong entries (`screening-judge.md`) | "A blind screener ranked us N of 10 against stand-in entries; median N, spread S" | "we lead the field" |
-| 3 | Blind screen vs **real** entries from this event's gallery (`field-teardown.md`) | "Ranked N of 10 against real entries A–I" | "we will win"; the real screen can still disagree |
+| 3 | Blind screen vs **real** entries from this event's gallery (`field-teardown.md`, `arsenal/field/`) | "Ranked N of 10 against real entries A–I" | "we will win"; the real screen can still disagree. Hunch on Casper ranked 2, 3, 3 in a text screen against real finalists and didn't place |
 | 4 | Results | the result | – |
 
 **Probability of placement is stated as a base rate first.** Start from the real advance rate: "about 20% of entries advance at ETHGlobal async events", or "3 prizes across an unknown field of maybe 50–150 teams". Move off it only as far as level 2 or 3 evidence justifies. Without that evidence, the honest statement is: "we have no evidence we're above the median entry yet."
@@ -42,8 +43,9 @@ Rules for any score Claude produces:
 3. **Meta-tool check.** If the one-liner's subject is a layer, scaffold, SDK, framework, harness, protocol or benchmark result, and the brief's noun is not one of those, it's a **misfit**. Stop and either:
    - reframe: the product the brief names is the entry, and our infrastructure is *how it works*, shown as the proof shot; or
    - get the user to accept the risk explicitly in chat, with this sentence recorded in `event-contract.md`: "We are entering a <layer> where the brief asks for an <agent>; screeners may not advance it."
-4. **Named user.** Name who uses it next week and the moment they use it. If the named user is "developers building agents" at an event whose brief names an end task, that's a misfit too.
-5. Run `arsenal/copy/first-screen.sh --noun <noun>` on the one-liner and the hero as soon as they exist.
+4. **Named user.** Name who uses it next week and the moment they use it. If the named user is "developers building agents" at an event whose brief names an end task, that's a misfit too. If the only users are the team's own agents or bots (a closed economy that scores itself), there is no user yet: make the loop the proof and name who it serves.
+5. **Emphasis and example directions.** Copy the brief's emphasis words ("with particular emphasis on DeFi and/or real-world assets") and its example build directions into `event-contract.md`. The job in the one-liner sits inside that emphasis. If our strongest idea matches an example direction, that direction is the one-liner, and the rest of the product is how it works. Hunch on Casper's reputation-staked oracle matched the brief's example 2 ("RWA Oracle Agents … reputation score based on historical accuracy"), but it was pitched as a prediction market whose agents bet against each other. Its panel note: "there's no real user or real asset anywhere in it." Claros pitched the oracle directly and placed 2nd.
+6. Run `arsenal/copy/first-screen.sh --noun <noun>` on the one-liner and the hero as soon as they exist.
 
 ## 4. When the user sets a premise, test it
 
@@ -92,7 +94,8 @@ Pushing back once is enough. If the user still decides, record the decision and 
 ASSESSMENT  T-hh:mm
 Evidence level: 0 / 1 / 2 / 3          Base rate: __% advance (source: ___)
 Brief noun: "____"   One-liner subject: "____"   Fit: yes / misfit (accepted by user: y/n)
-Blind screen: rank __ of 10 (shuffles: _, _, _)   Advanced: y/n
+Emphasis words: "____"   Job inside them: y/n   User outside the team: "____"
+Blind screen: rank __ of 10 (shuffles: _, _, _)   Advanced: y/n   Fit answers: yes/partly/no ×3   User answers: ___
 Pre-mortem top reason: "____"   → next work item: ____
 first-screen.sh: __ FAIL / __ WARN on hero, one-liner, description
 Form claims ⊆ README "live now": y/n

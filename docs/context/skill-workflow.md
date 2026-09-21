@@ -14,13 +14,14 @@ globs:
   - README.md
   - install.sh
   - hackathon.skill
-updated: 2026-09-14
+updated: 2026-09-16
 ---
 
 # Hackathon skill: workflow, arsenal, retros
 
 ## Current state
 
+- **v4 (Sprint 10, "Real Field, Real Users") is written on `main`, not yet committed** (2026-09-16). It follows Hunch on Casper not placing among 116 finalists (`retro/2026-09-16-casper-final-results.md`). It adds `arsenal/field/dorahacks-field.ts` (38 tests), Operating Rules 19–20, extended Rules 12 and 15, interventions I16–I19, and corrections to two older retros.
 - **v3 (Sprint 9, "Honest Assessment") is merged to `main` and pushed** (`d0ea0a1`, github.com/rajkaria/hackathon-skills) and installed to `~/.claude/skills/hackathon/` (113 files). It comes after Benchpress and Hunch VPM both failed to advance (`retro/2026-09-14-not-selected-postmortem.md`).
 - **Intervention Protocol I1–I15 is live in SKILL.md.** Raj asked (2026-09-14) to be interrupted whenever a move that cost a win is being repeated; the reply opens with a fixed `⚠ INTERVENTION` block, once per trigger per decision, overrules logged in `event-contract.md`.
 - **Installed** at `~/.claude/skills/hackathon/` via `install.sh`, which copies the full directory. The old Apr-5 single-file install is backed up in `~/.claude/skill-backups/`.
@@ -32,10 +33,11 @@ updated: 2026-09-14
   - `bun test` in `arsenal/web3` (20), `arsenal/ops` (27), `arsenal/submission-check` (39)
   - `bash arsenal/repo/test.sh` (15/15)
   - `bash arsenal/copy/test.sh` (28/28)
+  - `bun test` in `arsenal/field` (38)
 - **Event outcomes:**
   - Humanline was submitted on DoraHacks in the final hours; results 2026-09-20.
   - Benchpress: not selected for the next round. Hunch VPM: not a finalist, no partner prize. Both known 2026-09-14; who advanced isn't known.
-  - Hunch on Casper final placement is unknown.
+  - Hunch on Casper: not placed at the Casper Agentic Buildathon Final Round (10 of 116 placed, 1st Faktura). Known 2026-09-16. Post-hoc blind text screen: median rank 3 of 10, never above Faktura.
 - **Shell constraints here:**
   - `node` and `rm` are blocked. Use bun, and move stray files to the scratchpad.
   - Git in the main checkout (`/Users/rajkaria/Projects/hackathon-skill`) worked this session for `merge --ff-only` and `push`; earlier sessions saw it blocked by the auto-mode classifier.
@@ -44,6 +46,10 @@ updated: 2026-09-14
 
 | Path | Why |
 |---|---|
+| `retro/2026-09-16-casper-final-results.md` | Results retro: where "Hunch was better" came from (deadline-day "likely top-3" from card screenshots), blind screen vs real finalists, pre-mortem, Hunch vs Faktura, what the 10 winners shared |
+| `arsenal/field/` | DoraHacks field puller: `find`, `pull`, `screen-pack --redact`, `score-screen`, `patterns`; fixtures from live responses; 38 tests. DoraHacks API: `/api/v1/hub/hackathons?search=`, `/api/v1/hub/hackathons/<id>/buidls`, `/api/v1/hub/hackathon-winner-assignments?hackathon=<uname>`, `__NUXT_DATA__` on `/buidl/<id>` and `/hackathon/<uname>/detail`. Needs a browser user-agent |
+| `SKILL.md`, `tactics/*`, `templates/*`, `arsenal/ops/README.md`, `arsenal/judge-prompts/screening-judge.md` | Sprint 10 rules, interventions, judge's first click, `main` freeze, organiser guidance log, screen calibration |
+| `retro/2026-07-25-*.md`, `retro/2026-09-14-cross-event-synthesis.md`, `career/score-ledger.json` | Corrected "video never recorded" and "excellent model"; placement, post-hoc `screen_rank`, `calibration_log` |
 | `retro/2026-09-14-not-selected-postmortem.md` | Why two entries rated "best" didn't advance: no real rival viewed, brief misfit, screen-round blindness, form claims vs README, volume as value |
 | `tactics/honest-assessment.md`, `arsenal/judge-prompts/{screening-judge,pre-mortem-judge}.md` | Evidence ladder, Brief-Fit Gate, blind screen, pre-mortem, premise pushback, history gate |
 | `arsenal/copy/first-screen.sh` + `test.sh` | Lint for brief noun / jargon / meta-framing / badge wall |
@@ -65,6 +71,10 @@ updated: 2026-09-14
 
 ## Key decisions
 
+- **Clusters the brief names are demand, not traps** (Casper: the dismissed clusters took 10 of 10 prizes). The old "80% trap" heuristic is removed.
+- **Blind screens run on real entries with `--redact`**, because subagents spawned from our repos can recognise our project names.
+- **A top-3 text screen is necessary, not sufficient**: it doesn't see the video or the live app.
+
 - **Claude never calls an entry "best" without evidence level ≥ 2** (a blind screen). Self-scores are labelled non-predictive.
 - **The pre-July-2026 ledger entries were fabricated and are deleted.** Only transcript- or retro-backed events go in `career/score-ledger.json`.
 
@@ -77,6 +87,7 @@ updated: 2026-09-14
 
 ## Next steps
 
+0. Commit Sprint 10 (not committed yet; message in the retro's last line), then `bash install.sh` if the installed copy is stale. Hunch on Casper hygiene (outside this repo): its treasury is still at 0 and health returns 503. Either refill it or take the "self-running" claim off the live site.
 1. At results (Humanline 2026-09-20; others TBD), fill the scoring-retro sections in `retro/2026-09-13-*.md` + `retro/2026-07-25-*.md` and the placements in `career/score-ledger.json`. Compare to the simulated scores.
 2. At the next event, measure Sprint 9's definition of done (ROADMAP.md): no "best" claim below evidence level 2, brief noun as one-liner subject, blind screen + pre-mortem at G6/G8 with the top reason as next work item, `first-screen.sh` clean, form ⊆ README, `screen_rank` in the ledger before results. Log every fired intervention (I1–I15) in the retro with what Raj chose.
 3. At the next event, measure Sprint 8's definition of done (ROADMAP.md): draft at 50%, video ≥ 12h early, 2 judge rounds on the deployed product, no secrets in chat, final-state gate green.

@@ -4,7 +4,7 @@
   "events": [
     {
       "id": "2026-07-casper-agentic-buildathon",
-      "event_name": "Casper Agentic Buildathon 2026 (DoraHacks)",
+      "event_name": "Casper Agentic Buildathon 2026 (DoraHacks; qualification + final round)",
       "date": "2026-07-25",
       "project": "Hunch on Casper",
       "thesis_layer": "session",
@@ -12,11 +12,11 @@
         "Innovation Track"
       ],
       "simulated_panel_score": {
-        "note": "S13 judge loop ran at qualification against mock mode; no panel on the real-mode final submission",
+        "note": "S13 judge loop ran at qualification against mock mode; no panel on the real-mode final submission. Deadline-day field read (2026-07-26) from 5 card screenshots said 'likely top-3' and called the payment-rail, trust-layer and RWA clusters 'the 80% trap' (evidence level 0-1).",
         "weighted_avg": null
       },
-      "actual_placement": "Finalist (~177 BUIDLs); final result unknown",
-      "prize_usd": null,
+      "actual_placement": "Final round: not placed. 10 of 116 finalists placed (1st Faktura; 2nd CSPR402, CasCet, Claros; 3rd ATLAS, AgentEscrow402, Casper Trust Layer, Sluice, Lastre, ARIA). Known by 2026-09-16.",
+      "prize_usd": 0,
       "sponsor_prizes": [],
       "grants_applied": [],
       "grants_awarded": [],
@@ -26,14 +26,44 @@
         "partnerships_opened": null
       },
       "retro": "../retro/2026-07-25-casper-agentic-hunch-casper.md",
+      "results_retro": "../retro/2026-09-16-casper-final-results.md",
       "lessons_into_skill": [
         "Judged path must be real mode, not demo fallback",
         "Liveness health: outcomes within windows, not key presence",
         "Form recon on day 1 (960-char card limit, AI tag)",
         "No redesign in last 24h",
-        "Judging-window ops: treasury at 0 through judging"
+        "Judging-window ops: treasury at 0 through judging",
+        "Brief emphasis ('particular emphasis on DeFi and/or RWA') and an outside user are part of brief fit (Operating Rule 15, I16)",
+        "Organiser guidance becomes the next work block the day it arrives (Operating Rule 19, I17)",
+        "Clusters the brief names are demand, not traps; read the field before ranking (Operating Rule 20, I18, arsenal/field)",
+        "Freeze main from deadline to results; watchdog armed before submitting (Operating Rule 12, G15, I19)",
+        "The judge's first click: a real proof with no wallet and no funds (golden-path section 8)",
+        "On-chain claims checked against signer/caller on the explorer (claims-and-evidence rule 8)"
       ],
-      "verified": true
+      "verified": true,
+      "screen_rank": {
+        "post_hoc": true,
+        "evidence_level": 3,
+        "method": "3 redacted text-only shuffles (dorahacks-field.ts screen-pack --redact) vs real finalists: Faktura + 2 other placed + 6 unplaced, top 3 advanced",
+        "ranks": [
+          2,
+          3,
+          3
+        ],
+        "median": 3,
+        "advanced": "3 of 3",
+        "first_place_rank": [
+          1,
+          1,
+          1
+        ],
+        "real_winners_in_top3": [
+          2,
+          2,
+          2
+        ],
+        "pre_mortem_top_reason": "It's the team's own bots betting against each other ... no real user or real asset anywhere in it."
+      }
     },
     {
       "id": "2026-09-ethonline",
@@ -146,7 +176,7 @@
     }
   ],
   "aggregates_to_compute_after_event_5": [
-    "Blind screen rank vs actual advance: does the screen predict what the self-score didn't? (Only verified entries.)",
+    "Blind screen rank vs actual advance: does the screen predict what the self-score didn't? (Only verified entries.) (first data point: calibration_log)",
     "What panel axis most predicts actual placement?",
     "Simulated weighted_avg vs actual placement — bias direction?",
     "Prize-to-time ratio by thesis layer — which layer returns most per hour?",
@@ -160,5 +190,14 @@
     "step_4": "Fill follow_on at day 30.",
     "step_5": "Add 1-3 lessons_into_skill that actually update SKILL.md / arsenal / templates."
   },
-  "calibration_rule": "Every entry must be backed by a transcript or a retro. Three fabricated entries (ETHGlobal Bangkok 2025 / Aegis, X Layer Arena 2026 / Bench v1, Stellar Agentic 2026 / TollPay v1) were deleted on 2026-09-14 on Raj's confirmation that they never happened. simulated_panel_score from the building session is a SELF-SCORE and never a placement forecast; record blind screen rank separately (screen_rank)."
+  "calibration_rule": "Every entry must be backed by a transcript or a retro. Three fabricated entries (ETHGlobal Bangkok 2025 / Aegis, X Layer Arena 2026 / Bench v1, Stellar Agentic 2026 / TollPay v1) were deleted on 2026-09-14 on Raj's confirmation that they never happened. simulated_panel_score from the building session is a SELF-SCORE and never a placement forecast; record blind screen rank separately (screen_rank).",
+  "calibration_log": [
+    {
+      "event": "2026-07-casper-agentic-buildathon",
+      "forecast_before_results": "Claude, 2026-07-26: 'likely top-3' (card screenshots, evidence level 0-1)",
+      "blind_screen": "median rank 3 of 10, advanced 3 of 3 (post-hoc, text only); first place ranked #1 in 3 of 3; real winners filled 6 of 9 top-3 slots",
+      "actual": "not placed (10 of 116 placed)",
+      "reading": "A top-3 text screen is necessary, not sufficient: the jury also weighed the video, the live app and real-world fit. The screener's per-entry answers ('partly' fit, no outside user) matched the pre-mortem."
+    }
+  ]
 }

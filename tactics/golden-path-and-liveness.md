@@ -13,9 +13,10 @@ Green CI, green health checks and a demo-mode fallback can all coexist with a pr
   - The economy placed 40 bets with 0 resolutions and 0 claims over 2.7 days, while all 14 health checks were green.
   - Tests asserted an invented payload shape.
   - The Casper wallet was first tested by a human on submission day, took 11 wallet PRs, and a real signature still hadn't been seen by Jul 30.
-  - The treasury drained to 0 and stayed there through judging, because health checked that a key existed and never read the balance.
+  - The treasury drained to 0 on Jul 31, five days after the final-round deadline, and was still at 0 on 2026-09-16. Health first checked only that a key existed. A later treasury check made it fail loudly (503), but nothing alerted anyone, although a deadline-day message in chat had said to keep the purses funded. A warning in chat is not an alert.
   - Hardcoded Aug-1 deadlines expired, turning 67 tests red and leaving 4 of 20 markets live.
   - The judged site ran in mock mode, while organisers rewarded recent real txs.
+  - At the final round, the only human flow (a wallet-signed bet) had never been run by the team at submission, and judges needed a funded testnet wallet to try it. Faktura, which placed 1st, let judges trigger its proof with no wallet and no funds.
 - **Hunch VPM:** Raj found at T-4h that there was no network-switch prompt and that the stake vanished on refresh (it was held in memory). Live pages were empty (`/agents` 0/0/0), and the BTC market froze before judging ended.
 - **Humanline:**
   - Network switching silently failed on Rabby, Phantom, Coinbase and Trust (wagmi only adds the chain on MetaMask's 4902), and Raj found it himself.
@@ -94,4 +95,16 @@ Between submitting and results:
 - [ ] Golden path re-run once a day; results logged
 - [ ] Demo data still populated (no empty leaderboards, no expired markets)
 - [ ] Secrets rotated only in ways that don't break the live demo (rotate, update env, redeploy, re-run golden path)
-- [ ] Multi-round events: finalist playbook (QA sweep, real tx volume, community mobilisation). See `SKILL.md` Phase 10.
+- [ ] Multi-round events: finalist playbook (QA sweep, real tx volume, organiser guidance log). See `SKILL.md` Phase 10.
+- [ ] Armed **before** the form goes in, not after. `main` frozen from the deadline to results.
+
+## 8. The judge's first click
+
+Judges won't fund a testnet wallet or install an extension to find out whether an entry works. Design the one action a judge takes first:
+
+1. **No setup.** No wallet install, no faucet, no signature. A read-only wallet connect is fine if it adds something, like receiving a payout.
+2. **Real.** It produces a fresh transaction on the real network and shows its explorer link, as it happens.
+3. **The proof moment.** It shows the thing the pitch claims: the contract refusing what the AI approved, the payment settling, the limit holding. It's the same moment as the card's first line and 0:45 in the video.
+4. **Reproducible, and bounded.** Every judge can repeat it, and rate limits, budgets and per-wallet caps stop abuse.
+
+Faktura (1st of 116, Casper Agentic Buildathon): "You can reproduce that revert yourself … no wallet signature, no terminal". Each click signs one real Casper transaction with a finality timer. The desk pays the advance to the judge's own address. Payouts are budget-reserved per wallet, per IP and per day.

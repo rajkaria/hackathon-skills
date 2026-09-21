@@ -3,15 +3,15 @@
 **File:** `retro/2026-07-25-casper-agentic-hunch-casper.md`
 **Date range:** build Jul 4–7 (qualification) → finalists Jul 21 (~177 BUIDLs) → final resubmission Jul 25 → polish to ~Aug 7
 **Project:** Hunch on Casper, a self-running prediction market (Genesis, 4 Prophets and an Arbiter agent; x402, MCP, Odra, CSPR.click, CSPR.cloud)
-**Platform:** DoraHacks, Innovation Track, Casper testnet. "Long-Term Launch Plans" is scored, and the top 3 by CSPR.fans community vote skip judging.
+**Platform:** DoraHacks, Innovation Track, Casper testnet. "Long-Term Launch Plans" is scored. In the qualification round only, the top 3 by CSPR.fans community vote skipped judging.
 **Organiser ask for finalists:** "more number of (and recent) txes on Testnet, and a flawless app"
 
 ---
 
 ## 1. Results
-- **Placement:** unknown (not in transcripts)
+- **Placement:** not placed. The Final Round had 116 entries and 10 placings (1st Faktura). Known 2026-09-16; full results retro in [`2026-09-16-casper-final-results.md`](2026-09-16-casper-final-results.md)
 - **Shipped:** live at casper.playhunch.xyz; 164 commits; multi-agent QA sweep with 18 fixes (x402 replay, a self-oracle theft vector, crash-looping round pages)
-- **Never shipped:** demo video (`SUBMISSION.md` still says "_paste YouTube link_"; the README admits "the demo video" is not done)
+- **Video:** a 3:10 unscripted take, uploaded Jul 26 00:50 UTC, 3.5 hours after the final-round BUIDL was submitted. The repo's `SUBMISSION.md` still says "_paste YouTube link_" and the README says "link added at submission". *(Corrected 2026-09-16: this retro first said the video was never recorded.)*
 
 ## 2. Execution retro
 
@@ -46,15 +46,17 @@ After submission, market creation turned out to have been broken on prod all alo
 | Form recon (limits, tags, required artifacts) | Day 1 | While pasting |
 | Card competitive scan | Before submitting | After submitting |
 | Redesign | Phase 7, ≥24h before submitting | 2h before submitting |
-| Video | T-48h | Never |
+| Video | T-48h | T-23h, unscripted, after the form was submitted |
 | Judging-window ops (treasury, alerts, time bombs) | Before judging | Treasury at 0 through judging |
 
-## 3. Scoring retro (fill at results)
+## 3. Scoring retro (filled 2026-09-16)
 The S13 judge loop ran at qualification against a mock-mode site, so it scored a product judges would never see. **Calibration lesson:** the simulated panel must evaluate the deployed, real-mode product.
+
+At results: not placed among 116. On deadline day Claude had said "likely top-3" from card screenshots. A post-hoc blind text screen against real finalists ranked Hunch 2, 3, 3 of 10, never above first place. The pre-mortem's top reason: "It's the team's own bots betting against each other … there's no real user or real asset anywhere in it." See [`2026-09-16-casper-final-results.md`](2026-09-16-casper-final-results.md).
 
 ## 4. Strategic retro
 - **Mock mode for judging contradicted what organisers reward** (recent testnet txs). Demo-mode fallback (Rule 1) should protect against empty states, not replace the real loop.
-- **Multi-round events need a finalist playbook:** QA sweep, real transaction volume, community mobilisation. The "who wins" market over 177 finalists was an excellent model.
+- **Multi-round events need a finalist playbook:** QA sweep, real transaction volume, and the organisers' guidance turned into gates. *(Corrected 2026-09-16: this line called the "who wins" market over 177 finalists "an excellent model". It launched during a final round with no vote component; 5 of 177 teams got any stake, 41% of the stake sat on Hunch, and none of the 10 placed entries had a bet.)*
 
 ## 5. Lessons into skill
 
@@ -68,7 +70,7 @@ The S13 judge loop ran at qualification against a mock-mode site, so it scored a
 | Opener duplicated ~5 rivals; scan after submitting | `templates/field-teardown.md` | Opener-collision check before submitting |
 | Redesign on submission day | `SKILL.md` Battle Clock | No redesign in last 24h |
 | Treasury at 0 through judging; time bombs | `arsenal/ops/README.md` | Judging-window ops runbook |
-| Video never recorded | `SKILL.md` Battle Clock, `templates/video-shot-list.md` | Hard blocker, scheduled |
+| Video left to the last day (first recorded here as "never recorded"; corrected 2026-09-16) | `SKILL.md` Battle Clock, `templates/video-shot-list.md` | Hard blocker, scheduled |
 | Keys pasted twice | `tactics/preflight-t24.md` | Secrets protocol |
 | Finalist round unplanned | `SKILL.md` Phase 10 | Multi-round / finalist playbook |
 

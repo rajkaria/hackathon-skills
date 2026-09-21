@@ -26,9 +26,11 @@ Download `hackathon.skill` (a zip of the full directory) from this repo and unzi
 Rebuilt from four real events (Casper Agentic Buildathon, ETHOnline 2026, BUIDL CTC, Multi-App Agent Hackathon):
 - **Phase 0 Event Contract:** deadline with a quoted source, entry mode, form limits, access gates, network availability
 - **Battle Clock:** time-based gates. Draft submission at 50% of the time, video recorded ≥ 12h before the deadline, judge rounds while the build runs, feature freeze, final-state gate
+- **Real field, real users (v4, after Hunch on Casper didn't place among 116 finalists, 2026-09-16):** `arsenal/field/dorahacks-field.ts` pulls every DoraHacks entry and builds redacted blind screen packs from real rivals; the brief's emphasis words and an outside user are part of brief fit; organiser guidance becomes the next work block; clusters the brief names are demand, not traps; `main` frozen and a watchdog armed from the deadline to results; a judge's first click proves the product with no wallet and no funds
 - **Honest assessment (v3, after two "best entries" didn't advance):** no "best" claim without a blind screen; Brief-Fit Gate (the brief's noun is the subject of the one-liner); a screening judge ranks us blind among 10 entries; a pre-mortem judge's top reason becomes the next work item; `first-screen.sh` lints the hero, one-liner and description; form claims never exceed the README's "live now" list
 - **New tactics:** preflight and secrets protocol, public/internal repo boundary, multi-session orchestration, claims and evidence, golden path and liveness
 - **New runnable tools:**
+  - `dorahacks-field` (pull the real field, blind screen packs, winners vs the rest)
   - `submission-check` (every clickable claim resolves)
   - repo guard + final-state gate
   - deploy preflight + traps catalog

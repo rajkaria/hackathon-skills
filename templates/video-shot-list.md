@@ -2,7 +2,7 @@
 
 > Draft this at G5 (about 25% into the event), not at T-4h. The shot list decides what the product has to show, so writing it early keeps the build honest. Record at G10. Store the script in `<project>-internal/video/`; it's not a public-repo file.
 >
-> Built from what worked: the Benchpress `DEMO-SCRIPT.md` (≤ 2:00, a shot list with exact lines, "never round up") and the Hunch VPM `VIDEO-SCRIPT.md` (3:35, 8 beats, "three things to land", "do not show"). Built against what failed: Casper's video was never recorded, Humanline had no video at the end of the transcripts, VPM's script came at T-4h, and Benchpress asked "which screen should I open… answer fast" at T-80m.
+> Built from what worked: the Benchpress `DEMO-SCRIPT.md` (≤ 2:00, a shot list with exact lines, "never round up") and the Hunch VPM `VIDEO-SCRIPT.md` (3:35, 8 beats, "three things to land", "do not show"). Built against what failed: Humanline had no video at the end of the transcripts, VPM's script came at T-4h, and Benchpress asked "which screen should I open… answer fast" at T-80m. At the Casper final, Hunch's video was unscripted, spent 0:00–0:40 on a different product (Hunch Cup, paper money) and went up 3.5 hours after the form was submitted. Faktura, which placed 1st, uploaded six days early: user pain at 0:00, a contract refusing an AI-approved invoice at 0:45.
 
 ---
 
@@ -18,6 +18,8 @@
 - [ ] Says the brief's noun and names the user: "<Name> is an <noun> that <does what> for <user>"
 - [ ] No coined term before it's shown (Hunch VPM opened "Every parimutuel pool has one flaw…" over a four-statistic card)
 - [ ] The proof moment starts before 0:45
+- [ ] About *this entry* only: no other product, other chain or earlier event before 1:00
+- [ ] Every sentence is scripted; the recording follows the script (an ad-libbed take is a draft)
 - [ ] The transcript's first 60 words pass `arsenal/copy/first-screen.sh --noun <noun> --words 60`
 
 ## The three things the video has to land
@@ -72,6 +74,7 @@ Everything that doesn't serve one of these three is cut.
 2. **Name the comparator precisely** (e.g. "unmodified grader on local copies of the apps", never "passed the benchmark").
 3. **Keep the disclosed failure** in the results card. Judges reward it.
 4. Upload as **unlisted/public** (never private), test the link from an incognito window, paste it into README + form + FACTS.md.
+5. **Upload before the form goes in**, never after it. Title it with the one-liner rather than "demo". The YouTube description carries the live URL, repo, contract hash and chapters, as Faktura's did.
 
 ## 60-second cut (for pitch variants / social)
 

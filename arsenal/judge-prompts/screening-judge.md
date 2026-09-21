@@ -22,6 +22,8 @@ Hunch VPM (1,378 tests, 5 verified contracts) and Benchpress (1,038 tests, 3/3 v
 5. A screenshot of the live URL's first screen, and the README's first screen (run `arsenal/copy/first-screen.sh` and paste its extracted text).
 6. **Nine other entries** in the same format, shuffled, with ours unlabelled among them. Use real entries from the field teardown. If the gallery is hidden, use past winners of this event or series (`tactics/rubric-reverse.md`) and at least three plausible strong entries written *by a separate subagent* that has not seen ours.
 
+On DoraHacks, `arsenal/field/dorahacks-field.ts` builds this pack from the real field: `pull`, then `screen-pack --ours <id> --seed <n> --redact` once per shuffle. `--redact` matters: a subagent spawned from our own repo can recognise our project's name. `score-screen` maps the returned `RANKING:` line back through the key file, which the screener never sees.
+
 Never pass the repo, the tests, the spec, VISION.md, STRATEGY.md, or any note about what we intended.
 
 ## The prompt
@@ -62,6 +64,20 @@ know which team asked for this review and you do not care.
 | Not in the advanced set | We are not "the best"; stop saying so | Fix the top two signals above, then re-run with a new shuffle |
 
 **Report the rank, not a score.** "Ranked 4 of 10, advanced" is a real signal. "8.3/10" from a panel that knows which entry is ours is not.
+
+## Calibration: what a text screen sees and misses
+
+First real check, Casper Agentic Buildathon 2026 Final Round (116 entries, 10 placed). Three redacted shuffles, each with ours, the first-place entry, two other placed entries and six that didn't place, top 3 advanced. Full record: `retro/2026-09-16-casper-final-results.md` §4.
+
+| What happened | Reading |
+|---|---|
+| First place ranked #1 in 3 of 3 shuffles | The screen can find the strongest entry from text |
+| 2 of the top 3 were real winners in every shuffle (6 of 9 slots; a random ranking averages 2.7) | Better than chance, far from perfect |
+| Ours ranked 2, 3, 3 and advanced every time, and didn't place | A top-3 text screen isn't a prize forecast. The jury also watched the video and used the live app, which a text pack doesn't show |
+| A 2nd-place entry ranked 10th and 8th: mainnet-only, no contract of its own, "simulated card" | The screen applies the written rules literally. This jury rewarded a simple, real payment product anyway |
+| Every shuffle marked ours "partly" on brief fit ("misses DeFi and/or real-world assets in substance"). For "who uses it next week" it said "unclear" once, and twice named only bot developers with testnet stakes ("no real bettor is named") | Those answers were the real problem, and the jury's panel note said the same. Act on the per-entry answers, not only on the rank |
+
+So: an advance in the text screen is necessary, not sufficient. Also screen the video transcript's first 45 seconds and the live app's first click, and treat any "partly" fit or "unclear" user as the next work item even when the rank looks good.
 
 ## Rules
 

@@ -12,7 +12,10 @@ Judges punish overclaiming harder than they reward ambition. Every number, "live
   - Test counts and deploy status were copied into README, SUBMISSION, DEMO, CHECKLIST and the context docs, and it took three sessions to resync them.
   - Claude caught a wish to claim the whitepaper was "published during this hackathon" (its second edition predates the event).
   - Form answers were written as if CRE were done.
-- **Hunch on Casper:** `SUBMISSION.md` still says "_paste YouTube link_".
+- **Hunch on Casper:**
+  - `SUBMISSION.md` still says "_paste YouTube link_".
+  - At the final-round deadline the BUIDL said "Four funded purses sign and submit their own place_bet transactions". The chain showed one operator key signing every bet, and the fix landed six days after the deadline.
+  - The video promised league winners "can actually get a reward"; the BUIDL said the prize pool was unfunded.
 
 ---
 
@@ -45,6 +48,7 @@ Better still: generate the numbers. Benchpress's `scripts/build_site.py` rendere
 5. **Label seeded activity** as the team's own ("seeded by the team through the real product path").
 6. **Disclose the negative result.** A disclosed failed ablation or a known miss earns more trust than a clean story.
 7. **Status words need evidence:** live = HTTP 200 now; deployed = code at address + verified; published = registry URL resolves; tested = CI link.
+8. **On-chain behaviour is checked on the chain, not in the code.** Any sentence about who signs, who pays, how many accounts, or how often something settles is opened on the explorer: signer and caller of the last N transactions, distinct accounts, timestamps. A code path that "should" do it is not evidence.
 
 ## 3. README sections that make claims checkable
 
@@ -78,6 +82,8 @@ map it to evidence (file path, commit, tx hash, URL, report). Output a table:
 claim | location | evidence | verdict (supported / unsupported / stale / overclaim) | fix.
 Flag any future work described as done, any number that differs between documents, any pre-event work
 presented as event work, and any sponsor integration described more deeply than the code shows.
+For every claim about on-chain behaviour (who signs, how many accounts, how often), open the explorer
+and compare signer, caller and count with the sentence. The video must not contradict the page.
 ```
 
 Fix every row that isn't `supported`, and re-run.

@@ -1,0 +1,68 @@
+{
+ "count": 5,
+ "next": null,
+ "previous": "https://dorahacks.io/hub/hackathons/2316/buidls?page=1&page_size=50",
+ "results": [
+  {
+   "id": 53275,
+   "buidl": {
+    "id": 46820,
+    "owner": 340967,
+    "owner_info": {
+     "username": "cryptanna",
+     "nick_name": "Hanna",
+     "avatar_url": "https://cdn.dorahacks.io/static/files/19f1a85e1d65f6e956b7d524ca1a916b.jpeg"
+    },
+    "image_url": "https://cdn.dorahacks.io/static/files/19f3f004a98e512bc458add47e9842d6.png",
+    "name": "CasperProver",
+    "github_url": "https://github.com/anna-stolbovskaja/CasperProver",
+    "demo_url": "https://casperprover.xyz",
+    "demo_video_url": "https://youtu.be/2VpV2EqGhPg",
+    "vision": "AI agents make claims but can't prove them. CasperProver anchors cryptographic proofs of AI decisions on Casper — making agent outputs auditable, tamper-proof, and trustless by design.",
+    "tech_trees": [
+     0
+    ],
+    "infrastructure_tags": [
+     287
+    ],
+    "other_infrastructures": [
+     "category:Developer tools",
+     "category:analytics",
+     "category:network monitoring"
+    ]
+   },
+   "status": 4,
+   "answer": null,
+   "bounties": [],
+   "tracks": [
+    {
+     "id": 4561,
+     "name": "Casper Innovation Track"
+    }
+   ],
+   "submit_time": 1785105281
+  },
+  {
+   "id": 53274,
+   "buidl": {
+    "id": 46801,
+    "is_private": true,
+    "owner_info": {
+     "nick_name": "oziomachukwu",
+     "avatar_url": "https://cdn.dorahacks.io/static/files/19e8207d84448ad03aa3771432aa646d.png",
+     "username": "oziomachukwu"
+    }
+   },
+   "status": 4,
+   "answer": null,
+   "bounties": [],
+   "tracks": [
+    {
+     "id": 4561,
+     "name": "Casper Innovation Track"
+    }
+   ],
+   "submit_time": 1785104809
+  }
+ ]
+}

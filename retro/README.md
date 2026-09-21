@@ -15,6 +15,7 @@ Per-event retrospectives + the rule that retros update the skill itself. Without
   - [`2026-09-13-ethonline-hunch-vpm.md`](2026-09-13-ethonline-hunch-vpm.md)
   - [`2026-09-13-buidl-ctc-humanline.md`](2026-09-13-buidl-ctc-humanline.md)
   - [`2026-09-13-multi-app-agent-benchpress.md`](2026-09-13-multi-app-agent-benchpress.md)
+- [`2026-09-16-casper-final-results.md`](2026-09-16-casper-final-results.md): results retro for the Casper final (Hunch not placed among 116). Where "Hunch was better" came from, a blind screen against real finalists, and the source of Operating Rules 19–20 and interventions I16–I19.
 - [`2026-09-14-not-selected-postmortem.md`](2026-09-14-not-selected-postmortem.md): why two entries Claude rated as the best didn't advance; source of Operating Rules 14–18.
 - [`2026-09-14-cross-event-synthesis.md`](2026-09-14-cross-event-synthesis.md): patterns across events. Write one after every 3-4 retros, because single retros can't show which failures repeat.
 - **Retros can be reconstructed from session transcripts** when they weren't written live. Mine `~/.claude/projects/<project-dirs>/*.jsonl` for human-typed prompts, plus `git log` and the repo's docs/memory files. That's how the four retros above were produced.

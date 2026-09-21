@@ -186,3 +186,47 @@ Plus the `retro/` loop that feeds lessons back into all 6 layers.
 | Sprint | Theme | Shipped | Commit |
 |---|---|---|---|
 | 9 | Honest Assessment (2 non-advancing events) | honest-assessment tactic, 2 gate judges, first-screen lint + tests, SKILL.md rules 14–18, template gates, calibration cleanup, post-mortem | (this commit) |
+
+---
+
+## Sprint 10: Real Field, Real Users (added 2026-09-16, after results)
+
+**Why a 10th sprint:** Hunch on Casper didn't place among 116 finalists at the Casper Agentic Buildathon Final Round. Raj believed it was better than the winner. That belief traced to a deadline-day read of five card screenshots, where Claude called Hunch "likely top-3" and the payment-rail, trust-layer and RWA clusters "the 80% trap". Those clusters took all 10 prizes.
+
+A post-hoc blind screen against real finalists ranked Hunch 2, 3, 3 of 10, never above first place (Faktura). The pre-mortem's top reason: "It's the team's own bots betting against each other … no real user or real asset anywhere in it."
+
+Sprint 9's rules would have blocked the "top-3" claim. They didn't cover the brief's emphasis words, organiser guidance received mid-event, the judging window after the deadline, or the fact that nobody could pull a DoraHacks field quickly. See `retro/2026-09-16-casper-final-results.md`.
+
+- **#48 Field puller** (`arsenal/field/dorahacks-field.ts`, 38 tests, fixtures from live responses): `find`, `pull` (every card, description, link, prize), `screen-pack` (seeded, `--redact`, `--winners`, `--include`), `score-screen`, `patterns`
+- **#49 SKILL.md v4:**
+  - Operating Rule 12 extended: watchdog armed before submitting, `main` frozen to results
+  - Operating Rule 15 extended: emphasis words, outside user
+  - Operating Rules 19–20: organiser guidance is the next work block; clusters are demand
+  - Interventions I16–I19; G15 armed before G14
+  - Phase 2 "80% trap" heuristic corrected
+  - Phase 10 finalist playbook corrected (no market on the event's own outcome)
+  - Anti-patterns 24–26
+- **#50 Tactics and templates:**
+  - `honest-assessment.md` §3 steps 4–5 (outside user, emphasis, example directions)
+  - `claims-and-evidence.md` rule 8 (on-chain claims checked on the explorer)
+  - `golden-path-and-liveness.md` §8 (the judge's first click)
+  - `repo-boundary.md` §3 (freeze `main`)
+  - `event-contract.md` (emphasis, examples, organiser guidance log, port signals)
+  - `field-teardown.md` (clusters read in full)
+  - `video-shot-list.md` (this entry only, scripted, upload before the form)
+  - `arsenal/ops/README.md` runbook items 8–9
+- **#51 Calibration:**
+  - `screening-judge.md` calibration table (text screen is necessary, not sufficient)
+  - `career/score-ledger.json` placement, post-hoc `screen_rank`, `calibration_log`
+  - corrections to the Jul 25 retro ("video never recorded", "excellent model") and the Sep 14 synthesis
+
+**Definition of done:** at the next event:
+- (a) the field is pulled at G1 or G6 and the strongest three entries per cluster are read before any competitive statement
+- (b) the one-liner names a user outside the team and a job inside the brief's emphasis words
+- (c) every organiser message about what helps is logged the same day with a check per line
+- (d) the judge's first click needs no wallet or funds
+- (e) the watchdog is armed before the form goes in, and `main` has no commits between the deadline and results
+
+| Sprint | Theme | Shipped | Commit |
+|---|---|---|---|
+| 10 | Real Field, Real Users (Casper final results) | field puller + tests, SKILL.md v4 rules and interventions, 8 tactic/template updates, screen calibration, results retro, corrections | (this commit) |
