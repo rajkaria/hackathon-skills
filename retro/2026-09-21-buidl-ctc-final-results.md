@@ -109,6 +109,8 @@ We re-ran the skill's own checks after the fact, in fresh subagents fed only wha
 
 Evidence level 3: post-hoc, text only, and contaminated for our own entry. **Answer to Raj:** the "#1" came from a Claude-shaped reading of the field. The blind version of that reading, run today, still puts Humanline first. The jury wasn't reading like Claude: it was choosing businesses to invest in.
 
+**This is not evidence that the jury got it wrong.** The jury was asked to pick three teams to fund, and all three winners answer that question on their page. Ours didn't, and the page the jury read was broken. The instrument that failed is the Claude screen: even when told the real criterion, it picked 0 of 3 winners.
+
 ## 5. What to do next time (Raj, in this order)
 
 1. **At hour 0, quote who decides and what the prize buys.** "Directly to the due diligence stage" means the first screen is written for an investor: who pays, for what, and what happens to the money when something goes wrong (`event-contract.md`, "Who decides").
