@@ -33,7 +33,7 @@ Two self-scores, eleven hours apart, both before Operating Rule 14 existed (it w
 Three flaws decided it:
 
 1. **The weights were ours, and one described our own category.** The brief names five tracks and no "credit mission". "Credit-mission fit" (20%) scored credit entries up and an AI-track compute business down. Nothing weighed what the prize buys: investment due diligence. In the deadline-night persona panel, the protocol engineer got 35% and the CEIP investor 15%. The investor scored Humanline lowest of all six (7.6) and named the reasons that §3 finds: "The business depends on World … World has faced regulators in markets you name, including Kenya … Unsecured loss economics are missing, and it's a solo founder."
-2. **Rivals were scored from their repos.** Test counts and commits came from cloned GitHub repos. Farebox linked six repos on a self-hosted Gitea from its page, so our table read "no repo" and gave it 7.0, **#19**. It won the Grand Prize. PRECEDENCE was #3 (8.4) and Comacard #4 on the second count (8.3). Tab and Kitty, our #2 and #3, didn't place.
+2. **Rivals were scored from their repos.** Test counts and commits came from cloned GitHub repos. Farebox linked six repos on a self-hosted Gitea from its page, so our table read "no repo" and gave it 7.0, **#19**. It won the Grand Prize. PRECEDENCE was #3 (8.4) and Comacard #4 on the second count (8.3). Kitty and Tab, our deadline-night #2 and #3, didn't place.
 3. **Being alone was read as a moat.** "The only entry that touches World ID or personhood" was true. Rule 20, written two days later after Casper, says what that means: re-read the brief.
 
 ## 2. What the three winners had in common
@@ -72,14 +72,14 @@ Today the live site shows 7 humans registered and 0.00 hUSD drawn from the 936 h
 
 **2. The hero was someone else's network, with regulators in the markets we named.**
 - The one-liner and the site's hero ("Prove you're a person once with World ID. Attestcoin carries that proof to Creditcoin") make World ID the thing that makes the product possible, and Attestcoin the courier.
-- The page lists Kenya and Indonesia among World ID's markets, and "Those happen to be Creditcoin's markets too". Kenya's High Court ruled on May 5 2025 that World's biometric collection broke the Data Protection Act and ordered the data deleted ([techweez](https://techweez.com/2025/05/07/court-orders-worldcoin-to-delete-kenyan-records/)). Indonesia's Komdigi suspended World and World ID on May 4 2025 ([cointelegraph](https://cointelegraph.com/news/indonesia-suspend-world-id-registration-rule-violation)).
+- The DoraHacks page puts Kenya and Indonesia first among the countries where World ID's users are concentrated, "already in Creditcoin's markets", and the site adds "Those happen to be Creditcoin's markets too." Kenya's High Court ruled on May 5 2025 that World's biometric collection broke the Data Protection Act and ordered the data deleted ([techweez](https://techweez.com/2025/05/07/court-orders-worldcoin-to-delete-kenyan-records/)). Indonesia's Komdigi suspended World and World ID on May 4 2025 ([cointelegraph](https://cointelegraph.com/news/indonesia-suspend-world-id-registration-rule-violation)).
 - The landing persona is "Amina, 27, Nairobi … Orb-verified through World App in 2025", and the month-6 plan is "a supervised pilot in Kenya and Argentina".
 - A default is permanent, keyed to an iris-derived ID, "and there's nobody to appeal to". The deadline-night investor persona and the pre-mortem both stopped on this.
 
 **3. The page judges read was broken, and nobody looked.** This one is measured, not inferred.
 - The markdown in `docs/BUIDL_DETAILS.md` had 7 tables and 5 screenshots. The page kept 0 of each: the text was pasted as rich text. The core comparison reads "Wallet-scored credit passportsHumanlineWhat gets scoredan addressa human…". Four "Show Image" placeholders sit where screenshots were; only 2 of 237 entries have any.
 - There are 0 explorer transaction links. Every winner had at least one.
-- The BUIDL was last edited at 00:27 UTC. At 00:42 the "What personhood does not solve" disclosures (bought IDs, stolen IDs, who carries the loss, World's regulators) were pushed to the repo, and the session asked Raj to re-paste. The page never changed, so judges never saw the one section written for the investor.
+- The BUIDL was last edited at 00:27 UTC. At 00:42 the "What personhood does not solve" disclosures (bought IDs, stolen IDs, who carries the loss, World's regulators) were pushed to the repo. The session asked for a re-paste but nothing checked the page afterwards. It never changed, so judges never saw the one section written for the investor.
 - The deadline-night review said "Humanline is live on DoraHacks with every field filled in … and the full Details page". It had read the repo file, not the page.
 - The video ran 5:42 against a 2:40 script, went up about 4 hours before the deadline, and had 4 views a week after results. The winners' videos had 32 to 129.
 
@@ -91,7 +91,7 @@ Today the live site shows 7 humans registered and 0.00 hUSD drawn from the 936 h
 
 ## 4. Would the method have caught it? Calibration
 
-We re-ran the skill's own checks after the fact, in fresh subagents fed only what judges saw. Each pack held Humanline, all three winners, Tab and Kitty (our deadline-night #2 and #3) and four random entries, redacted, with 3 advancing. Three shuffles ran with the plain prompt, and the same three packs ran again with `--decider` ("the top three go straight to CEIP investment due diligence") and stronger redaction.
+We re-ran the skill's own checks after the fact, in fresh subagents fed only what judges saw. Each pack held Humanline, all three winners, Kitty and Tab (our deadline-night #2 and #3) and four random entries, redacted, with 3 advancing. Three shuffles ran with the plain prompt, and the same three packs ran again with `--decider` ("the top three go straight to CEIP investment due diligence") and stronger redaction.
 
 | Prompt, shuffle | Humanline | Farebox (Grand) | Comacard (2nd) | PRECEDENCE (3rd) | Winners in top 3 | Screener reported a leak |
 |---|:-:|:-:|:-:|:-:|:-:|---|
@@ -104,7 +104,7 @@ We re-ran the skill's own checks after the fact, in fresh subagents fed only wha
 
 - **A Claude screener has the self-panel's taste.** It rewards protocol depth, mission fit and checkable proof. Farebox and Comacard sat between 5th and 7th in every shuffle. Screeners called Farebox "Attestcoin is a single gate" and "a commodity compute reseller", and Comacard "a card skin on a CTC credit line". The jury put them 1st and 2nd. A random ranking puts 0.9 winners in the top 3; the plain screens managed 1, 1, 1 and the decider screens 0, 0, 0. One decider screener summed up the Grand Prize winner as "the clearest model in the pack" and still wrote "pass for CEIP".
 - **Naming the decision-maker changed the answers, not the ranking.** A decider screener wrote Humanline's hole almost word for word: "no interest rate or fee is stated … The liquidity providers lose the principal … DD questions: the default curve, World ID dependency and its regulatory standing in the named pilot countries". It then ranked Humanline first. The per-entry answers were right and the rank ignored them, as at Casper.
-- **Every screener that reported a leak had identified ours.** Two did it from our surname, which the redaction left in the footer (now fixed). All of them did it from the session's worktree name and git history, which no pack can hide. Our rank here is an upper bound. The rivals' ranks don't depend on the leak.
+- **All six screeners said they could tell which entry was ours.** The three plain-prompt screeners saw our surname, which the redaction left in the footer (now fixed). Five of the six also recognised ours from the session's worktree name or git history, which no pack can hide. Our rank here is an upper bound. The rivals' ranks don't depend on the leak.
 - **The pre-mortem was the check that worked.** It was told the entry lost and that the panel was choosing companies for due diligence, and it named the reason in its first sentence (§3 reason 1). One slip: it called the live site's counters blank. That came from the hero text we typed for it without the numbers, not from the site. It is now a rule in `pre-mortem-judge.md`: paste extracted text, never a hand summary.
 
 Evidence level 3: post-hoc, text only, and contaminated for our own entry. **Answer to Raj:** the "#1" came from a Claude-shaped reading of the field. The blind version of that reading, run today, still puts Humanline first. The jury wasn't reading like Claude: it was choosing businesses to invest in.
@@ -113,7 +113,7 @@ Evidence level 3: post-hoc, text only, and contaminated for our own entry. **Ans
 
 1. **At hour 0, quote who decides and what the prize buys.** "Directly to the due diligence stage" means the first screen is written for an investor: who pays, for what, and what happens to the money when something goes wrong (`event-contract.md`, "Who decides").
 2. **Make the sponsor's technology the hero.** If the core rests on a third party's network, pick a different core or put that network's risks on the first screen.
-3. **Build the product the tracks describe, and let the clever part be how it works.** Personhood was the right insight for a credit product. Pitched as "a card or loan whose limit you can't reset with a new wallet", with collateral or cash flow behind the first dollar, it would have been Comacard's shape plus a moat.
+3. **Build the product the tracks describe, and let the clever part be how it works.** Personhood was the right insight for a credit product. Pitched as "a card or loan whose limit you can't reset with a new wallet", with collateral or cash flow behind the first dollar, it would have had Comacard's shape plus a moat (our reading, untested).
 4. **Paste raw markdown, upload images in the DoraHacks editor, and run `dorahacks-field.ts render-check <id> --source <md>`.** Open the page once in an incognito window, and run the check again after every change to the source.
 5. **Put one full cycle of clickable transactions on the page,** one per step, as Comacard did (lock → prove → draw → repay).
 6. **Video at or under the target, uploaded at G10 (≥ 12h early).** Time the recording before uploading.

@@ -57,7 +57,7 @@ The Aave repay proof couldn't happen before the deadline, because the product's 
 | Judge panel | MVP + T-24h | Replaced by ad hoc field ranking |
 
 ## 3. Scoring retro (filled 2026-09-21)
-Field review (Sep 13, 145 entries) scored Humanline 8.9 vs the nearest rival (Tab) at 8.7. The deadline-night panel (Sep 14, 199 entries) put Humanline #1 at 8.7, "top-3 around 60%, grand prize around 35%". Actual: not placed. Of the three winners, our table had PRECEDENCE #3 (8.4), Comacard #4 on the second count (8.3), and Farebox #19 (7.0, "no repo": its code was on a self-hosted Gitea). Tab and Kitty, ranked 2nd and 3rd, didn't place either. Why the ranking was wrong, and what the winners did: [`2026-09-21-buidl-ctc-final-results.md`](2026-09-21-buidl-ctc-final-results.md) §1–§4.
+Field review (Sep 13, 145 entries) scored Humanline 8.9 vs the nearest rival (Tab) at 8.7. The deadline-night panel (Sep 14, 199 entries) put Humanline #1 at 8.7, "top-3 around 60%, grand prize around 35%". Actual: not placed. Of the three winners, our table had PRECEDENCE #3 (8.4), Comacard #4 on the second count (8.3), and Farebox #19 (7.0, "no repo": its code was on a self-hosted Gitea). Kitty and Tab, ranked 2nd and 3rd that night, didn't place either. Why the ranking was wrong, and what the winners did: [`2026-09-21-buidl-ctc-final-results.md`](2026-09-21-buidl-ctc-final-results.md) §1–§4.
 
 ## 4. Strategic retro
 - **Mainnet feasibility** (can we get the gas token before the deadline?) should have been answered during research, not mid-build.
