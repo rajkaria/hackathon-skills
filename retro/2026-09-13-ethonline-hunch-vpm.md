@@ -43,7 +43,7 @@ Chain traps arrived one by one:
 
 Oracles on testnet were not settled until the build (Stork dead, Pyth keyed, Chainlink feeds mainnet-only), so a CRE oracle was built same-day. Its deploy then needed a TTY and an approval email.
 
-Raj found two wallet bugs at T-4h: no network-switch prompt, and stake gone after refresh. The video script was written at T-4h, the README grew from 130 to 950 lines at T-5h, and the doc-drift fix was blocked by the permission classifier and never merged.
+The builder found two wallet bugs at T-4h: no network-switch prompt, and stake gone after refresh. The video script was written at T-4h, the README grew from 130 to 950 lines at T-5h, and the doc-drift fix was blocked by the permission classifier and never merged.
 
 ### Time budget vs actual
 | Gate | Should be | Actual |
@@ -56,7 +56,7 @@ Raj found two wallet bugs at T-4h: no network-switch prompt, and stake gone afte
 | Final-state gate on `origin/main` | T-2h | Never; stale docs public |
 
 ## 3. Scoring retro (fill at results)
-No simulated panel was run. Planning sessions still told Raj "small field", "the gap Hunch can fill that nobody else can" and "a realistic winning outcome is $7k to $9k plus finalist", with no field teardown on disk.
+No simulated panel was run. Planning sessions still told the builder "small field", "the gap Hunch can fill that nobody else can" and "a realistic winning outcome is $7k to $9k plus finalist", with no field teardown on disk.
 
 **Actual:** not in the ~20% that advance from the async screen, and no partner prize. **Delta:** the forecast had no evidence behind it (level 0). Likely causes, ranked, are in the post-mortem: visible history and entry-mode risk, form claims contradicting the README, a hard-to-grasp first screen, a last-minute video and demo state, and partner criteria unmet on the live product.
 

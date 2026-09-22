@@ -10,7 +10,7 @@
 
 ## 1. Results
 - **Placement:** not placed. Only three prizes overall across 237 BUIDLs: Grand Prize Farebox (prepaid compute credits), 2nd Comacard (a card whose limit is earned against locked collateral), 3rd PRECEDENCE (lien priority by proven source-block position). Full results retro: [`2026-09-21-buidl-ctc-final-results.md`](2026-09-21-buidl-ctc-final-results.md).
-- **Submitted on DoraHacks** (confirmed by Raj 2026-09-14 ~06:10 IST, before the 09:29 IST close). The last transcript (09-13 23:04 UTC) still showed it unsubmitted, so it went in during the final ~3h.
+- **Submitted on DoraHacks** (confirmed by the builder 2026-09-14 ~06:10 IST, before the 09:29 IST close). The last transcript (09-13 23:04 UTC) still showed it unsubmitted, so it went in during the final ~3h.
 - **State at end of transcripts (09-13 23:04 UTC):**
   - not yet submitted on DoraHacks (since resolved, see above)
   - no video
@@ -36,7 +36,7 @@ Then "I want the submission to be functional and not a demo" surfaced four P0 it
 - the deployed code wasn't on `main`
 - every API route returned 500 on Vercel
 
-A mainnet attempt hit a wall: there was no route to acquire CTC, and the official swap takes 1–2 weeks. Raj found the wallet network-switch bug himself.
+A mainnet attempt hit a wall: there was no route to acquire CTC, and the official swap takes 1–2 weeks. The builder found the wallet network-switch bug by hand.
 
 **Then the pivotal misread.** "The hackathon deadline is pushed, so time is not a constraint" became `WINNING_PLAN.md`, and 10 boil-the-ocean sprints followed. At T-13.5h a field review said "submissions close tonight". The last day ran 5 parallel sessions:
 - blockers

@@ -1,0 +1,40 @@
+{
+  "description": "Your per-event ledger. Copy this file to local/score-ledger.json inside the installed skill (install.sh never deletes local/), or keep it in career/ of your fork. Log the blind screen rank and your base-rate estimate at submission, and the result within 48h of results. After 5 events, compare forecasts with results.",
+  "events": [],
+  "event_shape": {
+    "id": "YYYY-MM-event-slug",
+    "event_name": "",
+    "date": "YYYY-MM-DD",
+    "project": "",
+    "thesis_layer": "",
+    "tracks_targeted": [],
+    "simulated_panel_score": {
+      "note": "SELF-SCORE (not predictive) unless it ran blind",
+      "weighted_avg": null
+    },
+    "actual_placement": "",
+    "prize_usd": null,
+    "sponsor_prizes": [],
+    "grants_applied": [],
+    "grants_awarded": [],
+    "follow_on": {
+      "investor_meetings": null,
+      "hires_reached_out": null,
+      "partnerships_opened": null
+    },
+    "retro": "local/retro/YYYY-MM-DD-event-slug.md",
+    "lessons_into_skill": [],
+    "verified": false,
+    "screen_rank": null
+  },
+  "worked_example": "career/score-ledger.json holds the maintainer's four events, e.g. \"2026-09-buidl-ctc-fall\", with post-hoc screen ranks and a calibration_log. Use them as a reference for how an entry is filled in.",
+  "how_to_add_event": {
+    "step_1": "Copy event_shape into events. Fill id, date, project and tracks.",
+    "step_2": "At G6/G8 record simulated_panel_score (label SELF-SCORE unless blind) and screen_rank from screening-judge.md. This is the pre-commit forecast. Set verified: true only when a transcript or retro backs the entry.",
+    "step_3": "Fill actual_placement + prize within 48h of results.",
+    "step_4": "Fill follow_on at day 30.",
+    "step_5": "Add 1-3 lessons_into_skill that actually update SKILL.md / arsenal / templates."
+  },
+  "calibration_rule": "Every entry is backed by a retro or a transcript. A panel or screen run by the session that built the entry is a SELF-SCORE and never a placement forecast; record a blind screen's rank separately (screen_rank), with any LEAK the screener reported.",
+  "calibration_log": []
+}

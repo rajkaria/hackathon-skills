@@ -628,13 +628,13 @@ export function redactEntry(e: Entry, label: string, extra: string[] = []): Entr
     // Bare hostnames ("app.example.xyz", no scheme) and their own parent domain.
     for (const h of [...siteNames].sort((a, b) => b.length - a.length)) out = out.replace(new RegExp(escRe(h), "gi"), `<${tag} site>`);
     out = out.replace(/[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g, "<email>");
-    // First, a handle written as a name (before "Raj" alone can split it): "rajkaria" also matches "Raj Karia", "raj-karia", "Raj.Karia".
+    // First, a handle written as a name (before "Jane" alone can split it): "janedoe" also matches "Jane Doe", "jane-doe", "Jane.Doe".
     for (const t of byLength) {
       if (t.length < 6 || !/^[A-Za-z0-9]+$/.test(t)) continue;
       const loose = t.split("").map(escRe).join("[\\s._-]?");
       out = out.replace(new RegExp(`\\b${loose}\\b`, "gi"), tag);
     }
-    // Short tokens ("Raj", "Quid") only as whole words, so "trajectory" survives.
+    // Short tokens ("Ana", "Quid") only as whole words, so "analysis" survives.
     for (const t of byLength) {
       const re = t.length < 5 ? new RegExp(`\\b${escRe(t)}\\b`, "gi") : new RegExp(escRe(t), "gi");
       out = out.replace(re, tag);
@@ -919,7 +919,7 @@ const yn = (b: boolean) => (b ? "yes" : "no");
 /**
  * What a judge actually gets from a stored description. DoraHacks stores the Details field as
  * markdown. Pasting a *rendered* page (GitHub, a markdown preview) into its editor keeps the words
- * and drops the structure: at BUIDL CTC 2026 Fall, Humanline's 9 tables became run-on paragraphs
+ * and drops the structure: at BUIDL CTC 2026 Fall, Humanline's 7 tables became run-on paragraphs
  * and its 5 screenshots became 4 "Show Image" placeholders, while every winner's tables rendered.
  */
 export interface RenderStats {

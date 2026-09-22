@@ -17,9 +17,9 @@ Green CI, green health checks and a demo-mode fallback can all coexist with a pr
   - Hardcoded Aug-1 deadlines expired, turning 67 tests red and leaving 4 of 20 markets live.
   - The judged site ran in mock mode, while organisers rewarded recent real txs.
   - At the final round, the only human flow (a wallet-signed bet) had never been run by the team at submission, and judges needed a funded testnet wallet to try it. Faktura, which placed 1st, let judges trigger its proof with no wallet and no funds.
-- **Hunch VPM:** Raj found at T-4h that there was no network-switch prompt and that the stake vanished on refresh (it was held in memory). Live pages were empty (`/agents` 0/0/0), and the BTC market froze before judging ended.
+- **Hunch VPM:** the builder found at T-4h that there was no network-switch prompt and that the stake vanished on refresh (it was held in memory). Live pages were empty (`/agents` 0/0/0), and the BTC market froze before judging ended.
 - **Humanline:**
-  - Network switching silently failed on Rabby, Phantom, Coinbase and Trust (wagmi only adds the chain on MetaMask's 4902), and Raj found it himself.
+  - Network switching silently failed on Rabby, Phantom, Coinbase and Trust (wagmi only adds the chain on MetaMask's 4902), and the builder found it by hand.
   - The relay daemon died and GitHub `schedule` fired twice a day, so judges saw "root not relayed yet".
   - The product's own anti-wash rule made the Aave repay proof impossible before the deadline.
 

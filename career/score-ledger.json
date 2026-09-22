@@ -256,7 +256,7 @@
     "step_4": "Fill follow_on at day 30.",
     "step_5": "Add 1-3 lessons_into_skill that actually update SKILL.md / arsenal / templates."
   },
-  "calibration_rule": "Every entry must be backed by a transcript or a retro. Three fabricated entries (ETHGlobal Bangkok 2025 / Aegis, X Layer Arena 2026 / Bench v1, Stellar Agentic 2026 / TollPay v1) were deleted on 2026-09-14 on Raj's confirmation that they never happened. simulated_panel_score from the building session is a SELF-SCORE and never a placement forecast; record blind screen rank separately (screen_rank).",
+  "calibration_rule": "Every entry must be backed by a transcript or a retro. Three fabricated entries (ETHGlobal Bangkok 2025 / Aegis, X Layer Arena 2026 / Bench v1, Stellar Agentic 2026 / TollPay v1) were deleted on 2026-09-14 on the author's confirmation that they never happened. simulated_panel_score from the building session is a SELF-SCORE and never a placement forecast; record blind screen rank separately (screen_rank).",
   "calibration_log": [
     {
       "event": "2026-07-casper-agentic-buildathon",

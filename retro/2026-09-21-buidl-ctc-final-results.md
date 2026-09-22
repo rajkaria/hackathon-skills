@@ -1,6 +1,6 @@
 # Results Retro: BUIDL CTC 2026 Fall (Humanline)
 
-**Written:** 2026-09-21, after results. **Raj's question:** "even for this hackathon, humanline.credit was not selected, you mentioned we were the top build, analyse and see where we went wrong."
+**Written:** 2026-09-21, after results. **The builder's question:** "even for this hackathon, humanline.credit was not selected, you mentioned we were the top build, analyse and see where we went wrong."
 
 | | |
 |---|---|
@@ -26,7 +26,7 @@ Blind screens and the pre-mortem ran in fresh subagents that saw only judge-visi
 Two self-scores, eleven hours apart, both before Operating Rule 14 existed (it was committed Sep 14 08:45 UTC):
 
 - **Sep 13 14:10 UTC, "all 145 BUIDLs rated against Humanline":** Humanline 8.9, Tab 8.7. The formula was "0.40 × Attestcoin depth (the one published criterion) + 0.25 × execution and verifiability + 0.20 × product and credit-mission fit + 0.15 × submission quality", and "Test counts come from grepping the repos".
-- **Sep 14 00:36 UTC, three hours before the deadline, after Raj submitted and asked for an honest rating:**
+- **Sep 14 00:36 UTC, three hours before the deadline, after the builder submitted and asked for an honest rating:**
   > "Humanline is the favourite, not a lock … I'd put a top-3 finish around 60% and the $10k grand prize around 35%."
   > "Your moat still holds. Humanline is the only entry that touches World ID or personhood."
 
@@ -107,11 +107,11 @@ We re-ran the skill's own checks after the fact, in fresh subagents fed only wha
 - **All six screeners said they could tell which entry was ours.** The three plain-prompt screeners saw our surname, which the redaction left in the footer (now fixed). Five of the six also recognised ours from the session's worktree name or git history, which no pack can hide. Our rank here is an upper bound. The rivals' ranks don't depend on the leak.
 - **The pre-mortem was the check that worked.** It was told the entry lost and that the panel was choosing companies for due diligence, and it named the reason in its first sentence (§3 reason 1). One slip: it called the live site's counters blank. That came from the hero text we typed for it without the numbers, not from the site. It is now a rule in `pre-mortem-judge.md`: paste extracted text, never a hand summary.
 
-Evidence level 3: post-hoc, text only, and contaminated for our own entry. **Answer to Raj:** the "#1" came from a Claude-shaped reading of the field. The blind version of that reading, run today, still puts Humanline first. The jury wasn't reading like Claude: it was choosing businesses to invest in.
+Evidence level 3: post-hoc, text only, and contaminated for our own entry. **Answer to the builder:** the "#1" came from a Claude-shaped reading of the field. The blind version of that reading, run today, still puts Humanline first. The jury wasn't reading like Claude: it was choosing businesses to invest in.
 
 **This is not evidence that the jury got it wrong.** The jury was asked to pick three teams to fund, and all three winners answer that question on their page. Ours didn't, and the page the jury read was broken. The instrument that failed is the Claude screen: even when told the real criterion, it picked 0 of 3 winners.
 
-## 5. What to do next time (Raj, in this order)
+## 5. What to do next time (in this order)
 
 1. **At hour 0, quote who decides and what the prize buys.** "Directly to the due diligence stage" means the first screen is written for an investor: who pays, for what, and what happens to the money when something goes wrong (`event-contract.md`, "Who decides").
 2. **Make the sponsor's technology the hero.** If the core rests on a third party's network, pick a different core or put that network's risks on the first screen.
@@ -133,7 +133,7 @@ Evidence level 3: post-hoc, text only, and contaminated for our own entry. **Ans
 | Sep 13 | Seeded demo humans only; no outside borrower or lender | I16 | "All 4 humans are seeded from your own wallets" (deadline-night panel) |
 | Sep 13 23:57 | Video uploaded, 5:42 vs a 2:40 script, 4h before the deadline | I13 (G10) | 4 views |
 | Sep 14 00:25 | Details pasted as rich text; page never re-read | I20 (new) | 0 of 7 tables, 0 of 5 images on the judged page |
-| Sep 14 00:36 | "#1 … top-3 around 60% … grand prize around 35%" | I3, I15 | Raj expected a placing |
+| Sep 14 00:36 | "#1 … top-3 around 60% … grand prize around 35%" | I3, I15 | The builder expected a placing |
 | Sep 14 00:36 | Investor persona 7.6 at 15% weight; CEIP due diligence unmentioned in the pitch | I21 (new) | Reason 1 above |
 | Sep 14 00:42 | Investor-facing disclosure pushed to the repo; DoraHacks never updated | I20 (new) | Judges never saw it |
 

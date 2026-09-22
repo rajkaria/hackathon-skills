@@ -14,22 +14,23 @@ globs:
   - README.md
   - install.sh
   - hackathon.skill
-updated: 2026-09-16
+updated: 2026-09-22
 ---
 
 # Hackathon skill: workflow, arsenal, retros
 
 ## Current state
 
-- **v5 (Sprint 11, "Pitch to the Decider, Check the Page") is committed on branch `claude/humanline-hackathon-analysis-4c0c02` and installed** (2026-09-21). It follows Humanline not placing at BUIDL CTC 2026 Fall (`retro/2026-09-21-buidl-ctc-final-results.md`). It adds:
+- **v6 (Sprint 12, "Public and General") is merged to `main`, pushed and installed** (2026-09-22), together with Sprints 10 and 11. The text is written for any user (no maintainer names outside `LICENSE`). Users keep their own retros and ledger in `local/`, which `install.sh` protects (`install.test.sh`, 12 checks). The README is for public users, and cross-event results are in `retro/2026-09-14-cross-event-synthesis.md` §0.
+- **v5 (Sprint 11, "Pitch to the Decider, Check the Page")** was committed 2026-09-21. It follows Humanline not placing at BUIDL CTC 2026 Fall (`retro/2026-09-21-buidl-ctc-final-results.md`). It adds:
   - `render-check`, `--decider`, `--redact-extra` and the `LEAK:` line to `arsenal/field/dorahacks-field.ts` (52 tests)
   - Operating Rules 21–22; Rules 14 and 16 extended; I15 extended; I20–I21
   - G14 now requires `render-check`
   - the investment-committee pre-mortem
   - the BUIDL CTC screen calibration: across six shuffles Claude screens ranked ours 1st or 2nd and the top two winners 5th to 7th; naming the decision-maker didn't help (0 of 9 top-3 slots went to real winners)
-- **v4 (Sprint 10, "Real Field, Real Users")** was written 2026-09-16 and installed but never committed. It was recovered byte for byte from the main checkout's working tree and committed as `e47a37d` on the same branch. The main checkout still shows those files as uncommitted until the branch is merged.
+- **v4 (Sprint 10, "Real Field, Real Users")** was written 2026-09-16 and installed but never committed. It was recovered byte for byte from the main checkout's working tree and committed as `e47a37d`.
 - **v3 (Sprint 9, "Honest Assessment") is merged to `main` and pushed** (`d0ea0a1`, github.com/rajkaria/hackathon-skills) and installed to `~/.claude/skills/hackathon/` (113 files). It comes after Benchpress and Hunch VPM both failed to advance (`retro/2026-09-14-not-selected-postmortem.md`).
-- **Intervention Protocol I1–I15 is live in SKILL.md.** Raj asked (2026-09-14) to be interrupted whenever a move that cost a win is being repeated; the reply opens with a fixed `⚠ INTERVENTION` block, once per trigger per decision, overrules logged in `event-contract.md`.
+- **Intervention Protocol I1–I15 is live in SKILL.md.** The maintainer asked (2026-09-14) to be interrupted whenever a move that cost a win is being repeated; the reply opens with a fixed `⚠ INTERVENTION` block, once per trigger per decision, overrules logged in `event-contract.md`.
 - **Installed** at `~/.claude/skills/hackathon/` via `install.sh`, which copies the full directory. The old Apr-5 single-file install is backed up in `~/.claude/skill-backups/`.
 - Reconstructed from four real events (Hunch on Casper, Hunch VPM @ ETHOnline, Humanline @ BUIDL CTC, Benchpress @ Multi-App Agent Hackathon). SKILL.md now leads with:
   - Operating Rules for Claude
@@ -40,13 +41,14 @@ updated: 2026-09-16
   - `bash arsenal/repo/test.sh` (15/15)
   - `bash arsenal/copy/test.sh` (28/28)
   - `bun test` in `arsenal/field` (52)
+  - `bash install.test.sh` (12/12)
 - **Event outcomes:**
   - Humanline: not placed at BUIDL CTC 2026 Fall (3 prizes among 237; Grand Farebox, 2nd Comacard, 3rd PRECEDENCE). Known 2026-09-20. Claude had said "#1 … top-3 around 60%".
   - Benchpress: not selected for the next round. Hunch VPM: not a finalist, no partner prize. Both known 2026-09-14; who advanced isn't known.
   - Hunch on Casper: not placed at the Casper Agentic Buildathon Final Round (10 of 116 placed, 1st Faktura). Known 2026-09-16. Post-hoc blind text screen: median rank 3 of 10, never above Faktura.
 - **Shell constraints here:**
   - `node` and `rm` are blocked. Use bun, and move stray files to the scratchpad.
-  - Git in the main checkout (`/Users/rajkaria/Projects/hackathon-skill`) worked this session for `merge --ff-only` and `push`; earlier sessions saw it blocked by the auto-mode classifier.
+  - Git in the main checkout worked for `merge --ff-only` and `push` in the Sprint 9 and Sprint 12 sessions; earlier sessions saw it blocked by the auto-mode classifier.
 
 ## Recent changes
 
@@ -62,8 +64,8 @@ updated: 2026-09-16
 | `retro/2026-09-14-not-selected-postmortem.md` | Why two entries rated "best" didn't advance: no real rival viewed, brief misfit, screen-round blindness, form claims vs README, volume as value |
 | `tactics/honest-assessment.md`, `arsenal/judge-prompts/{screening-judge,pre-mortem-judge}.md` | Evidence ladder, Brief-Fit Gate, blind screen, pre-mortem, premise pushback, history gate |
 | `arsenal/copy/first-screen.sh` + `test.sh` | Lint for brief noun / jargon / meta-framing / badge wall |
-| `SKILL.md` | Intervention Protocol I1–I15 (Claude interrupts with a fixed ⚠ format when a win is being lost; Raj asked for this), Operating Rules 14–18, Phase 8 screen-first, Phase 2 infra heuristic corrected, anti-patterns 19–23, Rule 7 rescoped |
-| `career/*`, `tactics/{multi-track,README,mid-event-pivot-protocol}.md`, `arsenal/judge-prompts/{idea-stress-test,security}.md`, `post-hackathon/grants/README.md` | Fabricated pre-July placements deleted (Raj confirmed); worked examples relabelled hypothetical; invented stats removed; ledger `verified` + `screen_rank`, 4 events only |
+| `SKILL.md` | Intervention Protocol I1–I15 (Claude interrupts with a fixed ⚠ format when a win is being lost; the maintainer asked for this), Operating Rules 14–18, Phase 8 screen-first, Phase 2 infra heuristic corrected, anti-patterns 19–23, Rule 7 rescoped |
+| `career/*`, `tactics/{multi-track,README,mid-event-pivot-protocol}.md`, `arsenal/judge-prompts/{idea-stress-test,security}.md`, `post-hackathon/grants/README.md` | Fabricated pre-July placements deleted (the maintainer confirmed); worked examples relabelled hypothetical; invented stats removed; ledger `verified` + `screen_rank`, 4 events only |
 | `hackathon.skill`, `ROADMAP.md` Sprint 9, `CLAUDE.md` | Zip rebuilt (139 files); sprint log; copy tests added to test list |
 | `SKILL.md` | Operating Rules, Phase 0, Battle Clock, v2 gates in phases 1–10, one-day blueprint, Rules 11–18, anti-patterns 13–18; description ≤ 1024 chars |
 | `templates/{event-contract,battle-clock,field-teardown,video-shot-list,handoff}.md` | Fillables for the new gates |
@@ -96,9 +98,17 @@ updated: 2026-09-16
 
 ## Next steps
 
-0. Commit Sprint 10 (not committed yet; message in the retro's last line), then `bash install.sh` if the installed copy is stale. Hunch on Casper hygiene (outside this repo): its treasury is still at 0 and health returns 503. Either refill it or take the "self-running" claim off the live site.
-1. At results (Humanline 2026-09-20; others TBD), fill the scoring-retro sections in `retro/2026-09-13-*.md` + `retro/2026-07-25-*.md` and the placements in `career/score-ledger.json`. Compare to the simulated scores.
-2. At the next event, measure Sprint 9's definition of done (ROADMAP.md): no "best" claim below evidence level 2, brief noun as one-liner subject, blind screen + pre-mortem at G6/G8 with the top reason as next work item, `first-screen.sh` clean, form ⊆ README, `screen_rank` in the ledger before results. Log every fired intervention (I1–I15) in the retro with what Raj chose.
-3. At the next event, measure Sprint 8's definition of done (ROADMAP.md): draft at 50%, video ≥ 12h early, 2 judge rounds on the deployed product, no secrets in chat, final-state gate green.
-4. Optional: add a `/hackathon status` convention that prints T-minus + gate status from `battle-clock.md`.
-5. Hunch VPM hygiene (outside this repo): merge PR #19 so the public `main` drops `docs/SUBMISSION-CHECKLIST.md`. Rotate keys pasted into chat across Humanline, Hunch VPM, Benchpress and Casper.
+1. At the next event, measure the definitions of done for Sprints 8 to 12 (ROADMAP.md):
+   - Sprint 8: draft at 50%, video at least 12h early, two judge rounds on the deployed product, no secrets in chat, final-state gate green
+   - Sprint 9: no "best" claim below evidence level 2, brief noun as one-liner subject, `first-screen.sh` clean, form within README
+   - Sprint 10: field read before any competitive statement, an outside user inside the emphasis words, organiser guidance logged the same day
+   - Sprint 11: decision-maker quoted and answered on screen 1, sponsor tech as the hero, `render-check` PASS, investment-committee pre-mortem when the prize buys something
+   - Sprint 12: the maintainer runs the event from a fresh install, with retros in `local/retro/`
+   Log every fired intervention (I1–I21) in the retro with what the user chose.
+2. Try the one untested idea from the BUIDL CTC retro: a human outside the team reads the card as the decision-maker.
+3. Optional: a `/hackathon status` convention that prints T-minus and gate status from `battle-clock.md`.
+4. Outside this repo:
+   - Hunch on Casper: the treasury is at 0 and health returns 503. Refill it, or take "self-running" off the live site.
+   - Hunch VPM: merge PR #19 so the public `main` drops `docs/SUBMISSION-CHECKLIST.md`.
+   - Rotate the keys pasted into chat across Humanline, Hunch VPM, Benchpress and Casper.
+   - Humanline: re-paste its DoraHacks description as raw markdown (it is still a public portfolio page) and check it with `render-check`.

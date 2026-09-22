@@ -47,7 +47,7 @@ These override anything softer later in this document. Each one exists because b
 10. **Judge the deployed product, on the clock.** Round 1 runs at about 35% of the time, round 2 at T-24h, against the live real-mode deployment and the cached field teardown. Every round starts with the blind screen (Rule 16). Never run the panel only after submitting.
 11. **Parallel sessions need an ownership map.** Cap at ≤ 5 concurrent build agents. Long waits run in the background, not by polling. Write a handoff with a resume prompt every ~2h. Every orchestrator run (boil-the-ocean, subagent-driven-development) gets the guardrail preamble from `tactics/session-orchestration.md` §6, including the deadline and feature freeze.
 12. **"Submitted" means the final-state gate is green.** Run `arsenal/repo/final-state-gate.sh` against `origin/main`: no internal docs, no open PRs holding fixes, no placeholders. Arm the judging-window ops runbook *before* the form goes in: a watchdog that alerts a phone, and treasuries funded for 2× the judging window. From the deadline to results, `main` is frozen and fixes go to a branch. Hunch on Casper pushed 50 commits during judging, including public messages about a theft vector, and its treasury sat at 0 from five days after the deadline to results.
-13. **Close the loop.** Within 48h of submitting, write a retro in `retro/` and apply the Update Rule to this skill.
+13. **Close the loop.** Within 48h of submitting, write a retro from `retro/template.md` and apply the Update Rule to this skill. Your own retros go in `local/retro/` and your predictions and results in `local/score-ledger.json` (start it from `career/score-ledger.template.json`). `install.sh` never deletes `local/`. If you work from a fork, commit them to `retro/` and `career/` instead.
 
 **Rules 14–18 (added 2026-09-14, after Benchpress and Hunch VPM were both called "the best entry" and neither advanced).** Evidence: `retro/2026-09-14-not-selected-postmortem.md`.
 
@@ -70,7 +70,7 @@ These override anything softer later in this document. Each one exists because b
 
 ## Intervention Protocol: Claude interrupts when a win is being lost
 
-The point of this skill is to win the event. Every loss so far traces to a moment where Claude saw the risk and stayed quiet, softened it, or complied. From now on Claude **stops and says it, in the same message, before doing anything else**, whenever one of these triggers fires. Raj asked for this explicitly on 2026-09-14. Then Raj decides; the decision and the risk go into `event-contract.md`.
+The point of this skill is to win the event. Every loss so far traces to a moment where Claude saw the risk and stayed quiet, softened it, or complied. From now on Claude **stops and says it, in the same message, before doing anything else**, whenever one of these triggers fires. Interrupting is the default because silence preceded every loss this skill records. A user who wants a quieter mode can say so, and Claude then lists open interventions at the top of each status report instead. Then the user decides; the decision and the risk go into `event-contract.md`.
 
 Format, always at the top of the reply:
 
@@ -82,13 +82,13 @@ Do this instead: <the concrete alternative>
 Your call: continue as asked / take the alternative
 ```
 
-| id | Trigger (what Raj or the session is doing) | What it cost | Alternative Claude proposes |
+| id | Trigger (what the user or the session is doing) | What it cost | Alternative Claude proposes |
 |---|---|---|---|
 | I1 | Any ideation or spec before `event-contract.md` has the DEADLINE line, the brief noun and the round-1 format | VPM: idea picked day 6, mainnet planned after the deadline | Fill Phase 0 first (30–60 min) |
 | I2 | The one-liner's subject isn't the brief's noun (layer/SDK/protocol/benchmark where the brief says agent/app/feature) | Benchpress: "reliability layer" at an "agent" event | Reframe: brief noun as subject, our tech as the proof shot |
-| I3 | Raj says "we're the best", "make judges feel it's the best", "rate us" with no real entries in the teardown | Both events: "best" asserted at evidence level 0. Casper: "one of the best from all the casper projects" (Jul 24), no field read, not placed | Run the blind screen + pre-mortem now; report rank, not praise |
-| I4 | Raj says "forget the time constraint" / "time is not a constraint" / claims an extension without a source | 3 of 4 events; VPM spent a day on a post-deadline mainnet | Scope may grow; gates don't. Quote the deadline and the next gate |
-| I5 | Raj asks to write the form, README or video "as if it's done" or ahead of the live product | VPM: form claimed CRE, live agent, Substreams; README said none | Write live / built-not-live / designed; offer to finish the gap |
+| I3 | The user says "we're the best", "make judges feel it's the best", "rate us" with no real entries in the teardown | Both events: "best" asserted at evidence level 0. Casper: "one of the best from all the casper projects" (Jul 24), no field read, not placed | Run the blind screen + pre-mortem now; report rank, not praise |
+| I4 | The user says "forget the time constraint" / "time is not a constraint" / claims an extension without a source | 3 of 4 events; VPM spent a day on a post-deadline mainnet | Scope may grow; gates don't. Quote the deadline and the next gate |
+| I5 | The user asks to write the form, README or video "as if it's done" or ahead of the live product | VPM: form claimed CRE, live agent, Substreams; README said none | Write live / built-not-live / designed; offer to finish the gap |
 | I6 | New feature, release or expansion sprint requested while the pre-mortem's top reason is unfixed, the draft submission isn't live, or the video shot list doesn't exist | Benchpress: 12 releases while Usefulness sat at 6.5 | Do the pre-mortem fix first; then expansion |
 | I7 | A secret (token, key, client secret, seed) appears in chat | Benchpress: Google disabled the OAuth client, 50 min lost | Stop, rotate now, `pbpaste >> .env` |
 | I8 | Repo about to be deleted/recreated, history rewritten, or a commit > ~2k lines pushed at a history-checked event | VPM: orphan repo on day 8, 7 × 5–10k-line commits in one minute | Baseline tag, reviewable commits, vendor commits labelled |
@@ -97,20 +97,20 @@ Your call: continue as asked / take the alternative
 | I11 | Hero / one-liner / video opener uses a coined or specialist term before showing it, or `first-screen.sh` FAILs | VPM: "parimutuel… vests into the opposing books" | Plain words first; run the lint |
 | I12 | Test counts, release counts, badges or doc length are being pitched as judge value | Both: 1,000+ tests, 11 badges, 950-line README, unseen by screeners | Cut list; put what the rubric names in the first screen |
 | I13 | Video, judge round or draft submission gate is passed with the artifact missing | Every event; Benchpress video linked at T-19m | Announce the missed gate and the cut that recovers it |
-| I14 | Human golden path not yet run on the real network after the first deploy | VPM: wallet bugs found by Raj at T-4h | Raj runs the golden path now; wallet matrix |
+| I14 | Human golden path not yet run on the real network after the first deploy | VPM: wallet bugs found by the builder at T-4h | The user runs the golden path now; wallet matrix |
 | I15 | Claude's own panel or estimate produced a number and is about to present it as a chance of winning, or a ranking scores rivals by repo metrics or by weights the brief doesn't state | Benchpress: "8.0–8.3, prize-competitive". Casper: "likely top-3" from card screenshots, 0 prizes. BUIDL CTC: "#1 … top-3 around 60%" on "credit-mission fit" and grep-counted tests; the Grand Prize winner was scored "no repo", #19 | Label `SELF-SCORE (not predictive)`; give base rate + evidence level; score rivals from their pages with the brief's weights |
 | I16 | The product's users are the team's own agents or bots, or the one-liner misses the brief's emphasis words | Casper: "the team's own bots betting against each other" (pre-mortem) at a DeFi and RWA event; all 10 prizes did a job for outside users | Name the outside user and the job inside the emphasis; the closed loop becomes the proof shot |
 | I17 | An organiser or sponsor says what helps, and the next work block isn't built from it | Casper, Jul 21: "simple description … flawless app"; shipped 22k characters and an untested human path | Log it verbatim; each line becomes a checklist item with a judge-runnable check, today |
-| I18 | Claude or Raj dismisses rival clusters ("the 80% trap", "nothing to demo") or places us in the field without having read their entries | Casper: the dismissed clusters took 10 of 10 prizes | `dorahacks-field.ts pull`, read the 3 strongest per cluster, blind screen with `--redact` |
+| I18 | Claude or the user dismisses rival clusters ("the 80% trap", "nothing to demo") or places us in the field without having read their entries | Casper: the dismissed clusters took 10 of 10 prizes | `dorahacks-field.ts pull`, read the 3 strongest per cluster, blind screen with `--redact` |
 | I19 | A push to `main` or a deploy during judging that doesn't fix something a judge can hit, or a submission without the watchdog armed | Casper: 50 commits during judging (public "theft vector was open"); treasury 0 from Jul 31 to results | Branch; state backup first; watchdog and 2× funding before the form goes in |
 | I20 | Text was pasted into the platform and nobody has re-read the live page since, or the source changed after the last platform edit | BUIDL CTC: the judged page kept 0 of 7 tables and 0 of 5 images; a disclosure pushed 15 minutes after the last edit never reached it | `render-check <id> --source <md>`; re-paste raw markdown; upload images in the platform editor |
 | I21 | The prize buys something (investment, incubation, a pilot) and the card doesn't answer the buyer's first question, a panel weights that buyer below the protocol lens, or a third party's network is the hero of the one-liner | BUIDL CTC: top 3 went to CEIP due diligence; Humanline had no pricing, no loss model and World ID as the hero; investor persona 7.6 at 15% weight | Quote the decision-maker; rewrite the card's first screen for them; run the investment-committee pre-mortem; act on the business answers in a `--decider` screen, not on its rank |
 
 Rules for interventions:
-- **Once per trigger per decision.** If Raj overrules, Claude records it in `event-contract.md` ("I6 overruled 14:20: release tracks before usefulness fix") and executes well. It doesn't nag, and it doesn't quietly comply either.
+- **Once per trigger per decision.** If the user overrules, Claude records it in `event-contract.md` ("I6 overruled 14:20: release tracks before usefulness fix") and executes well. It doesn't nag, and it doesn't quietly comply either.
 - **Never softened into a footer.** "Make sure these are true" at the bottom of form answers is what happened at ETHOnline. The intervention goes first.
 - **Status reports carry open interventions.** `T-hh:mm · next gate · open: I6, I10`.
-- **Post-event, every fired intervention goes in the retro** with what Raj chose and what it cost or saved. That's how this table earns its rows.
+- **Post-event, every fired intervention goes in the retro** with what the user chose and what it cost or saved. That's how this table earns its rows.
 
 This skill codifies a battle-tested workflow refined from multiple real hackathon submissions and enriched with best practices from serial hackathon winners, seasoned judges, and winning project analysis across DevPost, ETHGlobal, DoraHacks, and MLH events.
 
@@ -243,7 +243,7 @@ Read and analyze the hackathon documentation for:
 ### Data-Grounded Field Research (proven, do it once)
 
 - **Pull every entry** from the platform and **clone the rival repos**. Grep them to prove the moat. Humanline: "no rival uses World ID / 0x0FD4" was verified across 145 repos. On DoraHacks, run `bun arsenal/field/dorahacks-field.ts find <text>` then `pull <uname> --out <project>-internal/hackathon/field`: every card, full description, link and prize, in about 25 seconds. Multi-round events are separate hackathons with separate unames. For ETHGlobal and Devpost, pull the showcase or gallery by hand.
-- **Read the clusters before judging them.** A cluster of entries inside the brief's named directions is what the sponsor asked for, not a trap. On deadline day of the Casper Agentic Buildathon, Claude called the payment-rail, trust-layer and RWA-financing clusters "the 80% trap" from card screenshots and told Raj that Hunch was "likely top-3". All 10 prizes went to those clusters, first place to an RWA invoice-financing desk; Hunch didn't place (`retro/2026-09-16-casper-final-results.md`).
+- **Read the clusters before judging them.** A cluster of entries inside the brief's named directions is what the sponsor asked for, not a trap. On deadline day of the Casper Agentic Buildathon, Claude called the payment-rail, trust-layer and RWA-financing clusters "the 80% trap" from card screenshots and told the builder that Hunch was "likely top-3". All 10 prizes went to those clusters, first place to an RWA invoice-financing desk; Hunch didn't place (`retro/2026-09-16-casper-final-results.md`).
 - **Build inside the judges' world, as evidence, not as the entry.** If the judges publish a benchmark, SDK or thesis, use *their* tool to prove the thing the brief asks for. Benchpress used the judges' ArgaBench grader well, then pitched the benchmark result and a layer around agents as the entry, on locally rebuilt copies of the product Arga sells. It didn't advance. Check what the judges' company sells before rebuilding it.
 - **Cache it** in [`templates/field-teardown.md`](templates/field-teardown.md). Refresh only new entries, once, at G8 (T-24h). Humanline redid the teardown from scratch three times.
 - **Verified facts file.** Every chain address, API shape and limit goes into `research-facts.md` with *how it was verified*, plus a list of open questions. Mark the file "do not re-research" so parallel sessions trust it.
@@ -979,7 +979,7 @@ Most hackathon platforms (DoraHacks, DevPost) have a text description field. Thi
   - rehearse the finalist format (e.g. 4-minute demo + 3-minute Q&A, see `arsenal/pitch/qa-combat.md`)
   - pull the finalist field (`arsenal/field/`) and re-run the blind screen against real finalists
   - mobilise the community only when the round has a vote component. Don't run a market or campaign on the event's own outcome without the organisers' OK. Hunch on Casper's 177-finalist market launched during a final round with no vote: 5 of 177 teams got any stake, 41% of the stake sat on Hunch, and none of the 10 placed entries had a bet.
-- **Retro within 48h** (`retro/template.md`), then apply the Update Rule to this skill.
+- **Retro within 48h** (`retro/template.md`, saved to `local/retro/`), then apply the Update Rule to this skill.
 
 **Output**: Submitted hackathon project with everything judges need to evaluate it.
 

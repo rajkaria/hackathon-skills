@@ -31,7 +31,7 @@ scratch_only() { # scratch_only <path>... : abort unless every path is inside $R
     done
   done
 }
-case "$ROOT" in "$HOST_MAIN"*|"$HOST_REPO"*|/Users/rajkaria/Projects/*) die_safety "scratch root $ROOT" ;; esac
+case "$ROOT" in "$HOST_MAIN"*|"$HOST_REPO"*) die_safety "scratch root $ROOT" ;; esac
 if command git -C "$ROOT" rev-parse --git-dir >/dev/null 2>&1; then die_safety "scratch root is inside a git repo"; fi
 cd "$ROOT" || die_safety "cd $ROOT"
 

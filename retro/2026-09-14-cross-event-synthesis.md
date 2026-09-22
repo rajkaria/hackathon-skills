@@ -1,6 +1,25 @@
 # Cross-Event Synthesis: Four Hackathons, July to September 2026
 
-**Written:** 2026-09-14. **Update 2026-09-16:** Hunch on Casper didn't place among 116 finalists; see [`2026-09-16-casper-final-results.md`](2026-09-16-casper-final-results.md).
+**Written:** 2026-09-14. **Update 2026-09-16:** Hunch on Casper didn't place among 116 finalists; see [`2026-09-16-casper-final-results.md`](2026-09-16-casper-final-results.md). **Update 2026-09-22:** all four results are in; see §0.
+
+## 0. Results across all four events (added 2026-09-22)
+
+Every entry lost, and every loss followed a moment where Claude told the builder the entry was ahead.
+
+| Event | What Claude said before results | Result | Top reason, from the post-results analysis | Rule it produced |
+|---|---|---|---|---|
+| Multi-App AI Agent Hackathon (Benchpress) | "prize-competitive", self-score 8.0–8.3; a strategy doc titled "why Benchpress takes first place" | Not selected for the next round | A reliability layer entered where the brief asked for one useful agent | Brief-Fit Gate (Rule 15) |
+| ETHOnline 2026 (Hunch VPM) | "small field", "$7k–9k plus finalist" | Not a finalist, no partner prize | Form claims ahead of the README; none of 3 partner picks met on the live product | Form ⊆ README (Rule 17), partner gates |
+| Casper Agentic Buildathon, final (Hunch on Casper) | "likely top-3", from five card screenshots | Not placed (10 of 116 placed) | The team's own bots betting against each other at a DeFi and RWA event; no outside user | Emphasis words and outside user (Rule 15), clusters are demand (Rule 20) |
+| BUIDL CTC 2026 Fall (Humanline) | "#1 … top-3 around 60%", from weights Claude wrote | Not placed (3 of 237 placed) | No business for the investors the prize served; World ID as the hero; a broken DoraHacks page | Pitch to the decider (Rule 21), render-check (Rule 22) |
+
+**What repeated in all four:**
+1. **Claude's confidence tracked the build, not the judges.** Each claim rested on the entry's own engineering. None was checked against the question the judges were asked: an agent, a working partner integration, an outside user, a company to fund. Six post-results blind screens at BUIDL CTC showed a Claude screener shares this taste, so even a blind Claude rank is a diagnostic, not a forecast.
+2. **The brief's real ask was readable on day 1.** It was in the brief's noun (Benchpress), a partner's verbatim criteria (Hunch VPM), the emphasis words (Casper) and what the prize buys (BUIDL CTC). Phase 0 now captures all four: noun, emphasis, partner gates, decision-maker.
+3. **What judges touch was finished last.** The video was recorded unscripted or late in all four. The description was pasted in the final hours of two. At BUIDL CTC nobody re-read the pasted page. Clock gates G7, G10 and G14 exist for this.
+4. **Engineering volume didn't separate anyone.** Over 1,000 tests at two events, 18 verified contracts at a third. Winners quoted test counts too, and they won on the job their product did for someone who would pay or use it.
+
+What the rules don't yet cover: getting a human outside the team to read the entry as the decision-maker would. The BUIDL CTC retro proposes it untested; the next event is the test.
 **Events covered:**
 
 | Event | Project | Platform | Window | Retro |
@@ -14,7 +33,7 @@
 
 ---
 
-## 1. The workflow Raj actually runs
+## 1. The workflow the builder actually runs
 
 The skill describes ten sequential phases. What actually happens is a different shape, and the skill has to fit how the work really runs:
 

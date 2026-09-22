@@ -1,6 +1,6 @@
 # Retro — {{EVENT NAME}}
 
-**File:** `retro/{{YYYY-MM-DD}}-{{event-slug}}.md`
+**File:** `local/retro/{{YYYY-MM-DD}}-{{event-slug}}.md` (or `retro/` in your fork)
 **Date range:** {{start}} → {{end}}
 **Project:** {{project name}}
 **Thesis layer:** {{payment | proof | session | other}}
@@ -126,4 +126,4 @@ If this section is empty, the retro isn't done. Every event teaches something.
 
 ---
 
-**Commit this retro. Then update `career/score-ledger.json` with the same numbers. Then apply the update rule to SKILL.md / arsenal / career. Done.**
+**Save this retro. Then update your ledger (`local/score-ledger.json`, or `career/score-ledger.json` in your fork) with the same numbers. Then apply the update rule to SKILL.md / arsenal / career. Done.**

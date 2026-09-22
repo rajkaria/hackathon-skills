@@ -173,13 +173,13 @@ Plus the `retro/` loop that feeds lessons back into all 6 layers.
 
 ## Sprint 9: Honest Assessment (added 2026-09-14, after results)
 
-**Why a 9th sprint:** Benchpress (Multi-App AI Agent Hackathon) and Hunch VPM (ETHOnline 2026) were both described to Raj as the best entry, and neither advanced. The transcripts show that no real competing entry was looked at in either event. Benchpress was a layer around agents where the brief asked for an agent. Hunch VPM's form claimed more than its README. Both were clear to the people who built them and hard to parse for a screener with minutes per entry. The skill contributed: "infrastructure layers consistently win", "The Secret Weapon" self-panel with absolute score thresholds, and fabricated calibration entries claiming the simulated panel predicted placements "within 0.1". Sprint 8's time gates would not have changed either result. See `retro/2026-09-14-not-selected-postmortem.md`.
+**Why a 9th sprint:** Benchpress (Multi-App AI Agent Hackathon) and Hunch VPM (ETHOnline 2026) were both described to the builder as the best entry, and neither advanced. The transcripts show that no real competing entry was looked at in either event. Benchpress was a layer around agents where the brief asked for an agent. Hunch VPM's form claimed more than its README. Both were clear to the people who built them and hard to parse for a screener with minutes per entry. The skill contributed: "infrastructure layers consistently win", "The Secret Weapon" self-panel with absolute score thresholds, and fabricated calibration entries claiming the simulated panel predicted placements "within 0.1". Sprint 8's time gates would not have changed either result. See `retro/2026-09-14-not-selected-postmortem.md`.
 
 - **#43 Honest Assessment tactic** (`tactics/honest-assessment.md`): evidence ladder for competitive claims, base-rate placement, self-score labelling, Brief-Fit Gate, premise pushback scripts, history gate, G6/G8 checklist
 - **#44 Screening + pre-mortem judges** (`arsenal/judge-prompts/screening-judge.md`, `pre-mortem-judge.md`): blind, ranked among 10, 3 shuffles; "why this did not advance" with no rebuttal column
 - **#45 First-screen lint** (`arsenal/copy/first-screen.sh` + `test.sh`, 28 tests): brief noun, jargon density, meta-framing, badge wall, long opener
 - **#46 SKILL.md v3**: Intervention Protocol (I1–I15, fixed ⚠ INTERVENTION format, once per trigger per decision, overrules logged), Operating Rules 14–18, Phase 8 screen-first, Phase 2 heuristic corrected, Brief-Fit Gate before SPEC, anti-patterns 19–23, Rule 7 rescoped, event contract / field teardown / video / submission templates
-- **#47 Calibration integrity** (`career/*`, `tactics/multi-track.md`, `tactics/README.md`): fabricated pre-July-2026 placements deleted (Raj confirmed they never happened); worked examples relabelled hypothetical; invented statistics removed; ledger `verified` flag and `screen_rank`
+- **#47 Calibration integrity** (`career/*`, `tactics/multi-track.md`, `tactics/README.md`): fabricated pre-July-2026 placements deleted (the author confirmed they never happened); worked examples relabelled hypothetical; invented statistics removed; ledger `verified` flag and `screen_rank`
 
 **Definition of done:** at the next event, (a) no message or doc calls the entry best/winning without evidence level ≥ 2, (b) the brief noun is the one-liner's subject or the misfit is accepted in writing, (c) the blind screen and pre-mortem ran at G6 and G8 and the pre-mortem's top reason was the next work item, (d) `first-screen.sh` has no FAIL on hero, one-liner and description, (e) every form claim appears in the README's "live now" list, and (f) `screen_rank` is in the ledger before results so it can be compared.
 
@@ -191,7 +191,7 @@ Plus the `retro/` loop that feeds lessons back into all 6 layers.
 
 ## Sprint 10: Real Field, Real Users (added 2026-09-16, after results)
 
-**Why a 10th sprint:** Hunch on Casper didn't place among 116 finalists at the Casper Agentic Buildathon Final Round. Raj believed it was better than the winner. That belief traced to a deadline-day read of five card screenshots, where Claude called Hunch "likely top-3" and the payment-rail, trust-layer and RWA clusters "the 80% trap". Those clusters took all 10 prizes.
+**Why a 10th sprint:** Hunch on Casper didn't place among 116 finalists at the Casper Agentic Buildathon Final Round. The builder believed it was better than the winner. That belief traced to a deadline-day read of five card screenshots, where Claude called Hunch "likely top-3" and the payment-rail, trust-layer and RWA clusters "the 80% trap". Those clusters took all 10 prizes.
 
 A post-hoc blind screen against real finalists ranked Hunch 2, 3, 3 of 10, never above first place (Faktura). The pre-mortem's top reason: "It's the team's own bots betting against each other … no real user or real asset anywhere in it."
 
@@ -242,7 +242,7 @@ Sprint 10's rules covered the brief's emphasis and reading the field. They didn'
 - **#52 `render-check`** (`arsenal/field/dorahacks-field.ts`, with a live Humanline fixture): compares the live BUIDL page with the source markdown. Flags lost tables and images, "Show Image" placeholders, sections added after the last paste, and missing explorer transaction links. Exits 1 on FAIL; it's a G14 requirement. `patterns` gains table, image and broken-paste rows.
 - **#53 Screen fixes:**
   - `screen-pack --decider` puts the prize's decision-maker in the prompt
-  - `--redact-extra`, plus redaction of handles written as names ("rajkaria" → "Raj Karia"), a custom domain's own name, and links to any code host
+  - `--redact-extra`, plus redaction of handles written as names ("janedoe" → "Jane Doe"), a custom domain's own name, and links to any code host
   - a `LEAK:` line in every pack
   - Calibration: six post-hoc shuffles, three plain and three with `--decider`. Ours ranked 1–2, and the Grand Prize and 2nd-place winners 5th–7th every time. Real winners took 3 of 9 top-3 slots with the plain prompt and 0 of 9 with `--decider`. Every screener that reported a leak had recognised ours from the session's worktree name
 - **#54 SKILL.md v5:**
@@ -276,3 +276,27 @@ Sprint 10's rules covered the brief's emphasis and reading the field. They didn'
 | Sprint | Theme | Shipped | Commit |
 |---|---|---|---|
 | 11 | Pitch to the Decider, Check the Page (BUIDL CTC results) | render-check, `--decider`, `LEAK:` line and redaction fixes with tests, SKILL.md v5 rules and interventions, 6 tactic/template/prompt updates, six-shuffle calibration, results retro | (this commit) |
+
+## Sprint 12: Public and General (added 2026-09-22)
+
+**Why a 12th sprint:** the repo is public, and the skill still read as one builder's notebook. It named the maintainer in the Intervention Protocol and the retros, kept a home-directory path in a test guard, and had a README that sold "winning" with a panel score of 8.6/10 and the "80% trap" heuristic. Sprints 10 and 11 had retired both. It also had nowhere safe for a user's own retros: re-running `install.sh` would have deleted them.
+
+- **#57 Generalised text:**
+  - Instructions to Claude say "the user", evidence says "the builder"
+  - Test data uses neutral names; the home-directory path is gone from `arsenal/repo/test.sh`
+  - A quieter intervention mode is available on request
+  - The only personal name left is in `LICENSE`
+- **#58 `local/` for user data:**
+  - `install.sh` protects `local/` from `--delete`
+  - `career/score-ledger.template.json` is a blank ledger
+  - Rule 13, `honest-assessment.md` §2, `retro/README.md`, `retro/template.md` and `career/README.md` point there
+  - `install.test.sh`: 12 sandboxed checks, including local files surviving a re-install
+- **#59 README for public users:** honest positioning (four events, four losses), install and requirements, "Make it yours", the phase table with the clock, what a screen's rank means, tools table, evidence table, contributing.
+- **#60 Cross-event results:** `retro/2026-09-14-cross-event-synthesis.md` §0 summarises all four results and what repeated.
+- **#61 Merged and published:** Sprints 10–12 merged to `main`, pushed, installed, and `hackathon.skill` rebuilt.
+
+**Definition of done:** a new user can clone, install, run an event and keep their own retros across updates without editing any file that names the maintainer.
+
+| Sprint | Theme | Shipped | Commit |
+|---|---|---|---|
+| 12 | Public and General | neutral text, `local/` user space + install tests, public README, cross-event results, merge + publish | (this commit) |

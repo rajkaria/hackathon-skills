@@ -14,7 +14,8 @@ The compounding layer. Turns the skill from "win this hackathon" into "build a c
 | [idea-triage.md](idea-triage.md) | 30-min protocol to pick WHICH idea to build for a specific event. Handoff from bank → execution. 6-axis weighted scoring + kill-filters. | 5-7 days pre-event |
 | [sponsor-crm.md](sponsor-crm.md) | Per-ecosystem profiles — grants, judges, contact log, deadlines | Continuously |
 | [portfolio-thesis.md](portfolio-thesis.md) | The ONE thesis you ride across 3+ events | Quarterly |
-| [score-ledger.json](score-ledger.json) | Per-event: simulated panel score, actual placement, prize, follow-on outcomes | After every event |
+| [score-ledger.json](score-ledger.json) | The maintainer's four events: forecasts, blind screen ranks, placements, calibration log. Kept as evidence and as a worked example | Maintainer |
+| [score-ledger.template.json](score-ledger.template.json) | Your ledger, blank. Copy it to `local/score-ledger.json` in the installed skill (never touched by `install.sh`) or keep it in your fork | After every event |
 | `../retro/` | Per-event retrospective docs + the rule that retros update this skill itself | After every event |
 
 ## The Flywheel

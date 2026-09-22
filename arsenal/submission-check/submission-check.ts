@@ -124,7 +124,7 @@ export const DEFAULT_PLACEHOLDERS = [
   "\\b0x0{40}\\b",
 ];
 export const DEFAULT_CONFIG_FILE = "submission-check.config.json";
-const USER_AGENT = "submission-check/1.0 (+https://github.com/rajkaria/hackathon-skill)";
+const USER_AGENT = "submission-check/1.0 (+https://github.com/rajkaria/hackathon-skills)";
 
 export function withDefaults(raw: unknown = {}): Config {
   const c = (raw ?? {}) as Record<string, any>;

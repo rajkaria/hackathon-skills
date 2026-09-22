@@ -22,7 +22,7 @@ with everyone else once results are out.
 **`render-check`, `--decider` and `--redact-extra`:** BUIDL CTC 2026 Fall ([`retro/2026-09-21-buidl-ctc-final-results.md`](../../retro/2026-09-21-buidl-ctc-final-results.md)).
 - Humanline's DoraHacks page kept 0 of the 7 tables and 0 of the 5 images in the markdown it came from. A rich-text paste left four "Show Image" placeholders, and nobody re-read the page. Every winner's tables rendered.
 - The plain blind screen ranked Humanline 1, 1 and 2 across three shuffles, and the Grand Prize winner 6, 6 and 7. The prize was investment due diligence. Re-run with `--decider`, the same packs ranked Humanline 1, 1, 1 and put no real winner in any top 3. The flag stays because it makes each screener write out the business and its hole; read those answers, not the rank.
-- A screener recognised ours from "Built by Raj Karia" (the repo owner is `rajkaria`), and read another team's company from its footer and its Gitea org.
+- A screener recognised ours from the builder's full name in the footer ("Built by Jane Doe" while the repo owner is `janedoe`), and read another team's company from its footer and its Gitea org.
 
 ## Commands
 
@@ -58,7 +58,7 @@ bun $T screen-pack --field field/field.json --ours 46696 --winners 3 --seed 11 -
 #    business answers; the rank is not a forecast (BUIDL CTC: 0 of 9 top-3 slots went to real winners).
 bun $T screen-pack --field field/field.json --ours 48709 --seed 1 --top-k 3 --redact \
   --decider "investment due diligence: the top three go straight to the CEIP due diligence stage" \
-  --redact-extra "Raj Karia" --out field/screen
+  --redact-extra "Jane Doe,janedoe_" --out field/screen
 
 # 7. The page judges read vs the markdown you meant to paste. Exits 1 on FAIL.
 bun $T render-check 48709 --source docs/BUIDL_DETAILS.md
@@ -93,7 +93,7 @@ Paste the raw markdown into DoraHacks' editor, upload images through the editor 
 | `--top-k` | 20% of size | How many the screener advances. Set it from the event's real advance rate |
 | `--include id,id` | none | Rivals that must be in the pack (the closest competitors) |
 | `--winners N` | 0 | After results: include N known winners, so the screen's calibration can be checked |
-| `--redact` | off | Replace every team's name, repo owner/name, hostnames and custom-domain name with its label, including a handle written as a name ("rajkaria" also scrubs "Raj Karia") and links to any code host whose path names the team. Needed whenever the screener is a subagent of our own session |
+| `--redact` | off | Replace every team's name, repo owner/name, hostnames and custom-domain name with its label, including a handle written as a name ("janedoe" also scrubs "Jane Doe") and links to any code host whose path names the team. Needed whenever the screener is a subagent of our own session |
 | `--redact-extra "a,b"` | none | More strings to scrub from every entry: your name, company, handles the repo owner doesn't spell out |
 | `--decider "…"` | none | Who picks the winners and what the prize buys, quoted from the brief. Adds "what would the decision-maker do with it next? Name the business" to the prompt |
 | `--max-chars` | none | Truncate descriptions. Leave it off unless the real screen format is card-only |

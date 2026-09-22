@@ -1,6 +1,6 @@
 # Results Retro: Casper Agentic Buildathon 2026, Final Round (Hunch on Casper)
 
-**Written:** 2026-09-16, after results. **Raj's question:** "this won casper hackathon, I believe hunch casper was better, see where we went wrong and what we can improve next time."
+**Written:** 2026-09-16, after results. **The builder's question:** "this won casper hackathon, I believe hunch casper was better, see where we went wrong and what we can improve next time."
 
 | | |
 |---|---|
@@ -16,7 +16,7 @@
 
 ## 1. Where "Hunch was better" came from
 
-On deadline day (Jul 26 09:38 UTC) Raj asked where Hunch stood. Claude looked at five screenshots of cards and answered. The session made no web call and read no rival page:
+On deadline day (Jul 26 09:38 UTC) the builder asked where Hunch stood. Claude looked at five screenshots of cards and answered. The session made no web call and read no rival page:
 
 > "Hunch is the only prediction market in the entire field and almost certainly the most complete build … This is exactly the '80% trap': the majority built the obvious idea (a payment rail or a trust layer for agents) … Bottom line: on build quality you're likely top-3 in this field already."
 
@@ -48,7 +48,7 @@ We redacted names, repo owners and hostnames and built three packs with `dorahac
   - Two of three: no human has signed a bet on the live deployment.
 - **Evidence level 3, post-hoc, text only.** The jury also watched videos and used the apps, and a text screen can't see either. The screen put CSPR402 (2nd place) last, so a top-3 text rank is not a prize forecast (`arsenal/judge-prompts/screening-judge.md`, calibration).
 
-**Answer to Raj:** "Better built than several placed entries, on paper" is supported. "Better than Faktura" isn't, by any evidence we have.
+**Answer to the builder:** "Better built than several placed entries, on paper" is supported. "Better than Faktura" isn't, by any evidence we have.
 
 ## 3. Why it didn't place (ranked; *inference*)
 
@@ -104,7 +104,7 @@ We redacted names, repo owners and hostnames and built three packs with `dorahac
   - 18,451 testnet CSPR staked, on 5 of 177 teams. 41% of it was on Hunch, and 0 of the 10 placed entries had any stake.
   - It didn't "turn judging into distribution", as the Jul 25 retro and SKILL.md claimed. It showed judges a market on their own decision, led by the entrant that ran it.
 
-## 5. What to do next time (Raj, in this order)
+## 5. What to do next time (in this order)
 
 1. **Pick inside the brief's emphasis, and name a user outside the team.** Clusters the sponsor named are demand. Win on execution, not on being the only one in a category. The closed agent loop is the proof, not the product. The one-liner Hunch needed was the example direction itself: an RWA oracle agent whose accuracy is priced, with a named consumer.
 2. **Build one proof moment a judge can trigger with no wallet and no funds.** Put it in the card's first line, at 0:45 in the video, and as the live site's first click. Faktura's revert is the pattern.
@@ -127,7 +127,7 @@ We redacted names, repo owners and hostnames and built three packs with `dorahac
 | Jul 25 19:10 | "reimagine the landing page … design system", 2h15m before submitting | I6 (G9) | Redesign merged 1h46m before submitting |
 | Jul 25 21:14 | "give me all the answers, make us the winners" | I3, I5 | Form copy written in 30 minutes |
 | Jul 26 00:50 | Video uploaded, unscripted, after the BUIDL was submitted | I13 (G10) | Reason 2 above |
-| Jul 26 09:38 | Claude: "likely top-3 in this field" and "the 80% trap", from card screenshots | I15, I18 (new) | Raj expected a placing; the dismissed clusters took 10 of 10 prizes |
+| Jul 26 09:38 | Claude: "likely top-3 in this field" and "the 80% trap", from card screenshots | I15, I18 (new) | The builder expected a placing; the dismissed clusters took 10 of 10 prizes |
 | Jul 27 to Aug 2 | 50 commits to `main` during judging, including "the self-oracle theft vector was open" | I19 (new) | Judge-visible confessions; Faktura's last commit was Jul 21 |
 | Jul 31 onward | Treasury at 0; health 503 from Aug 7; no watchdog | I19 | The "self-running" economy was paused for the rest of judging |
 | Aug 1 | Market on the buildathon outcome, DMs to every builder, during judging | (caution, §4) | 5 of 177 teams staked; 41% on Hunch |

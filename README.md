@@ -1,393 +1,140 @@
-# /hackathon — Claude Code Skill for Winning Hackathons
+# /hackathon: a Claude Code skill for hackathons
 
-A battle-tested Claude Code skill that turns a hackathon brief into a winning submission through a clock-gated workflow (Phase 0 event contract through Phase 10 ship), rebuilt in September 2026 from four real events.
+A Claude Code skill that runs a hackathon from the brief to a judged submission: an event contract at hour 0, a clock with gates, field research on the real rivals, a scoped build, blind screening and pre-mortem judges, a claims audit, and checks on the page judges will actually read.
 
-Built from real hackathon sessions and enriched with best practices from serial hackathon winners, seasoned judges (DevPost, ETHGlobal, DoraHacks, MLH), and winning project analysis.
+It was rebuilt in September 2026 from four real events. **All four entries lost.** Every rule in `SKILL.md` names the event and the mistake that produced it, and the retros in [`retro/`](retro/) show the evidence. The goal is still to win; the method is to stop repeating what lost.
 
-**Philosophy: Build products, not projects.** Most hackathon submissions die on GitHub. This skill helps you build something with users, revenue potential, and a future — which is exactly what judges want to see.
+**Philosophy: build products, not projects.** Judges reward something with a user outside the team, a reason to exist next month, and a proof they can check in minutes.
 
-## Install Once, Use Every Hackathon
+## Install
 
-Install the skill once. It activates automatically whenever you start a hackathon sprint — no need to remember to invoke it. Claude Code detects hackathon-related context and loads the full workflow.
+### Option 1: clone and install (recommended)
 
-### Option 1: Clone + install script (recommended)
 ```bash
 git clone https://github.com/rajkaria/hackathon-skills.git
 bash hackathon-skills/install.sh
 ```
-This copies the **whole** skill directory into `~/.claude/skills/hackathon/`: `SKILL.md` plus `templates/`, `tactics/`, `arsenal/`, `career/`, `retro/`, `validation/`, `post-hackathon/` and `guides/`. It backs up any previous install to `~/.claude/skill-backups/` and checks that every link in `SKILL.md` resolves on disk. Re-run it after `git pull` to update.
 
-> **Why not just SKILL.md?** `SKILL.md` points to templates, checklists and runnable tools. A single-file install leaves every one of those links dead. Between April and September 2026, four real events ran on a stale single-file install with none of the templates or tools on disk (see `retro/2026-09-14-cross-event-synthesis.md`).
+`install.sh` copies the whole skill into `~/.claude/skills/hackathon/`: `SKILL.md` plus `templates/`, `tactics/`, `arsenal/`, `career/`, `retro/`, `validation/`, `post-hackathon/` and `guides/`. It backs up any previous install to `~/.claude/skill-backups/` and checks that every link in `SKILL.md` resolves. Run it again after `git pull` to update; `bash install.sh --dry-run` shows what would change.
 
-### Option 2: Drop-in package
-Download `hackathon.skill` (a zip of the full directory) from this repo and unzip it into `~/.claude/skills/hackathon/`.
+A single-file install doesn't work: `SKILL.md` points at templates and tools that must be on disk.
 
-### What's new in v2 (2026-09-14)
-Rebuilt from four real events (Casper Agentic Buildathon, ETHOnline 2026, BUIDL CTC, Multi-App Agent Hackathon):
-- **Phase 0 Event Contract:** deadline with a quoted source, entry mode, form limits, access gates, network availability
-- **Battle Clock:** time-based gates. Draft submission at 50% of the time, video recorded ≥ 12h before the deadline, judge rounds while the build runs, feature freeze, final-state gate
-- **Real field, real users (v4, after Hunch on Casper didn't place among 116 finalists, 2026-09-16):** `arsenal/field/dorahacks-field.ts` pulls every DoraHacks entry and builds redacted blind screen packs from real rivals; the brief's emphasis words and an outside user are part of brief fit; organiser guidance becomes the next work block; clusters the brief names are demand, not traps; `main` frozen and a watchdog armed from the deadline to results; a judge's first click proves the product with no wallet and no funds
-- **Honest assessment (v3, after two "best entries" didn't advance):** no "best" claim without a blind screen; Brief-Fit Gate (the brief's noun is the subject of the one-liner); a screening judge ranks us blind among 10 entries; a pre-mortem judge's top reason becomes the next work item; `first-screen.sh` lints the hero, one-liner and description; form claims never exceed the README's "live now" list
-- **New tactics:** preflight and secrets protocol, public/internal repo boundary, multi-session orchestration, claims and evidence, golden path and liveness
-- **New runnable tools:**
-  - `dorahacks-field` (pull the real field, blind screen packs, winners vs the rest)
-  - `submission-check` (every clickable claim resolves)
-  - repo guard + final-state gate
-  - deploy preflight + traps catalog
-  - liveness health
-  - voice lint
-  - cross-wallet chain switch
+### Option 2: the zip
 
-### When Does It Trigger?
+Download `hackathon.skill` (a zip of the full skill) and unzip it into `~/.claude/skills/`, so the files land in `~/.claude/skills/hackathon/`.
 
-The skill auto-activates when you:
-- Mention a hackathon by name ("I'm entering the Stellar hackathon")
-- Share hackathon docs, tracks, or prize info
-- Say "hackathon mode", "hackathon sprint", or "let's build for [competition]"
-- Discuss submission deadlines, judge preparation, or competition strategy
-- Reference platforms like DoraHacks, DevPost, ETHGlobal, or MLH
-- Invoke it directly with `/hackathon`
+### Requirements
 
-**You don't need to re-install for each hackathon.** The skill lives in your Claude Code config and is ready whenever you need it.
+- [Claude Code](https://claude.com/claude-code).
+- [Bun](https://bun.sh) for the TypeScript tools (`arsenal/field`, `submission-check`, `ops`, `web3`). The shell tools need bash, git and rsync.
 
----
+## Make it yours
 
-## Before & After: What This Skill Actually Does
+The skill improves after every event, and your history should survive updates.
 
-Here's an example showing how the same hackathon idea transforms when you use the skill vs. winging it.
+- **Your retros and ledger go in `local/`.** Inside the installed skill, keep retros in `local/retro/` and your predictions and results in `local/score-ledger.json` (copy [`career/score-ledger.template.json`](career/score-ledger.template.json)). The repo never ships `local/`, and `install.sh` never deletes or overwrites it.
+- **Or work from a fork.** Commit your retros to `retro/` and your ledger to `career/`, install from the fork, and merge upstream changes with git.
+- **The Update Rule.** After each event, every lesson becomes a change to a template, a tactic, a tool or a rule, or it gets deleted (`retro/README.md`). A lesson other builders need is a welcome PR.
 
-### The Hackathon: A weekend AI hackathon with a "developer tools" track
+The retros and `career/score-ledger.json` that ship with the skill are the maintainer's four events. They are evidence and worked examples, not your data.
 
-### The Idea: "AI-powered code review tool"
+## When it triggers
 
-**Without the skill (typical hackathon approach):**
+The skill loads when you mention a hackathon, buildathon, BUIDL, DoraHacks, ETHGlobal, Devpost, Devfolio or MLH, share a brief or prize list, talk about a submission deadline, judging or a demo video, or ask to rate a project against other entries. You can also call it with `/hackathon`.
+
+## What it does, in order
 
 ```
-Saturday morning: "Let's build an AI code reviewer!"
-Saturday afternoon: Start building a VS Code extension that calls GPT.
-Saturday night: Extension packaging is painful. Switch to a web app instead.
-Sunday morning: Web app works locally but takes 30 seconds per review.
-                Add caching. Break the review logic. Debug for 2 hours.
-Sunday 3 PM: Realize there's no landing page, no demo video, no README.
-Sunday 5 PM: Rush-deploy to Vercel. Forget environment variables. Blank screen.
-Sunday 6 PM: Fix deploy. Submit with default README.
-             Description: "An AI-powered code review tool using GPT-4"
-             Judge reaction: "So... it's a ChatGPT wrapper?"
+CONTRACT → RESEARCH → IDEATE → SPEC → PLAN → BUILD → EXPAND → POLISH → JUDGE → FIX → SHIP
+    0          1         2       3      4       5        6        7        8      9     10
 ```
 
-Result: 6 other teams built the same thing. No differentiation. Demo barely works. Judges move on in 30 seconds.
+Phases say what to do. The **battle clock** says when: the draft submission is live at 50% of the time, judge rounds run while the build does, the video is up at least 12 hours before the deadline, and expansion work is blocked until the basics are real.
 
-**With the skill (systematic workflow):**
+| Phase | What happens |
+|---|---|
+| 0 Contract | Deadline quoted with its source; the brief's noun, emphasis words and example directions; who decides and what the prize buys; form limits; access gates; the previous edition's winners |
+| 1 Research | The real field pulled and read, cluster by cluster (`arsenal/field` on DoraHacks); judges' own tools; network availability at the deadline |
+| 2 Ideate | A user outside the team, inside the directions the brief names; the sponsor's technology as the hero; the Brief-Fit Gate and a pre-mortem before any spec |
+| 3–4 Spec, plan | Three core features, the demo flow first, deploy in the first batch, clock gates as tasks |
+| 5 Build | A human runs the golden path on the real network early; liveness checks assert outcomes, not green lights |
+| 6 Expand | Only after the golden path, the draft submission and the video shot list exist |
+| 7 Polish | Landing page, proof a judge can trigger with no wallet and no funds, human voice (`voice-lint`) |
+| 8–9 Judge, fix | Blind screen against real entries, pre-mortem (an investment-committee version when the prize buys something), then the deep panel; the pre-mortem's top reason is the next work item |
+| 10 Ship | Claims audit, `render-check` on the live page, final-state gate on `main`, a watchdog armed for the judging window |
 
-```
-Phase 1 (Research): Extract tracks, prizes, judging criteria.
-         "Developer tools" track prizes speed and real-world utility.
-         Judges include 2 VCs, a DevRel lead, and a CTO.
+**Intervention protocol.** When a move that cost a past event is being repeated (calling the entry "the best" with no rival read, "time is not a constraint", writing the form "as if it's done", pasting a secret into chat), Claude stops and says so at the top of its reply, with what it cost last time and the alternative. The user decides, and the decision is logged. Ask for a quieter mode if you prefer a list in each status report instead.
 
-Phase 2 (Ideate): Competitive analysis: "80% of teams will build a ChatGPT wrapper
-         for code. What's the gap?"
-         Skill applies Product Filter — "Who uses this every week?"
-         Reframed: not "AI reviews code" but "PR reviewer for solo devs
-         who have no one to review their code."
-         Persona: "Jake is a solo founder. Every PR he merges is unreviewed.
-         He's mass-shipped 3 bugs to production this month."
+## Using it
 
-Phase 3 (Spec): 3 features only:
-         1. Paste a GitHub PR URL → get a structured review in 10 seconds
-         2. Severity labels (critical / suggestion / nitpick)
-         3. One-click "approve with comments" that posts back to GitHub
-         Demo flow designed first. Deploy target: Vercel + Supabase.
-
-Phase 4 (Plan): Deploy in Batch 1. GitHub OAuth in Batch 2.
-         No VS Code extension — web app is faster to demo.
-
-Phase 5 (Build): Core working by Saturday night. Deployed. 22 tests.
-
-Phase 6 (Expand): Added a "review history" dashboard,
-         a "biggest risks in this PR" summary card, and a
-         comparison table: "Manual review vs. our tool."
-
-Phase 7 (Polish): Landing page with before/after screenshots.
-         Live demo auto-loads a sample PR review on page open.
-         OG image set so Slack/Discord shares look professional.
-
-Phase 8 (Judge): Blind screen among 10 entries: ranked 6, not advanced
-         ("can't tell who uses it"). Fixed the tagline and video opener,
-         re-screened: ranked 2. Then the 7-judge panel. Score: 7.5/10.
-         Issues: no GitHub bot integration, review sometimes hallucinates
-         line numbers, no rate limiting on public endpoint.
-
-Phase 9 (Fix): Added input validation, rate limiting, disclaimer on
-         AI-generated reviews. Re-ran with 9 judges. Score: 8.6/10.
-
-Phase 10 (Ship): Vision doc — "Month 1: GitHub App. Month 3: CI integration.
-          Month 6: team dashboards with review velocity metrics."
-          Demo video: 2 minutes, scripted, showing a real PR being reviewed.
-          Submission: "Solo devs ship unreviewed code. ReviewBot catches
-          the bugs your missing teammate would have found."
-```
-
-Result: Clear differentiation from the 6 other "AI code review" teams. Judges understand it in 10 seconds. Demo works on page load. Vision doc shows it's a product, not a weekend hack.
-
-### What Changed
-
-| Dimension | Without Skill | With Skill |
-|-----------|--------------|------------|
-| Positioning | "AI code review tool" | "The reviewer for devs who have no reviewer" |
-| Scope | Started with VS Code extension, pivoted mid-build | Web app from the start, 3 features, no pivot |
-| Demo | Blank screen on deploy, 30s load time | Auto-loads a sample review on page open |
-| Tests | 0 | 22 |
-| Differentiation | Same as 6 other teams | Before/after comparison, persona-driven pitch |
-| Judge score | Never tested | 8.6/10 after 2 rounds of fixes |
-| Submission | "AI-powered code review using GPT-4" | "Catches bugs your missing teammate would find" |
-| Deploy | Broken environment variables at 5 PM | Deployed Saturday morning, iterated in production |
-
-The skill doesn't write better code — it makes you build the right things in the right order, catch problems before judges do, and present your work as a product, not a project.
-
----
-
-## How to Use
-
-The skill triggers automatically when you mention anything hackathon-related. You can also invoke it directly with `/hackathon`. Here's the complete guide for using it across a real hackathon:
-
-### Phase 1: Start a Hackathon Session
-
-When you find a hackathon you want to enter, start a new Claude Code session and share the docs:
+Start a session in your project and share the event page:
 
 ```
-I'm entering [Hackathon Name]. Here are the docs: [paste link or content]
-
-Analyze the tracks, prizes, judging criteria, required tech, judge backgrounds,
-and sponsor prizes. What's the landscape?
+I'm entering [event]. Here's the page: [link]. Fill the event contract and the battle clock,
+and give me one message listing everything only I can do.
 ```
 
-Claude will extract everything and present a structured summary. Review it together.
-
-### Phase 2: Find Your Winning Idea
+Then, at each stage:
 
 ```
-Based on this hackathon, what will most teams build? What's the gap nobody is filling?
-Give me 3 ideas with competitive positioning. Apply the product filter —
-each idea should have real users, revenue potential, and a reason to keep existing
-after the hackathon.
+Pull the field and the previous edition. Which directions does the brief name, who is the user
+outside our team, and who decides what the prize buys?
+
+Give me three ideas inside those directions, each with a named user, the job it does for them,
+and the proof a judge could trigger. Run the pre-mortem on the one-paragraph pitch.
+
+Write the build spec: three features, demo flow first, deploy in batch 1.
+
+Run the blind screen against nine real entries, three shuffles, and the pre-mortem.
+Treat every "partly", "unclear" and "none" about us as a work item.
+
+Run the claims audit and render-check on the live DoraHacks page, then the final-state gate.
 ```
 
-Pick an idea. The skill evaluates each against its "Why Didn't I Think of That?" test, User Test, Day-After Test, and Sponsor-as-Infrastructure Test.
+**What a screen's rank means.** A blind Claude screener ranks by Claude's taste: protocol depth, mission fit, checkable proof. At BUIDL CTC 2026 Fall it ranked the maintainer's entry first and the Grand Prize winner sixth, and naming the decision-maker in the prompt didn't fix it. Use its per-entry answers as a checklist, never its rank as a forecast.
 
-### Phase 3: Scope and Spec It
+## What's inside
 
-```
-Let's go with idea #2. Write a hackathon build spec — scoped for a demo, not production.
-Include the product vision, sponsor prize strategy, and demo flow.
-Max 3 core features.
-```
+**Tools** (`arsenal/`, each with tests):
 
-This creates the build spec with competitive positioning, target persona, and a vision section that becomes your VISION.md later.
+| Tool | What it does |
+|---|---|
+| `field/dorahacks-field.ts` | Pull a DoraHacks field (cards, descriptions, links, prizes), build redacted blind screen packs, score them, compare winners with the rest, and `render-check` the live page against the markdown you meant to paste |
+| `submission-check/` | Every URL, contract, transaction and package your docs claim resolves; placeholders and number drift fail |
+| `repo/` | Public and internal repo split, a commit guard for strategy docs and personal emails, the final-state gate |
+| `deploy/` | EVM preflight and a catalogue of chain and deploy traps |
+| `ops/` | Liveness health that asserts outcomes within time windows; judging-window runbook |
+| `copy/` | `voice-lint` (no em dashes or stock AI phrasing) and `first-screen` (brief noun, jargon, meta-framing) |
+| `web3/` | EIP-712 helpers and add-then-switch chain changes that work beyond MetaMask |
+| `judge-prompts/` | Screening judge, pre-mortem judge (with an investment-committee variant), deep-review personas |
 
-### Phase 4: Plan the Build
+**Templates** (`templates/`): event contract, battle clock, field teardown, build spec, vision, README, pitch script, video shot list, submission description, handoff.
 
-```
-Turn this spec into an implementation plan with parallel task batches.
-Deploy should be in Batch 1, not Batch 4.
-```
+**Tactics** (`tactics/`): honest assessment, claims and evidence, golden path and liveness, repo boundary, preflight and secrets, session orchestration, and more.
 
-### Phase 5: Build It
+**Also:** `career/` (idea bank, idea triage, sponsor CRM, portfolio thesis, ledger template), `validation/` (user research, build in public), `post-hackathon/` (30-day playbook, grant templates), `guides/fundamentals.md` (first-hackathon basics).
 
-```
-Start the build. Execute the plan.
-```
+## Evidence base
 
-If you have `superpowers` skills installed, it'll use subagent-driven development for parallel execution. Otherwise, it works through tasks sequentially.
+| Event (2026) | Entry | What Claude said before results | Result | Retro |
+|---|---|---|---|---|
+| Multi-App AI Agent Hackathon | Benchpress | "prize-competitive" | Not selected for the next round | [benchpress](retro/2026-09-13-multi-app-agent-benchpress.md) |
+| ETHOnline (Continuity) | Hunch VPM | "small field" | Not a finalist | [hunch-vpm](retro/2026-09-13-ethonline-hunch-vpm.md) |
+| Casper Agentic Buildathon, final | Hunch on Casper | "likely top-3" | Not placed (10 of 116 placed) | [casper results](retro/2026-09-16-casper-final-results.md) |
+| BUIDL CTC 2026 Fall | Humanline | "#1, top-3 around 60%" | Not placed (3 of 237 placed) | [buidl-ctc results](retro/2026-09-21-buidl-ctc-final-results.md) |
 
-### Phase 6: Add Differentiators
+What repeated across all four is in [`retro/2026-09-14-cross-event-synthesis.md`](retro/2026-09-14-cross-event-synthesis.md) §0. Earlier rules came from TollPay, Aegis and HashPay build sessions (2025–2026); their outcomes are unverified, and the rules they produced are marked as practice, not proof.
 
-Once core features work:
-
-```
-What more could be added to make this stand out from other hackathon projects?
-Give me a numbered list with effort/impact for each.
-```
-
-Pick numbers: "Do 1, 3, 5, and 8."
-
-### Phase 7: Polish
-
-```
-Make the UI modern and premium. Add a landing page with hero, features,
-and how-it-works sections. Deploy to [your-domain.xyz].
-```
-
-### Phase 8-9: Screen First, Then the Judge Loop
-
-Real first rounds are screens: a card, a description and the first seconds of a video, with minutes per entry. Start there:
-
-```
-Run the blind screening judge: our card, description, video transcript and
-first screen, shuffled among 9 other entries from the field teardown.
-Three shuffles. Then the pre-mortem: why did we not advance?
-```
-
-Fix the pre-mortem's top reason first, then run the deep panel:
-
-```
-Review this project as a panel of 7 strict hackathon judges, each in a
-fresh subagent that hasn't seen our spec. List every issue. Be harsh.
-```
-
-Stop when the screen advances us in all 3 shuffles and no rubric axis is below 7. A self-graded 8.5 is not a stop signal: Benchpress self-scored 8.0–8.3 and wasn't selected (`retro/2026-09-14-not-selected-postmortem.md`).
-
-### Phase 10: Ship
-
-```
-Create the vision doc (VISION.md) showing the product roadmap,
-deepening sponsor integrations, and revenue model.
-
-Then help me write:
-1. The submission description for DoraHacks
-2. A demo video script (under 3 minutes)
-3. The pitch structure (3-5 minutes)
-```
-
-### Quick Commands for Common Situations
-
-```
-# When stuck at 2 AM
-"This is broken and I have 6 hours left. [error]. Fastest fix, not best fix."
-
-# When scoping is unclear
-"Is this a product or a project? Apply the Day-After Test and User Test."
-
-# For the pitch
-"Write a pitch script. Hook in 15 seconds. Demo by minute 1. Vision by minute 4."
-
-# For the final push
-"Run the submission checklist. What's missing?"
-
-# Post-hackathon
-"We won! Help me write a follow-up email to the sponsor judges."
-```
-
----
-
-## The Workflow
-
-```
-RESEARCH → IDEATE → SPEC → PLAN → BUILD → EXPAND → POLISH → JUDGE → FIX → SHIP
-   1          2       3      4       5        6        7        8      9     10
-```
-
-| Phase | What It Does |
-|-------|-------------|
-| **Research** | Extracts tracks, prizes, judging criteria, judge backgrounds, sponsor prizes, previous winners |
-| **Ideate** | Competitive analysis + product filter — finds the gap that becomes a real product |
-| **Spec** | Build spec with persona, sponsor strategy, demo flow, product vision |
-| **Plan** | Task-by-task plan with parallel batches and deploy-on-Day-1 |
-| **Build** | Parallel execution with two-stage review + pivot protocol when things break |
-| **Expand** | Numbered feature list with effort/impact — you pick what to add |
-| **Polish** | Landing page, custom domain, shadcn/ui, 30-second usability rule |
-| **Judge** | Blind screening judge + pre-mortem first, then 5-9 strict deep-review judges in fresh subagents |
-| **Fix** | Fixes the pre-mortem's top reason first, then panel issues; re-screens until advanced |
-| **Ship** | Vision doc, pitch script, demo video, README, submission |
-
-## What's Inside
-
-### Core Workflow
-- 10-phase workflow from brief to submission
-- Build spec template with product vision and sponsor strategy
-- Blind screening judge (ranked among 10 entries) and pre-mortem judge, then deep-review personas with weighted scoring
-
-### Product Thinking
-- "Build products, not projects" philosophy woven throughout
-- Four idea filters: User Test, Day-After Test, Sponsor-as-Infrastructure Test, Revenue Moment
-- VISION.md template with Month 1/3/6 roadmap and deepening sponsor integrations
-- Guidance on reframing sponsor integration as genuine value exchange
-
-### Pitching & Presentation
-- 3-5 minute pitch structure with second-by-second timing
-- Demo video creation guide (scripted structure, tool recommendations)
-- Submission description template for DoraHacks/DevPost
-- README template (copy-paste ready)
-
-### Tactical Guides
-- Time management blueprints for 48-hour and 2-week hackathons
-- Hackathon-specific strategies (Web3, AI/ML, Corporate, Solo, Teams)
-- Tech stack decision guide (Web, Web3, AI/ML, Mobile, Backend)
-- Non-designer's UI cheat sheet (shadcn/ui + Tailwind shortcuts)
-- AI tooling strategy (which tool for which phase)
-- Mentor engagement strategy
-- "When Things Go Wrong" pivot protocol with 25%/50%/75% decision points
-
-### Battle-Tested Rules (NEW)
-- 10 rules extracted from real hackathon sprints (Aegis, TollPay)
-- Demo fallback architecture from day 1
-- Auto-execute happy path on page load
-- Reposition from infrastructure to user pain
-- Differentiation table strategy
-- Security checklist before judge review
-- Proof of settlement over "trust me"
-- Deploy architecture must match hosting
-- Narrative docs strategy
-- OG image and social preview cards
-
-### Post-Hackathon
-- Networking and follow-up playbook
-- How to leverage wins for career/startup opportunities
-- In-person hackathon tactics (sponsor booths, expo pitch, mentor hours)
-
-### Templates Included
-- Build spec template
-- VISION.md template
-- README template
-- Submission description template
-- Pitch structure (timed)
-- Demo video structure (timed)
-
----
-
-## Key Insights
-
-**From Judge Interviews (DevPost):**
-- Judges check requirements first — many submissions fail this basic bar
-- 40-45% of scoring depends on pitch quality
-- A judge from Atlassian asks: "Is this something I'd actually want to install and use?"
-- Submitting the same project to multiple hackathons is a red flag
-
-**From Serial Winners:**
-- Three features that work perfectly > eight features that half-work
-- Build a relatable persona who faces your exact problem
-- Start the pitch by the halfway mark, not the last 2 hours
-- Mentor conversations often cause breakthrough moments
-
-**From Winning Projects:**
-- Build the thing the brief names for a named user; infrastructure wins only when the brief asks for infrastructure
-- Real transactions (even testnet) dramatically outperform mocked ones
-- A clear vision doc with Month 1/3/6 roadmap separates winners from the pack
-- Sponsor tech used as load-bearing infrastructure > decorative checkbox
-
-**From Real Hackathon Sprints (Aegis + TollPay):**
-- Demo fallback data prevents the "Loading..." spinner that kills judge experience
-- Auto-executing the happy path on page load saves judges 30 seconds
-- Repositioning from "protocol" to "user pain" improved judge comprehension immediately
-- Security issues (replay attacks, fail-open defaults) always surface in judge simulation — run the checklist before
-- Deploy architecture mismatches (SQLite on Vercel) cause last-day crises — validate hosting compatibility on day 1
-- Tests protect the demo; they don't score it (corrected 2026-09-14: 1,000+ tests didn't get Benchpress or Hunch VPM past the screen)
-- OG image/social cards make every link share look professional
-- A side-by-side differentiation table is a 15-minute task with outsized impact
-- Narrative docs ("here's what happens when Sarah uses TollPay") are more memorable than API references
-
----
-
-## Built From
-
-This skill was extracted from real hackathon build sessions and enriched with research from DevPost, MLH, serial hackathon winners, and winning project analysis:
-
-- **TollPay** (Stellar Hacks) — Monetization middleware for MCP servers on Stellar. Contributed: demo fallback architecture, auto-execute pattern, repositioning strategy, security checklist, differentiation table, OG cards, 34-test benchmark
-- **Aegis** (OWS Hackathon) — Commerce protocol for AI agent economies on Solana. Contributed: facade data pattern, demo mode URL strategy, narrative docs, phased delivery, mainnet live run design
-- **HashPay** (HashKey On-Chain Horizon) — On-chain payroll rails for DAOs
+Nothing here has won yet. The rules are the ones those losses paid for.
 
 ## Contributing
 
-Found something that should be in the skill? Open an issue or PR. The best additions come from real hackathon experience — what worked, what didn't, what you wish you'd known.
+Additions need evidence: a template, checklist or tool, and the event that proved it. Retros name roles ("the builder", "the judge"), never emails or handles. Run the tests before a PR:
+
+```bash
+for d in web3 ops submission-check field; do (cd arsenal/$d && bun test); done
+bash arsenal/repo/test.sh && bash arsenal/copy/test.sh && bash install.test.sh
+```
 
 ## License
 

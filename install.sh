@@ -10,6 +10,10 @@
 #
 # The previous install is backed up to ~/.claude/skill-backups/hackathon-<timestamp>/
 # (outside ~/.claude/skills so it isn't loaded as a second skill).
+#
+# Your own files live in local/ inside the installed skill: retros (local/retro/), your ledger
+# (local/score-ledger.json), idea bank, notes. The repo never ships local/, and this script never
+# deletes or overwrites it, so updating the skill keeps your history.
 set -euo pipefail
 
 SRC="$(cd "$(dirname "$0")" && pwd)"
@@ -23,7 +27,9 @@ DRY=""
 EXCLUDES=(
   --exclude .git --exclude .gitignore --exclude .claude --exclude .burn-rate --exclude .ocean
   --exclude CLAUDE.md --exclude docs/context --exclude hackathon.skill --exclude install.sh
-  --exclude node_modules --exclude bun.lock --exclude .DS_Store
+  --exclude install.test.sh --exclude node_modules --exclude bun.lock --exclude .DS_Store
+  # User-owned: never shipped, never deleted by --delete.
+  --filter 'P /local/' --exclude /local/
 )
 
 if [ -d "$DEST" ] && [ -z "$DRY" ]; then

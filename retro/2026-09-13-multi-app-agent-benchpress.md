@@ -1,7 +1,7 @@
 # Retro: Multi-App AI Agent Hackathon (Benchpress)
 
 **File:** `retro/2026-09-13-multi-app-agent-benchpress.md`
-**Date range:** 2026-09-09 (idea) → 2026-09-13 09:30–16:00 PT (build window; Raj worked 22:00–04:30 IST)
+**Date range:** 2026-09-09 (idea) → 2026-09-13 09:30–16:00 PT (build window; the builder worked 22:00–04:30 IST)
 **Project:** Benchpress, a control loop around an agent (policy sweep, protected set, gate in code, read-back, receipts)
 **Tracks targeted:** none (single prize pool $10k / $4k / $1k)
 **Rubric:** Technical 30%, Reliability & eval 25%, Usefulness 20%, Originality 15%, Demo 10%
@@ -24,9 +24,9 @@
 ### What actually happened
 Three idea iterations on Sep 9–10, with "Receipt" and "Rehearse" killed before Benchpress was picked. On Sep 12, 3 modules and 61 tests were ready before the window opened.
 
-**08:24 PT, /hackathon prep.** A background agent found the Plan B twin rebuild would take 12–16h, only 30 minutes before the start. Raj then said "forget the time constraint… absolute best", and the rebuild went ahead.
+**08:24 PT, /hackathon prep.** A background agent found the Plan B twin rebuild would take 12–16h, only 30 minutes before the start. The builder then said "forget the time constraint… absolute best", and the rebuild went ahead.
 
-**09:05.** The repo went public and 11 build agents were dispatched. Raj pasted a Google client secret and a HubSpot token into chat.
+**09:05.** The repo went public and 11 build agents were dispatched. The builder pasted a Google client secret and a HubSpot token into chat.
 
 **~12:00.** The account session limit killed 6 agents. Partial work was salvaged, and a `HANDOFF.md` plus verbatim `AGENT-TASKS.md` made re-dispatch fast.
 
@@ -34,7 +34,7 @@ Three idea iterations on Sep 9–10, with "Receipt" and "Rehearse" killed before
 
 **13:50.** 3/3 vs 0/3 landed.
 
-**13:17–15:08.** 12 parallel release tracks ran. Raj called feature freeze at 14:48 and the repo was sanitised at 14:51.
+**13:17–15:08.** 12 parallel release tracks ran. The builder called feature freeze at 14:48 and the repo was sanitised at 14:51.
 
 **14:23.** The first judge-style score came in at ~8.0–8.3, with Usefulness weakest at 6.5. That was 90 minutes before the hard stop, too late to move it.
 
@@ -47,7 +47,7 @@ Three idea iterations on Sep 9–10, with "Receipt" and "Rehearse" killed before
 | Judge round 1 | Midpoint (~12:45) | 14:23 |
 | Video script | MVP (~12:00) | 14:37 |
 | Recording | T-75m (14:40) | ~15:00–15:30 |
-| Feature freeze | T-60m | 14:48 (called by Raj) |
+| Feature freeze | T-60m | 14:48 (called by the builder) |
 | Repo sanitise | Hour 0 (never commit internal docs) | 14:51 |
 
 ### Shipped vs cut

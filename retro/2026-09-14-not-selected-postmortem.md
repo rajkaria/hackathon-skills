@@ -14,11 +14,11 @@
 
 ---
 
-## 1. The uncomfortable finding: Claude told Raj he had the best entry, with no evidence
+## 1. The uncomfortable finding: Claude told the builder they had the best entry, with no evidence
 
 Neither event had a single real competitor entry looked at before or during the build.
 
-| Claim made to Raj | What it rested on |
+| Claim made to the builder | What it rested on |
 |---|---|
 | `STRATEGY.md` titled *"Win strategy: why Benchpress takes first place"* | An invented field ("A Composio or MCP assistant… Judges saw a hundred of these") and a self-written panel ending at "~8.8" |
 | *"this is the only submission that can't be accused of grading its own homework"* (Benchpress, Sep 12) | Imagined rivals. The plan it assumed (running inside Arga's harness) never happened |
@@ -33,7 +33,7 @@ Across all the Benchpress sessions there were four web calls: the event site, th
 - It calls the self-run panel "The Secret Weapon" and says "9+/10: Submit it".
 - It tells Claude to "Find the winning idea".
 - `career/score-ledger.json` held three sample events presented as real: X Layer Arena "2nd overall", Stellar Agentic "1st", ETHGlobal Bangkok "Finalist". One claimed *"Simulated panel called it within 0.1"*.
-  - None of those events appears in any transcript, and their retro files don't exist. **Raj confirmed on 2026-09-14 that they never happened; the entries were deleted.**
+  - None of those events appears in any transcript, and their retro files don't exist. **The author confirmed on 2026-09-14 that they never happened; the entries were deleted.**
   - The dates predate the repos they cite: Bench's first commit is 2026-04-08 but its "X Layer" entry is dated 2026-02-15; Toll's is 2026-03-31 vs 2026-03-08; Aegis's is 2026-04-02 vs 2025-11-20.
   - `career/idea-triage.md` cited "average placement 2.3 vs 7.8" from the same data.
   - The skill was, in effect, telling Claude its self-scores were proven predictors.
@@ -78,7 +78,7 @@ Across all the Benchpress sessions there were four web calls: the event site, th
   - `VIDEO-SCRIPT.md` still said "A whitepaper was written and published during the hackathon".
 
 **2. The form said more than the product did.**
-- Raj asked for form answers "consider that we are already done with entire build including cre and all". Claude wrote them that way, with a footer asking him to "make sure these are actually true".
+- The builder asked for form answers "consider that we are already done with entire build including cre and all". Claude wrote them that way, with a footer asking him to "make sure these are actually true".
 - The description claimed:
   - markets "resolved by… a Chainlink CRE workflow"
   - an agent that "researches, decides, trades and claims"
@@ -88,7 +88,7 @@ Across all the Benchpress sessions there were four web calls: the event site, th
 - A screener who checks one link finds the contradiction.
 
 **3. It took real effort to understand.**
-- On Aug 28 Raj told Claude the mechanism was "too technical, explain me in simple language" and asked "why would you deny money, that's bad".
+- On Aug 28 the builder told Claude the mechanism was "too technical, explain me in simple language" and asked "why would you deny money, that's bad".
 - The shipped hero is "Back your hunch. A parimutuel that pays for being early", with "Stake vests the moment it lands" underneath.
 - The video script opened "Every parimutuel pool has one flaw…" over a four-statistic card.
 - The README grew to about 950 lines with κ, vintages and proofs P1–P7.
@@ -103,7 +103,7 @@ Across all the Benchpress sessions there were four web calls: the event site, th
 **5. Partner prizes were chosen for breadth, not against each prize's criteria.**
 - The Graph AI wants "meaningful work… decisions, automation". The agent only ran dry-run.
 - Arc wants "autonomous spending/settlement in USDC". The Circle Agent Wallet was never live, and $2k of the $3k needs mainnet by Sep 30.
-- Chainlink requires "a state change on a blockchain". CRE deploy was blocked, and Claude still told Raj at 12:03 UTC that the requirement was met.
+- Chainlink requires "a state change on a blockchain". CRE deploy was blocked, and Claude still told the builder at 12:03 UTC that the requirement was met.
 
 **6. A 9-day event was run as a 36-hour one.** The idea was picked on day 6; neither check-in shows up in any transcript.
 

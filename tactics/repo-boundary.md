@@ -6,7 +6,7 @@ The public repo is part of the submission. Judges and competitors read it, and s
 **Skip if:** the repo is private for the entire event *and* will never be made public (rare; most platforms require a public repo).
 
 **Incidents this prevents:**
-- **Benchpress:** the repo was public from 09:05 with `STRATEGY.md` (it names the judges), `FOUNDERS-EMAIL.md` (Raj's personal email) and the plans. They were removed at 14:51 and remain in history.
+- **Benchpress:** the repo was public from 09:05 with `STRATEGY.md` (it names the judges), `FOUNDERS-EMAIL.md` (the founder's personal email) and the plans. They were removed at 14:51 and remain in history.
 - **Hunch VPM:** the repo was created with the spec and hackathon docs inside, then deleted and recreated. Operator docs (`SUBMISSION.md`, `SUBMISSION-CHECKLIST.md`, `DEMO.md`) were then written into the public repo. The cleanup was never pushed, so after the deadline `origin/main` still said "every committed contract address is the zero placeholder". Seven commits landed in the same minute, at an event whose rules say "large single commits or missing histories may be disqualified".
 - **Humanline:** commits were clustered into 2 days, and a rival analysis flagged that as a credibility weakness.
 

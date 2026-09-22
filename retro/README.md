@@ -24,6 +24,14 @@ Per-event retrospectives + the rule that retros update the skill itself. Without
 
 ---
 
+## Where your retros go
+
+The retros in this folder are the maintainer's events, kept as the evidence behind the rules. Yours go elsewhere, so updates never overwrite them:
+
+- **Installed from this repo:** `~/.claude/skills/hackathon/local/retro/YYYY-MM-DD-event-slug.md`, and your ledger in `local/score-ledger.json` (copy `career/score-ledger.template.json`). `install.sh` never deletes or overwrites `local/`.
+- **Installed from your fork:** commit them to `retro/` and `career/` in the fork, and pull upstream changes with git.
+- **Found a lesson other builders need?** Open a PR with the retro (people named as "the builder" or by role, no emails or handles) and the skill change it produced.
+
 ## The Update Rule (non-negotiable)
 
 Every retro ends with a **"Lessons into skill"** section. For every lesson, update the actual skill repo. Concretely:

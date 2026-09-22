@@ -339,19 +339,19 @@ describe("blind screen pack", () => {
     field.entries[5] = entry({
       buidlId: 1005,
       name: "Hunch",
-      githubUrl: "https://github.com/rajkaria/hunch-casper",
+      githubUrl: "https://github.com/octobuilder/hunch-casper",
       demoUrl: "https://casper.playhunch.xyz",
       tagline: "Hunch runs prediction markets on Casper.",
       description: [
         "# Hunch on Casper",
         "Live: https://casper.playhunch.xyz/agents · or type casper.playhunch.xyz · follow @playhunchxyz",
-        "Vision: https://github.com/rajkaria/hunch-casper/blob/main/VISION.md",
+        "Vision: https://github.com/octobuilder/hunch-casper/blob/main/VISION.md",
         "Receipt: https://testnet.cspr.live/transaction/0123456789abcdef0123456789abcdef",
       ].join("\n"),
     });
     const { pack, key } = buildScreenPack(field, { oursId: 1005, seed: 2, redact: true });
     expect(key.redacted).toBe(true);
-    expect(pack).not.toMatch(/hunch|rajkaria|playhunch/i);
+    expect(pack).not.toMatch(/hunch|octobuilder|playhunch/i);
     expect(pack).toContain("prediction markets on Casper");
     expect(pack).toContain("https://testnet.cspr.live/transaction/0123456789abcdef0123456789abcdef");
     expect(pack).toContain("Team names, repo names and site URLs are replaced");
@@ -377,12 +377,12 @@ describe("blind screen pack", () => {
       entry({
         buidlId: 4,
         name: "Quid",
-        ownerName: "Raj",
-        description: "Built by Raj for Quid users. Mail raj.k+hack@example.co.uk. The trajectory of liquidity stays.",
+        ownerName: "Ana",
+        description: "Built by Ana for Quid users. Mail ana.k+hack@example.co.uk. The analysis of liquidity stays.",
       }),
       "E",
     );
-    expect(e.description).toBe("Built by Entry E for Entry E users. Mail <email>. The trajectory of liquidity stays.");
+    expect(e.description).toBe("Built by Entry E for Entry E users. Mail <email>. The analysis of liquidity stays.");
   });
 
   test("redactEntry scrubs a custom domain and its parent, not shared hosting", () => {
@@ -409,20 +409,21 @@ describe("blind screen pack", () => {
     expect(shared.description).not.toMatch(/cascet/i);
   });
 
-  // BUIDL CTC 2026 Fall: a screener picked out ours from "Built by Raj Karia" (repo owner "rajkaria")
-  // and read Farebox's team from "Built by Svrnty" and a Gitea org path the redaction left alone.
+  // BUIDL CTC 2026 Fall: a screener picked out ours from the builder's full name in the footer (the
+  // repo owner spelled it as one handle) and read Farebox's team from "Built by Svrnty" and a Gitea
+  // org path the redaction left alone.
   test("redactEntry catches a handle written as a name, and the custom domain's own name", () => {
     const e = redactEntry(
       entry({
         buidlId: 5,
         name: "Humanline Credit",
-        githubUrl: "https://github.com/rajkaria/humanline",
+        githubUrl: "https://github.com/janedoe/humanline",
         demoUrl: "https://humanline.credit",
-        description: "**Built by Raj Karia** ([X @rajkaria_](https://x.com/rajkaria_)) · raj-karia · Raj.Karia · the rajkarian era",
+        description: "**Built by Jane Doe** ([X @janedoe_](https://x.com/janedoe_)) · jane-doe · Jane.Doe · the janedoeish era",
       }),
       "H",
     );
-    expect(e.description).not.toMatch(/raj\s?karia|raj-karia|raj\.karia|@rajkaria/i);
+    expect(e.description).not.toMatch(/jane\s?doe|jane-doe|jane\.doe|@janedoe/i);
     // Whole words only for the loose form, so a longer word survives it.
     expect(e.description).toContain("era");
 
